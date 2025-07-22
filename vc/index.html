@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"saili.science","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":true,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="C语言是一种通用的编程语言，广泛用于系统软件与应用软件的开发。于1969年至1973年间，为了移植与开发UNIX操作系统，由丹尼斯·里奇与肯·汤普逊，以B语言为基础，在贝尔实验室设计、开发出来。C语言具有高效、灵活、功能丰富、表达力强和较高的可移植性等特点，在程序员中备受青睐，成为最近25年使用最为广泛的编程语言。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C程序设计">
+<meta property="og:url" content="http://saili.science/vc/index.html">
+<meta property="og:site_name" content="Alex LEE&#39;s Blog">
+<meta property="og:description" content="C语言是一种通用的编程语言，广泛用于系统软件与应用软件的开发。于1969年至1973年间，为了移植与开发UNIX操作系统，由丹尼斯·里奇与肯·汤普逊，以B语言为基础，在贝尔实验室设计、开发出来。C语言具有高效、灵活、功能丰富、表达力强和较高的可移植性等特点，在程序员中备受青睐，成为最近25年使用最为广泛的编程语言。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://c.biancheng.net/cpp/uploads/allimg/160714/1-160G41Q12O23.jpg">
+<meta property="article:published_time" content="2017-04-06T04:39:04.000Z">
+<meta property="article:modified_time" content="2018-03-23T12:25:03.000Z">
+<meta property="article:author" content="Alex LEE">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://c.biancheng.net/cpp/uploads/allimg/160714/1-160G41Q12O23.jpg">
+
+
+<link rel="canonical" href="http://saili.science/vc/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://saili.science/vc/","path":"vc/","title":"C程序设计"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>C程序设计 | Alex LEE's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/6.1.3/pangu.umd.js" integrity="sha256-erngBMP3zzoIM6eqQ8dmrReh2vqCRgWmORroIfVoDlE=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://saili.science/vc/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex LEE's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex LEE's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">77</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">25</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#c%E9%9D%99%E6%80%81%E5%BA%93%E4%B8%8E%E5%8A%A8%E6%80%81%E5%BA%93"><span class="nav-text">I. C++静态库与动态库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#c%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E5%9B%9B%E6%AD%A5%E5%BC%80%E5%8F%91%E6%AD%A5%E9%AA%A4"><span class="nav-text">II. C语言程序四步开发步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#code-blocks"><span class="nav-text">III. Code Blocks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vc6"><span class="nav-text">IV. VC6</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#vc6.0%E6%98%BE%E7%A4%BA%E8%A1%8C%E5%8F%B7"><span class="nav-text">IV.I. VC6.0显示行号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vc6.0%E5%88%9B%E5%BB%BA%E5%B7%A5%E7%A8%8B"><span class="nav-text">IV.II. VC6.0创建工程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vc6.0%E6%89%93%E5%BC%80%E5%A4%9A%E4%B8%AA%E5%B7%A5%E7%A8%8B%E5%AE%9E%E4%BE%8B"><span class="nav-text">IV.III. VC6.0打开多个工程实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vc6.0-debug"><span class="nav-text">IV.IV. VC6.0 Debug</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%96%AD%E7%82%B9"><span class="nav-text">IV.IV.I. 设置断点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E5%91%BD%E4%BB%A4"><span class="nav-text">IV.IV.II. 调试命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%8F%98%E9%87%8F"><span class="nav-text">IV.IV.III. 查看变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98"><span class="nav-text">IV.IV.IV. 查看内存</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E9%94%99%E8%AF%AF"><span class="nav-text">IV.V. 常见的错误</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%89%E4%BA%8E%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E8%AF%AF%E7%94%A8"><span class="nav-text">IV.V.I. 等于运算符的误用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AA%E5%88%9D%E5%A7%8B%E5%8C%96%E7%9A%84%E5%8F%98%E9%87%8F"><span class="nav-text">IV.V.II. 未初始化的变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E9%9A%90%E5%BC%8F%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-text">IV.V.III. 变量的隐式类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%BB%93%E6%9E%9C%E5%87%BA%E7%8E%B0-1.ind-1.inf-nan-inf"><span class="nav-text">IV.V.IV. 运算结果出现 1.#IND, 1.#INF nan, inf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BA%E7%8E%B0stack-overflow%E9%97%AE%E9%A2%98"><span class="nav-text">IV.V.V. 出现stack overflow问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vs-xp"><span class="nav-text">V. VS-XP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#c%E8%AF%AD%E8%A8%80"><span class="nav-text">VI. C语言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6%E9%A2%84%E7%BC%96%E8%AF%91"><span class="nav-text">VI.I. 头文件预编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E5%87%BD%E6%95%B0"><span class="nav-text">VI.II. 主函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E5%AE%9A%E4%B9%89%E8%B0%83%E7%94%A8"><span class="nav-text">VI.III. 函数声明&#x2F;定义&#x2F;调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E5%AE%9A%E4%B9%89"><span class="nav-text">VI.IV. 类型定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#void"><span class="nav-text">VI.IV.I. void</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#const"><span class="nav-text">VI.IV.II. const</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F"><span class="nav-text">VI.V. 变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#c%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-text">VI.V.I. C++&#x2F;作用域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D"><span class="nav-text">VI.VI. 动态内存分配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-text">VI.VII. 运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%A4%E6%B3%95%E6%B1%82%E4%BD%99"><span class="nav-text">VI.VII.I. 除法求余</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AC%A1%E6%96%B9"><span class="nav-text">VI.VII.II. 次方</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-text">VI.VIII. 类型转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E9%92%88"><span class="nav-text">VI.IX. 指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6"><span class="nav-text">VI.X. 数组与字符串长度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sizeof"><span class="nav-text">VI.X.I. sizeof()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#strlen"><span class="nav-text">VI.X.II. strlen()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#memset%E5%87%BD%E6%95%B0"><span class="nav-text">VI.XI. memset函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for%E5%BE%AA%E7%8E%AF"><span class="nav-text">VI.XII. FOR循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E4%B8%8E%E7%9F%A9%E9%98%B5"><span class="nav-text">VI.XIII. 数组与矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">VI.XIII.I. 矩阵的定义和初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E7%94%B3%E8%AF%B7%E7%9F%A9%E9%98%B5%E5%AD%98%E5%82%A8%E7%A9%BA%E9%97%B4"><span class="nav-text">VI.XIII.I.I. 动态申请矩阵存储空间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E7%94%B3%E8%AF%B7%E7%9F%A9%E9%98%B5%E5%AD%98%E5%82%A8%E7%A9%BA%E9%97%B4"><span class="nav-text">VI.XIII.I.II. 静态申请矩阵存储空间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E8%BE%93%E5%85%A5"><span class="nav-text">VI.XIII.II. 矩阵输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E7%94%9F%E6%88%90"><span class="nav-text">VI.XIII.III. 矩阵生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E8%BD%AC%E6%95%B0%E7%BB%84"><span class="nav-text">VI.XIII.IV. 矩阵转数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E8%B5%8B%E5%80%BC"><span class="nav-text">VI.XIII.V. 数组赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E4%B8%8E%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88"><span class="nav-text">VI.XIII.VI. 数组与数组指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E4%BD%9C%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0"><span class="nav-text">VI.XIII.VII. 数组作为函数参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E4%B8%8E%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-text">VI.XIV. 类与结构体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E6%B1%82%E9%80%86"><span class="nav-text">VI.XV. 矩阵求逆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0"><span class="nav-text">VI.XVI. 生成随机数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jacobian-method"><span class="nav-text">VI.XVII. JACOBIAN METHOD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cholesky%E5%88%86%E8%A7%A3"><span class="nav-text">VI.XVIII. Cholesky分解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E7%9A%84%E9%80%86"><span class="nav-text">VI.XIX. 矩阵的逆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="nav-text">VI.XX. 读取数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%98%BE%E7%A4%BA"><span class="nav-text">VI.XXI. 输出显示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#printf%E5%87%BD%E6%95%B0"><span class="nav-text">VI.XXI.I. printf函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%95%B0%E7%BB%84"><span class="nav-text">VI.XXI.II. 输出数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E7%9F%A9%E9%98%B5"><span class="nav-text">VI.XXI.III. 输出矩阵</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="nav-text">VII. 结构图</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex LEE"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Alex LEE</p>
+  <div class="site-description" itemprop="description">There is no royal road to learning.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:im.sai.li@outlook.com" title="E-Mail → mailto:im.sai.li@outlook.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/sli1989" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;sli1989" rel="noopener me" target="_blank"><i class="telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitter.im/sli1989" title="Gitter → https:&#x2F;&#x2F;gitter.im&#x2F;sli1989" rel="noopener me" target="_blank"><i class="github-alt fa-fw"></i>Gitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/sli1989/HEXO-NEXT-CUSTOM" title="https:&#x2F;&#x2F;github.com&#x2F;sli1989&#x2F;HEXO-NEXT-CUSTOM" rel="noopener" target="_blank">About the Blog</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://fontawesome.com/icons" title="https:&#x2F;&#x2F;fontawesome.com&#x2F;icons" rel="noopener" target="_blank">Font Awesome Icons</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://getemoji.com/" title="https:&#x2F;&#x2F;getemoji.com&#x2F;" rel="noopener" target="_blank">Copy and Paste Emoji</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://saili.science/vc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Alex LEE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex LEE's Blog">
+      <meta itemprop="description" content="There is no royal road to learning.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="C程序设计 | Alex LEE's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C程序设计
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2018-03-23 20:25:03" itemprop="dateModified" datetime="2018-03-23T20:25:03+08:00">2018-03-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类：</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Programming/" itemprop="url" rel="index"><span itemprop="name">Programming</span></a>
+        </span>
+          <span> > </span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Programming/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>15k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>54 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/C%E8%AF%AD%E8%A8%80">C语言</a>是一种通用的编程语言，广泛用于系统软件与应用软件的开发。于1969年至1973年间，为了移植与开发UNIX操作系统，由丹尼斯·里奇与肯·汤普逊，以B语言为基础，在贝尔实验室设计、开发出来。C语言具有高效、灵活、功能丰富、表达力强和较高的可移植性等特点，在程序员中备受青睐，成为最近25年使用最为广泛的编程语言。</p>
+<span id="more"></span>
+<p>目前，C语言编译器普遍存在于各种不同的操作系统中，例如Microsoft Windows, Mac OS X, Linux, Unix等。C语言的设计影响了众多后来的编程语言，例如C++、Objective-C、Java、C#等。二十世纪八十年代，为了避免各开发厂商用的C语言语法产生差异，由美国国家标准局为C语言订定了一套完整的国际标准语法，称为ANSI C，作为C语言的标准。二十世纪八十年代至今的有关程序开发工具，一般都支持匹配ANSI C的语法。</p>
+<h1 id="c静态库与动态库">I. C++静态库与动态库</h1>
+<p>本质上来说库是一种可执行代码的二进制形式，可以被操作系统载入内存执行。库有两种：静态库（.a、.lib）和动态库（.so、.dll）。所谓静态、动态是指链接。<a target="_blank" rel="noopener" href="http://www.cnblogs.com/skynet/p/3372855.html">C++静态库与动态库</a></p>
+<h1 id="c语言程序四步开发步骤">II. C语言程序四步开发步骤</h1>
+<ol style="list-style-type: decimal">
+<li>编辑。可以用任何一种编辑软件将在纸上编写好的C语言程序输入计算机，并将C语言源程序文件“.c”以纯文本文件形式保存在计算机的磁盘上（不能设置字体、字号等）。</li>
+<li>编译。编译过程使用C语言编译程序将编辑好的源程序文件“.c”，翻译成二进制目标代码文件“.obj”。编译程序对源程序逐句检查语法错误发现错误后，不仅会显示错误的位置（行号），还会告知错误类型信息。我们需要再次回到编辑软件修改源程序的错误，然后，再进行编译，直至排除所有语法和语义错误。</li>
+<li>连接。程序编译后产生的目标文件是可重定位的程序模块，不能直接运行。连接将编译生成的各个目标程序模块和系统或第三方提供的库函数“.lib”连接在一起，生成可以脱离开发环境、直接在操作系统下运行的可执行文件“.exe”。</li>
+<li>运行程序。如果经过测试，运行可执行文件达到预期设计目的，这个C语言程序的开发工作便到此完成了。如果运行出错，这说明程序处理的逻辑存在问题，需要再次回到编辑环境针对程序出现的逻辑错误进一步检查、修改源程序，重复编辑→编译→连接→运行的过程，直到取得预期结果为止。</li>
+</ol>
+<h1 id="code-blocks">III. Code Blocks</h1>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/d5fa463df77d">C语言从零开始（二）-Code::Blocks使用</a><br>
+<a target="_blank" rel="noopener" href="http://www.cnblogs.com/hslog/p/hslog0003.html">CodeBlocks的下载安装、配置、简单编程</a></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.codeblocks.org/downloads/26/">Code Blocks</a>作为一款轻量级的C/C++ IDE，它除了能够完成最基本的编辑、编译、调试的功能，还具备以下特点：</p>
+<ul>
+<li><p>开源：每次看到这个词就莫名的激动，特别是对于学生朋友们，囊中羞涩的你再也不用因为使用盗版软件受到内心的谴责。有免费的我们为什么一定要选择花钱呢。</p></li>
+<li><p>跨平台、跨编译器：Windows、Linux、Mac OS都可以使用，即使将来更换了设备也无需担忧。支持多款编译器，只要简单配置一下就可以轻松切换gcc/g++、Visual C++、Borland C++、Intel C++等20多款编译器。</p></li>
+<li><p>插件式框架：初学者可能无法理解框架的概念，简单说就是方便添加各种有的没的小功能。</p></li>
+<li><p>采用C++写成：运行环境非常简单，不用安装其他庞杂的Framework。</p></li>
+<li><p>升级频繁与维护良好：几乎每个月都有升级包，还有各种热心网友提供功能包。</p></li>
+<li><p>内嵌可视化GUI设计：IDE的图形界面，采用wxWidgets，如果你听不懂的话只要知道很牛X就可以了。</p></li>
+</ul>
+<h1 id="vc6">IV. VC6</h1>
+<h2 id="vc6.0显示行号">IV.I. VC6.0显示行号</h2>
+<p>VC6.0是一款比较稳定的功能强大的IDE，目前也有很多人在使用。但美中不足的是它不能像其他IDE那样显示行号。这里需要用到一个插件VC6LineNumberAddin，<a target="_blank" rel="noopener" href="http://files.cnblogs.com/emanlee/VC6LineNumberAddin.rar">下载地址</a>。</p>
+<ol style="list-style-type: decimal">
+<li><p>将<code>VC6LineNumberAddin.dll</code>文件放在VC6.0安装路径，例如：<code>D:\Program Files\Microsoft Visual Studio\Common\MSDev98\AddIns</code>；</p></li>
+<li><p>下载的压缩文件中有一个注册表，点击<code>VC6LineNumberAddin.reg</code>进行注册，点击后会出现一个对话框，选择“是”就OK了；</p></li>
+<li><p>打开VC6.0，选择【工具】——【定制】，进入“定制”对话框，选择【附加项和宏文件】，勾选<code>VC6LineNumber</code>前面的复选框，如果没有该选项，点击【浏览】，选择刚才的<code>VC6LineNumberAddin.dll</code>添加就可以了，注意，一定要勾选前面的复选框。</p></li>
+<li><p>设置好后点击【关闭】，就会在编辑框左侧显示代码的行号了。</p></li>
+</ol>
+<h2 id="vc6.0创建工程">IV.II. VC6.0创建工程</h2>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://c.biancheng.net/cpp/html/732.html">在VC6.0中创建工程并输入源代码</a></p>
+</blockquote>
+<p>选择菜单File下的New项，会出现一个选择界面，在属性页中选择Projects标签后，会看到近20种的工程类型，我们只需选择其中最简单的一种：“Win32 Console Application”，而后往右上处的“Location”文本框和“Project name”文本框中填入工程相关信息所存放的磁盘位置（目录或文件夹位置）以及工程的名字。</p>
+<p>选择菜单Project中子菜单Add To Project下的new项，在出现的对话框的Files标签（选项卡）中，选择“C++ Source File”项，在右中处的File文本框中为将要生成的文件取一个名字，我们取名为Hello（其他遵照系统隐含设置，此时系统将使用Hello.cpp的文件来保存所键入的源程序）。</p>
+<h2 id="vc6.0打开多个工程实例">IV.III. VC6.0打开多个工程实例</h2>
+<p>xp下设置：打开我的电脑 → 工具 → 文件夹选项 → 在文件类型中选择DSW → 高级 → 编辑 Open 操作 → 去掉“使用 DDE”钩子 →确定完成；</p>
+<h2 id="vc6.0-debug">IV.IV. VC6.0 Debug</h2>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://alorry.blog.163.com/blog/static/647257082011664510817/">VC++6.0 Debug单步调试简单入门</a></p>
+</blockquote>
+<p>当你按捺不住激动滴心情点击运行后，发现结果并不是你想要的结果……郁闷了。然后你在代码中加了n条printf来查看 变量的结果……n多循环……运行，再加printf，again and again……终于，要抓狂了……好吧，同学，如果你会用Debug，也许你不用这么纠结。</p>
+<p>为了方便程序员排除程序中的逻辑错误，VC 提供了强大的调试功能。每当我们创建一个新的 VC 工程项目时，默认状态就是 Debug（调试）版本。调试版本会执行编译命令_D_DEBUG，将头文件的调试语句 ifdef 分支代码添加到可执行文件中；同时加入的调试信息可以让开发人员观察变量，单步执行程序。由于调试版本包含了大量信息，所以生成的 Debug 版本可执行文件容量会远远大于Release（发行）版本。</p>
+<p>在调试程序的过程中，程序员应该记住以下几种技巧<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>：</p>
+<ul>
+<li>先调试程序中较小的组成部分，然后调试较大的组成部分；</li>
+<li>彻底调试好程序的一个组成部分后，再调试下一个组成部分；</li>
+<li>连续地观察程序流(flow)和数据的变化；</li>
+<li>始终打开编译程序警告选项 并试图消除所有警告；</li>
+<li>准确地缩小存在错误的范围。</li>
+</ul>
+<p>需要指出的是，主函数不要再用void main()了，这种只有在你学的环境才不会出错，到别的（linux编译器）地方编译是通过不了的。main函数必须要有返回值，如写成int main（）在函数结尾时加一个return 0;，这样，所有编译器都不会报错了。</p>
+<h3 id="设置断点">IV.IV.I. 设置断点</h3>
+<p>在你感觉可能有问题的地方添加断点（按快捷键F9或者点击图中小手按钮），以便运行到断点处好查看运行状态。</p>
+<p>设置断点的方法是：将光标停在要被暂停的那一行，选择“Build MiniBar”工具栏按钮“Insert/Remove Breakpoint (F9)”按钮添加断点。如果该行已经设置了断点，那么再次按“F9”功能键会清除该断点。</p>
+<p>设置断点后，可以按“F5”功能键启动 Debug模式，程序会在断点处停止。我们可以接着单步执行程序，观察各变量的值如何变化，确认程序是否按照设想的方式运行。</p>
+<h3 id="调试命令">IV.IV.II. 调试命令</h3>
+<p>我们也可以在 VC“Build”（组建）菜单下的“Start Debug”（开始调试）中点击 Go（F5）命令进入调试状态，Build 菜单自动变成 Debug 菜单，提供以下专用的调试命令：</p>
+<ul>
+<li>Go(F5) 从当前语句开始运行程序，直到程序结束或断点处。</li>
+<li>Step Into(F11) 单步执行下条语句，并跟踪遇到的函数。</li>
+<li>Step Over(F10) 单步执行（跳过所调用的函数）</li>
+<li>Run to Cursor(Ctrl+F10) 运行程序到光标所在的代码行。</li>
+<li>Step out(Shift+F11) 执行函数调用外的语句，并终止在函数调用语句处。</li>
+<li>Stop Debugging(Shift+F5) 停止调试，返回正常的编辑状态</li>
+</ul>
+<p>必须在运行程序时用 Go 命令（而不是 Execute）才能启动调试模式。在调试模式下，程序停止在某条语句，该条语句左边就会出现一个黄色的小箭头。我们随时中断程序、单步执行、查看变量、检查调用情况。比如，按“F5”功能键进入调试模式，程序运行到断点处暂停；不断按“F10”功能键，接着一行一行地执行程序，直到程序运行结束。</p>
+<h3 id="查看变量">IV.IV.III. 查看变量</h3>
+<p>单步调试程序的过程中，我们可以在下方的Variables （变量）子窗口和Watch（监视） 子窗口中动态地察看变量的值。Variables 子窗口中自动显示当前运行上下文中的各个变量的值变量，而 Watch 子窗口内只显示在此 Watch 子窗口输入的变量或表达式的值。随着程序的逐步运行，也可以直接用鼠标指向程序中变量查看其值。Variables 子窗口中，我们可以清楚地看到，程序已经为自动型变量 first、second、big 分配了内存，但它们的初始值是随机的。</p>
+<p>Variables 子窗口有 3 个选项卡：Auto、Locals 和 This。</p>
+<ul>
+<li>Auto 选项卡： 显示出当前语句和上一条语句使用的变量，它还显示使用 Step over 或 Step out 命 令后函数的返回值。</li>
+<li>Locals 选项卡：显示出当前函数使用的局部变量。</li>
+<li>This 选项卡： 显示出由 This 所指向的对象（C 语言不用 this）。</li>
+</ul>
+<p>如果变量较多，自动显示的Variables 窗口难以查看时，还可以在右边的Watch 子窗口中添加想要监控的变量名。例如，在 Watch1 子窗口中添加了变量“first”。我们还可以直接将变量拖动到 Watch 子窗口的空白 Name 框中。 添加结束后，该变量的值会被显示出来。并且随着单步调试的进行，会看到变量 first 的值逐渐变化。如果各变量的值按照设想的方式逐渐变化，程序运行结果无误，本次开发就顺利结束了。如果发现各变量值的变化和设想的不一致，说明程序存在逻辑错误，那就需要停止调试，返回编辑窗口，查错并修改程序。</p>
+<h3 id="查看内存">IV.IV.IV. 查看内存</h3>
+<p>数组和指针指向了一段连续的内存中的若干个数据。可以使用 memory 功能显示数组和指针指向的连续内存中的内容。在 Debug 工具条上点 memory 按钮，弹出一个对话框，在其中输入数组或指针的地址，就可以显示该地址指向的内存的内容。</p>
+<h2 id="常见的错误">IV.V. 常见的错误</h2>
+<h3 id="等于运算符的误用">IV.V.I. 等于运算符的误用</h3>
+<p>编译时检查有助于发现等于运算符的误用。请看下述程序段： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void foo(int a，int b)</span><br><span class="line">&#123;</span><br><span class="line">  if ( a = b )</span><br><span class="line">  &#123;</span><br><span class="line">      / * some code here * /</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这种类型的错误一般很难发现!程序并没有比较两个变量，而是把b的值赋给了a，并且在b不为零的条件下执行if体。一般来说，这并不是程序员所希望的(尽管有可能)。这样一来，不仅有关的程序段将被执行错误的次数，并且在以后用到变量a时其值也是错误的。</p>
+<h3 id="未初始化的变量">IV.V.II. 未初始化的变量</h3>
+<p>编译时检查有助于发现未初始化的变量。请看下面的函数： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">void average ( float ar[], int size )</span><br><span class="line">&#123;</span><br><span class="line">       float total;</span><br><span class="line">       int a;</span><br><span class="line">       for( a = 0;a&lt;size; ++a)</span><br><span class="line">       &#123;</span><br><span class="line">            total+=ar[a];</span><br><span class="line">       &#125;</span><br><span class="line">       printf(&quot; %f\n&quot;, total /  (float) size );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 这里的问题是变量total没有被初始化，因此它很可能是一个随机的无用的数。数组所有元素的值的和将与这个随机数的值相加(这部分程序是正确的)，然后输出包括这个随机数在内的一组数的平均值。</p>
+<h3 id="变量的隐式类型转换">IV.V.III. 变量的隐式类型转换</h3>
+<p>在有些情况下，C语言会自动将一种类型的变量转换为另一种类型。这可能是一件好事(程序员不用再做这项工作)，但是也可能会产生意想不到的效果。把指针类型隐式转换成整型恐怕是最糟糕的隐式类型转换。 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">void sort( int ar[],int size )</span><br><span class="line">&#123;</span><br><span class="line">       /* code to sort goes here * /</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">       int arrgy[10];</span><br><span class="line">       sort(  10, array );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="运算结果出现-1.ind-1.inf-nan-inf">IV.V.IV. 运算结果出现 1.#IND, 1.#INF nan, inf</h3>
+<p>进行浮点数编程时，如果没有注意，常常会出现输出类似 1.#IND, 1.#INF 或者 nan, inf 之类奇怪的输出。这通常隐含了浮点数操作的异常。</p>
+<p>1.#INF / inf：这个值表示“无穷大 (infinity 的缩写)”，即超出了计算机可以表示的浮点数的最大范围（或者说超过了 double 类型的最大值）。例如，当用 0 除一个整数时便会得到一个1.#INF / inf值；相应的，如果用 0 除一个负整数也会得到 -1.#INF / -inf 值。</p>
+<p>-1.#IND / nan：这个的情况更复杂，一般来说，它们来自于任何未定义结果（非法）的浮点数运算。&quot;IND&quot;是 indeterminate 的缩写，而&quot;nan&quot;是 not a number 的缩写。产生这个值的常见例子有：对负数开平方，对负数取对数，0.0/0.0，0.0*∞, ∞/∞ 等。举个例子，如果log()内的值是1.#INF,得到的log值就会是，1.#INF。</p>
+<p>所以简而言之，如果遇到 1.#INF / inf，就检查是否发生了运算结果溢出除零，而遇到 1.#IND / nan，就检查是否发生了非法的运算。很多 C 库都提供了一组函数用来判断一个浮点数是否是无穷大或 NaN。<code>int _isnan(double x)</code> 函数用来判断一个浮点数是否是 NaN，而 <code>int _finite(double x)</code> 用以判断一个浮点数是否是无穷大<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>。</p>
+<h3 id="出现stack-overflow问题">IV.V.V. 出现stack overflow问题</h3>
+<p>一般遇到这个问题，有两个常见的情况，一个是存在函数的递归调用，另一个是函数中定义了一个较大的数组或者别的变量。</p>
+<ol style="list-style-type: decimal">
+<li><p>在函数的递归调用中，函数中定义的局部变量所占的空间要直到递归结束才能被释放，这样函数不停的递归，堆栈早晚会被用完，解决这一问题的办法是在递归函数中每次<a href="#c-dynamic-memory">动态分配变量的内存</a>，在使用结束的时候释放内存。遇到这种情况更改堆栈的最大空间大小是没有用的，要从代码的优化入手。</p></li>
+<li><p>堆栈的大小只有1M，如果在函数中定义了一个占用内存比较大的变量，那么也会导致堆栈溢出。这种情况只需在定义的时候定义为静态变量就行了，因为静态变量是不占用堆栈内存的。</p></li>
+<li><p>还可以通过修改堆栈的最大空间来解决问题，把project设置里的堆栈加大就可以了,默认是1M,你可以加大到10M试试. 具体如下：project-&gt; setting-&gt; link: 在category里选择output,在stack的Reserve里输入0x10000000试试。对于遇到这样的问题建议从代码方面去解决，不要盲目的依靠修改堆栈空间来解决，毕竟有的问题靠修改空间是解决不了的，如递归中产生的stack overflow。</p></li>
+</ol>
+<h1 id="vs-xp">V. VS-XP</h1>
+<p>VS编译出来的程序如何在XP-SP2以下的系统运行。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// Including SDKDDKVer.h defines the highest available Windows platform.</span><br><span class="line"></span><br><span class="line">// If you wish to build your application for a previous Windows platform, include WinSDKVer.h and</span><br><span class="line">// set the _WIN32_WINNT macro to the platform you wish to support before including SDKDDKVer.h.</span><br><span class="line"></span><br><span class="line">#include &lt;SDKDDKVer.h&gt;</span><br></pre></td></tr></table></figure>
+<p>安装VS2012 Update1包，更改项目属性：</p>
+<p>（1）配置属性--常规--平台工具集：Visual Studio 2012 - Windows XP (v110_xp)。</p>
+<p>（2）链接器--系统--子系统：控制台或窗口，所需的最低版本5.01</p>
+<p>（3）C/C++--代码生成--运行库：多线程静态链接库（Release（LIBCMT.lib）)：/MT，Debug（LIBCMTD.lib）：/MTD）</p>
+<p>也可在stdafx.h文件中添加如下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 包括 SDKDDKVer.h 将定义可用的最高版本的 Windows 平台。  </span><br><span class="line">// 如果要为以前的 Windows 平台生成应用程序，请包括 WinSDKVer.h，并将  </span><br><span class="line">// WIN32_WINNT 宏设置为要支持的平台，然后再包括 SDKDDKVer.h。  </span><br><span class="line">#include &lt;WinSDKVer.h&gt;</span><br><span class="line">#ifndef _WIN32_WINNT</span><br><span class="line">#define _WIN32_WINNT _WIN32_WINNT_WINXP</span><br><span class="line">#endif</span><br><span class="line">#include &lt;SDKDDKVer.h&gt;</span><br></pre></td></tr></table></figure>
+<p>如若进行上述设置后，没有效果，则检查程序引用的外部库属性，是否也进行了相应设置。</p>
+<h1 id="c语言">VI. C语言</h1>
+<p>一般来说，按结构化程序设计原则编写的程序是易于调试和修改的，下面将介绍其中的一些原则<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>：</p>
+<ul>
+<li>程序中应有足够的注释；</li>
+<li>函数应当简洁；</li>
+<li>程序流应该清晰，避免使用goto语句和其它跳转语句；</li>
+<li>函数名和变量名应具有描述性；</li>
+</ul>
+<h2 id="头文件预编译">VI.I. 头文件预编译</h2>
+<p>所谓头文件预编译，就是把一个工程(Project)中使用的一些MFC标准头文件(如<code>Windows.H</code>、<code>Afxwin.H</code>)预先编译，以后该工程编译时，不再编译这部分头文件，仅仅使用预编译的结果。这样可以加快编译速度，节省时间。</p>
+<p>预编译头文件通过编译<code>stdafx.cpp</code>生成，以工程名命名，由于预编译的头文件的后缀是“pch”，所以编译结果文件是<code>projectname.pch</code>。</p>
+<p>编译器通过一个头文件stdafx.h来使用预编译头文件。<code>stdafx.h</code>这个头文件名是可以在project的编译设置里指定的。编译器认为，所有在指令<code>#include &quot;stdafx.h&quot;</code>前的代码都是预编译的，它跳过<code>#include &quot;stdafx. h&quot;</code>指令，使用<code>projectname.pch</code>编译这条指令之后的所有代码。</p>
+<p>因此，所有的CPP实现文件第一条语句都是：<code>#include &quot;stdafx.h&quot;</code>。</p>
+<h2 id="主函数">VI.II. 主函数</h2>
+<ul>
+<li><code>main</code>是C/C++的标准入口函数名。</li>
+<li><code>WinMain</code>是windows API窗体程序的入口函数。(int WINAPI WinMain()) 中 WINAPI是__stdcall宏，在<code>windef.h</code>中定义的。</li>
+<li><code>_tmain</code> <code>_tWinMain</code> 是Unicode版本函数别名，对应与wmain和wWinMain。工程中最好用这类函数。<code>_tmain</code>的定义在<code>&lt;tchar.h&gt;</code>可以找到,如<code>#define _tmain main</code>，所以要加<code>#include &lt;tchar.h&gt;</code>才能用。 <code>_tmain</code>是个宏,如果是UNICODE则他是wmain()否则他是main()。</li>
+</ul>
+<h2 id="函数声明定义调用">VI.III. 函数声明/定义/调用</h2>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/del/archive/2008/12/02/1345452.html">函数声明/定义/调用</a>：</p>
+<ol style="list-style-type: decimal">
+<li>如果函数没有声明，应该在调用前定义；</li>
+<li>可以在函数头声明；</li>
+<li>一般应在文件头声明，函数原型的声明在实际运用中， 会集中声明在头文件(<code>*.h</code>)里面。</li>
+<li>函数可互调用, 但不能嵌套；</li>
+<li>如果函数没有参数, 最好是 fun(void), 不过 fun() 也行; 如果函数没有返回值, 要注明返回类型是 void; 在 C 语言中调用无参函数也要带括号.</li>
+<li>声明函数时可以省略形参；</li>
+<li>函数的参数一般不要超过 7 个；</li>
+</ol>
+<h2 id="类型定义">VI.IV. 类型定义</h2>
+<h3 id="void">VI.IV.I. void</h3>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://c.biancheng.net/cpp/html/444.html">C语言void关键字</a></p>
+</blockquote>
+<ul>
+<li>void 修饰变量</li>
+</ul>
+<p>void 几乎只有“注释”和限制程序的作用，因为从来没有人会定义一个void 变量。void 不能代表一个真实的变量。void 体现了一种抽象，这个世界上的变量都是“有类型”的，譬如一个人不是男人就是女人（人妖不算）。</p>
+<p>void 真正发挥的作用在于：对函数返回的限定；对函数参数的限定。</p>
+<p>任何类型的指针都可以直接赋值给<code>void *</code>，无需进行强制类型转换。但这并不意味着，<code>void *</code>也可以无需强制类型转换地赋给其它类型的指针。因为“空类型”可以包容“有类型”，而“有类型”则不能包容“空类型”。</p>
+<ul>
+<li>void 修饰函数返回值和参数</li>
+</ul>
+<p>如果函数没有返回值，那么应声明为void 类型。在C 语言中，凡不加返回值类型限定的函数，就会被编译器作为返回整型值处理。为了避免混乱，我们在编写C 程序时，对于任何函数都必须一个不漏地指定其类型。如果函数没有返回值，一定要声明为void 类型。</p>
+<p>如果函数无参数,那么应声明其参数为void。所以，无论在C 还是C++中，若函数不接受任何参数，一定要指明参数为void。</p>
+<ul>
+<li>void 指针</li>
+</ul>
+<p>千万小心又小心使用void 指针类型。按照ANSI(American National Standards Institute)标准，不能对void 指针进行算法操作。</p>
+<p>如果函数的参数可以是任意类型指针，那么应声明其参数为<code>void *</code>。</p>
+<h3 id="const">VI.IV.II. const</h3>
+<p>const在C语言中算是一个比较新的描述符，我们称之为常量修饰符，即就是说其所修饰的对象为常量<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>。当你代码中想要设法阻止一个变量被改变，那么这个时候可以选择使用const关键字。在你给一个变量加上const修饰符的同时，通常需要对它进行初始化，在之后的程序中就不能再去改变它。</p>
+<p>因为预处理语句虽然可以很方便的进行值得替代，但它有个比较致命的缺点，即预处理语句仅仅只是简单值替代，缺乏类型的检测机制。这样预处理语句就不能享受C编译器严格类型检查的好处，正是由于这样，使得它的使用存在着一系列的隐患和局限性。</p>
+<h2 id="变量">VI.V. 变量</h2>
+<p>在<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/57.html">《C语言函数的参数和返回值》</a>中提到，形参变量要等到函数被调用时才分配内存，调用结束后立即释放内存。这说明形参变量的作用域非常有限，只能在函数内部使用，离开该函数就无效了。所谓作用域（Scope），就是变量的有效范围。不仅对于形参变量，C语言中所有的变量都有自己的作用域。决定变量作用域的是变量的定义位置。</p>
+<p>定义在函数内部的变量称为局部变量（Local Variable），它的作用域仅限于函数内部， 离开该函数后就是无效的，再使用就会报错。在所有函数外部定义的变量称为全局变量（Global Variable），它的作用域默认是整个程序，也就是所有的源文件，包括 .c 和 .h 文件。变量的使用遵循就近原则，如果在当前作用域中存在同名变量，就不会向更大的作用域中去寻找变量。</p>
+<p><a target="_blank" rel="noopener" href="http://c.biancheng.net/cpp/html/62.html">局部变量和全局变量的综合示例</a></p>
+<h3 id="c作用域">VI.V.I. C++/作用域</h3>
+<ol style="list-style-type: decimal">
+<li><p>C++变量根据定义的位置的不同的生命周期，具有不同的作用域，作用域可分为6种：全局作用域，局部作用域，语句作用域，类作用域，命名空间作用域和文件作用域。</p>
+<p>1&gt;全局变量具有全局作用域。全局变量只需在一个源文件中定义，就可以作用于所有的源文件。当然，其他不包含全局变量定义的源文件需要用extern 关键字再次声明这个全局变量。</p>
+<p>2&gt;静态局部变量具有局部作用域，它只被初始化一次，自从第一次被初始化直到程序运行结束都一直存在，它和全局变量的区别在于全局变量对所有的函数都是可见的，而静态局部变量只对定义自己的函数体始终可见。</p>
+<p>3&gt;局部变量也只有局部作用域，它是自动对象（auto），它在程序运行期间不是一直存在，而是只在函数执行期间存在，函数的一次调用执行结束后，变量被撤销，其所占用的内存也被收回。</p>
+<p>4&gt;静态全局变量也具有全局作用域，它与全局变量的区别在于如果程序包含多个文件的话，它作用于定义它的文件里，不能作用到其它文件里，即被static关键字修饰过的变量具有文件作用域。这样即使两个不同的源文件都定义了相同名字的静态全局变量，它们也是不同的变量。</p></li>
+<li><p>从分配内存空间看：</p>
+<p>1&gt;全局变量，静态局部变量，静态全局变量都在静态存储区分配空间，而局部变量在栈里分配空间</p>
+<p>2&gt;全局变量本身就是静态存储方式， 静态全局变量当然也是静态存储方式。这两者在存储方式上并无不同。这两者的区别虽在于非静态全局变量的作用域是整个源程序，当一个源程序由多个源文件组成时，非静态的全局变量在各个源文件中都是有效的。而静态全局变量则限制了其作用域，即只在定义该变量的源文件内有效，在同一源程序的其它源文件中不能使用它。由于静态全局变量的作用域局限于一个源文件内，只能为该源文件内的函数公用，因此可以避免在其它源文件中引起错误。</p>
+<p>1)静态变量会被放在程序的静态数据存储区(全局可见)中，这样可以在下一次调用的时候还可以保持原来的赋值。这一点是它与堆栈变量和堆变量的区别。</p>
+<p>2)变量用static告知编译器，自己仅仅在变量的作用范围内可见。这一点是它与全局变量的区别。</p></li>
+</ol>
+<p>从以上分析可以看出， 把局部变量改变为静态变量后是改变了它的存储方式即改变了它的生存期。把全局变量改变为静态变量后是改变了它的作用域，限制了它的使用范围。因此static 这个说明符在不同的地方所起的作用是不同的。应予以注意。</p>
+<p>A.若全局变量仅在单个C文件中访问，则可以将这个变量修改为静态全局变量，以降低模块间的耦合度；</p>
+<p>B.若全局变量仅由单个函数访问，则可以将这个变量改为该函数的静态局部变量，以降低模块间的耦合度；</p>
+<p>C.设计和使用访问动态全局变量、静态全局变量、静态局部变量的函数时，需要考虑重入问题，因为他们都放在静态数据存储区，全局可见；</p>
+<p>D.如果我们需要一个可重入的函数，那么，我们一定要避免函数中使用static变量(这样的函数被称为：带“内部存储器”功能的的函数)</p>
+<p>E.函数中必须要使用static变量情况:比如当某函数的返回值为指针类型时，则必须是static的局部变量的地址作为返回值，若为auto类型，则返回为错指针。</p>
+<div id="c-dynamic-memory">
+
+</div>
+<h2 id="动态内存分配">VI.VI. 动态内存分配</h2>
+<p>到目前为止，我们的程序中我们只用了声明变量、数组和其他对象（objects）所必需的内存空间，这些内存空间的大小都在程序执行之前就已经确定了。但如果我们需要内存大小为一个变量，其数值只有在程序运行时 (runtime)才能确定，例如有些情况下我们需要根据用户输入来决定必需的内存空间，那么我们该怎么办呢？答案是动态内存分配（dynamic memory）。</p>
+<p><a target="_blank" rel="noopener" href="http://www.prglab.com/cms/pages/c-tutorial/advanced-data/dynamic-memory.php">C++ 集成了操作符new 和delete</a>：</p>
+<ol style="list-style-type: decimal">
+<li>操作符new的存在是为了要求动态内存。new 后面跟一个数据类型，并跟一对可选的方括号[ ]里面为要求的元素数。它返回一个指向内存块开始位置的指针。我们建议在使用new之后总是检查返回的指针是否为空(null)。</li>
+<li>既然动态分配的内存只是在程序运行的某一具体阶段才有用，那么一旦它不再被需要时就应该被释放，以便给后面的内存申请使用。操作符delete 因此而产生。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/hanyonglu/archive/2011/04/28/2031271.html">c语言集成了malloc和free函数</a>：</p>
+<ol style="list-style-type: decimal">
+<li><p><code>void *malloc(long NumBytes)</code>：该函数分配了NumBytes个字节，并返回了指向这块内存的指针。如果分配失败，则返回一个空指针（NULL）。申请了内存空间后，必须检查是否分配成功。malloc()从堆里面获得空间，也就是说函数返回的指针是指向堆里面的一块内存。</p></li>
+<li><p><code>void free(void *FirstByte)</code>： 该函数是将之前用malloc分配的空间还给程序或者是操作系统，也就是释放了这块内存，让它重新得到自由。free()释放的是指针指向的内存！注意！释放的是内存，不是指针！指针并没有被释放，指针仍然指向原来的存储空间。指针是一个变量，只有程序结束时才被销毁。释放了内存空间后，原来指向这块空间的指针还是存在！只不过现在指针指向的内容的垃圾，是未定义的，所以说是垃圾。因此，释放内存后把指针指向NULL，防止指针在后面不小心又被引用了。</p></li>
+</ol>
+<h2 id="运算符">VI.VII. 运算符</h2>
+<h3 id="除法求余">VI.VII.I. 除法求余</h3>
+<p>除法运算符“/”。二元运算符，具有左结合性。参与运算的量均为整型时，结果为整型，舍去小数。如果运算量中有一个为实型，结果为双精度实型。除号的正负取舍和一般的算数一样，符号相同为正，相异为负。</p>
+<p>求余运算符“%”，二元运算符，具有左结合性。参与运算的量均为整型。求余运算的结果等于两个数相除后的余数<code>(a%b=a-(int)(a/b)\*b)</code>。<code>5%2.0</code>和<code>5.0%2</code>的结果是语法错误。求余符号的正负取舍和被除数符号相同。</p>
+<h3 id="次方">VI.VII.II. 次方</h3>
+<p>pow() 函数用来求 x 的 y 次幂（次方），其原型为：<code>double pow(double x, double y)</code>，然后将结果返回。设返回值为 ret，则 ret = <span class="math inline">\(x^y\)</span>。</p>
+<p>可能导致错误的情况：</p>
+<ul>
+<li>如果底数 x 为负数并且指数 y 不是整数，将会导致 domain error 错误。</li>
+<li>如果底数 x 和指数 y 都是 0，可能会导致 domain error 错误，也可能没有；这跟库的实现有关。</li>
+<li>如果底数 x 是 0，指数 y 是负数，可能会导致 domain error 或 pole error 错误，也可能没有；这跟库的实现有关。如果发生 domain error 错误，那么全局变量 errno 将被设置为 EDOM；如果发生 pole error 或 range error 错误，那么全局变量 errno 将被设置为 ERANGE。</li>
+<li>如果返回值 ret 太大或者太小，将会导致 range error 错误。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;math.h&gt;</span><br><span class="line">int main ()</span><br><span class="line">&#123;</span><br><span class="line">    printf (&quot;7 ^ 3 = %f\n&quot;, pow (7.0, 3.0) );</span><br><span class="line">    printf (&quot;4.73 ^ 12 = %f\n&quot;, pow (4.73, 12.0) );</span><br><span class="line">    printf (&quot;32.01 ^ 1.54 = %f\n&quot;, pow (32.01, 1.54) );</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="类型转换">VI.VIII. 类型转换</h2>
+<p><a target="_blank" rel="noopener" href="https://msdn.microsoft.com/zh-cn/library/hh279667.aspx">类型转换和类型安全（现代 C++）</a></p>
+<h2 id="指针">VI.IX. 指针</h2>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://c.biancheng.net/cpp/html/2930.html">指针与二维数组</a></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TYPE *name 定义某个类型的指针，取地址。</span><br><span class="line">TYPE **name 指向指针的指针</span><br></pre></td></tr></table></figure>
+<p>假设有一个 int 类型的变量 a，p1是指向 a 的指针变量，p2 又是指向 p1 的指针变量，它们的关系如下图所示。</p>
+<p><img src="http://c.biancheng.net/cpp/uploads/allimg/160714/1-160G41Q12O23.jpg"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int a =100;</span><br><span class="line">int \*p1 = &amp;a;</span><br><span class="line">int \**p2 = &amp;p1;</span><br><span class="line"></span><br><span class="line">指针变量也是一种变量，也会占用存储空间，也可以使用`&amp;`获取它的地址。C语言不限制指针的级数，每增加一级指针，在定义指针变量时就得增加一个星号`*`。p1 是一级指针，指向普通类型的数据，定义时有一个`*`；p2 是二级指针，指向一级指针 p1，定义时有两个`*`。</span><br></pre></td></tr></table></figure>
+<h2 id="数组与字符串长度">VI.X. 数组与字符串长度</h2>
+<p><a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_67d069a90100ui4p.html">数组与字符串长度sizeof()、strlen()、string的length()和size()</a></p>
+<p>sizeof()不需要头文件，和int一样编译器会识别。sizeof()返回的是变量声明后所占的内存数，不是实际长度，此外sizeof不是函数，仅仅是一个操作符，strlen是函数，在string.h中。（<a target="_blank" rel="noopener" href="http://www.cnblogs.com/afarmer/archive/2011/05/01/2033710.html">VC中的sizeof的用法总结</a>）</p>
+<p>c++中的字符串string的长度，size()和length()没有区别。为了兼容等，这两个函数一样。length是因为沿用C语言的习惯而保留下来的，string类最初只有length，引入STL之后，为了兼容又加入了size，它是作为STL容器的属性存在的，便于符合STL的接口规则，以便用于STL的算法。 string类的size()/length()方法返回的是字节数，不管是否有汉字。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string str1=”xxxxx”;</span><br><span class="line">int i=str1.length();</span><br><span class="line">cout&lt;&lt;”i=str1.length()= ”&lt;&lt;i&lt;&lt;endl; //结果为5，因为5个x</span><br><span class="line">i=tr1.size();</span><br><span class="line">cout&lt;&lt;”str1.size()= ”&lt;&lt;i&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+<h3 id="sizeof">VI.X.I. sizeof()</h3>
+<p>求所占的字节数</p>
+<ul>
+<li>对于整型字符型数组</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">int A[]=&#123;1,4,5,2,8,6,0&#125;;</span><br><span class="line">//求整型数组A所占的字节数</span><br><span class="line">int i=sizeof(A); //i表示整型数组A所占的总空间的字节数</span><br><span class="line">cout&lt;&lt;” i=sizeof(A)= ”&lt;&lt;i&lt;&lt;endl;             </span><br><span class="line">i=sizeof(A)/sizeof(int); //此时i表示数字数组的元素个数</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">char B[]=&#123;‘a’,’e’,’s’,’r’,’q’&#125;;</span><br><span class="line">//求字符数组的所占的字节数</span><br><span class="line">i=sizeof(B);          </span><br><span class="line">cout&lt;&lt;i&lt;&lt;endl; //结果为5*sizeof(char)=5</span><br><span class="line">//求字符数组的元素个数</span><br><span class="line">i=szieof(B)/sizeof(char);//结果为5</span><br><span class="line"></span><br><span class="line">char C[]=”abcde”;</span><br><span class="line">i=sizeof(C);//i为字符数组C所占的字节空间，为6，最后一个为’\0’</span><br><span class="line">cout&lt;&lt;i&lt;&lt;endl;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于整型或字符型指针</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">int *p;</span><br><span class="line">int A[]=&#123;1,2,3,4,5,6,7,8&#125;;</span><br><span class="line">p=A;</span><br><span class="line">int i=sizeof(*p); //此时i就是p所指的整型数组A的第一个元素A[0]的所占字节数</span><br><span class="line">cout&lt;&lt;i&lt;&lt;endl;</span><br><span class="line">i=sizeof(P); //p为整形指针，大小为定值为4     </span><br><span class="line">cout&lt;&lt;*p&lt;&lt;endl;  //输出A[0]即1</span><br><span class="line">cout&lt;&lt;p&lt;&lt;endl;   //输出的结果为整型指针所指向的地址 0x……</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">char *p;</span><br><span class="line">char B[]=&#123;‘a’,’s’,’e’,’r’&#125;;              </span><br><span class="line">p=B;  //字符指针赋值，或char *p=B;这样为字符指针初始化赋值</span><br><span class="line">i=sizeof(p);  //p为字符指针，指针的大小为定值，为4</span><br><span class="line">cout&lt;&lt;i&lt;&lt;endl;</span><br><span class="line">i=sizeof(*p);  //这是指B[0]所占空间的大小</span><br><span class="line">cout&lt;&lt;i&lt;&lt;endl;   //结果为1</span><br><span class="line"></span><br><span class="line">注意：</span><br><span class="line">cout&lt;&lt;*p&lt;&lt;endl;  //输出结果为字符a</span><br><span class="line">cout&lt;&lt;p&lt;&lt;endl;   </span><br><span class="line">cout&lt;&lt;hex&lt;&lt;(int)&amp;(*p)&lt;&lt;&quot;       &quot;&lt;&lt;&amp;B&lt;&lt;endl;  //输出结果两者相同</span><br><span class="line">cout&lt;&lt;hex&lt;&lt;(int)p&lt;&lt;&quot;      &quot;&lt;&lt;&amp;B&lt;&lt;endl;       //输出结果两者相同</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="strlen">VI.X.II. strlen()</h3>
+<p>字符数组或字符串所占的字节数,就是指实际字符串或字符数组的实际长度（不是所占空间的字节数）。strlen所作的仅仅是一个计数器的工作，它从内存的某个位置（可以是字符串开头，中间某个位置，甚至是某个不确定的内存区域）开始扫描，直到碰到第一个字符串结束符<code>\0</code>为止，然后返回计数器值。</p>
+<ul>
+<li>字符数组</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">char A[6]=&#123;&#x27;a&#x27;,&#x27;b&#x27;,&#x27;\0&#x27;,&#x27;d&#x27;,&#x27;e&#x27;,&#x27;r&#x27;&#125;;</span><br><span class="line">int i=strlen(A);          //i为2，因为到’\0’结束，故实际A[]只有2个元素</span><br><span class="line">cout&lt;&lt;i&lt;&lt;endl;</span><br><span class="line">char *str=&quot;abcde&quot;;</span><br><span class="line">i=strlen(str);           //i为5</span><br><span class="line">cout&lt;&lt;i&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">//char A[6]=&#123;&quot;abcdef&quot;&#125;;</span><br><span class="line">//error C2117: &#x27;abcdef&#x27; : array bounds overflow</span><br></pre></td></tr></table></figure>
+<ul>
+<li>字符指针</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">char C[]=&#123;&quot;abcdef&quot;&#125;;</span><br><span class="line">char *p1=C;</span><br><span class="line">i=strlen(p1);   //结果为6</span><br><span class="line">cout&lt;&lt;i&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">char D[]=&#123;&#x27;a&#x27;,&#x27;c&#x27;,&#x27;q&#x27;,&#x27;f&#x27;,&#x27;w&#x27;&#125;;</span><br><span class="line">i=strlen(D);  </span><br><span class="line">//这样，由于没指定D的内存分配大小，用strlen求其长度会造成错误。</span><br><span class="line">//如果为char D[5]=&#123;&#x27;a&#x27;,&#x27;c&#x27;,&#x27;q&#x27;,&#x27;f&#x27;,&#x27;w&#x27;&#125;;这样再用strlen求其长度也会造成错误，当D[]之中的数</span><br><span class="line">//大于5才不会造成错误。</span><br><span class="line">cout&lt;&lt;i&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>其他结构</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class X</span><br><span class="line">　　&#123;</span><br><span class="line">　　int i;</span><br><span class="line">　　int j;</span><br><span class="line">　　char k;</span><br><span class="line">　　&#125;;</span><br><span class="line">　　X x;</span><br><span class="line"></span><br><span class="line">cout&lt;&lt;sizeof(X)&lt;&lt;endl; 结果 12 ===》内存补齐</span><br><span class="line">cout&lt;&lt;sizeof(x)&lt;&lt;endl; 结果 12 同上</span><br><span class="line"></span><br><span class="line">解释一下，在class X中，成员中最大的所占的空间为int类型所占的空间4个字节，故内存补齐，最后结果为: ((int)(实际成员所占内存空间的和/4)+1)*4</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>有关空类</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">class A</span><br><span class="line">&#123;</span><br><span class="line">&#125;;</span><br><span class="line">class A2</span><br><span class="line">&#123;</span><br><span class="line">&#125;;</span><br><span class="line">class B:public A</span><br><span class="line">&#123;</span><br><span class="line">&#125;;</span><br><span class="line">class C:public virture B</span><br><span class="line">&#123;</span><br><span class="line">&#125;;</span><br><span class="line">class D:public A,public A2</span><br><span class="line">&#123;</span><br><span class="line">&#125;;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">cout&lt;&lt;&quot;sizeof(A): &quot;&lt;&lt;sizoef(A)&lt;&lt;endl;</span><br><span class="line">cout&lt;&lt;&quot;sizeof(B): &quot;&lt;&lt;sizeof(B)&lt;&lt;endl;</span><br><span class="line">cout&lt;&lt;&quot;sizeof(C): &quot;&lt;&lt;sizeof(C)&lt;&lt;endl;</span><br><span class="line">cout&lt;&lt;&quot;sizeof(D): &quot;&lt;&lt;sizeof(D)&lt;&lt;endl;</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">结果：1 1 4 1</span><br><span class="line">表明空类所占空间为1个字节，单一继承的空类空间也为1，多重继承的空类空间还是1，但虚继承涉及虚表（虚指针），所以sizeof(C)为 4。</span><br></pre></td></tr></table></figure>
+<h2 id="memset函数">VI.XI. memset函数</h2>
+<p>【函数说明】memset() 会将 ptr 所指的内存区域的前 num 个字节的值都设置为 value，然后<strong>返回指向 ptr 的指针</strong>。其原型为：</p>
+<pre><code>头文件：#include &lt;string.h&gt;  
+void * memset( void * ptr, int value, size_t num );  </code></pre>
+<p>参数说明：</p>
+<ul>
+<li>ptr 为要操作的内存的指针。</li>
+<li>value 为要设置的值。你既可以向 value 传递 int 类型的值，也可以传递 char 类型的值，int 和 char 可以根据 ASCII 码相互转换。注意：参数 value 虽声明为 int，但必须是 unsigned char，所以范围在0 到255 之间。<br>
+</li>
+<li>num 为 ptr 的前 num 个字节，size_t 就是unsigned int。</li>
+</ul>
+<p>memset() 可以将一段内存空间全部设置为特定的值，所以经常用来初始化字符数组。例如：</p>
+<pre><code>char str[20];
+memset(str, &#39;\0&#39;, sizeof(str)-1);</code></pre>
+<p>范例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    // 不可以声明为 char *str = &quot;http://c.biancheng.net&quot;;</span><br><span class="line">    char str[] = &quot;http://c.biancheng.net&quot;;</span><br><span class="line">    memset(str, &#x27;-&#x27;, 7);</span><br><span class="line">    puts(str);</span><br><span class="line">    system(&quot;pause&quot;);</span><br><span class="line">    return EXIT_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果： -------c.biancheng.net</p>
+<blockquote>
+<p>注意：字符数组是可以被修改的，字符串是只读的，不能被修改，而 memset() 又必须修改 str，所以不能将 <code>char str[] = &quot;http://c.biancheng.net&quot;</code>; 声明为 <code>char *str = &quot;http://c.biancheng.net&quot;</code>;，否则运行时会报错。</p>
+</blockquote>
+<h2 id="for循环">VI.XII. FOR循环</h2>
+<p>在VC6中， <code>for(int j = 0; j &lt; 16; ++j)</code> 中j的作用域在for所在的域中。 而标准C++中, j的作用域在for语句块内。</p>
+<h2 id="数组与矩阵">VI.XIII. 数组与矩阵</h2>
+<p>C语言支持一维数组和多维数组。如果一个数组的所有元素都不是数组，那么该数组称为一维数组。<a target="_blank" rel="noopener" href="http://c.biancheng.net/cpp/html/50.html">一维数组的定义和引用</a></p>
+<p>在进行科学计算的时候，矩阵是一种很常见的数据类型。但是作为基本算法实现和工程应用的时候C语言并没有提供该数据类型，而是利用二维数组定义该数据类型。</p>
+<p>二维数组在概念上是二维的，有行和列，但在内存中所有的数组元素都是连续排列的，它们之间没有“缝隙”。</p>
+<p>以下面的二维数组 a 为例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int a[3][4] = &#123; &#123;0, 1, 2, 3&#125;, &#123;4, 5, 6, 7&#125;, &#123;8, 9, 10, 11&#125; &#125;;</span><br></pre></td></tr></table></figure>
+<p>C语言中的二维数组是按行排列的，也就是先存放 a[0] 行，再存放 a[1] 行，最后存放 a[2] 行；每行中的 4 个元素也是依次存放。数组 a 为 int 类型，每个元素占用 4 个字节，整个数组共占用 4×(3×4) = 48 个字节。</p>
+<p>C语言允许把一个二维数组分解成多个一维数组来处理。对于数组 a，它可以分解成三个一维数组，即 a[0]、a[1]、a[2]。每一个一维数组又包含了 4 个元素，例如 a[0] 包含 a[0][0]、a[0][1]、a[0][2]、a[0][3]。</p>
+<h3 id="矩阵的定义和初始化">VI.XIII.I. 矩阵的定义和初始化</h3>
+<p>但是如果矩阵在程序中作为程序返回值的话就不能简单利用二维数组类实现了。以下分享几种C语言矩阵的定义和初始化。</p>
+<h4 id="动态申请矩阵存储空间">VI.XIII.I.I. 动态申请矩阵存储空间</h4>
+<p>1）能够动态申请和释放存储空间； 2）对于将矩阵作为返回值的情况具有独特的优势。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">//定义结构体类型，这里需要利用指针和结构体，其中m和n分别表示矩阵的行和列</span><br><span class="line">typedef struct</span><br><span class="line">&#123;</span><br><span class="line">	double **mat;</span><br><span class="line">	int m, n;</span><br><span class="line">&#125;matrix;</span><br><span class="line"></span><br><span class="line">//矩阵申请储存空间，注意这里使用了malloc()函数</span><br><span class="line">void initial(matrix &amp;T,int m,int n)</span><br><span class="line">&#123;</span><br><span class="line">	int i = 0;</span><br><span class="line">	T.mat = (double **)malloc(m*sizeof(double *));</span><br><span class="line">	for (i = 0; i &lt; m; m++)</span><br><span class="line">	&#123;</span><br><span class="line">		T.mat[i] = (double *)malloc(n*sizeof(double));</span><br><span class="line">	&#125;</span><br><span class="line">	T.m = m;</span><br><span class="line">	T.n = n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//初始化矩阵，这里将矩阵初始化为m*n的数组，且矩阵中的每一个元素的值均为0</span><br><span class="line">void initValue(matrix &amp;T, int m, int n)</span><br><span class="line">&#123;</span><br><span class="line">	int i, j;</span><br><span class="line">	initial(T,m,n);</span><br><span class="line">	for (i = 0; i &lt; m; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		for (j = 0; j &lt; n; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			T.mat[i][j] = 0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//释放存储空间</span><br><span class="line">void destroy(matrix &amp;T)</span><br><span class="line">&#123;</span><br><span class="line">	int i;</span><br><span class="line">	for (i = 0; i &lt; T.m; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		free(T.mat[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	free(T.mat);</span><br><span class="line">&#125;</span><br><span class="line">//至此，动态申请矩阵就完成了</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="静态申请矩阵存储空间">VI.XIII.I.II. 静态申请矩阵存储空间</h4>
+<p>静态存储实现，该方法的好处是简单以实现；相对于第一种方法的缺点是： 1）静态实现，<strong>不能动态的申请和释放空间</strong>，对电脑内存要求高； 2）对于将矩阵作为函数返回值的情况，不能使用该方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">double matrix[10][15];</span><br><span class="line">//静态矩阵的初始化</span><br><span class="line">for (i=0;i&lt;10;i++)</span><br><span class="line">&#123;</span><br><span class="line">	for(j=0;j&lt;15;j++)</span><br><span class="line">	&#123;</span><br><span class="line">		matrix[i][j]=0;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="矩阵输入">VI.XIII.II. 矩阵输入</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;stdlib.h&gt;</span><br><span class="line">#include&lt;time.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int a[10][10],n;</span><br><span class="line">    int i,j;</span><br><span class="line">    printf(&quot;输入数字矩阵的维数(1&lt;n&lt;10) n= &quot;);</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">    if(n&lt;2||n&gt;9)return 0;</span><br><span class="line">    srand((int)time(0));</span><br><span class="line">    for(i=0;i&lt;n;i++)for(j=0;j&lt;n;j++)a[i][j]=rand()%10;</span><br><span class="line">    printf(&quot;\n为你产生的 %d 阶随机矩阵为：\n&quot;,n);</span><br><span class="line">    for(i=0;i&lt;n;i++)&#123;for(j=0;j&lt;n;j++)printf(&quot;%2d&quot;,a[i][j]);printf(&quot;\n&quot;);&#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="矩阵生成">VI.XIII.III. 矩阵生成</h3>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/liu1075538266/article/details/51484985">C语言生成随机可逆方阵</a></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int a[5][5]=&#123;0&#125;;//先把5阶矩阵中所有元素值附0</span><br><span class="line">int i=0,k=0;</span><br><span class="line">for( ; i&lt;5;i++)</span><br><span class="line"> for ( ; k&lt;5;k++)</span><br><span class="line">  &#123;</span><br><span class="line">   if(i==k) a[i][k]=1;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int i,j;</span><br><span class="line">for(i=0;i&lt;5;i++)</span><br><span class="line">for(j=0;j&lt;5;j++)</span><br><span class="line">a[i][j]=0;//全部赋值0</span><br><span class="line">for(i=0;i&lt;5;i++)</span><br><span class="line">a[i][i]=1;//主对角线赋值1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int i,j,a[5][5]=&#123;0&#125;;//全赋值为0；</span><br><span class="line">for(i=0;i&lt;5;i++)</span><br><span class="line">a[i][i]=a[i][4-i]=1;//两条主对角线都赋值为1；</span><br><span class="line">for(i=0;i&lt;5;i++)</span><br><span class="line">&#123;</span><br><span class="line">for(j=0;j&lt;5;j++)</span><br><span class="line">printf(&quot;%2d&quot;,a[i][j]); printf(&quot;\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>函数型</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">void getIdentityMatrix(int n, int** array)  </span><br><span class="line">&#123;  </span><br><span class="line">        int r = 0;  </span><br><span class="line">        int c = 0;  </span><br><span class="line"></span><br><span class="line">        for(r = 0; r &lt; n; ++r)  </span><br><span class="line">        &#123;  </span><br><span class="line">                for(c = 0; c &lt; n; ++c)  </span><br><span class="line">                &#123;  </span><br><span class="line">                        if(r == c)  </span><br><span class="line">                                array[r][c] = 1;  </span><br><span class="line">                        else  </span><br><span class="line">                                array[r][c] = 0;  </span><br><span class="line">                &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line"></span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">void getIdentityMatrix(int n, double *array)  </span><br><span class="line">&#123;  </span><br><span class="line">	int r = 0;  </span><br><span class="line">	int c = 0;  </span><br><span class="line"></span><br><span class="line">	for(r = 0; r &lt; n; ++r)  </span><br><span class="line">	&#123;  </span><br><span class="line">		for(c = 0; c &lt; n; ++c)  </span><br><span class="line">		&#123;  </span><br><span class="line">			if(r == c)  </span><br><span class="line">				array[n*r+c] = 1;  </span><br><span class="line">			else  </span><br><span class="line">				array[n*r+c] = 0;  </span><br><span class="line">		&#125;  </span><br><span class="line">	&#125;  </span><br><span class="line"></span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+<h3 id="矩阵转数组">VI.XIII.IV. 矩阵转数组</h3>
+<p>设新的一维向量为b[]，其长度应该是a的行维的长度（设为N），和列维长度M的乘积，即b共有M<em>N个元素，对于每一个下标k，有k = i</em>M + j，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(int i = 0; i&lt;N ;i++)</span><br><span class="line">    for(int j = 0; j &lt; M ; j++)</span><br><span class="line">          b[i*M+j] = a[i][j];</span><br></pre></td></tr></table></figure>
+<h3 id="数组赋值">VI.XIII.V. 数组赋值</h3>
+<p>把一维数组赋给另外一个一维数组：</p>
+<ol style="list-style-type: decimal">
+<li>逐个赋值法。 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int a[10], b[10];</span><br><span class="line">int i;</span><br><span class="line">for(i = 0; i &lt; 10; i ++)</span><br><span class="line">    &#123;</span><br><span class="line">      b[i] = a[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>整体复制法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int a[10], b[10];</span><br><span class="line">% memcpy声明与string.h中</span><br><span class="line">% 形式为 void * memcpy(void *dst, void *src, int length);</span><br><span class="line">memcpy(b,a,sizeof(a));</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="数组与数组指针">VI.XIII.VI. 数组与数组指针</h3>
+<p>区别对待<strong>数组指针</strong><a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>：arr 本身就是一个指针(这种表述并不准确，严格来说应该是“arr 被转换成了一个指针”。)，可以直接赋值给指针变量 p。arr 是数组第 0 个元素的地址，所以<code>int *p = arr</code>;也可以写作<code>int *p = &amp;arr[0]</code>;。也就是说，arr、p、&amp;arr[0] 这三种写法都是等价的，它们都指向数组第 0 个元素，或者说指向数组的开头。</p>
+<p>数组名是常量，它的值不能改变，而数组指针是变量（除非特别指明它是常量），它的值可以任意改变。也就是说，数组名只能指向数组的开头，而数组指针可以先指向数组开头，再指向其他元素。</p>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int arr[] = &#123; 99, 15, 100, 888, 252 &#125;;</span><br><span class="line">int *p = arr;</span><br></pre></td></tr></table></figure></code></pre>
+<h3 id="数组作为函数参数">VI.XIII.VII. 数组作为函数参数</h3>
+<p>数组用作函数参数有两种形式<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>，一种是把数组元素（下标变量）作为实参使用；另一种是把数组名作为函数的形参和实参使用。</p>
+<p>用数组名作函数参数时，则要求形参和相对应的实参都必须是类型相同的数组，都必须有明确的数组说明。当形参和实参二者不一致时，即会发生错误。</p>
+<p>在数组名作函数参数时所进行的传送只是地址的传送，也就是说把实参数组的首地址赋予形参数组名。形参数组名取得该首地址之后，也就等于有了实在的数组。实际上是形参数组和实参数组为同一数组，共同拥有一段内存空间。</p>
+<h2 id="类与结构体">VI.XIV. 类与结构体</h2>
+<p>类是从C语言中的结构体演变而来，结构体的成员变量也就演化成类的成员变量，这时类只能存放数据。为了在类内部操纵这些数据，增加了成员函数的功能。所谓成员函数就是在类的内部定义，用来操作类的成员变量的函数。随后对成员变量和成员函数附上“私有”、“保护”和“公共”的访问权限，于是“类”便大致成型。事实上，C++中结构体的功能大致和类相当，也有了成员函数。“成员”是成员变量和成员函数的统称<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a>。</p>
+<h2 id="矩阵求逆">VI.XV. 矩阵求逆</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#define N 10</span><br><span class="line">int getA(int arcs[N][N],int n)//按第一行展开计算|A|</span><br><span class="line">&#123;</span><br><span class="line">	if(n==1)</span><br><span class="line">	&#123;</span><br><span class="line">		return arcs[0][0];</span><br><span class="line">	&#125;</span><br><span class="line">	int ans = 0;</span><br><span class="line">	int temp[N][N];</span><br><span class="line">	int i,j,k;</span><br><span class="line">	for(i=0;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		for(j=0;j&lt;n-1;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			for(k=0;k&lt;n-1;k++)</span><br><span class="line">			&#123;</span><br><span class="line">				temp[j][k] = arcs[j+1][(k&gt;=i)?k+1:k];</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		int t = getA(temp,n-1);</span><br><span class="line">		if(i%2==0)</span><br><span class="line">		&#123;</span><br><span class="line">			ans += arcs[0][i]*t;</span><br><span class="line">		&#125;</span><br><span class="line">		else</span><br><span class="line">		&#123;</span><br><span class="line">			ans -=  arcs[0][i]*t;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return ans;</span><br><span class="line">&#125;</span><br><span class="line">void getAStart(int arcs[N][N],int n,int ans[N][N])//计算每一行每一列的每个元素所对应的余子式，组成A*</span><br><span class="line">&#123;</span><br><span class="line">	if(n==1)</span><br><span class="line">	&#123;</span><br><span class="line">		ans[0][0] = 1;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	int i,j,k,t;</span><br><span class="line">	int temp[N][N];</span><br><span class="line">	for(i=0;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		for(j=0;j&lt;n;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			for(k=0;k&lt;n-1;k++)</span><br><span class="line">			&#123;</span><br><span class="line">				for(t=0;t&lt;n-1;t++)</span><br><span class="line">				&#123;</span><br><span class="line">					temp[k][t] = arcs[k&gt;=i?k+1:k][t&gt;=j?t+1:t];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			ans[j][i]  =  getA(temp,n-1);</span><br><span class="line">			if((i+j)%2 == 1)</span><br><span class="line">			&#123;</span><br><span class="line">				ans[j][i] = - ans[j][i];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int arcs[N][N];</span><br><span class="line">	int astar[N][N];</span><br><span class="line">	int i,j;</span><br><span class="line">	int n;</span><br><span class="line">	while(scanf(&quot;%d&quot;,&amp;n)!=EOF &amp;&amp; n)</span><br><span class="line">	&#123;</span><br><span class="line">		for(i=0;i&lt;n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			for(j=0;j&lt;n;j++)</span><br><span class="line">			&#123;</span><br><span class="line">				scanf(&quot;%d&quot;,&amp;arcs[i][j]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		int a = getA(arcs,n);</span><br><span class="line">		if(a==0)</span><br><span class="line">		&#123;</span><br><span class="line">			printf(&quot;can not transform!\n&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		else</span><br><span class="line">		&#123;</span><br><span class="line">			getAStart(arcs,n,astar);</span><br><span class="line">			for(i=0;i&lt;n;i++)</span><br><span class="line">			&#123;</span><br><span class="line">				for(j=0;j&lt;n;j++)</span><br><span class="line">				&#123;</span><br><span class="line">					printf(&quot;%.3lf &quot;,(double)astar[i][j]/a);</span><br><span class="line">				&#125;</span><br><span class="line">				printf(&quot;\n&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		printf(&quot;\n&quot;);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="生成随机数">VI.XVI. 生成随机数</h2>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_574f9aa00100rkis.html">浅谈C语言中如何取随机数</a><br>
+<a target="_blank" rel="noopener" href="http://blog.csdn.net/ns_code/article/details/26935509">用C语言的rand()和srand()产生伪随机数的方法总结</a><br>
+<a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_63c66eb60100sc0x.html">C语言：随机函数rand()、srand()、random()和randomized()的区别和用法</a><br>
+<a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_70a14458010155b8.html">C语言产生满足正态分布的随机数</a></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/tsingke/p/6194737.html">C语言产生标准正态分布或高斯分布随机数</a>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#include</span><br><span class="line">#include</span><br><span class="line"></span><br><span class="line">#define NSUM 25</span><br><span class="line"></span><br><span class="line">double gaussrand()</span><br><span class="line">&#123;</span><br><span class="line">     double x = 0;</span><br><span class="line">     int i;</span><br><span class="line">     for(i = 0; i &lt; NSUM; i++)</span><br><span class="line">     &#123;</span><br><span class="line">         x += (double)rand() / RAND_MAX;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     x -= NSUM / 2.0;</span><br><span class="line">     x /= sqrt(NSUM / 12.0);</span><br><span class="line"></span><br><span class="line">     return x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="jacobian-method">VI.XVII. JACOBIAN METHOD</h2>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.dailyfreecode.com/code/jacobian-method-2374.aspx">Code for JACOBIAN METHOD in C Programming</a><br>
+<a target="_blank" rel="noopener" href="http://jean-pierre.moreau.pagesperso-orange.fr/Cplus/ujacobi_cpp.txt">computes all eigenvalues and eigenvectors</a><br>
+<a target="_blank" rel="noopener" href="http://heather.cs.ucdavis.edu/~matloff/158/Jacobi.c">parallel implementation of Jacobi's method for solving the linear system</a><br>
+<a target="_blank" rel="noopener" href="http://www.unige.ch/~hairer/prog/stiff/radau.f">NUMERICAL SOLUTION OF A STIFF (OR DIFFERENTIAL ALGEBRAIC) SYSTEM OF FIRST 0RDER ORDINARY DIFFERENTIAL EQUATIONS</a></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">n = no of equations</span><br><span class="line">a[n]n] = coefficient matrix</span><br><span class="line">b[n]= right hand side vector</span><br><span class="line"></span><br><span class="line">x[n] - solution vector</span><br><span class="line"></span><br><span class="line">bool jacobi (double a[][MAXSIZE], double b[], int n, int maxiter, double tol, double x[])</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">   int numiter = 0;</span><br><span class="line">   bool tolexceeded = true;</span><br><span class="line">   int i, j;</span><br><span class="line">   double xold[MAXSIZE];</span><br><span class="line">   double sum;</span><br><span class="line"></span><br><span class="line">   for (i = 0; i &lt; n; i++)</span><br><span class="line">     x[i] = b[i]/a[i][i];</span><br><span class="line"></span><br><span class="line">   while(tolexceeded &amp;&amp; numiter &lt; maxiter)</span><br><span class="line">   &#123;</span><br><span class="line">     for(i = 0; i &lt;n; ++i)</span><br><span class="line">      xold[i] = x[i];</span><br><span class="line"></span><br><span class="line">     for (i = 0; i &lt; n; ++i)</span><br><span class="line">       &#123;</span><br><span class="line">         sum = b[i];</span><br><span class="line">         for(j = 0; j &lt; n; ++j)</span><br><span class="line">            if(i != j)</span><br><span class="line">              sum -= a[i][j] * xold[j];</span><br><span class="line"></span><br><span class="line">         x[i]= sum/aa[i][i];</span><br><span class="line">       &#125;</span><br><span class="line">       tolexceeded = false;</span><br><span class="line">       for (i = 0; i &lt; n; i++)</span><br><span class="line">        if (fabs(x[i] -xold[i]) &gt; fabs(xold[i] * tol))</span><br><span class="line">           tolexceeded = true;</span><br><span class="line">       ++numiter;</span><br><span class="line">&#125;</span><br><span class="line">  return tolexceeded;</span><br></pre></td></tr></table></figure>
+<h2 id="cholesky分解">VI.XVIII. Cholesky分解</h2>
+<p>Cholesky分解法又称三角分解法，或称因子化法。</p>
+<p>设线性方程组<span class="math inline">\(AX=b\)</span>（1），式中A为对称、正定的矩阵。对于对称、正定的矩阵A，可进行分解 <span class="math inline">\(A=LD{L^T}\)</span>（2），式中L是下单位三角阵，D是对角线矩阵。 右端项列向量（列阵）也作相应的分解<span class="math inline">\(b=LD{b&#39;}\)</span>（3）。将式（2）和式（3）代入方程（1），得到上三角方程组<span class="math inline">\({L^T}x={b&#39;}\)</span>。再按诸如高斯消元法的回代过程就可解出<span class="math inline">\(x\)</span>。<a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#include&lt;math.h&gt;</span><br><span class="line">#include&lt;iostream.h&gt;</span><br><span class="line">#define N 4  </span><br><span class="line">void Cholesky(int n,double A[N][N],double x[N],double b[N])</span><br><span class="line">&#123;  </span><br><span class="line">  int i,j,k;   </span><br><span class="line">  double L[N][N],D[N][N],b2[N];</span><br><span class="line">  i=1;   </span><br><span class="line">  D[i-1][i-1]=A[i-1][i-1];  </span><br><span class="line">  for(i=2;i&lt;=n;i++)  </span><br><span class="line">  &#123;   </span><br><span class="line">    j=1;    </span><br><span class="line">    L[i-1][j-1]=A[i-1][j-1]/D[j-1][j-1];   </span><br><span class="line">    if(j==i-1)    </span><br><span class="line">    &#123;       </span><br><span class="line">      D[i-1][i-1]=0;</span><br><span class="line">      for(k=1;k&lt;=i-1;k++)</span><br><span class="line">      D[i-1][i-1]+=pow(L[i-1][k-1],2)*D[k-1][k-1];</span><br><span class="line">      D[i-1][i-1]=A[i-1][i-1]-D[i-1][i-1];</span><br><span class="line">      continue;   </span><br><span class="line">    &#125;   </span><br><span class="line">      else   </span><br><span class="line">      &#123;       </span><br><span class="line">        for(j=2;j&lt;=i-1;j++)       </span><br><span class="line">        &#123;</span><br><span class="line">          L[i-1][j-1]=0;</span><br><span class="line">          for(k=1;k&lt;=j-1;k++)</span><br><span class="line">          L[i-1][j-1]+=L[i-1][k-1]*L[j-1][k-1]*D[k-1][k-1];</span><br><span class="line">          L[i-1][j-1]=(A[i-1][j-1]-L[i-1][j-1])/D[j-1][j-1];</span><br><span class="line">          if(j==i-1)      </span><br><span class="line">          &#123;         </span><br><span class="line">            D[i-1][i-1]=0;</span><br><span class="line">            for(k=1;k&lt;=i-1;k++)</span><br><span class="line">            D[i-1][i-1]+=pow(L[i-1][k-1],2)*D[k-1][k-1];</span><br><span class="line">            D[i-1][i-1]=A[i-1][i-1]-D[i-1][i-1];</span><br><span class="line">            continue;    </span><br><span class="line">            &#125;    </span><br><span class="line">        &#125;     </span><br><span class="line">      &#125;      </span><br><span class="line">   &#125;  </span><br><span class="line">   i=1;    </span><br><span class="line">   b2[i-1]=b[i-1]/D[i-1][i-1];</span><br><span class="line">   for(i=2;i&lt;=n;i++)</span><br><span class="line">   &#123;    </span><br><span class="line">     b2[i-1]=0;        </span><br><span class="line">     for(k=1;k&lt;=i-1;k++)</span><br><span class="line">     b2[i-1]+=L[i-1][k-1]*D[k-1][k-1]*b2[k-1];</span><br><span class="line">     b2[i-1]=(b[i-1]-b2[i-1])/D[i-1][i-1];    </span><br><span class="line">    &#125;  </span><br><span class="line">    x[n-1]=b2[n-1]   </span><br><span class="line">    for(i=n-1;i&gt;=1;i--)   </span><br><span class="line">    &#123;       </span><br><span class="line">      x[i-1]=0.0;       </span><br><span class="line">      for(k=i+1;k&lt;=n;k++)       </span><br><span class="line">      x[i-1]+=L[k-1][i-1]*x[k-1];       </span><br><span class="line">      x[i-1]=b2[i-1]-x[i-1];    </span><br><span class="line">    &#125;  </span><br><span class="line">    for(i=0;i&lt;=n-1;i++)     </span><br><span class="line">    printf(&quot;%f\n&quot;,x[i]);  </span><br><span class="line">  &#125;  </span><br><span class="line"></span><br><span class="line">  void main()</span><br><span class="line">  &#123;  </span><br><span class="line">    double A[4][4]=&#123;&#123;1,2,1,3&#125;,&#123;2,3,-5,4&#125;,&#123;1,-5,5,-1&#125;,&#123;3,4,-1,7&#125;&#125;;</span><br><span class="line">    double x[4]=&#123;0&#125;;  </span><br><span class="line">    double b[4]=&#123;12,16,18,20&#125;; Cholesky(4,A,x,b);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://rosettacode.org/wiki/Cholesky_decomposition#C">Cholesky decomposition</a>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;math.h&gt;</span><br><span class="line"></span><br><span class="line">double *cholesky(double *A, int n) &#123;</span><br><span class="line">    double *L = (double*)calloc(n * n, sizeof(double));</span><br><span class="line">    if (L == NULL)</span><br><span class="line">        exit(EXIT_FAILURE);</span><br><span class="line"></span><br><span class="line">    for (int i = 0; i &lt; n; i++)</span><br><span class="line">        for (int j = 0; j &lt; (i+1); j++) &#123;</span><br><span class="line">            double s = 0;</span><br><span class="line">            for (int k = 0; k &lt; j; k++)</span><br><span class="line">                s += L[i * n + k] * L[j * n + k];</span><br><span class="line">            L[i * n + j] = (i == j) ?</span><br><span class="line">                           sqrt(A[i * n + i] - s) :</span><br><span class="line">                           (1.0 / L[j * n + j] * (A[i * n + j] - s));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    return L;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void show_matrix(double *A, int n) &#123;</span><br><span class="line">    for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">        for (int j = 0; j &lt; n; j++)</span><br><span class="line">            printf(&quot;%2.5f &quot;, A[i * n + j]);</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    int n = 3;</span><br><span class="line">    double m1[] = &#123;25, 15, -5,</span><br><span class="line">                   15, 18,  0,</span><br><span class="line">                   -5,  0, 11&#125;;</span><br><span class="line">    double *c1 = cholesky(m1, n);</span><br><span class="line">    show_matrix(c1, n);</span><br><span class="line">    printf(&quot;\n&quot;);</span><br><span class="line">    free(c1);</span><br><span class="line"></span><br><span class="line">    n = 4;</span><br><span class="line">    double m2[] = &#123;18, 22,  54,  42,</span><br><span class="line">                   22, 70,  86,  62,</span><br><span class="line">                   54, 86, 174, 134,</span><br><span class="line">                   42, 62, 134, 106&#125;;</span><br><span class="line">    double *c2 = cholesky(m2, n);</span><br><span class="line">    show_matrix(c2, n);</span><br><span class="line">    free(c2);</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.stat.uchicago.edu/~mcpeek/software/MQLS/cholesky.c">cholesky.c</a>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">/* file: choesky.c */</span><br><span class="line"></span><br><span class="line">/* Take the cholesky decomposition in the manner described in FA Graybill</span><br><span class="line">   (1976).</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">#include &lt;math.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int cholesky(double **orig, int n, double **aug, int mcol,double **chol, double **cholaug, int ofs)</span><br><span class="line">     /*</span><br><span class="line">	Do the augmented cholesky decomposition as described in FA Graybill</span><br><span class="line">	(1976) Theory and Application of the Linear Model. The original matrix</span><br><span class="line">	must be symmetric positive definite. The augmentation matrix, or</span><br><span class="line">	series of column vectors, are multiplied by C^-t, where C is the</span><br><span class="line">	upper triangular cholesky matrix, ie C^t * C = M and M is the original</span><br><span class="line">	matrix. Returns with a value of 0 if M is a non-positive definite</span><br><span class="line">	matrix. Returns with a value of 1 with succesful completion.</span><br><span class="line"></span><br><span class="line">	Arguments:</span><br><span class="line"></span><br><span class="line">	orig (input) double n x n array. The matrix to take the Cholesky</span><br><span class="line">	      decomposition of.</span><br><span class="line">	n    (input) integer. Number of rows and columns in orig.</span><br><span class="line">	aug  (input) double n x mcol array. The matrix for the augmented</span><br><span class="line">	      part of the decomposition.</span><br><span class="line">	mcol (input) integer. Number of columns in aug.</span><br><span class="line">	chol (output) double n x n array. Holds the upper triangular matrix</span><br><span class="line">	      C on output. The lower triangular portion remains unchanged.</span><br><span class="line">	      This maybe the same as orig, in which case the upper triangular</span><br><span class="line">	      portion of orig is overwritten.</span><br><span class="line">	cholaug (output) double n x mcol array. Holds the product C^-t * aug.</span><br><span class="line">	         May be the same as aug, in which case aug is over written.</span><br><span class="line">	ofs (input) integer. The index of the first element in the matrices.</span><br><span class="line">	     Normally this is 0, but commonly is 1 (but may be any integer).</span><br><span class="line">     */</span><br><span class="line">&#123;</span><br><span class="line">   int i, j, k, l;</span><br><span class="line">   int retval = 1;</span><br><span class="line"></span><br><span class="line">   for (i=ofs; i&lt;n+ofs; i++) &#123;</span><br><span class="line">      chol[i][i] = orig[i][i];</span><br><span class="line">      for (k=ofs; k&lt;i; k++)</span><br><span class="line">	 chol[i][i] -= chol[k][i]*chol[k][i];</span><br><span class="line">      if (chol[i][i] &lt;= 0) &#123;</span><br><span class="line">	 fprintf(stderr,&quot;\nERROR: non-positive definite matrix!\n&quot;);</span><br><span class="line">	 printf(&quot;\nproblem from %d %f\n&quot;,i,chol[i][i]);</span><br><span class="line">	 retval = 0;</span><br><span class="line">	 return retval;</span><br><span class="line">      &#125;</span><br><span class="line">      chol[i][i] = sqrt(chol[i][i]);</span><br><span class="line"></span><br><span class="line">      /*This portion multiplies the extra matrix by C^-t */</span><br><span class="line">      for (l=ofs; l&lt;mcol+ofs; l++) &#123;</span><br><span class="line">	 cholaug[i][l] = aug[i][l];</span><br><span class="line">	 for (k=ofs; k&lt;i; k++) &#123;</span><br><span class="line">	    cholaug[i][l] -= cholaug[k][l]*chol[k][i];</span><br><span class="line">	 &#125;</span><br><span class="line">	 cholaug[i][l] /= chol[i][i];</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      for (j=i+1; j&lt;n+ofs; j++) &#123;</span><br><span class="line">	 chol[i][j] = orig[i][j];</span><br><span class="line">	 for (k=ofs; k&lt;i; k++)</span><br><span class="line">	    chol[i][j] -= chol[k][i]*chol[k][j];</span><br><span class="line">	 chol[i][j] /= chol[i][i];</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   return retval;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="矩阵的逆">VI.XIX. 矩阵的逆</h2>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.mm18.net/knowledge/matrix/10945435174894770661.html">（数学概念）矩阵的逆、伪逆、左右逆，最小二乘，投影矩阵</a></p>
+</blockquote>
+<p>A是可逆矩阵的充分必要条件是，即可逆矩阵就是非奇异矩阵。</p>
+<p>伪逆矩阵是逆矩阵的广义形式。由于奇异矩阵或非方阵的矩阵不存在逆矩阵，但在matlab里可以用函数pinv(A)求其伪逆矩阵。基本语法为X=pinv(A),X=pinv(A,tol),其中tol为误差,pinv为pseudo-inverse的缩写：<code>max(size(A))*norm(A)*eps</code>。函数返回一个与A的转置矩阵A' 同型的矩阵X，并且满足：AXA=A,XAX=X.此时，称矩阵X为矩阵A的伪逆，也称为广义逆矩阵。pinv(A)具有inv(A)的部分特性，但不与inv(A)完全等同。 　如果A为非奇异方阵，pinv(A)=inv(A)，但却会耗费大量的计算时间，相比较而言，inv(A)花费更少的时间。</p>
+<p>广义逆阵(generalized inverse)也称为伪逆矩阵(pseudoinverse)，是在数学矩阵领域内的名词，一矩阵A的广义逆阵是指另一矩阵具有部分逆矩阵的特性，但是不一定具有逆矩阵的所有特性。假设一矩阵A∈Rn<em>m及另一矩阵Ag∈m</em>n，若Ag满足此条件，AAgA=A，则Ag即为A的逆矩阵。构建广义逆阵的目的是针对可逆矩阵以外的矩阵(例如非方阵的矩阵)可以找到一矩阵有一些类似逆矩阵的特性。任意的矩阵都存在广义逆阵，若一矩阵存在逆矩阵，逆矩阵即为其唯一的广义逆阵。有些广义逆阵可以定义在和结合律乘法有关的数学结构中。可以借助SVD(奇异值分解)来求解伪逆。</p>
+<p>假定拟计算一般矩阵A的Moore-Penrose广义逆A+, 1)对A做SVD: A = U S V, 其中 U, V为酉方阵, S为一般对角阵; 2)将S非零元取逆, 零元不变, 然后专置得到一个一般对角阵T; 3)则广义逆为A+ = V* T U<em>, 其中 </em> 表示取矩阵的复共轭.</p>
+<ol style="list-style-type: decimal">
+<li><p><a target="_blank" rel="noopener" href="http://www.php361.com/index.php?c=index&amp;a=view&amp;id=3137">采用C++和OpenCV实现的求矩阵伪逆</a></p></li>
+<li><p><a target="_blank" rel="noopener" href="http://www.aichengxu.com/cyvyan/24640054.htm">矩阵求逆的几种方法总结（C++）</a></p></li>
+</ol>
+<h2 id="读取数据">VI.XX. 读取数据</h2>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/u011944141/article/details/38043155">C语言操作Excel表格</a></p>
+</blockquote>
+<ul>
+<li>从TXT文件中读写数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;  </span><br><span class="line"></span><br><span class="line">int main()  </span><br><span class="line">&#123;  </span><br><span class="line">    //下面是写数据，将数字0~9写入到data.txt文件中  </span><br><span class="line">    FILE *fpWrite=fopen(&quot;data.txt&quot;,&quot;w&quot;);  </span><br><span class="line">    if(fpWrite==NULL)  </span><br><span class="line">    &#123;  </span><br><span class="line">        return 0;  </span><br><span class="line">    &#125;  </span><br><span class="line">    for(int i=0;i&lt;10;i++)  </span><br><span class="line">        fprintf(fpWrite,&quot;%d &quot;,i);  </span><br><span class="line">    fclose(fpWrite);  </span><br><span class="line">    //下面是读数据，将读到的数据存到数组a[10]中，并且打印到控制台上  </span><br><span class="line">    int a[10]=&#123;0&#125;;  </span><br><span class="line">    FILE *fpRead=fopen(&quot;data.txt&quot;,&quot;r&quot;);  </span><br><span class="line">    if(fpRead==NULL)  </span><br><span class="line">    &#123;  </span><br><span class="line">        return 0;  </span><br><span class="line">    &#125;  </span><br><span class="line">    for(int i=0;i&lt;10;i++)  </span><br><span class="line">    &#123;  </span><br><span class="line">        fscanf(fpRead,&quot;%d &quot;,&amp;a[i]);  </span><br><span class="line">        printf(&quot;%d &quot;,a[i]);  </span><br><span class="line">    &#125;  </span><br><span class="line">    getchar();//等待  </span><br><span class="line"></span><br><span class="line">    return 1;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;stdio.h&quot;</span><br><span class="line">#define M 300</span><br><span class="line">#define N 50</span><br><span class="line"></span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line"> int i,j;</span><br><span class="line"> float a[M][N]=&#123;0&#125;;</span><br><span class="line"> FILE *fp;</span><br><span class="line"> if((fp=fopen(&quot;test.txt&quot;,&quot;rt&quot;))==NULL)</span><br><span class="line"> &#123;</span><br><span class="line">  printf(&quot;cannot open file\n&quot;);</span><br><span class="line">  return;</span><br><span class="line"> &#125;</span><br><span class="line"> for(i=0;i&lt;M;i++)</span><br><span class="line"> &#123;</span><br><span class="line"> for(j=0;j&lt;N;j++)</span><br><span class="line">  fscanf(fp,&quot;%f&quot;,&amp;a[i][j]);</span><br><span class="line"> fscanf(fp,&quot;\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line"> fclose(fp);</span><br><span class="line"> for(i=0;i&lt;M;i++)</span><br><span class="line"> &#123;</span><br><span class="line"> for(j=0;j&lt;N;j++)</span><br><span class="line">     printf(&quot;%g &quot;,a[i][j]);</span><br><span class="line">   printf(&quot;\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="输出显示">VI.XXI. 输出显示</h2>
+<h3 id="printf函数">VI.XXI.I. printf函数</h3>
+<p>printf函数<a href="#fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a>是一个标准库函数，它的函数原型在头文件“stdio.h”中。但作为一个特例，不要求在使用 printf 函数之前必须包含stdio.h文件。</p>
+<p><code>printf(“格式控制字符串”, 输出表列)</code>：其中格式控制字符串用于指定输出格式。格式控制串可由格式字符串和非格式字符串两种组成。格式字符串是以%开头的字符串，在%后面跟有各种格式字符，以说明输出数据的类型、形式、长度、小数位数等。如：</p>
+<ul>
+<li>“%d”表示按十进制整型输出；<br>
+</li>
+<li>“%ld”表示按十进制长整型输出；<br>
+</li>
+<li>“%c”表示按字符型输出等。</li>
+</ul>
+<h3 id="输出数组">VI.XXI.II. 输出数组</h3>
+<p>先定义这个数组有几个元素，否则会不能现返回值！</p>
+<ul>
+<li><p>下标法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">  int a[5] ;</span><br><span class="line">  int n;</span><br><span class="line">  printf(&quot;Please input words:&quot;);</span><br><span class="line">  for(n=0;n&lt;5;n++)</span><br><span class="line">  scanf(&quot;%d&quot;,&amp;a[n]);</span><br><span class="line">  printf(&quot;\n&quot;);</span><br><span class="line">  for(n=0;n&lt;5;n++)</span><br><span class="line">  printf(&quot;%d&quot;,a[n]);</span><br><span class="line">  printf(&quot;\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>通过数组名计算数组元素地址，找出元素的值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">        int a[5] ;</span><br><span class="line">        int n;</span><br><span class="line">        printf(&quot;Please input words:&quot;);</span><br><span class="line">        for(n=0;n&lt;5;n++)</span><br><span class="line">        scanf(&quot;%d&quot;,&amp;a[n]);</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">        for(n=0;n&lt;5;n++)</span><br><span class="line">        printf(&quot;%d&quot;,*(a+i));</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>用指针变量指向数组元素</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">        int a[5] ;</span><br><span class="line">        int *p,n;</span><br><span class="line">        printf(&quot;Please input words:&quot;);</span><br><span class="line">        for(n=0;n&lt;5;n++)</span><br><span class="line">        scanf(&quot;%d&quot;,&amp;a[n]);</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">        for(p=a;p&lt;(a+10);p++)</span><br><span class="line">        printf(&quot;%d&quot;,*p);</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="输出矩阵">VI.XXI.III. 输出矩阵</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int i,j,k=1;</span><br><span class="line">    for(i=0;i&lt;10;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        for(j=0;j&lt;10;j++,k++)</span><br><span class="line">        if(i&gt;j)printf(&quot;   &quot;);</span><br><span class="line">        else printf(&quot;%3d&quot;,k);</span><br><span class="line">        printf(&quot;\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;搜索</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">int a[10][10],i,j,k=0;</span><br><span class="line">for(i=0;i&lt;10;i++)</span><br><span class="line">for(j=0;j&lt;10;j++)</span><br><span class="line">a[i][j]=++k;</span><br><span class="line">for(i=0;i&lt;10;i++)</span><br><span class="line">&#123;</span><br><span class="line">for(j=0;j&lt;10;j++)</span><br><span class="line">if(j&lt;i) printf(&quot; &quot;);</span><br><span class="line">else printf(&quot;%3d &quot;,a[i][j]);</span><br><span class="line">printf(&quot;\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">int i,j,k=0;</span><br><span class="line">for(i=0;i&lt;10;i++)</span><br><span class="line">&#123;</span><br><span class="line">for(j=0;j&lt;10;j++)</span><br><span class="line">if(j&lt;i) &#123;printf(&quot; &quot;);++k;&#125;</span><br><span class="line">else printf(&quot;%3d &quot;,++k);</span><br><span class="line">printf(&quot;\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line">int a[10][10],i,j,k;</span><br><span class="line">for(i=0;i&lt;10;i++)</span><br><span class="line">for(j=i;j&lt;10;j++)</span><br><span class="line">a[i][j]=i*10+j+1;</span><br><span class="line">for(i=0;i&lt;10;i++)</span><br><span class="line">&#123;	for(k=0;k&lt;i;k++)</span><br><span class="line">printf(&quot; &quot;);//中间四个空格，因为下面的输出控制了格式的%4d</span><br><span class="line">for(j=i;j&lt;10;j++)</span><br><span class="line">printf(&quot;%4d&quot;,a[i][j]);</span><br><span class="line">printf(&quot;\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="结构图">VII. 结构图</h1>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/4a339e558b5f">程序流程图&amp;盒图（N-S图）&amp;PAD图</a></p>
+</blockquote>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p><a target="_blank" rel="noopener" href="http://c.biancheng.net/cpp/html/1618.html">对C语言进行调试的最好方法是什么?</a><a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p><a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_5e9e98210101ndgl.html">如何实现一个通用的判断版本</a><a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p><a target="_blank" rel="noopener" href="http://c.biancheng.net/cpp/html/1618.html">对C语言进行调试的最好方法是什么?</a><a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/bigloomy/article/details/6595197">C语言的那些小秘密之const修饰符</a><a href="#fnref4">↩</a></p></li>
+<li id="fn5"><p><a target="_blank" rel="noopener" href="http://c.biancheng.net/cpp/html/76.html">C语言数组指针（指向数组的指针）</a><a href="#fnref5">↩</a></p></li>
+<li id="fn6"><p><a target="_blank" rel="noopener" href="http://c.biancheng.net/cpp/html/61.html">C语言数组作为函数参数</a><a href="#fnref6">↩</a></p></li>
+<li id="fn7"><p><a target="_blank" rel="noopener" href="http://www.quanxue.cn/qt_xiaoya/Cpp/Cpp05.html">《C++语言教程》05章 类</a><a href="#fnref7">↩</a></p></li>
+<li id="fn8"><p><a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/73e7413a0740be1e640e9a1b.html">Cholesky分解法的思想及C语言编程</a><a href="#fnref8">↩</a></p></li>
+<li id="fn9"><p><a target="_blank" rel="noopener" href="http://c.biancheng.net/cpp/html/33.html">C语言格式输出函数printf()详解</a><a href="#fnref9">↩</a></p></li>
+</ol>
+</div>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="Alex LEE 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="Alex LEE 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/C-C/" rel="tag"><i class="fa fa-tag"></i> C/C++</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/git/" rel="prev" title="Git 使用指南">
+                  <i class="fa fa-angle-left"></i> Git 使用指南
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/cooking/" rel="next" title="烹饪技巧">
+                  烹饪技巧 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex LEE</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">317k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:14</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><div class="footer-custom"> Hosted by <a target="_blank" href="https://pages.github.com">GitHub Pages</a>  |  <a target="_blank"  href="https://about.gitlab.com/stages-devops-lifecycle/pages/">Gitlab Pages</a> </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sli1989","repo":"gitalk","client_id":"9fa53d6156d8791703b5","client_secret":"706eeec44bf22fe410e90d364fe8a348ab8bcaed","admin_user":"sli1989","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"06617892dad9d3315edd07530890d329"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title></title>
+	<link rel="stylesheet" href="/static/css/player.css">
+</head>
+
+<div id="QPlayer">
+	<div id="pContent">
+		<div id="player">
+			<span class="cover"></span>
+			<div class="ctrl">
+				<div class="musicTag marquee">
+					<strong>Title</strong>
+					 <span> - </span>
+					<span class="artist">Artist</span>
+				</div>
+				<div class="progress">
+					<div class="timer left">0:00</div>
+					<div class="contr">
+						<div class="rewind icon"></div>
+						<div class="playback icon"></div>
+						<div class="fastforward icon"></div>
+					</div>
+					<div class="right">
+						<div class="liebiao icon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ssBtn">
+				<div class="adf"></div>
+		</div>
+	</div>
+	<ol id="playlist"></ol>
+</div>
+<script src="//cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  var playlist = [];
+  
+  playlist.push({title:'午后庭院',artist:'夏天播放',mp3:'https://music.163.com/song/media/outer/url?id=29095562.mp3',cover:'https://p1.music.126.net/5uQHiJSmUMo74VAR4KJCTA==/6670737045946097.jpg'})
+  
+  playlist.push({title:'远走高飞',artist:'金志文',mp3:'https://music.163.com/song/media/outer/url?id=1297742772.mp3',cover:'https://p1.music.126.net/elfqBKIdad0KYCCeKQpDSA==/18700493767108166.jpg'})
+  
+  playlist.push({title:'她',artist:'不可撤销乐队',mp3:'https://music.163.com/song/media/outer/url?id=29747622.mp3',cover:'https://p1.music.126.net/4x2X7W_VGHQeHoMR4a3Wbw==/3227066628477266.jpg'})
+  
+  playlist.push({title:'给你',artist:'陈奕迅',mp3:'https://music.163.com/song/media/outer/url?id=64706.mp3',cover:'https://p1.music.126.net/GK7EB01AIEE9-qHkBi-3vg==/89060441862562.jpg'})
+  
+  playlist.push({title:'千禧',artist:'徐秉龙',mp3:'https://music.163.com/song/media/outer/url?id=522510615.mp3',cover:'https://y.gtimg.cn/music/photo_new/T002R300x300M000004UOSJ5117bcd.jpg'})
+  
+  playlist.push({title:'年度之歌',artist:'谢安琪',mp3:'https://music.163.com/song/media/outer/url?id=308169.mp3',cover:'http://p1.music.126.net/SkSda5laDTH73h_a9ZYEig==/109951164146248533.jpg'})
+  
+  playlist.push({title:'边走边唱',artist:'李荣浩',mp3:'https://music.163.com/song/media/outer/url?id=31134197.mp3',cover:'https://p1.music.126.net/4Pu7M0q88fVVoo1ZFS_nmw==/3408486047237011.jpg'})
+  
+  var isRotate = true;
+  var autoplay = false;
+</script>
+<script src="/static/js/player.js"></script>
+<script>
+  function bgChange(){
+	var lis= $('.lib');
+	for(var i=0; i<lis.length; i+=2)
+	lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+  }
+  window.onload = bgChange;
+</script>
+
+  <script type="text/javascript" src="/js/custom.js"></script>
+</body>
+</html>

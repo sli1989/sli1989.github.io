@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"saili.science","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":true,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="线性回归可以说是机器学习中最简单，最基础的机器学习算法，它是一种监督学习方法，可以被用来解决回归问题。它用一条直线(或者高维空间中的平面)来拟合训练数据，进而对未知数据进行预测。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性回归">
+<meta property="og:url" content="http://saili.science/linear-regression/index.html">
+<meta property="og:site_name" content="Alex LEE&#39;s Blog">
+<meta property="og:description" content="线性回归可以说是机器学习中最简单，最基础的机器学习算法，它是一种监督学习方法，可以被用来解决回归问题。它用一条直线(或者高维空间中的平面)来拟合训练数据，进而对未知数据进行预测。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729125134.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729125153.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729125210.png">
+<meta property="article:published_time" content="2017-11-05T12:39:51.000Z">
+<meta property="article:modified_time" content="2025-07-21T06:22:10.000Z">
+<meta property="article:author" content="Alex LEE">
+<meta property="article:tag" content="MachineLearning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729125134.png">
+
+
+<link rel="canonical" href="http://saili.science/linear-regression/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://saili.science/linear-regression/","path":"linear-regression/","title":"线性回归"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>线性回归 | Alex LEE's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/6.1.3/pangu.umd.js" integrity="sha256-erngBMP3zzoIM6eqQ8dmrReh2vqCRgWmORroIfVoDlE=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://saili.science/linear-regression/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex LEE's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex LEE's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">77</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">25</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%A5%97%E8%B7%AF"><span class="nav-text">I. 基本套路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%A5%97%E8%B7%AF"><span class="nav-text">II. 应用套路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E5%8C%96"><span class="nav-text">II.I. 正则化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E5%8C%96"><span class="nav-text">II.II. 标准化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">III. 总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex LEE"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Alex LEE</p>
+  <div class="site-description" itemprop="description">There is no royal road to learning.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:im.sai.li@outlook.com" title="E-Mail → mailto:im.sai.li@outlook.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/sli1989" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;sli1989" rel="noopener me" target="_blank"><i class="telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitter.im/sli1989" title="Gitter → https:&#x2F;&#x2F;gitter.im&#x2F;sli1989" rel="noopener me" target="_blank"><i class="github-alt fa-fw"></i>Gitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/sli1989/HEXO-NEXT-CUSTOM" title="https:&#x2F;&#x2F;github.com&#x2F;sli1989&#x2F;HEXO-NEXT-CUSTOM" rel="noopener" target="_blank">About the Blog</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://fontawesome.com/icons" title="https:&#x2F;&#x2F;fontawesome.com&#x2F;icons" rel="noopener" target="_blank">Font Awesome Icons</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://getemoji.com/" title="https:&#x2F;&#x2F;getemoji.com&#x2F;" rel="noopener" target="_blank">Copy and Paste Emoji</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://saili.science/linear-regression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Alex LEE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex LEE's Blog">
+      <meta itemprop="description" content="There is no royal road to learning.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="线性回归 | Alex LEE's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          线性回归
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-07-21 14:22:10" itemprop="dateModified" datetime="2025-07-21T14:22:10+08:00">2025-07-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类：</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Research/" itemprop="url" rel="index"><span itemprop="name">Research</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>线性回归可以说是机器学习中最简单，最基础的机器学习算法，它是一种监督学习方法，可以被用来解决回归问题。它用一条直线(或者高维空间中的平面)来拟合训练数据，进而对未知数据进行预测。</p>
+<span id="more"></span>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729125134.png"></p>
+<h1 id="基本套路">I. 基本套路</h1>
+<p>机器学习方法，无外乎三点：模型，代价函数，优化算法。首先找到一个模型用于预测未知世界，然后针对该模型确定代价函数，以度量预测错误的程度，最后使用优化算法在已有的样本数据上不断地优化模型参数，来最小化代价函数。通常来说，用的最多的优化算法主要是梯度下降或拟牛顿法(<a target="_blank" rel="noopener" href="http://blog.csdn.net/itplus/article/details/21896453">L-BFGS</a>或<a target="_blank" rel="noopener" href="http://research.microsoft.com/en-us/um/people/jfgao/paper/icml07scalable.pdf">OWL-QN</a>)，计算过程都需要计算参数梯度值，下面仅从模型、代价函数以及参数梯度来描述一种机器学习算法。</p>
+<p><strong>基本模型</strong>：</p>
+<p><span class="math display">\[ h_ \theta(X) =  \theta^T X = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \cdots + \theta_n x_n \]</span></p>
+<p>其中，<span class="math inline">\(X\)</span> 为表示样本特征，为 <span class="math inline">\(n\)</span> 维向量，<span class="math inline">\(\theta\)</span> 为模型参数，为 <span class="math inline">\(n+1\)</span> 维向量，包括一个偏置 <span class="math inline">\(\theta_0\)</span>。</p>
+<p><strong>代价函数</strong>：</p>
+<p><span class="math display">\[ J(\theta) = \frac {1} {2m} \sum_{i=1}^m \left ( y^{(i)}-h_\theta(X) \right ) ^2 \]</span></p>
+<p>上述公式也称之为平方误差，<span class="math inline">\(m\)</span> 为样本个数，<span class="math inline">\((X^{(i)}, y^{(i)})\)</span> 为第 <span class="math inline">\(i\)</span> 个样本。</p>
+<p><strong>参数梯度</strong>：</p>
+<p><span class="math display">\[ \bigtriangledown_{\theta_j} J(\theta)  =  \frac {1} {m} \sum_{i=1}^m \left[\left ( y^{(i)} - h_ \theta(X^{(i)}) \right ) X^{(i)}_j \right] \]</span></p>
+<p><span class="math inline">\(\theta_j\)</span> 表示第 <span class="math inline">\(j\)</span> 个参数，<span class="math inline">\(X^{(i)}_j\)</span> 表示样本 <span class="math inline">\(X^{(i)}\)</span> 的第 <span class="math inline">\(j\)</span> 个特征值。</p>
+<p>上述描述是按照常规的机器学习方法来描述线性回归，模型参数一般是通过梯度下降或拟牛顿法优化迭代得到，其实线性回归问题是可解的，只是在样本维度较大时很难求解才使用优化迭代的方法来逼近，如果样本维度并不是很大的情况下，是可以解方程一次性得到样本参数。</p>
+<p>最小二乘：</p>
+<p><span class="math display">\[ \theta = {\left( X^T X \right)} ^{-1} X^T y\]</span></p>
+<p>注意这里 <span class="math inline">\(X\)</span> 为 <span class="math inline">\(m \times n\)</span> 矩阵，<span class="math inline">\(n\)</span> 为特征维度，<span class="math inline">\(m\)</span> 为样本个数； <span class="math inline">\(y\)</span> 为 <span class="math inline">\(m \times 1\)</span> 向量，表示每个样本的标签。</p>
+<p>加权最小二乘：</p>
+<p><span class="math display">\[ \theta = {\left( X^T W X \right)} ^{-1} X^T W y\]</span></p>
+<p><span class="math inline">\(W\)</span> 为 <span class="math inline">\(m \times m\)</span> 对角矩阵，对角线上的每个值表示对应样本实例的权重。</p>
+<h1 id="应用套路">II. 应用套路</h1>
+<p>在实际应用时，基于上述基本套路可能会有些小变化，下面首先还是从模型、代价函数以及参数梯度来描述。把基本套路中模型公式中的 <span class="math inline">\(\theta_0\)</span> 改成 <span class="math inline">\(b\)</span>，表示截距项，模型变成如下形式：</p>
+<p><span class="math display">\[h_{\theta,b}(X) =  \theta^T X  + b = \theta_1 x_1 + \theta_2 x_2 + \cdots + \theta_n x_n + b\]</span></p>
+<h2 id="正则化">II.I. 正则化</h2>
+<p>为了防止过拟合，一般会在代价函数上增加正则项，常见的正则方法有：</p>
+<ul>
+<li>L1: <span class="math inline">\(\lambda \left \| \theta \right \|\)</span> , 也称之为套索回归(Lasso)，可将参数稀疏化，但是不可导</li>
+<li>L2: <span class="math inline">\(\frac {\lambda} {2} {\left \| \theta \right \|}^2\)</span>，也称之为岭回归(Ridge)，可将参数均匀化，可导</li>
+<li>L1&amp;L2: <span class="math inline">\(\lambda \left(\alpha \left \| \theta \right \| + \frac {1-\alpha} {2} {\left \| \theta \right \|}^2 \right)\)</span>, 也称之为弹性网络(ElasticNet)，具备L1&amp;L2的双重特性</li>
+</ul>
+<p>加上正则项后，代价函数变成如下形式：</p>
+<p><span class="math display">\[J(\theta, b) =\frac {1} {2m} \sum_{i=1}^m \left ( y^{(i)}-h_{\theta,b}(X) \right ) ^2  +  \frac {\lambda} {m} \left(\alpha \left \|  \theta \right \| + \frac {1-\alpha} {2} {\left \|  \theta \right \|}^2 \right)\]</span></p>
+<p>其中，<span class="math inline">\(\lambda\)</span> 为正则项系数，<span class="math inline">\(\alpha\)</span> 为ElasticNet参数，他们都是可调整的超参数， 当 <span class="math inline">\(\alpha = 0\)</span>，则为L2正则， 当 <span class="math inline">\(\alpha = 1\)</span>，则为L1正则。L1正则项增加 <span class="math inline">\(1/m\)</span> 以及L2正则项增加 <span class="math inline">\(1/2m\)</span> 系数，仅仅是为了使求导后的形式规整一些。</p>
+<p>由于L1正则项不可导，如果 <span class="math inline">\(\alpha\)</span> 不为0，那么不能简单的套用梯度下降或L-BFGS，需要采用借助<a target="_blank" rel="noopener" href="http://blog.csdn.net/jbb0523/article/details/52103257">软阈值(Soft Thresholding)</a>函数解决，如果是使用拟牛顿法，可以采用<a target="_blank" rel="noopener" href="http://research.microsoft.com/en-us/um/people/jfgao/paper/icml07scalable.pdf">OWL-QN</a>，它是基于L-BFGS算法的可用于求解L1正则的算法。基于上述代价函数，下面仅列出包含L2正则项时的参数梯度：</p>
+<p><span class="math display">\[\bigtriangledown_{\theta_j} J(\theta, b) = \frac {1} {m} \sum_{i=1}^m \left ( y^{(i)} - h_{\theta,b} (X^{(i)}) \right ) X^{(i)}_j + \frac {\lambda (1-\alpha)} {m}  {\theta_j}^\ast \\ \bigtriangledown_b J(\theta, b) = \frac {1} {m} \sum_{i=1}^m \left( y^{(i)} - h_{\theta,b} (X^{(i)}) \right)\]</span></p>
+<p>其中，<span class="math inline">\({\theta_j}^\ast\)</span> 为上一次迭代得到的参数值。</p>
+<p>实际上，使用L2正则，是将前面所述的最小二乘方程改成如下形式：</p>
+<p><span class="math display">\[ \theta = {\left( X^T X + kI \right)}^{-1} X^T y\]</span></p>
+<p>这样可以降低矩阵 $X^T X $ 奇异的可能，否则就不能求逆了。</p>
+<h2 id="标准化">II.II. 标准化</h2>
+<p>一般来说，一个特征的值可能在区间 <span class="math inline">\((0, 1)\)</span> 之间，另一特征的值可能在区间<span class="math inline">\((-\infty, \infty)\)</span> ，这就是所谓的样本特征之间量纲不同，这样会导致优化迭代过程中的不稳定。当参数有不同初始值时，其收敛速度差异性较大，得到的结果可能也有较大的差异性，如下图所示，可以看到X和Y这两个变量的变化幅度不一致，如果直接使用梯度下降来优化迭代，那么量纲较大的特征信息量会被放大，量纲较小的特征信息量会被缩小。</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729125153.png"></p>
+<p>所以一般要对数据作无量纲化处理，通常会采用标准化方法 <span class="math inline">\((x-u)/\sigma\)</span> ，得到如下数据分布，这样无论从哪个点开始，其迭代方向的抖动都不会太大，每个特征的信息也不至于被放大和缩小。</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729125210.png"></p>
+<h1 id="总结">III. 总结</h1>
+<p>虽然线性回归现在可能很少用于解决实际问题，但是因为其简单易懂，学习它有助于对机器学习有个入门级的初步掌握，了解机器学习的套路等。</p>
+<blockquote>
+<p>本文转载自<a target="_blank" rel="noopener" href="http://sharkdtu.com/posts/ml-linear-regression.html">机器学习套路--线性回归</a></p>
+</blockquote>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="Alex LEE 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="Alex LEE 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/MachineLearning/" rel="tag"><i class="fa fa-tag"></i> MachineLearning</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/dataset-division/" rel="prev" title="数据集划分">
+                  <i class="fa fa-angle-left"></i> 数据集划分
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/lagrange-multiplier/" rel="next" title="拉格朗日对偶">
+                  拉格朗日对偶 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex LEE</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">317k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:14</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><div class="footer-custom"> Hosted by <a target="_blank" href="https://pages.github.com">GitHub Pages</a>  |  <a target="_blank"  href="https://about.gitlab.com/stages-devops-lifecycle/pages/">Gitlab Pages</a> </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sli1989","repo":"gitalk","client_id":"9fa53d6156d8791703b5","client_secret":"706eeec44bf22fe410e90d364fe8a348ab8bcaed","admin_user":"sli1989","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"1577dbd609fec5a5ee9543fe85fdabc0"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title></title>
+	<link rel="stylesheet" href="/static/css/player.css">
+</head>
+
+<div id="QPlayer">
+	<div id="pContent">
+		<div id="player">
+			<span class="cover"></span>
+			<div class="ctrl">
+				<div class="musicTag marquee">
+					<strong>Title</strong>
+					 <span> - </span>
+					<span class="artist">Artist</span>
+				</div>
+				<div class="progress">
+					<div class="timer left">0:00</div>
+					<div class="contr">
+						<div class="rewind icon"></div>
+						<div class="playback icon"></div>
+						<div class="fastforward icon"></div>
+					</div>
+					<div class="right">
+						<div class="liebiao icon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ssBtn">
+				<div class="adf"></div>
+		</div>
+	</div>
+	<ol id="playlist"></ol>
+</div>
+<script src="//cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  var playlist = [];
+  
+  playlist.push({title:'午后庭院',artist:'夏天播放',mp3:'https://music.163.com/song/media/outer/url?id=29095562.mp3',cover:'https://p1.music.126.net/5uQHiJSmUMo74VAR4KJCTA==/6670737045946097.jpg'})
+  
+  playlist.push({title:'远走高飞',artist:'金志文',mp3:'https://music.163.com/song/media/outer/url?id=1297742772.mp3',cover:'https://p1.music.126.net/elfqBKIdad0KYCCeKQpDSA==/18700493767108166.jpg'})
+  
+  playlist.push({title:'她',artist:'不可撤销乐队',mp3:'https://music.163.com/song/media/outer/url?id=29747622.mp3',cover:'https://p1.music.126.net/4x2X7W_VGHQeHoMR4a3Wbw==/3227066628477266.jpg'})
+  
+  playlist.push({title:'给你',artist:'陈奕迅',mp3:'https://music.163.com/song/media/outer/url?id=64706.mp3',cover:'https://p1.music.126.net/GK7EB01AIEE9-qHkBi-3vg==/89060441862562.jpg'})
+  
+  playlist.push({title:'千禧',artist:'徐秉龙',mp3:'https://music.163.com/song/media/outer/url?id=522510615.mp3',cover:'https://y.gtimg.cn/music/photo_new/T002R300x300M000004UOSJ5117bcd.jpg'})
+  
+  playlist.push({title:'年度之歌',artist:'谢安琪',mp3:'https://music.163.com/song/media/outer/url?id=308169.mp3',cover:'http://p1.music.126.net/SkSda5laDTH73h_a9ZYEig==/109951164146248533.jpg'})
+  
+  playlist.push({title:'边走边唱',artist:'李荣浩',mp3:'https://music.163.com/song/media/outer/url?id=31134197.mp3',cover:'https://p1.music.126.net/4Pu7M0q88fVVoo1ZFS_nmw==/3408486047237011.jpg'})
+  
+  var isRotate = true;
+  var autoplay = false;
+</script>
+<script src="/static/js/player.js"></script>
+<script>
+  function bgChange(){
+	var lis= $('.lib');
+	for(var i=0; i<lis.length; i+=2)
+	lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+  }
+  window.onload = bgChange;
+</script>
+
+  <script type="text/javascript" src="/js/custom.js"></script>
+</body>
+</html>

@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"saili.science","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":true,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="信息论是应用数学的一个分支，主要研究的是对一个信号包含信息的多少进行量化。它最初被发明是用来研究在一个含有噪声的信道上用离散的字母表来发送消息，例如通过无线电传输来通信。，一般在机器学习中，我们可以将信息论应用在连续型变量上，并使用信息论的一些关键思想来描述概率分布或者量化概率分布之间的相似性。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习中的信息论">
+<meta property="og:url" content="http://saili.science/entropy-method/index.html">
+<meta property="og:site_name" content="Alex LEE&#39;s Blog">
+<meta property="og:description" content="信息论是应用数学的一个分支，主要研究的是对一个信号包含信息的多少进行量化。它最初被发明是用来研究在一个含有噪声的信道上用离散的字母表来发送消息，例如通过无线电传输来通信。，一般在机器学习中，我们可以将信息论应用在连续型变量上，并使用信息论的一些关键思想来描述概率分布或者量化概率分布之间的相似性。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190418141132.png">
+<meta property="article:published_time" content="2017-09-15T06:39:27.000Z">
+<meta property="article:modified_time" content="2025-07-21T06:22:10.000Z">
+<meta property="article:author" content="Alex LEE">
+<meta property="article:tag" content="MachineLearning">
+<meta property="article:tag" content="InformationTheory">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190418141132.png">
+
+
+<link rel="canonical" href="http://saili.science/entropy-method/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://saili.science/entropy-method/","path":"entropy-method/","title":"机器学习中的信息论"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>机器学习中的信息论 | Alex LEE's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/6.1.3/pangu.umd.js" integrity="sha256-erngBMP3zzoIM6eqQ8dmrReh2vqCRgWmORroIfVoDlE=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://saili.science/entropy-method/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex LEE's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex LEE's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">77</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">25</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%86%B5"><span class="nav-text">I. 熵</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E4%BF%A1%E6%81%AF"><span class="nav-text">II. 自信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E7%86%B5"><span class="nav-text">III. 信息熵</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%86%B5%E5%80%BC%E6%B3%95"><span class="nav-text">IV. 熵值法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#matlab%E5%AE%9E%E7%8E%B0"><span class="nav-text">IV.I. Matlab实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%86%B5%E5%80%BC%E6%B3%95%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9%E5%8F%8A%E9%80%82%E7%94%A8%E8%8C%83%E5%9B%B4"><span class="nav-text">IV.II. 熵值法的优缺点及适用范围</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E5%8F%89%E7%86%B5"><span class="nav-text">V. 交叉熵</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%AF%B9%E7%86%B5"><span class="nav-text">VI. 相对熵</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex LEE"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Alex LEE</p>
+  <div class="site-description" itemprop="description">There is no royal road to learning.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:im.sai.li@outlook.com" title="E-Mail → mailto:im.sai.li@outlook.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/sli1989" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;sli1989" rel="noopener me" target="_blank"><i class="telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitter.im/sli1989" title="Gitter → https:&#x2F;&#x2F;gitter.im&#x2F;sli1989" rel="noopener me" target="_blank"><i class="github-alt fa-fw"></i>Gitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/sli1989/HEXO-NEXT-CUSTOM" title="https:&#x2F;&#x2F;github.com&#x2F;sli1989&#x2F;HEXO-NEXT-CUSTOM" rel="noopener" target="_blank">About the Blog</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://fontawesome.com/icons" title="https:&#x2F;&#x2F;fontawesome.com&#x2F;icons" rel="noopener" target="_blank">Font Awesome Icons</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://getemoji.com/" title="https:&#x2F;&#x2F;getemoji.com&#x2F;" rel="noopener" target="_blank">Copy and Paste Emoji</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://saili.science/entropy-method/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Alex LEE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex LEE's Blog">
+      <meta itemprop="description" content="There is no royal road to learning.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="机器学习中的信息论 | Alex LEE's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          机器学习中的信息论
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-07-21 14:22:10" itemprop="dateModified" datetime="2025-07-21T14:22:10+08:00">2025-07-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类：</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Research/" itemprop="url" rel="index"><span itemprop="name">Research</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>16 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>信息论是应用数学的一个分支，主要研究的是对一个信号包含信息的多少进行量化。它最初被发明是用来研究在一个含有噪声的信道上用离散的字母表来发送消息，例如通过无线电传输来通信。，一般在机器学习中，我们可以将信息论应用在连续型变量上，并使用信息论的一些关键思想来描述概率分布或者量化概率分布之间的相似性。</p>
+<span id="more"></span>
+<p>在信息论中，熵是对不确定性的一种度量。信息量越大，不确定性就越小，熵也就越小；信息量越小，不确定性越大，熵也越大。根据熵的特性，可以通过计算熵值来判断一个事件的随机性及无序程度，也可以用熵值来判断某个指标的离散程度，指标的离散程度越大，该指标对综合评价的影响（权重）越大。比如样本数据在某指标下取值都相等，则该指标对总体评价的影响为0，权值为0.</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://medium.com/swlh/shannon-entropy-in-the-context-of-machine-learning-and-ai-24aee2709e32">从香农熵到手推KL散度：一文带你纵览机器学习中的信息论</a></p>
+</blockquote>
+<h1 id="熵">I. 熵</h1>
+<p>Entropy来源于希腊语，原意：内向，即：一个系统不受外部干扰时往内部稳定状态发展的特性。熵是热力学的一个物理概念，定义的其实是一个热力学的系统变化的趋势</p>
+<p><span class="math display">\[\Delta S = \frac{Q}{T} = \frac{热量}{温度} \tag{1-1}\]</span></p>
+<ul>
+<li><p>广义的定义：熵是描述一个系统的无序程度的变量；同样的表述还有，熵是系统混乱度的度量，一切自发的不可逆过程都是从有序到无序的变化过程，向熵增的方向进行。熵越大说明系统越混乱，携带的信息越少，熵越小说明系统越有序，携带的信息越多。</p></li>
+<li><p>信息论中，熵是接受的每条消息中包含的信息的平均值。又被称为信息熵、信源熵、平均自信息量。</p></li>
+</ul>
+<p>1923年，德国科学家普朗克来中国讲学用到entropy这个词，胡刚复教授看到这个公式，创造了“熵”字，因为“火”和热量有关，定义式又是热量比温度，相当自洽。</p>
+<h1 id="自信息">II. 自信息</h1>
+<p>香农熵的基本概念就是所谓的一个事件背后的自信息（self-information），有时候也叫做不确定性。自信息的直觉解释如下，当某个事件（随机变量）的一个不可能的结果出现时，我们就认为它提供了大量的信息。相反地，当观察到一个经常出现的结果时，我们就认为它具有或提供少量的信息。将自信息与一个事件的意外性联系起来是很有帮助的。</p>
+<h1 id="信息熵">III. 信息熵</h1>
+<p>在机器学习中，通常要把与随机事件相关信息的期望值进行量化，此外还要量化不同概率分布之间的相似性。在这两种情况下，香农熵都被用来衡量概率分布中的信息内容。</p>
+<p>香农熵是以信息论之父 Claude Shannon 的名字命名的，也称为信息熵或微分熵（连续）。信息熵则借鉴了热力学中熵的概念 (注意：信息熵的符号与热力学熵应该是相反的)，用于描述平均而言事件信息量大小。1948年，由克劳德·爱尔伍德·香农将热力学中的熵引入信息论，所以也叫做：香农熵。</p>
+<p>比如天气情况，假设可能有【阴、晴、雨、雪】四种情况，使用概率符号表示 <span class="math inline">\(\mathbf P = [p_1,p_2,p_3,p_4]\)</span>，接下来自然而然的思考：那么，什么条件（情况）会影响这些值呢？假设有以下三种描述，或者说条件</p>
+<ul>
+<li>今天是晴天，所以明天可能也是晴天</li>
+<li>天气预报说明天下雨</li>
+<li>9月12日苹果公司举行发布会</li>
+</ul>
+<p>那么这三个描述中，很明显，第二条的信息量更大，因为它可以使得不确定事件发生在<span class="math inline">\(p_3\)</span>的概率更大。类似的，第三条对判断毫无帮助，信息量为0。注意，信息量不等于信息熵，如果是这样，那么直接用概率来衡量就可以了，不需要在重新定义一个概念。</p>
+<p>所以数学上，信息熵是事件所包含的信息量的期望（均值）<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>。它不是针对每条信息，而是针对整个不确定性结果集而言，信息熵越大，信源的分布越随机，事件不确定性就越大。单条信息只能从某种程度上影响结果集概率的分布.</p>
+<p>在概率论和统计学中，数学期望(mean)（或均值，亦简称期望）是试验中每次可能结果的概率乘以其结果的总和。根据上面期望的定义，我们可以设想信息熵的公式大概是这样的一个格式：</p>
+<p><span class="math display">\[信息熵=\sum  每种可能事件的概率 * 每种可能事件包含的信息量\]</span></p>
+<p>那么每种可能事件包含的信息量跟什么有关呢？答案是跟这一事件的不确定性有关，即与事件发生的概率有关，概率越大，信息量越小。试想，如果上面的概率修改一下，令小明得100分的概率是1，那么你预测小明会考100分这句话就没有信息量了，因为不管怎么样他肯定都会是100分。</p>
+<p>我们已经有了 <span class="math inline">\(\mathbf P = [p_1,p_2,p_3,p_4]\)</span> 来表示天气情况，那么用计算机来存储每天的天气，那该如何编码呢？常见的做法是，4个不同的信息，只需要2bit就能做到，<code>00</code> <code>01</code> <code>11</code> <code>10</code> 。</p>
+<p>使用一个公式来计算记录<strong>n天数据</strong>需要的<strong>存储空间</strong>：</p>
+<p><span class="math display">\[
+S_n = n \times \sum_{i = 1}^4{\left(P_i \times F(P_i) \right) } \tag{2-1}
+\]</span></p>
+<blockquote>
+<p><span class="math inline">\(P_i\)</span> 表示第i个事件发生的概率；<span class="math inline">\(F(P_i)\)</span> 表示存储空间的存储因子（每种可能事件包含的信息量的计算采用不确定性函数）.</p>
+</blockquote>
+<p>如何确定这个函数 <span class="math inline">\(F(P_i)\)</span> 的形式？考虑这个函数需要满足条件：<strong>概率大的事件对应小的存储空间，说人话，就是成反比</strong>，你的数学功底不错的话，脑海中第一反应出来满足这个条件最直观是<strong>反比例函数</strong>，说人话， <span class="math inline">\(\frac{1}{P_i}\)</span> 。之后我们发现这个公式中有个除法非常讨厌，我们想着去掉它，脑海中第一反应出来的满足这个条件的一定是<strong>取对数</strong>，至于为什么取对数，那说道就很多，取对数是指数的<strong>逆操作</strong>，</p>
+<ul>
+<li>对数操作可以让原本不符合正态分布的模型符合正态分布，比如随着模型自变量的增加，因变量的方差也增大的模型取对数后会更加稳定</li>
+<li>取对数操作可以rescale（原谅我，这里思前想后还是感觉一个英文单词更加生动）其实本质来说都是因为第一点。说人话版本，人不喜欢乘法，对数可以把乘法变加法</li>
+</ul>
+<p>那么我们结束清楚之后，就很容易就可以定义出（ 采用这个函数，一方面保证了信息量是概率P的单调递降函数；另一方面保证了两个独立事件所产生的不确定性应等于各自不确定性之和，即可加性。）</p>
+<p><span class="math display">\[F(P_i) = \log_a ({\frac{1}{P_i}}) \tag{2-2}\]</span></p>
+<blockquote>
+<p>a作为底数，可以取2（处理2bit数据），10（万金油），e（处理正态分布相关的数据）</p>
+</blockquote>
+<p>结合对信息熵的定义（第一节最后的粗体字）然后把（2-2）带入（2-1），就会发现，哦！看着有点眼熟啊</p>
+<p><span class="math display">\[H(P) = \sum_i {P(i)log_a {\frac{1}{P(i)}}} = - \sum_i {P(i)log_a {P(i)}} \tag{2-3}\]</span></p>
+<p><span class="math display">\[H(U) = -\sum_{i=1}^{n} P_i logP_i\]</span></p>
+<p>总结就发现，信息熵其实从某种意义上反映了信息量存储下来需要多少存储空间。总结为：根据真实分布，我们能够找到一个最优策略，以最小的代价消除系统的不确定性（比如编码），而这个代价的大小就是信息熵。</p>
+<h1 id="熵值法">IV. 熵值法</h1>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://hujichn.github.io/2016/08/10/%E7%86%B5%E5%80%BC%E6%B3%95%E7%A1%AE%E5%AE%9A%E6%9D%83%E9%87%8D%E7%9A%84%E6%AD%A5%E9%AA%A4%E5%8F%8A%E9%80%82%E7%94%A8%E8%8C%83%E5%9B%B4/#fn1">熵值法确定权重的步骤及适用范围</a><br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/28067337">【评价算法】01. 熵权法确定权重</a></p>
+</blockquote>
+<p>日常工作中经常需要确定各个指标的权重，利用熵值法确定权重属于客观赋权法，从数据出发，仅依赖于数据本身的离散性，避免过强的主观性。</p>
+<p>根据信息熵的定义，对于某项指标，我们可以用熵值来判断某个指标的离散程度，其熵值越小，指标的离散程度越大，该指标对综合评价的影响(即权重)越大。如果某项指标的值全部相等，那么该指标在综合评价中不起作用。</p>
+<p>熵值法的计算步骤:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>确定指标体系</strong>：首先需要确定评价的指标体系，例如下图是网站经营评价的两级指标体系。 <img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190418141132.png"></p></li>
+<li><p><strong>清洗指标极值</strong>：即剔除各指标中极大或者极小的值，一般用比较合理的上下线替换这些极值，目的是减少极值数据对该指标的熵的影响。 原则：剔除占样本总数不到1-2%但指标值贡献率超过20-30%以上的极值样本。 我们这里样本本来也不多，也没有贡献率特别大的，所以没有做处理。</p></li>
+<li><strong>归一化指标处理</strong>：由于各项指标的计量单位并不统一，因此在用它们计算综合指标前，先要进行标准化处理，即把指标的绝对值转化为相对值，从而解决各项不同质指标值的同质化问题。另外，正向指标和负向指标数值代表的含义不同（正向指标数值越高越好，负向指标数值越低越好），因此，对于正向负向指标需要采用不同的算法进行数据标准化处理：将各个指标同度量化，即将指标的实际值转化为不受量纲影响的指标评价值。常用的方法有：
+<ul>
+<li>临界值法:如果原始的第<span class="math inline">\(i\)</span>个人的第<span class="math inline">\(j\)</span>个指标是<span class="math inline">\(x_{ij}\)</span>，那么归一化后是<span class="math inline">\(x_{ij}’\)</span>。若指标是正向的选第一个公式； 若指标是负向的选第二个公式。<span class="math inline">\(\min x_j\)</span>是第<span class="math inline">\(j\)</span>个指标的最小值，类似地，<span class="math inline">\(\max x_j\)</span>是第<span class="math inline">\(j\)</span>个指标的最大值。</li>
+</ul>
+<p><span class="math display">\[x_{ij}’ = \frac{x_{ij}-\min x_j}{\max x_j - \min x_j}\]</span> <span class="math display">\[x_{ij}’ = \frac{\max x_j-x_{ij}}{\max x_j - \min x_j}\]</span></p>
+<ul>
+<li>Z-score法: <span class="math inline">\(x_{ij}’ = \frac{x_{ij}-\bar{x_j}}{S}\)</span></li>
+</ul></li>
+<li><p><strong>计算指标熵和权</strong>：</p>
+<ul>
+<li>计算指标熵要先计算第<span class="math inline">\(i\)</span>个人的第<span class="math inline">\(j\)</span>个指标值的比重 <span class="math inline">\(y_{ij} = \frac{x_{ij}’}{\sum_{i=1}^m {x_{ij}’}}\)</span></li>
+<li>计算第j项指标的信息熵的公式为 <span class="math inline">\(e_j = -K\sum_{i=1}^m y_{ij} \ln y_{ij}\)</span> (式中<span class="math inline">\(K\)</span>为常数，<span class="math inline">\(K=\frac{1}{\ln m}\)</span>，我觉得乘以这个主要是为了使得<span class="math inline">\(e_j\)</span>小于等于1，这样后面求得的权重才是正数)</li>
+<li>某项指标的信息效用价值取决于该指标的信息熵<span class="math inline">\(e_j\)</span>与1之间的差值，它的值直接影响权重的大小，信息效用值越大，对评价的重要性就越大，权重也就越大。直接影响权重的大小，信息效用值越大，对评价的重要性就越大，权重也就越大。值直接影响权重的大小，信息效用值越大，对评价的重要性就越大，权重也就越大。直接影响权重的大小，信息效用值越大，对评价的重要性就越大，权重也就越大。<span class="math inline">\(d_j = 1 - e_j\)</span></li>
+<li>第<span class="math inline">\(j\)</span>项指标的权重为<span class="math inline">\(w_j = \frac{d_j}{\sum_j d_j}\)</span></li>
+</ul></li>
+<li><p><strong>指标加权计算得分</strong>：最后一步就是利用加权求和公式计算样本的评价值了，<span class="math inline">\(U = \sum_j 100* y_{ij}w_j\)</span>，<span class="math inline">\(U\)</span>为综合评价值，<span class="math inline">\(w_j\)</span>为第j个指标的权重。</p></li>
+</ol>
+<h2 id="matlab实现">IV.I. Matlab实现</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">load shang_datas</span><br><span class="line"></span><br><span class="line">Ind=[1 1 1 1 2]; %指定各指标的正向or负向</span><br><span class="line"></span><br><span class="line">[S,W]=shang(X,Ind)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">function [s,w]=shang(x,ind)</span><br><span class="line">%实现用熵值法求各指标(列）的权重及各数据行的得分</span><br><span class="line">%x为原始数据矩阵, 一行代表一个样本, 每列对应一个指标</span><br><span class="line">%ind指示向量，指示各列正向指标还是负向指标，1表示正向指标，2表示负向指标</span><br><span class="line">%s返回各行（样本）得分，w返回各列权重</span><br><span class="line">[n,m]=size(x); % n个样本, m个指标</span><br><span class="line">%%数据的归一化处理</span><br><span class="line">for i=1:m</span><br><span class="line">    if ind(i)==1 %正向指标归一化</span><br><span class="line">        X(:,i)=guiyi(x(:,i),1,0.002,0.996);    %若归一化到[0,1], 0会出问题</span><br><span class="line">    else %负向指标归一化</span><br><span class="line">        X(:,i)=guiyi(x(:,i),2,0.002,0.996);</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line">%%计算第j个指标下，第i个样本占该指标的比重p(i,j)</span><br><span class="line">for i=1:n</span><br><span class="line">    for j=1:m</span><br><span class="line">        p(i,j)=X(i,j)/sum(X(:,j));</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line">%%计算第j个指标的熵值e(j)</span><br><span class="line">k=1/log(n);</span><br><span class="line">for j=1:m</span><br><span class="line">    e(j)=-k*sum(p(:,j).*log(p(:,j)));</span><br><span class="line">end</span><br><span class="line">d=ones(1,m)-e; %计算信息熵冗余度</span><br><span class="line">w=d./sum(d); %求权值w</span><br><span class="line">s=100*w*p&#x27;; %求综合得分</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function y=guiyi(x,type,ymin,ymax)</span><br><span class="line">%实现正向或负向指标归一化，返回归一化后的数据矩阵</span><br><span class="line">%x为原始数据矩阵, 一行代表一个样本, 每列对应一个指标</span><br><span class="line">%type设定正向指标1,负向指标2</span><br><span class="line">%ymin,ymax为归一化的区间端点</span><br><span class="line">[n,m]=size(x);</span><br><span class="line">y=zeros(n,m);</span><br><span class="line">xmin=min(x);</span><br><span class="line">xmax=max(x);</span><br><span class="line">switch type</span><br><span class="line">    case 1</span><br><span class="line">        for j=1:m</span><br><span class="line">            y(:,j)=(ymax-ymin)*(x(:,j)-xmin(j))/(xmax(j)-xmin(j))+ymin;</span><br><span class="line">        end</span><br><span class="line">    case 2</span><br><span class="line">        for j=1:m</span><br><span class="line">            y(:,j)=(ymax-ymin)*(xmax(j)-x(:,j))/(xmax(j)-xmin(j))+ymin;</span><br><span class="line">        end</span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="熵值法的优缺点及适用范围">IV.II. 熵值法的优缺点及适用范围</h2>
+<p>优点</p>
+<ul>
+<li>熵值法能深刻反映出指标的区分能力，进而确定权重</li>
+<li>是一种客观赋权法，有理论依据，相对主观赋权具有较高的可信度和精确度</li>
+<li>算法简单，实践起来比较方便，不需要借助其他分析软件</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>智能程度不够高。和多元回归和主成分等统计方法不同，它不能考虑指标与指标之间横向的影响（如：相关性）</li>
+<li>若无业务经验的指导，权重可能失真</li>
+<li>对样本的依赖性比较大，随着建模样本变化，权重会有一定的波动</li>
+</ul>
+<p>适用范围</p>
+<p>结合上面的实例，我们看到：体育成绩离散程度更大，导致其最后权重也更大，但是从通常评判的角度看，聪明程度往往与数学成绩关系更为密切。这就说明单单使用熵值法权重失真是经常发生的，要结合一定专家打分法才能发挥熵值法的优势，像确定指标体系中的示意图那样，构建两级评价体系，上层可能需要结合专家经验来构建，而底层的指标分的比较细，权重比较难确定，这种情况下采用熵值法比较合适。</p>
+<p>另外，确定权重前需要确定指标对目标得分的影响方向，对非线性的指标要进行预处理或者剔除。还要注意处理好极值。</p>
+<h1 id="交叉熵">V. 交叉熵</h1>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://charlesliuyx.github.io/2017/09/11/%E4%BB%80%E4%B9%88%E6%98%AF%E4%BF%A1%E6%81%AF%E7%86%B5%E3%80%81%E4%BA%A4%E5%8F%89%E7%86%B5%E5%92%8C%E7%9B%B8%E5%AF%B9%E7%86%B5/">【直观详解】信息熵、交叉熵和相对熵</a></p>
+</blockquote>
+<p>交叉熵是一个用来比较两个概率分布 p 和 q 的数学工具。它和熵是类似的，我们计算 log(q) 在概率 p 下的期望，而不是反过来。</p>
+<h1 id="相对熵">VI. 相对熵</h1>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/hxsyl/p/4910218.html">浅谈KL散度</a><br>
+<a target="_blank" rel="noopener" href="http://blog.csdn.net/wonengguwozai/article/details/52817294">相对熵（互熵，交叉熵，鉴别信息，Kullback熵，Kullback-Leible散度即KL散度）的深入理解</a><br>
+<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/43318a3dc715">如何理解K-L散度（相对熵）</a><br>
+<a target="_blank" rel="noopener" href="https://www.zybuluo.com/a335031/note/43211">关于相对熵（KL距离）的理解</a></p>
+</blockquote>
+<p>与交叉熵紧密相关，KL 散度是另一个在机器学习中用来衡量相似度的量。相对熵又称互熵，交叉熵，鉴别信息，Kullback熵，Kullback-Leible散度（即KL散度）等。</p>
+<p>交叉熵衡量的是用编码方案 q 对服从 p 的事件进行编码时所需 bit 数的平均值，而 KL 散度给出的是使用编码方案 q 而不是最优编码方案 p 时带来的额外 bit 数。从这里我们可以看到，在机器学习中，p 是固定的，交叉熵和 KL 散度之间只相差一个常数可加项，所以从优化的目标来考虑，二者是等价的。而从理论角度而言，考虑 KL 散度仍然是有意义的，KL 散度的一个属性就是，当 p 和 q 相等的时候，它的值为 0。</p>
+<p>KL 散度有很多有用的性质，最重要的是它是非负的。在李弘毅的讲解中，KL 散度可以从极大似然估计中推导而出。</p>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/22178202/answer/49929786">信息熵是什么？</a><a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="Alex LEE 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="Alex LEE 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/MachineLearning/" rel="tag"><i class="fa fa-tag"></i> MachineLearning</a>
+              <a href="/tags/InformationTheory/" rel="tag"><i class="fa fa-tag"></i> InformationTheory</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/hyphen-dash/" rel="prev" title="如何正确使用和打出英文的破折号">
+                  <i class="fa fa-angle-left"></i> 如何正确使用和打出英文的破折号
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/how-to-presentation/" rel="next" title="如何做一个好的presentation">
+                  如何做一个好的presentation <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex LEE</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">317k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:14</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><div class="footer-custom"> Hosted by <a target="_blank" href="https://pages.github.com">GitHub Pages</a>  |  <a target="_blank"  href="https://about.gitlab.com/stages-devops-lifecycle/pages/">Gitlab Pages</a> </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sli1989","repo":"gitalk","client_id":"9fa53d6156d8791703b5","client_secret":"706eeec44bf22fe410e90d364fe8a348ab8bcaed","admin_user":"sli1989","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"4106371b44f5cd5ef7c0a40d80228044"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title></title>
+	<link rel="stylesheet" href="/static/css/player.css">
+</head>
+
+<div id="QPlayer">
+	<div id="pContent">
+		<div id="player">
+			<span class="cover"></span>
+			<div class="ctrl">
+				<div class="musicTag marquee">
+					<strong>Title</strong>
+					 <span> - </span>
+					<span class="artist">Artist</span>
+				</div>
+				<div class="progress">
+					<div class="timer left">0:00</div>
+					<div class="contr">
+						<div class="rewind icon"></div>
+						<div class="playback icon"></div>
+						<div class="fastforward icon"></div>
+					</div>
+					<div class="right">
+						<div class="liebiao icon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ssBtn">
+				<div class="adf"></div>
+		</div>
+	</div>
+	<ol id="playlist"></ol>
+</div>
+<script src="//cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  var playlist = [];
+  
+  playlist.push({title:'午后庭院',artist:'夏天播放',mp3:'https://music.163.com/song/media/outer/url?id=29095562.mp3',cover:'https://p1.music.126.net/5uQHiJSmUMo74VAR4KJCTA==/6670737045946097.jpg'})
+  
+  playlist.push({title:'远走高飞',artist:'金志文',mp3:'https://music.163.com/song/media/outer/url?id=1297742772.mp3',cover:'https://p1.music.126.net/elfqBKIdad0KYCCeKQpDSA==/18700493767108166.jpg'})
+  
+  playlist.push({title:'她',artist:'不可撤销乐队',mp3:'https://music.163.com/song/media/outer/url?id=29747622.mp3',cover:'https://p1.music.126.net/4x2X7W_VGHQeHoMR4a3Wbw==/3227066628477266.jpg'})
+  
+  playlist.push({title:'给你',artist:'陈奕迅',mp3:'https://music.163.com/song/media/outer/url?id=64706.mp3',cover:'https://p1.music.126.net/GK7EB01AIEE9-qHkBi-3vg==/89060441862562.jpg'})
+  
+  playlist.push({title:'千禧',artist:'徐秉龙',mp3:'https://music.163.com/song/media/outer/url?id=522510615.mp3',cover:'https://y.gtimg.cn/music/photo_new/T002R300x300M000004UOSJ5117bcd.jpg'})
+  
+  playlist.push({title:'年度之歌',artist:'谢安琪',mp3:'https://music.163.com/song/media/outer/url?id=308169.mp3',cover:'http://p1.music.126.net/SkSda5laDTH73h_a9ZYEig==/109951164146248533.jpg'})
+  
+  playlist.push({title:'边走边唱',artist:'李荣浩',mp3:'https://music.163.com/song/media/outer/url?id=31134197.mp3',cover:'https://p1.music.126.net/4Pu7M0q88fVVoo1ZFS_nmw==/3408486047237011.jpg'})
+  
+  var isRotate = true;
+  var autoplay = false;
+</script>
+<script src="/static/js/player.js"></script>
+<script>
+  function bgChange(){
+	var lis= $('.lib');
+	for(var i=0; i<lis.length; i+=2)
+	lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+  }
+  window.onload = bgChange;
+</script>
+
+  <script type="text/javascript" src="/js/custom.js"></script>
+</body>
+</html>

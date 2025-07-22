@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"saili.science","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":true,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="机器学习（Machine Learning，常简称为ML）研究的是计算机怎样模拟人类的学习行为，以获取新的知识或技能，并重新组织已有的知识结构使之不断改善自身。简单一点说，就是计算机从数据中学习出规律和模式，以应用在新数据上做预测的任务。机器学习在近30多年已发展为一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、计算复杂性理论等多门学科。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习">
+<meta property="og:url" content="http://saili.science/machine-learning/index.html">
+<meta property="og:site_name" content="Alex LEE&#39;s Blog">
+<meta property="og:description" content="机器学习（Machine Learning，常简称为ML）研究的是计算机怎样模拟人类的学习行为，以获取新的知识或技能，并重新组织已有的知识结构使之不断改善自身。简单一点说，就是计算机从数据中学习出规律和模式，以应用在新数据上做预测的任务。机器学习在近30多年已发展为一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、计算复杂性理论等多门学科。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/006V2m65gy1foo3vai8r0j30h2090glt.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/006V2m65gy1fogasefrboj312g1wtk0l.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dgy1g0bvn0r77uj20m80cigoj.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dgy1g0bvt3avxvj20gy0a7tbt.jpg">
+<meta property="article:published_time" content="2018-03-23T08:46:05.000Z">
+<meta property="article:modified_time" content="2025-07-21T06:22:10.000Z">
+<meta property="article:author" content="Alex LEE">
+<meta property="article:tag" content="MachineLearning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/006V2m65gy1foo3vai8r0j30h2090glt.jpg">
+
+
+<link rel="canonical" href="http://saili.science/machine-learning/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":true,"isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://saili.science/machine-learning/","path":"machine-learning/","title":"机器学习"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>机器学习 | Alex LEE's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/6.1.3/pangu.umd.js" integrity="sha256-erngBMP3zzoIM6eqQ8dmrReh2vqCRgWmORroIfVoDlE=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://saili.science/machine-learning/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex LEE's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex LEE's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">77</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">25</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%91%E5%B1%95%E8%BF%87%E7%A8%8B"><span class="nav-text">I. 发展过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B"><span class="nav-text">II. 实现过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E6%96%B9%E5%BC%8F"><span class="nav-text">III. 学习方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A6%BB%E7%BA%BF%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0"><span class="nav-text">III.I. 离线学习与在线学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E5%8A%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%9B%B4%E6%8E%A8%E5%AD%A6%E4%B9%A0"><span class="nav-text">III.II. 主动学习与直推学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E5%8A%A8%E5%AD%A6%E4%B9%A0"><span class="nav-text">III.II.I. 主动学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A8%E5%AD%A6%E4%B9%A0"><span class="nav-text">III.II.II. 直推学习</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0"><span class="nav-text">III.III. 强化学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0"><span class="nav-text">III.IV. 迁移学习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%94%A8%E5%BB%BA%E8%AE%AE"><span class="nav-text">IV. 实用建议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90"><span class="nav-text">V. 学习资源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-text">VI. 数据集</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex LEE"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Alex LEE</p>
+  <div class="site-description" itemprop="description">There is no royal road to learning.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:im.sai.li@outlook.com" title="E-Mail → mailto:im.sai.li@outlook.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/sli1989" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;sli1989" rel="noopener me" target="_blank"><i class="telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitter.im/sli1989" title="Gitter → https:&#x2F;&#x2F;gitter.im&#x2F;sli1989" rel="noopener me" target="_blank"><i class="github-alt fa-fw"></i>Gitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/sli1989/HEXO-NEXT-CUSTOM" title="https:&#x2F;&#x2F;github.com&#x2F;sli1989&#x2F;HEXO-NEXT-CUSTOM" rel="noopener" target="_blank">About the Blog</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://fontawesome.com/icons" title="https:&#x2F;&#x2F;fontawesome.com&#x2F;icons" rel="noopener" target="_blank">Font Awesome Icons</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://getemoji.com/" title="https:&#x2F;&#x2F;getemoji.com&#x2F;" rel="noopener" target="_blank">Copy and Paste Emoji</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://saili.science/machine-learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Alex LEE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex LEE's Blog">
+      <meta itemprop="description" content="There is no royal road to learning.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="机器学习 | Alex LEE's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          机器学习
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-07-21 14:22:10" itemprop="dateModified" datetime="2025-07-21T14:22:10+08:00">2025-07-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类：</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Research/" itemprop="url" rel="index"><span itemprop="name">Research</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>21 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>机器学习（Machine Learning，常简称为ML）研究的是计算机怎样模拟人类的学习行为，以获取新的知识或技能，并重新组织已有的知识结构使之不断改善自身。简单一点说，就是计算机从数据中学习出规律和模式，以应用在新数据上做预测的任务。机器学习在近30多年已发展为一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、计算复杂性理论等多门学科。</p>
+<span id="more"></span>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/006V2m65gy1foo3vai8r0j30h2090glt.jpg" alt="人工智能关系图"></p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/006V2m65gy1fogasefrboj312g1wtk0l.jpg" alt="机器学习框架图"></p>
+<ul>
+<li>它是人工智能（Artificial Intelligence，常简称为AI）的一个重要子领域，而人工智能又与更广泛的数据挖掘（Data Mining，常简称为DM）和知识发现（Knowledge Discovery in Database，常简称为KDD）领域相交叉。</li>
+<li>机器学习是人工智能的一个分支。人工智能的研究是从以“推理”为重点到以“知识”为重点，再到以“学习”为重点，一条自然、清晰的脉络。</li>
+<li>机器学习是实现人工智能的一个途径，即以机器学习为手段解决人工智能中的问题。</li>
+<li>机器学习是人工智能的核心，应用遍及人工智能的各个领域，</li>
+</ul>
+<p>机器学习算法是一类从数据中自动分析获得规律，并利用规律对未知数据进行预测的算法。为此，机器学习主要关注于模式识别。机器学习有助于识别数据集内的模式，并因此尝试根据现有数据进行预测。<a target="_blank" rel="noopener" href="https://sli1989.github.io/deep-learning-1/">深度学习</a>是一种实现机器学习的技术<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>。</p>
+<p>一个简单的数学建模，我们需要考虑的是：1. 要做什么？2. 怎么做？3. 这样做合理吗？4. 如果这样做，假设那些可以改变？5. 这样做需要用到那些模型？6. 这种模型简洁吗？7. 确定了这种模型，怎么求解？8. 求解出来了，与现实合理吗？9. 在这个模型中，存在什么缺点，怎么去优化？10. 总结。</p>
+<h1 id="发展过程">I. 发展过程</h1>
+<p>目前机器学习已经在数据挖掘、计算机视觉、自然语言处理、生物特征识别、搜索引擎、DNA序列测序、战略游戏和机器人等多个方面都得到了运用。</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dgy1g0bvn0r77uj20m80cigoj.jpg"></p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dgy1g0bvt3avxvj20gy0a7tbt.jpg"></p>
+<h1 id="实现过程">II. 实现过程</h1>
+<p>华盛顿大学 eScience Institute 和 Institute for Neuroengineering 的数据科学博士后 Michael Beyeler<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>介绍了如何依靠已有的方法（模型选择和超参数调节）去指导你更好地去选择算法。</p>
+<ol style="list-style-type: decimal">
+<li>了解基本知识。机器学习里面三个主要类别：监督学习，无监督学习和强化学习。
+<ul>
+<li>在监督学习（supervised learning）中，每个数据点都会获得标注，如类别标签或与数值相关的标签。一个类别标签的例子：将图片分类为「猫」或「狗」；数值标签的例子如：预测一辆二手车的售价。监督学习的目的是通过学习许多有标签的样本，然后对新的数据做出预测。例如，准确识别新照片上的动物（分类）或者预测二手车的售价（回归）。</li>
+<li>在无监督性学习（unsupervised learning）中，数据点没有相关的标签。相反，无监督学习算法的目标是以某种方式组织数据，然后找出数据中存在的内在结构。这包括将数据进行聚类，或者找到更简单的方式处理复杂数据，使复杂数据看起来更简单。</li>
+<li>在强化学习（reinforcement learning）中，算法会针对每个数据点来做出决策（下一步该做什么）。这种技术在机器人学中很常用。传感器一次从外界读取一个数据点，算法必须决定机器人下一步该做什么。强化学习也适合用于物联网应用。在这里，学习算法将收到奖励信号，表明所做决定的好坏，为了获得最高的奖励，算法必须修改相应的策略。</li>
+</ul></li>
+<li>对问题进行分类
+<ul>
+<li>根据输入数据分类：如果我们的数据有标签，这就是一个监督学习问题；如果数据没有标签而且我们想找出数据的内在结构，那这就是无监督学习；如果我们想通过与环境交互来优化目标函数，这是强化学习。</li>
+<li>根据输出结果分类：如果模型输出结果是一个数值，这是回归问题；如果输出结果是一个类别，这是分类问题；如果输出结果是一组输入数据，那这是聚类问题。</li>
+</ul></li>
+<li>寻找可用的算法。</li>
+<li><strong>数据特征探索工程</strong>。或许比选择算法更重要的是正确选择表示数据的特征。虽然大多数特征的有效性需要靠实验来评估，但是了解常见的选取数据特征的方法是很有帮助的。这里有几个较好的方法：
+<ul>
+<li>主成分分析（PCA）：一种线性降维方法，可以找出包含信息量较高的特征主成分，可以解释数据中的大多数方差。</li>
+<li>尺度不变特征变换（SIFT）：计算机视觉领域中的一种有专利的算法，用以检测和描述图片的局部特征。它有一个开源的替代方法 ORB（Oriented FAST and rotated BRIEF）。</li>
+<li>加速稳健特征（SURF）：SIFT 的更稳健版本，有专利。</li>
+<li>方向梯度直方图（HOG）：一种特征描述方法，在计算机视觉中用于计数一张图像中局部部分的梯度方向的 occurrence。</li>
+<li>智能的特征选择
+<ul>
+<li>前向搜索：</li>
+<li>最开始不选取任何特征。</li>
+<li>然后选择最相关的特征，将这个特征加入到已有特征；计算模型的交叉验证误差，重复选取其它所有候选特征；最后，选取能使你交叉验证误差最小特征，并放入已选择的特征之中。</li>
+<li>重复，直到达到期望数量的特征为止！</li>
+<li>反向搜索：</li>
+<li>从所有特征开始。</li>
+<li>先移除最不相关的特征，然后计算模型的交叉验证误差；对其它所有候选特征，重复这一过程；最后，移除使交叉验证误差最大的候选特征。</li>
+<li>重复，直到达到期望数量的特征为止！</li>
+</ul></li>
+</ul></li>
+<li>实现所有适用的算法，模型选择。
+<ul>
+<li>对于任何给定的问题，通常有多种候选算法可以完成这项工作。那么我们如何知道选择哪一个呢？通常，这个问题的答案并不简单，所以我们必须反复试验。原型开发最好分两步完成。在第一步中，我们希望通过最小量的特征工程快速且粗糙地实现一些算法。在这个阶段，我们主要的目标是大概了解哪个算法表现得更好。</li>
+<li>一旦我们将列表减少至几个候选算法，真正的原型开发开始了。理想情况下，我们会建立一个机器学习流程，使用一组经过仔细选择的评估标准来比较每个算法在数据集上的表现。</li>
+</ul></li>
+<li>超参数优化。例如，主成分分析中的主成分个数，k 近邻算法的参数 k，或者是神经网络中的层数和学习速率。最好的方法是使用交叉验证来选择。</li>
+</ol>
+<h1 id="学习方式">III. 学习方式</h1>
+<h2 id="离线学习与在线学习">III.I. 离线学习与在线学习</h2>
+<p>机器学习算法可以分成两类。离线学习和在线学习。<a target="_blank" rel="noopener" href="https://sli1989.github.io/online-learning/">在线机器学习</a>指每次通过一个训练实例学习模型的学习方法。</p>
+<h2 id="主动学习与直推学习">III.II. 主动学习与直推学习</h2>
+<h3 id="主动学习">III.II.I. 主动学习</h3>
+<p>主动学习（active learning），指的是这样一种学习方法：有的时候，有类标的数据比较稀少而没有类标的数据是相当丰富的，但是对数据进行人工标注又非常昂贵，这时候，学习算法可以主动地提出一些标注请求，将一些经过筛选的数据提交给专家进行标注。这个筛选过程也就是主动学习主要研究的地方了，怎么样筛选数据才能使得请求标注的次数尽量少而最终的结果又尽量好。</p>
+<p>主动学习的过程大致是这样的，有一个已经标好类标的数据集K（初始时可能为空），和还没有标记的数据集U，通过K集合的信息，找出一个U的子集C，提出标注请求，待专家将数据集C标注完成后加入到K集合中，进行下一次迭代。</p>
+<p>按wiki上所描述的看，<strong>主动学习也属于半监督学习的范畴了，但实际上是不一样的，半监督学习和直推学习（transductive learning）以及主动学习，都属于利用未标记数据的学习技术，但基本思想还是有区别的</strong>。</p>
+<p>如上所述，主动学习的“主动”，指的是主动提出标注请求，也就是说，还是需要一个外在的能够对其请求进行标注的实体（通常就是相关领域人员），即主动学习是交互进行的。而半监督学习，特指的是学习算法不需要人工的干预，基于自身对未标记数据加以利用。</p>
+<h3 id="直推学习">III.II.II. 直推学习</h3>
+<p>它与半监督学习一样不需要人工干预，不同的是，直推学习假设未标记的数据就是最终要用来测试的数据，学习的目的就是在这些数据上取得最佳泛化能力。相对应的，半监督学习在学习时并不知道最终的测试用例是什么。也就是说，直推学习其实类似于半监督学习的一个子问题，或者说是一个特殊化的半监督学习，所以也有人将其归为半监督学习。</p>
+<h2 id="强化学习">III.III. 强化学习</h2>
+<p>所谓强化学习就是智能系统从环境到行为映射的学习，以使奖励信号（强化信号）函数值最大，强化学习不同于连接主义学习中的监督学习，主要表现在教师信号上，强化学习中由环境提供的强化信号是对产生动作的好坏作一种评价（通常为标量信号），而不是告诉强化学习系统RLS（reinforcement learning system）如何去产生正确的动作。由于外部环境提供的信息很少，RLS必须靠自身的经历进行学习。通过这种方式，RLS在行动-评价的环境中获得知识，改进行动方案以适应环境。</p>
+<p>在这种学习模式下，输入数据作为对模型的反馈，不像监督模型那样，输入数据仅仅是作为一个检查模型对错的方式，在强化学习下，输入数据直接反馈 到模型，模型必须对此立刻作出调整。设计一个回报函数（reward function），如果learning agent（如上面的四足机器人、象棋AI程序）在决定一步后，获得了较好的结果，那么我们给agent一些回报（比如回报函数结果为正），得到较差的结果，那么回报函数为负。比如，四足机器人，如果他向前走了一步（接近目标），那么回报函数为正，后退为负。如果我们能够对每一步进行评价，得到相应的回报函数，那么就好办了，我们只需要找到一条回报值最大的路径（每步的回报之和最大），就认为是最佳的路径。</p>
+<p>常见的应用场景包括动态系统以及机器人控制等。常见算法包括Q-Learning以及时间差学习（Temporal difference learning）</p>
+<h2 id="迁移学习">III.IV. 迁移学习</h2>
+<p>在传统的机器学习的框架下，学习的任务就是在给定充分训练数据的基础上来学习一个分类模型；然后利用这个学习到的模型来对测试文档进行分类与预测。然而，我们看到机器学习算法在当前的Web挖掘研究中存在着一个关键的问题：一些新出现的领域中的大量训练数据非常难得到。我们看到Web应用领域的发展非常快速。大量新的领域不断涌现，从传统的新闻，到网页，到图片，再到博客、播客等等。传统的机器学习需要对每个领域都标定大量训练数据，这将会耗费大量的人力与物力。而没有大量的标注数据，会使得很多与学习相关研究与应用无法开展。其次，传统的机器学习假设训练数据与测试数据服从相同的数据分布。然而，在许多情况下，这种同分布假设并不满足。通常可能发生的情况如训练数据过期。这往往需要我们去重新标注大量的训练数据以满足我们训练的需要，但标注新数据是非常昂贵的，需要大量的人力与物力。从另外一个角度上看，如果我们有了大量的、在不同分布下的训练数据，完全丢弃这些数据也是非常浪费的。如何合理的利用这些数据就是迁移学习主要解决的问题。迁移学习可以从现有的数据中迁移知识，用来帮助将来的学习。</p>
+<p>迁移学习（Transfer Learning）的目标就是将从一个环境中学到的知识用来帮助新环境中的学习任务。因此，迁移学习不会像传统机器学习那样作同分布假设。举一个通俗的例子，一个会下象棋的人可以更容易的学会下围棋；一个认识桌子的人可以更加容易的认识椅子；</p>
+<p>在迁移学习方面的工作目前可以分为以下三个部分：同构空间下基于实例的迁移学习，同构空间下基于特征的迁移学习与异构空间下的迁移学习。基于实例的迁移学习有更强的知识迁移能力，基于特征的迁移学习具有更广泛的知识迁移能力，而异构空间的迁移具有广泛的学习与扩展能力。</p>
+<p>迁移学习即一种学习对另一种学习的影响，它广泛地存在于知识、技能、态度和行为规范的学习中。任何一种学习都要受到学习者已有知识经验、技能、态度等的影响，只要有学习，就有迁移。迁移是学习的继续和巩固，又是提高和深化学习的条件，学习与迁移不可分割。对于人工智能的发展路径，很多人可能对基于大数据的人工智能很熟悉，但其实还有基于小样本的尝试和迁移，这也是人工智能的一种路径。</p>
+<h1 id="实用建议">IV. 实用建议</h1>
+<p>总结了机器学习研究者和从业者的宝贵经验<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a><a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>，其中包括需要避免的陷阱、值得关注的重点问题、常见问题的答案：</p>
+<ol style="list-style-type: decimal">
+<li>并非所有的问题都适合用机器学习解决（很多逻辑清晰的问题用规则能很高效和准确地处理），也没有一个机器学习算法可以通用于所有问题。从功能的角度分类，机器学习在一定量级的数据上，可以解决下列问题：分类、回归、聚类。</li>
+<li>快速选择开发/测试集——如果有必要不要害怕更换。思考清理贴错标签的开发/测试集是否值得。考虑将开发集分为多个子集。</li>
+<li>学习=表征+评估+优化。一个相关的问题是如何表征输入，即使用哪些特征。需要一个评估函数来区分分类器的好坏。我们要用一种方法搜索得分最高的分类器。</li>
+<li>泛化能力很关键。</li>
+<li>选择正确的评估指标。</li>
+<li>仅有数据是不够的。机器学习并非魔术，它无法做到无中生有，它所做的是举一反三。</li>
+<li>过拟合具有多面性。理解过拟合的一种方法是将泛化的误差进行分解，分为偏差和方差。除交叉验证之外，还有很多方法可以解决过拟合问题。最流行的是在评估函数中增加一个正则化项。</li>
+<li>高维度会挫伤直觉。</li>
+<li>理论保证与实际的出入。</li>
+<li>特征工程是关键。</li>
+<li>数据量为王。</li>
+<li>不单单学习一个模型。</li>
+<li>简单不意味着准确。</li>
+<li>可表征并不意味着可学习。</li>
+<li>相关性并不意味着因果关系。</li>
+<li>机器学习是一个迭代过程：不要指望第一次就成功。快速构建第一个系统，然后迭代。并行评估多个想法。</li>
+</ol>
+<h1 id="学习资源">V. 学习资源</h1>
+<p><a target="_blank" rel="noopener" href="https://towardsdatascience.com/the-whos-who-of-machine-learning-and-why-you-should-know-them-9cefbbc84f07">The Who’s Who Of Machine Learning, And Why You Should Know Them</a></p>
+<p>机器学习里所说的“算法”与程序员所说的“数据结构与算法分析”里的“算法”略有区别。前者更关注结果数据的召回率、精确度、准确性等方面，后者更关注执行过程的时间复杂度、空间复杂度等方面。 当然，实际机器学习问题中，对效率和资源占用的考量是不可或缺的。</p>
+<p>『数学基础』『典型机器学习算法』『编程基础』三个并行的部分，是因为机器学习是一个将数学/算法理论和工程实践紧密结合的领域，需要扎实的理论基础帮助引导数据分析与模型调优，同时也需要精湛的工程开发能力去高效化地训练和部署模型和服务。（每一个算法，要在训练集上最大程度拟合同时又保证泛化能力，需要不断分析结果和数据，调优参数，这需要我们对数据分布和模型底层的数学原理有一定的理解。）。具备了机器学习的必要条件，剩下的就是怎么运用它们去做一个完整的机器学习项目。其工作流程如下: 抽象成数学问题—— 获取数据——特征预处理与特征选择——训练模型与调优——模型诊断——模型融合——上线运行。</p>
+<p>入门系列：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.jiqizhixin.com/articles/2018-04-12-4">读懂机器学习需要哪些数学知识</a></li>
+<li>机器学习 新手快速入门 <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1tNXYQNadAsDGfPvuuj7_Tw">Getting Started With MachineLearning (all in one).pdf</a></li>
+<li>Andrew Ng（中文名：吴恩达）自2002年获得博士学位以来，Andrew Ng一直在斯坦福任教。他创建并领导了谷歌大脑团队，该团队被认为是世界上最先进的ML/AI研究机构之一。
+<ul>
+<li><a target="_blank" rel="noopener" href="https://codeburst.io/my-first-step-into-machine-learning-23d2b071560e">My First Step Into Machine Learning</a>。</li>
+<li>Andrew Ng所拍摄的<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?list=PLfsVAYSMwsksjfpy8P2t_I52mugGeA5gR&amp;v=-eyhCTvrEtE">《深度学习的英雄》(the heroes of deeplearning)的采访列表</a>。</li>
+<li>吴恩达的新书<a target="_blank" rel="noopener" href="http://www.mlyearning.org/">Machine Learning Yearning</a>，是Ng在机器学习工程实践中的经验总结，非常实用且独一无二的一本书，短小精悍但干货十足，强烈推荐给从事数据领域的团队与个人。</li>
+</ul></li>
+<li>Geoffrey Hinton被称为AI教父，是神经网络领域的首批研究者之一。当他是卡内基梅隆大学的教授时，他是最早证明广义反向传播算法的研究者之一。在Andrew Ng的引导下，他在coursera上发布了他的<a target="_blank" rel="noopener" href="https://www.coursera.org/learn/neural-networks">神经网络课程</a>，这是一个巨大的成功。</li>
+<li>2014年，Ian Goodfellow发表了一篇关于<a target="_blank" rel="noopener" href="https://medium.com/@ekss1121/generative-adversarial-networks-b9f80e6d7679">GANs</a>的论文，这是AI行业的一个突破。GANs基本上允许计算机进行想象，计算机可以训练与我们提供给它的模型相似的模型。</li>
+<li>Yann LeCun发明了卷积神经网络，如果没有他的贡献，图像识别领域就不会有进展。<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=rtGXv88UQ-c">关于人工智能未来的一个有趣的演讲</a>。</li>
+</ul>
+<p>个人博客系列：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://120.79.254.53/">统计学习方法– weng-JJ技术小站</a></li>
+</ul>
+<p>免费机器学习书籍<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a><a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://brohrer.github.io/blog.html">Data Science and Robots-Brandon Rohrer</a></li>
+<li>2018年3月1日，Google上线了AI学习网站——Learn with Google AI，并重磅推出了<a target="_blank" rel="noopener" href="https://developers.google.com/machine-learning/crash-course/">机器学习速成课程MLCC</a>，该课程基于TensorFlow（TF），旨在为所有经验水平的人提供免费课程、教程和动手练习。</li>
+<li><a target="_blank" rel="noopener" href="http://mmds.org/#ver21">Mining of Massive Datasets</a>，<a target="_blank" rel="noopener" href="http://dmml.asu.edu/smm/">Social Media Mining</a>，</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/bulutyazilim/awesome-datascience">Awesome Data Science</a>（清单），<a target="_blank" rel="noopener" href="http://gael-varoquaux.info/scikit-learn-tutorial/">Scikit-Learn Tutorial: Statistical-Learning for Scientific Data Processing</a></li>
+<li><a target="_blank" rel="noopener" href="http://greenteapress.com/wp/think-bayes/">Think Bayes</a>，<a target="_blank" rel="noopener" href="http://www.kareemalkaseer.com/books/ml">Machine Learning and Big Data</a>，<a target="_blank" rel="noopener" href="https://web.stanford.edu/~hastie/StatLearnSparsity/">Statistical Learning with Sparsity</a>，<a target="_blank" rel="noopener" href="https://leanpub.com/LittleInferenceBook">Statistical inference for data science</a>，<a target="_blank" rel="noopener" href="http://stanford.edu/~boyd/cvxbook/">Convex Optimization</a>，</li>
+<li><a target="_blank" rel="noopener" href="http://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/understanding-machine-learning-theory-algorithms.pdf">Understanding MachineLearning: From Theory to Algorithms</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/owainlewis/awesome-artificial-intelligence">Awesome Artificial Intelligence (AI)</a>（清单）</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/josephmisiti/awesome-machine-learning">Awesome-machine-learning</a> （清单）。<a target="_blank" rel="noopener" href="https://seat.massey.ac.nz/personal/s.r.marsland/MLBook.html">Machine Learning (An Algorithmic Perspective)</a></li>
+<li><a target="_blank" rel="noopener" href="http://neuralnetworksanddeeplearning.com/">Neural Networks and Deep Learning</a>，<a target="_blank" rel="noopener" href="http://www.iro.umontreal.ca/~bengioy/talks/lisbon-mlss-19juillet2015.pdf">Deep Learning</a> <a target="_blank" rel="noopener" href="http://deeplearning.net/tutorial/deeplearning.pdf">Deep Learning Tutorial</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/aikorea/awesome-rl">Awesome Reinforcement Learning</a>来自于aikorea整理的一份关于强化学习的代码、论文、应用、教程的清单。</li>
+<li><a target="_blank" rel="noopener" href="http://www-bcf.usc.edu/~gareth/ISL/">An Introduction to Statistical Learning (with applications in R)</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/jakevdp/PythonDataScienceHandbook">Python Data Science Handbook</a>，<a target="_blank" rel="noopener" href="http://totoharyanto.staff.ipb.ac.id/files/2012/10/Building-Machine-Learning-Systems-with-Python-Richert-Coelho.pdf">Building Machine Learning Systems with Python</a>，<a target="_blank" rel="noopener" href="https://www.nltk.org/book/">Natural Language Processing with Python</a>，<a target="_blank" rel="noopener" href="https://automatetheboringstuff.com/">Automate the Boring Stuff with Python</a>，</li>
+</ul>
+<div id="ml-dataset">
+
+</div>
+<h1 id="数据集">VI. 数据集</h1>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jiqizhixin.com/articles/2018-10-24-10">机器学习高质量数据集大合辑</a></p>
+</blockquote>
+<div class="note info">
+<p>
+部分网址需要<a target="_blank" rel="noopener" href="https://sli1989.github.io/windows-use/#goagent">科学上网配置</a>。
+</p>
+</div>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/List_of_datasets_for_machine_learning_research">List of datasets for machine learning research</a><br>
+</li>
+<li><a target="_blank" rel="noopener" href="http://archive.ics.uci.edu/ml/datasets.html">UCI Machine Learning Repository: Data Sets</a>是网络上最早的数据集来源之一，是寻找各种有趣数据集的第一选择。</li>
+<li><a target="_blank" rel="noopener" href="http://www.comp-engine.org/timeseries/">Comp-Engine Time Series</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.kaggle.com/datasets">Datasets | Kaggle</a>是由联合创始人、首席执行官安东尼·高德布卢姆（Anthony Goldbloom）2010年在墨尔本创立的，主要为开发商和数据科学家提供举办机器学习竞赛、托管数据库、编写和分享代码的平台。该平台已经吸引了80万名数据科学家的关注。</li>
+<li><a target="_blank" rel="noopener" href="https://www.data.gov/?spm=5176.100239.0.0.Dlz4EY">Data.gov</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.analyticsvidhya.com/blog/2016/10/17-ultimate-data-science-projects-to-boost-your-knowledge-and-skills">17 Free Data Science Projects To Boost Your Knowledge &amp; Skills</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.datatang.com/">数据堂</a></li>
+<li><a target="_blank" rel="noopener" href="http://ti.arc.nasa.gov/tech/dash/pcoe/prognostic-data-repository/">Prognostics Center of Excellence - Data Repository</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/regression.html">LIBSVM Data: Regression</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.dcc.fc.up.pt/~ltorgo/Regression/DataSets.html">Regression Data Sets</a></li>
+<li><a target="_blank" rel="noopener" href="http://research.ics.aalto.fi/eiml/datasets.shtml">Environmental and Industrial Machine Learning Group</a></li>
+<li><a target="_blank" rel="noopener" href="http://keel.es/datasets.php">KEEL: A software tool to assess evolutionary algorithms for Data Mining problems (regression, classification, clustering, pattern mining and so on)</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.sidc.be/silso/datafiles">Sunspot Number | SILSO</a></li>
+<li><a target="_blank" rel="noopener" href="http://hadobs.metoffice.com/hadcet/">Met Office Hadley Centre observations datasets</a></li>
+<li><a target="_blank" rel="noopener" href="http://ecdms.energy.ca.gov/">Energy Consumption Database</a></li>
+<li><a target="_blank" rel="noopener" href="https://datamarket.com/data/list/?q=provider:tsdl">Time Series Data Library - Data provider — DataMarket</a></li>
+<li><a target="_blank" rel="noopener" href="https://forecasters.org/resources/time-series-data/">Time Series Data | International Institute of Forecasters</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.neural-forecasting-competition.com/datasets.htm">neural-forecasting-competition</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.comp-engine.org/timeseries/browse-data-by-category/">Browse time-series data by category - Comp-Engine Time Series</a></li>
+<li><a target="_blank" rel="noopener" href="https://physionet.org/physiobank/database/">PhysioBank Databases</a></li>
+</ul>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p><a target="_blank" rel="noopener" href="http://blog.sciencenet.cn/blog-2888249-1082369.html">一篇文章讲清楚人工智能、机器学习和深度学习的区别和联系</a><a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/25459407">经验之谈：如何为你的机器学习问题选择合适的算法</a><a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p><a target="_blank" rel="noopener" href="https://www.kdnuggets.com/2018/05/7-useful-suggestions-machine-learning-yearning.html">7 Useful Suggestions from Andrew Ng “Machine Learning Yearning”</a><a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p><a target="_blank" rel="noopener" href="https://www.jiqizhixin.com/articles/Pedro-Domingos-12-useful-things-to-know-about-machine-learning">A Few Useful Things to Know about Machine Learning</a><a href="#fnref4">↩</a></p></li>
+<li id="fn5"><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/m9Vwc3SFZx3gv3RANJ72qA">一份最新的人工智能10大主题Github Awesome知识资料清单！值得收藏</a><a href="#fnref5">↩</a></p></li>
+<li id="fn6"><p><a target="_blank" rel="noopener" href="https://towardsdatascience.com/list-of-free-must-read-machine-learning-books-89576749d2ff">免费机器学习书籍</a><a href="#fnref6">↩</a></p></li>
+</ol>
+</div>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="Alex LEE 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="Alex LEE 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/MachineLearning/" rel="tag"><i class="fa fa-tag"></i> MachineLearning</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/artificial-intelligence/" rel="prev" title="人工智能">
+                  <i class="fa fa-angle-left"></i> 人工智能
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/spark/" rel="next" title="Spark 安装与使用教程">
+                  Spark 安装与使用教程 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex LEE</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">317k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:14</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><div class="footer-custom"> Hosted by <a target="_blank" href="https://pages.github.com">GitHub Pages</a>  |  <a target="_blank"  href="https://about.gitlab.com/stages-devops-lifecycle/pages/">Gitlab Pages</a> </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sli1989","repo":"gitalk","client_id":"9fa53d6156d8791703b5","client_secret":"706eeec44bf22fe410e90d364fe8a348ab8bcaed","admin_user":"sli1989","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"6c120e0e2d650146ae0820a907ce91ea"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title></title>
+	<link rel="stylesheet" href="/static/css/player.css">
+</head>
+
+<div id="QPlayer">
+	<div id="pContent">
+		<div id="player">
+			<span class="cover"></span>
+			<div class="ctrl">
+				<div class="musicTag marquee">
+					<strong>Title</strong>
+					 <span> - </span>
+					<span class="artist">Artist</span>
+				</div>
+				<div class="progress">
+					<div class="timer left">0:00</div>
+					<div class="contr">
+						<div class="rewind icon"></div>
+						<div class="playback icon"></div>
+						<div class="fastforward icon"></div>
+					</div>
+					<div class="right">
+						<div class="liebiao icon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ssBtn">
+				<div class="adf"></div>
+		</div>
+	</div>
+	<ol id="playlist"></ol>
+</div>
+<script src="//cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  var playlist = [];
+  
+  playlist.push({title:'午后庭院',artist:'夏天播放',mp3:'https://music.163.com/song/media/outer/url?id=29095562.mp3',cover:'https://p1.music.126.net/5uQHiJSmUMo74VAR4KJCTA==/6670737045946097.jpg'})
+  
+  playlist.push({title:'远走高飞',artist:'金志文',mp3:'https://music.163.com/song/media/outer/url?id=1297742772.mp3',cover:'https://p1.music.126.net/elfqBKIdad0KYCCeKQpDSA==/18700493767108166.jpg'})
+  
+  playlist.push({title:'她',artist:'不可撤销乐队',mp3:'https://music.163.com/song/media/outer/url?id=29747622.mp3',cover:'https://p1.music.126.net/4x2X7W_VGHQeHoMR4a3Wbw==/3227066628477266.jpg'})
+  
+  playlist.push({title:'给你',artist:'陈奕迅',mp3:'https://music.163.com/song/media/outer/url?id=64706.mp3',cover:'https://p1.music.126.net/GK7EB01AIEE9-qHkBi-3vg==/89060441862562.jpg'})
+  
+  playlist.push({title:'千禧',artist:'徐秉龙',mp3:'https://music.163.com/song/media/outer/url?id=522510615.mp3',cover:'https://y.gtimg.cn/music/photo_new/T002R300x300M000004UOSJ5117bcd.jpg'})
+  
+  playlist.push({title:'年度之歌',artist:'谢安琪',mp3:'https://music.163.com/song/media/outer/url?id=308169.mp3',cover:'http://p1.music.126.net/SkSda5laDTH73h_a9ZYEig==/109951164146248533.jpg'})
+  
+  playlist.push({title:'边走边唱',artist:'李荣浩',mp3:'https://music.163.com/song/media/outer/url?id=31134197.mp3',cover:'https://p1.music.126.net/4Pu7M0q88fVVoo1ZFS_nmw==/3408486047237011.jpg'})
+  
+  var isRotate = true;
+  var autoplay = false;
+</script>
+<script src="/static/js/player.js"></script>
+<script>
+  function bgChange(){
+	var lis= $('.lib');
+	for(var i=0; i<lis.length; i+=2)
+	lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+  }
+  window.onload = bgChange;
+</script>
+
+  <script type="text/javascript" src="/js/custom.js"></script>
+</body>
+</html>

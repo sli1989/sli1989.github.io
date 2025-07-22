@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"saili.science","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":true,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="支持向量机（Support Vector Machine）是Cortes和Vapnik于1995年首先提出的，它在解决小样本、非线性及高维模式识别中表现出许多特有的优势，并能够推广应用到函数拟合等其他机器学习问题中。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="支持向量机">
+<meta property="og:url" content="http://saili.science/svm/index.html">
+<meta property="og:site_name" content="Alex LEE&#39;s Blog">
+<meta property="og:description" content="支持向量机（Support Vector Machine）是Cortes和Vapnik于1995年首先提出的，它在解决小样本、非线性及高维模式识别中表现出许多特有的优势，并能够推广应用到函数拟合等其他机器学习问题中。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729124016.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729124035.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729124051.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/006V2m65ly1fpmv2eb7uzj30m80fa751.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729124109.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729124126.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729124149.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729124206.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729124226.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/2019-7-29.gif">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/2019-7-29-2.gif">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729124435.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/006V2m65ly1fnf8a3i4nfj30fe04m3yf.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/006V2m65ly1fnf8b5pxffj308i0830t0.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/006V2m65ly1fnf8jmctxgj30fg07umxs.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/2019-7-29-3.gif">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/2019-7-29-4.gif">
+<meta property="article:published_time" content="2017-05-29T04:39:04.000Z">
+<meta property="article:modified_time" content="2025-07-21T06:22:10.000Z">
+<meta property="article:author" content="Alex LEE">
+<meta property="article:tag" content="MachineLearning">
+<meta property="article:tag" content="SVM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729124016.png">
+
+
+<link rel="canonical" href="http://saili.science/svm/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://saili.science/svm/","path":"svm/","title":"支持向量机"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>支持向量机 | Alex LEE's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/6.1.3/pangu.umd.js" integrity="sha256-erngBMP3zzoIM6eqQ8dmrReh2vqCRgWmORroIfVoDlE=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://saili.science/svm/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex LEE's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex LEE's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">77</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">25</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%90%86%E8%AE%BA"><span class="nav-text">I. 统计学习理论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#svm"><span class="nav-text">II. SVM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86"><span class="nav-text">II.I. 背景知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E9%97%B4%E9%9A%94"><span class="nav-text">II.I.I. 函数间隔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%A0%E4%BD%95%E9%97%B4%E9%9A%94"><span class="nav-text">II.I.II. 几何间隔</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A%E4%B8%80"><span class="nav-text">II.I.II.I. 解释一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A%E4%BA%8C"><span class="nav-text">II.I.II.II. 解释二</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%B4%E9%9A%94%E6%9C%80%E5%A4%A7%E5%8C%96"><span class="nav-text">II.I.III. 间隔最大化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B"><span class="nav-text">II.I.IV. 感知机模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E9%97%AE%E9%A2%98%E7%9A%84%E7%AD%89%E4%BB%B7%E6%80%A7"><span class="nav-text">II.I.V. 优化问题的等价性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E7%BA%A6%E6%9D%9F%E7%9A%84%E4%BA%8C%E6%AC%A1%E8%A7%84%E5%88%92%E6%B1%82%E8%A7%A3"><span class="nav-text">II.I.VI. 带约束的二次规划求解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hard-linear-svm"><span class="nav-text">II.II. Hard Linear SVM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dual-linear-svm"><span class="nav-text">II.III. Dual Linear SVM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#soft-linear-svm"><span class="nav-text">II.IV. Soft Linear SVM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#soft-linear-svm%E7%9A%84%E8%AE%AD%E7%BB%83"><span class="nav-text">II.V. Soft Linear SVM的训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E5%A4%A7%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95"><span class="nav-text">II.V.I. 极大梯度下降法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mini-batch-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95mbgd"><span class="nav-text">II.V.II. Mini-Batch 梯度下降法（MBGD）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kernel-trick"><span class="nav-text">II.VI. Kernel Trick</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%87%BD%E6%95%B0%E6%9C%89%E6%95%88%E6%80%A7%E5%88%A4%E5%AE%9A"><span class="nav-text">II.VI.I. 核函数有效性判定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kernel-svm"><span class="nav-text">II.VII. Kernel SVM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%84%9F%E7%9F%A5%E5%99%A8%E6%A0%B8%E6%96%B9%E6%B3%95"><span class="nav-text">II.VII.I. 感知器核方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#soft-kernel-svm"><span class="nav-text">II.VII.II. Soft Kernel SVM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E6%96%B9%E6%B3%95%E7%9A%84%E8%AE%AD%E7%BB%83"><span class="nav-text">II.VIII. 核方法的训练</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#svr"><span class="nav-text">III. SVR</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%E5%BA%94%E7%94%A8"><span class="nav-text">IV. 扩展应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#matlab%E5%AE%9E%E7%8E%B0"><span class="nav-text">V. MATLAB实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#svm-%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96"><span class="nav-text">VI. SVM 参数优化</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex LEE"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Alex LEE</p>
+  <div class="site-description" itemprop="description">There is no royal road to learning.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:im.sai.li@outlook.com" title="E-Mail → mailto:im.sai.li@outlook.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/sli1989" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;sli1989" rel="noopener me" target="_blank"><i class="telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitter.im/sli1989" title="Gitter → https:&#x2F;&#x2F;gitter.im&#x2F;sli1989" rel="noopener me" target="_blank"><i class="github-alt fa-fw"></i>Gitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/sli1989/HEXO-NEXT-CUSTOM" title="https:&#x2F;&#x2F;github.com&#x2F;sli1989&#x2F;HEXO-NEXT-CUSTOM" rel="noopener" target="_blank">About the Blog</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://fontawesome.com/icons" title="https:&#x2F;&#x2F;fontawesome.com&#x2F;icons" rel="noopener" target="_blank">Font Awesome Icons</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://getemoji.com/" title="https:&#x2F;&#x2F;getemoji.com&#x2F;" rel="noopener" target="_blank">Copy and Paste Emoji</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://saili.science/svm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Alex LEE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex LEE's Blog">
+      <meta itemprop="description" content="There is no royal road to learning.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="支持向量机 | Alex LEE's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          支持向量机
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-07-21 14:22:10" itemprop="dateModified" datetime="2025-07-21T14:22:10+08:00">2025-07-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类：</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Research/" itemprop="url" rel="index"><span itemprop="name">Research</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>14k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>52 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>支持向量机（Support Vector Machine）是Cortes和Vapnik于1995年首先提出的，它在解决小样本、非线性及高维模式识别中表现出许多特有的优势，并能够推广应用到函数拟合等其他机器学习问题中。</p>
+<span id="more"></span>
+<p>最简单的SVM从<strong>线性分类器</strong>导出，根据<strong>最大化分类间隔</strong>的目标（Large Margin Classifier），我们可以得到<strong>线性可分</strong>问题的SVM训练时求解的问题（Hard SVM）。但现实应用中很多数据是线性不可分的，通过加入松弛变量和惩罚因子，可以将SVM推广到<strong>线性不可分</strong>的情况（Soft SVM）。这个优化问题是一个凸优化问题，并且满足Slater条件，因此强对偶成立，通过拉格朗日对偶可以将其转化成<strong>对偶问题</strong>求解（Dual Soft SVM）。到这里为止，支持向量机还是一个线性模型，只不过允许有错分的训练样本存在。通过<strong>核函数</strong>（Kernel Trick），可以将它转化成非线性模型，此时的对偶问题也是一个凸优化问题（Soft Kernel SVM）。这个问题的求解普遍使用的是SMO算法，这是一种分治法，它每次选择两个变量进行优化，这两个变量的优化问题是一个带等式和不等式约束条件的二次函数极值问题，可以求出公式解，并且这个问题也是凸优化问题。优化变量的选择通过KKT条件来确定。</p>
+<h1 id="统计学习理论">I. 统计学习理论</h1>
+<p>支持向量机方法是建立在统计学习理论的VC 维理论和结构风险最小原理基础上的，根据有限的样本信息在模型的复杂性（即对特定训练样本的学习精度，Accuracy）和学习能力（即无错误地识别任意样本的能力）之间寻求最佳折衷，以期获得最好的推广能力（或称泛化能力）。</p>
+<p>统计机器学习能够精确的给出学习效果，能够解答需要的样本数等等一系列问题。</p>
+<ul>
+<li>VC维是对函数类的一种度量，可以简单的理解为问题的复杂程度，VC维越高，一个问题就越复杂。正是因为SVM关注的是VC维，SVM解决问题的时候，和样本的维数是无关的（甚至样本是上万维的都可以。当然，有这样的能力也因为引入了核函数）。</li>
+<li>机器学习本质上就是一种对问题真实模型的逼近（我们选择一个我们认为比较好的近似模型，这个近似模型就叫做一个假设）。既然真实模型不知道，那么我们选择的假设与问题真实解之间究竟有多大差距（称为风险），我们就没法得知。但我们可以用某些可以掌握的量来逼近它。
+<ul>
+<li>最直观的想法就是使用分类器在样本数据上的分类的结果与真实结果之间的差值来表示，这个差值叫做经验风险<span class="math inline">\(R_{emp}(w)\)</span>。</li>
+<li>以前的机器学习方法都把经验风险最小化作为努力的目标，但回头看看经验风险最小化原则我们就会发现，此原则适用的大前提是经验风险要确实能够逼近真实风险才行。因此很多分类函数能够在样本集上轻易达到100%的正确率，在真实分类时却一塌糊涂（即所谓的推广能力差，或泛化能力差）。</li>
+<li>统计学习因此而引入了泛化误差界的概念，就是指真实风险应该由两部分内容刻画，一是经验风险，代表了分类器在给定样本上的误差；二是置信风险，代表了我们在多大程度上可以信任分类器在未知文本上分类的结果。很显然，第二部分是没有办法精确计算的，因此只能给出一个估计的区间，也使得整个误差只能计算上界，而无法计算准确的值（所以叫做泛化误差界，而不叫泛化误差）。统计学习的目标从经验风险最小化变为了寻求经验风险与置信风险的和最小，即结构风险最小。SVM正是这样一种努力最小化结构风险的算法。
+<ul>
+<li>置信风险与两个量有关，一是样本数量，显然给定的样本数量越大，我们的学习结果越有可能正确，此时置信风险越小；二是分类函数的VC维，显然VC维越大，推广能力越差，置信风险会变大。</li>
+</ul></li>
+</ul></li>
+</ul>
+<blockquote>
+<p><strong>小样本</strong>，并不是说样本的绝对数量少（实际上，对任何算法来说，更多的样本几乎总是能带来更好的效果），而是说与问题的复杂度比起来，SVM算法要求的样本数是相对比较少的。<br>
+<strong>非线性</strong>，是指SVM擅长应付样本数据线性不可分的情况，主要通过松弛变量（也有人叫惩罚变量）和核函数技术来实现，这一部分是SVM的精髓。</p>
+</blockquote>
+<h1 id="svm">II. SVM</h1>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/27224109">Python · SVM系列</a><br>
+</li>
+<li><a target="_blank" rel="noopener" href="http://www.blogjava.net/zhenandaci/archive/2008/06/20/209446.html">SVM入门系列</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/pinard/p/6097604.html">支持向量机原理系列</a><br>
+</li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/sruixue/article/details/42044263">Stanford机器学习---第八讲. 支持向量机SVM</a><br>
+</li>
+<li><a target="_blank" rel="noopener" href="https://so.csdn.net/so/search/s.do?q=%E8%A7%A3%E5%AF%86SVM%E7%B3%BB%E5%88%97&amp;t=blog&amp;u=on2way">解密SVM系列</a><br>
+</li>
+<li><a target="_blank" rel="noopener" href="https://charlesliuyx.github.io/2017/09/19/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BASVM%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">【直观详解】支持向量机SVM</a><br>
+</li>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/jerrylead/archive/2011/03/13/1982639.html">支持向量机SVM</a><br>
+</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/luoshixian099/article/details/51073885">【机器学习详解】SVM解二分类,多分类,及后验概率输出</a><br>
+</li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/qVhRQr92gBkUjXGymkXGZw">用一张图理解SVM的脉络</a><br>
+</li>
+<li><a target="_blank" rel="noopener" href="http://120.79.254.53/?s=%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95">统计学习方法– weng-JJ技术小站</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jiqizhixin.com/articles/2020-07-28-3">支持向量机背后的数学 -对于SVM背后的数学和理论解释的快速概览及如何实现</a></li>
+</ul>
+</blockquote>
+<p>支持向量机属于一般化线性分类器，这族分类器的特点是他们能够同时最小化经验误差与最大化几何边缘区，因此支持向量机也被称为最大边缘区分类器。除了进行线性分类之外，SVM还可以使用所谓的核技巧有效地进行非线性分类，将其输入隐式映射到高维特征空间中。</p>
+<p>SVM本身是从感知机算法演变而来，往简单来说其实就只是改了感知机的损失函数而已，而且改完之后还很像。感知机算法是在一个线性可分的数据集中找到一个分类超平面，尽可能的将数据集划分开。</p>
+<p>理论上这样的超平面有无数多个，但是从直觉上，我们知道离两侧数据都比较远的超平面更适合用于分类，于是我们选择了一个比较“胖”的边界的超平面作为分类界，这就是SVM。 SVM 本身“只是”一个线性模型。只有在应用了核方法后，SVM 才会“升级”成为一个非线性模型</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729124016.png"></p>
+<p>因此，支持向量机-SVM(Support Vector Machine)从本质来说是一种：用一条线（方程）分类两种事物。SVM的任务是找到这条分界线使得它到两边的margin（构成了两条平行于分离超平面的长带，二者之间的距离称之为margin）都最大。注意，这里的横坐标是 <span class="math inline">\(x_1\)</span> 纵坐标为 <span class="math inline">\(x_2\)</span>，如下图所示。让我们想象两个类别：红色和蓝色，我们的数据有两个特征：x 和 y。我们想要一个分类器，给定一对（x，y）坐标，输出仅限于红色或蓝色。支持向量机会接受这些数据点，并输出一个超平面（在二维的图中，就是一条线）以将两类分割开来。这条线就是判定边界：将红色和蓝色分割开。但是，最好的超平面是什么样的？对于 SVM 来说，它是<strong>最大化两个类别边距</strong>的那种方式，换句话说：超平面（在本例中是一条线）对每个类别最近的元素<strong>距离最远</strong>。</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729124035.png"></p>
+<p>如上图所示，在Maximum Margin上的这些点就是支持向量（将距离分离超平面最近的两个不同类别的样本点称为支持向量），具体说即最终分类器表达式中只含有这些支持向量的信息，而与其他数据点无关。在下面的公式中，只有支持向量的系数 <span class="math inline">\(\alpha_i\)</span> 不等于0。说人话，上图中两个红色的点，一个蓝色的点，合起来就是支持向量。（margin以外的样本点对于确定分离超平面没有贡献，换句话说，SVM是有很重要的训练样本（支持向量）所确定的。）</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729124051.png"></p>
+<p>图中带黑圈的样本点即是支持向量，数学上来说的话，就是<span class="math inline">\(\alpha_i&gt;0\)</span>对应的样本点即是支持向量。从图中不难看出，支持向量从直观上来说，就是比较难分的样本点。此外，支持向量之所以称之为“支持”向量，是因为在理想情况下，仅利用支持向量训练出来的模型和利用所有样本训练出来的模型是一致的。这从直观上是好理解的，粗略的证明则可以利用其定义来完成：非支持向量的样本对应着<span class="math inline">\(\alpha_i=0\)</span>，亦即它对最终模型——<span class="math inline">\(f(x)=\sum_{i=1}^N\alpha_iy_i(x_i\cdot x)+b\)</span>没有丝毫贡献，所以可以直接扔掉。</p>
+<p><span class="math display">\[
+\mathbf w \cdot \varphi (\mathbf x) = \sum_i \lambda_i y_i k(\mathbf x_i,\mathbf x)
+\]</span></p>
+<p>这里有一个视频解释可以告诉你最佳的超平面是如何找到的<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>：<a target="_blank" rel="noopener" href="https://v.qq.com/x/page/m05175nci67.html">直观可视化解释</a>。</p>
+<p>对于我们需要求解的这个超平面（直线）来说，我们知道它离两边一样远（待分类的两个部分的样本点），最近的距离就是到支持向量中的点的距离。根据这两点，抽象SVM的直接表达（Directly Representation）：</p>
+<p><span class="math display">\[
+arg \operatorname*{max}_{boundary} margin(boundary) \\
+\text{所有正确归类的两类到boundary的距离} \ge margin \tag{1}
+\]</span></p>
+<blockquote>
+<p>注：<span class="math inline">\(arg \operatorname*{max}_{x} f(x)\)</span> 表示当 <span class="math inline">\(f(x)\)</span> 取最大值时，x的取值。</p>
+</blockquote>
+<h2 id="背景知识">II.I. 背景知识</h2>
+<p>假设样本为(x,y)，超平面为<span class="math inline">\(\Pi:w\cdot x+b=0\)</span></p>
+<ul>
+<li>空间上的点：<span class="math inline">\(\vec{x^{(i)}}\in \mathbb{R}^n, i=1,2...m\)</span>，<span class="math inline">\(m\)</span> 指的是点的数量，<span class="math inline">\(\mathbb{R}^n\)</span>表示的是 <span class="math inline">\(n\)</span> 维空间</li>
+<li>分界线：<span class="math inline">\(\vec{w^T} \cdot {\overrightarrow{x}}+b=0\)</span>，简化为 <span class="math inline">\(w^T \cdot x+b=0\)</span></li>
+</ul>
+<p><span class="math display">\[
+\begin{split}
+w^T \cdot x+b&amp;=0\\
+\begin{bmatrix}w_1 &amp; w_2\end{bmatrix}\cdot
+\begin{bmatrix}x_1\\x_2\end{bmatrix}+b&amp;=0\\
+w_1x_1+w_2x_2+b&amp;=0\\
+x_2=-\frac{w_1}{w_2}x_1&amp;-b\quad\dots \quad (w_2\neq0)
+\end{split}
+\]</span></p>
+<p><span class="math display">\[
+\begin{split}
+\vec{w}\cdot\vec{k}&amp;=w^T\cdot k\\
+&amp;=\begin{bmatrix}w_1 &amp; w_2\end{bmatrix}\cdot
+\begin{bmatrix}1\\-\frac{w_1}{w_2}\end{bmatrix}\\
+&amp;=w_1-w_1\\
+&amp;=0\\
+\end{split}
+\]</span></p>
+<ul>
+<li>向量的形式更加简洁，特别是在高维空间的情况下，还有一个好处就是，矢量的形式下 <span class="math inline">\(w\)</span> 刚好与分界线垂直，这个性质会在后面用到。<span class="math inline">\(w^T \cdot x+b=0\)</span> 表示的是分界线上所有的点，当 <span class="math inline">\(w^T \cdot x+b&gt;0\)</span>时，表示的是分界线上方的区域，反之则是分界线下方的区域。</li>
+<li>优化问题 <span class="math inline">\(\min_{w,b}\frac {\|w\|^2}2\)</span>，使得<span class="math inline">\(y_i(w\cdot x_i+b)\ge1,\forall(x_i,y_i)\in D\)</span> 的求解过程常称为硬间隔最大化，求解出来的超平面则常称为最大硬间隔分离超平面</li>
+<li>优化问题 <span class="math inline">\(\min_{w,b}\left[\frac {\|w\|^2}2+C\sum_{i=1}^N\xi_i\right]\)</span>，使得<span class="math inline">\(y_i(w\cdot x_i+b)\ge1-\xi_i,\forall(x_i,y_i)\in D（\xi_i\ge0）\)</span> 的求解过程常称为软间隔最大化，求解出来的超平面则常称为最大软间隔分离超平面</li>
+<li>若数据集线性可分，则最大硬间隔分离超平面存在且唯一</li>
+<li>若数据集线性不可分，则最大软间隔分离超平面的解存在但不唯一，其中：法向量（w ）唯一,偏置量（b）可能不唯一</li>
+</ul>
+<h3 id="函数间隔">II.I.I. 函数间隔</h3>
+<ul>
+<li>样本到超平面的函数间隔为：<span class="math inline">\(y(w\cdot x+b)\)</span></li>
+</ul>
+<p>由二维直线<span class="math inline">\(w^Tx+b=0\)</span>扩展到高维被称为超平面<span class="math inline">\((w,b)\)</span>。一个点距离超平面的远近可以表示分类预测的确信程度。在超平面<span class="math inline">\(w^Tx+b=0\)</span>确定的情况下，<span class="math inline">\(|w^Tx+b|\)</span>能够相对地表示点x距离超平面的远近，而且如果分类正确，则<span class="math inline">\(y^{(i)}\)</span>与<span class="math inline">\(w^Tx+b\)</span>的符号一致,即<span class="math inline">\(y^{(i)}(w^Tx^{(i)}+b)&gt;0\)</span>，同时表示分类的正确性以及确信度。</p>
+<p>函数间隔：超平面<span class="math inline">\((w,b)\)</span>关于样本点<span class="math inline">\((x^{(i)},y^{(i)})\)</span>的函数间隔为</p>
+<p><span class="math display">\[\hat{\gamma}^{(i)}=y^{(i)}(w^Tx^{(i)}+b)\]</span></p>
+<p>定义超平面关于样本集S的函数间隔为超平面<span class="math inline">\((w,b)\)</span>与S中所有样本点的函数间隔的最小值</p>
+<p><span class="math display">\[\hat{\gamma}=min_{i=1,2,...m}\ \hat{\gamma}^{(i)}\]</span></p>
+<p>定义<span class="math inline">\(\hat{\gamma}\)</span>是为了最大化间隔，<span class="math inline">\(\hat{\gamma}\)</span>表示关于超平面与训练集中样本的函数间隔最小值，下面只要最大化<span class="math inline">\(\hat{\gamma}\)</span>即可。 注意到函数间隔实际上并不能表示点到超平面的距离，因为当超平面<span class="math inline">\((w,b)\)</span>参数扩大相同的倍数后，如<span class="math inline">\((2w,2b)\)</span>，超平面的位置并没有改变，但是函数间隔也变大了相同的倍数<span class="math inline">\(2\hat{\gamma}^{(i)}\)</span>.</p>
+<h3 id="几何间隔">II.I.II. 几何间隔</h3>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://fangs.in/tags/svm/">我所理解的 SVM（支持向量机）</a></p>
+</blockquote>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/006V2m65ly1fpmv2eb7uzj30m80fa751.jpg"></p>
+<p><span class="math display">\[
+\begin{split}
+width &amp;=\overrightarrow{x_-x_+}\cdot \frac{\vec{w}}{||\vec{w}||}\\
+&amp;=\frac{1}{||\vec{w}||}[w^T\cdot(x_+-x_-)]\\
+&amp;=\frac{1}{||\vec{w}||}[w^T\cdot x_+-w^T\cdot x_-]\\
+&amp;=\frac{1}{||\vec{w}||}[1-b-(-1-b)]\\
+&amp;=\frac{2}{||\vec{w}||}
+\end{split}
+\]</span></p>
+<ul>
+<li>样本到超平面的几何间隔为：<span class="math inline">\(\frac1{\|w\|}y(w\cdot x+b)\)</span></li>
+</ul>
+<h4 id="解释一">II.I.II.I. 解释一</h4>
+<p>设样本点A坐标为<span class="math inline">\(x^{(i)}\)</span>,点A到超平面的垂直距离记为<span class="math inline">\(\gamma^{(i)}\)</span>,分离超平面<span class="math inline">\(w^Tx^{(i)}+b=0\)</span>的单位法向量为<span class="math inline">\(\frac{w}{||w||}\)</span>,因此点B的坐标为<span class="math inline">\(x^{(i)}-\gamma^{(i)}\frac{w}{||w||}\)</span>，且点B在直线上，带入直线公式有：</p>
+<p><span class="math display">\[w^T(x^{(i)}-\gamma^{(i)}\frac{w}{||w||})+b=0\]</span></p>
+<p><span class="math display">\[\gamma^{(i)}=\frac{(w^Tx^{(i)}+b)}{||w||}\]</span></p>
+<p>如果点被正确分类，<span class="math inline">\(y^{(i)}\)</span>与<span class="math inline">\(\frac{(w^Tx^{(i)}+b)}{||w||}\)</span>的符号一致，由此同理定义几何间隔</p>
+<p><span class="math display">\[\gamma^{(i)}=y^{(i)}\left(\frac{w^Tx^{(i)}+b}{||w||}\right)\]</span></p>
+<p>超平面与样本集S的几何间隔为</p>
+<p><span class="math display">\[\gamma=min_{i=1,2,...m}\ \gamma^{(i)}\]</span></p>
+<h4 id="解释二">II.I.II.II. 解释二</h4>
+<p>我们在定义点(x,y)到平面（超平面）<span class="math inline">\(\Pi\)</span>的间隔时，一般都是这样做的：</p>
+<ul>
+<li>将<span class="math inline">\((x,y)\)</span>（垂直）投影到<span class="math inline">\(\Pi\)</span>上</li>
+<li>设投影点为<span class="math inline">\((x^{\ast},y^{\ast})\)</span>，则定义 <span class="math inline">\(d((x,y),\Pi)=\left\{ \begin{aligned} \|x-x^{\ast}\|^2,&amp;\ \ y(w\cdot x + b) \ge0 \\ -\|x-x^{\ast}\|^2,&amp;\ \ y(w\cdot x + b) &lt;0 \end{aligned} \right.\)</span>.</li>
+</ul>
+<p>注意这里我们允许（当样本被错分类时的）间隔为负数，所以间隔其实严格来说并不是一般意义上的距离。</p>
+<p>那么为了找到垂直投影，我们得先找到垂直于超平面<span class="math inline">\(\Pi\)</span>的方向。不难看出w就是垂直于<span class="math inline">\(\Pi\)</span>的，因为对<span class="math inline">\(\forall x_1,x_2\in\Pi\)</span>，由<span class="math inline">\(\left\{ \begin{aligned} &amp;w\cdot x_1+b=0 \\ &amp;w\cdot x_2+b=0 \end{aligned} \right.\)</span>知<span class="math inline">\(w\cdot(x_1-x_2)=0\)</span>（两式相减即可），从而w垂直于向量<span class="math inline">\(x_1-x_2\)</span>，从而也就垂直于<span class="math inline">\(\Pi\)</span>：</p>
+<p>那么结合之前那张图，不难得知我们可以设<span class="math inline">\(x-x^{\ast} =\lambda w\)</span>（这里的<span class="math inline">\(\lambda\)</span>可正可负），于是就有（注意由<span class="math inline">\(x^{\ast} \in\Pi\)</span>知<span class="math inline">\(w\cdot x^{\ast} +b=0\)</span>）</p>
+<p><span class="math display">\[
+\begin{align}
+\|x-x^{\ast} \|^2&amp;=(x-x^{\ast} )\cdot(x-x^{\ast} )=\lambda w\cdot(x-x^{\ast} ) \\ &amp;=\lambda \left[w\cdot(x-x^{\ast} )+(b-b)\right]\\
+&amp;=\lambda\left[ w\cdot x+b - (w\cdot x^{\ast} + b)\right] \\ &amp;=\lambda(w\cdot x+b) \end{align}
+\]</span></p>
+<p>从而</p>
+<p><span class="math display">\[
+d((x,y),\Pi)=\left\{ \begin{aligned} \lambda(w\cdot x+b),&amp;\ \ y(w\cdot x + b) \ge0 \\ -\lambda(w\cdot x+b),&amp;\ \ y(w\cdot x + b) &lt;0 \end{aligned} \right.
+\]</span></p>
+<p>注意这么定义的间隔有一个大问题：当w和b同时增大k倍时，新得到的超平面<span class="math inline">\(\tilde\Pi:(kw)\cdot x+(kb)\)</span>其实等价于原超平面<span class="math inline">\(\Pi\)</span>：</p>
+<p><span class="math display">\[
+x\in\tilde\Pi\Leftrightarrow(kw)\cdot x+(kb)=0\Leftrightarrow w\cdot x+b=0\Leftrightarrow x\in\Pi
+\]</span></p>
+<p>但此时<span class="math inline">\(d((x,y),\Pi)\)</span>却会直接增大k倍。极端的情况就是，当w和b同时增大无穷倍时，超平面没变，间隔却也跟着增大了无穷倍，这当然是不合理的。</p>
+<p>所以我们需要把 scale 的影响给抹去，常见的做法就是做某种意义上的归一化：</p>
+<p><span class="math display">\[
+d((x,y),\Pi)=\left\{ \begin{aligned} \frac1{\|w\|}|w\cdot x+b|,&amp;\ \ y(w\cdot x + b) \ge0 \\ -\frac1{\|w\|}|w\cdot x+b|,&amp;\ \ y(w\cdot x + b) &lt;0 \end{aligned} \right.
+\]</span></p>
+<p>（注意：由于 scale 的影响已被抹去，所以<span class="math inline">\(\lambda\)</span>也就跟着被抹去了；同时由<span class="math inline">\(0\le\|x-x^{\ast} \|^2=\lambda(w\cdot x+b)\)</span> 知，我们需要在抹去 <span class="math inline">\(\lambda\)</span>的同时、给<span class="math inline">\(w\cdot x+b\)</span>套一个绝对值)</p>
+<p>不难看出上式可改写为：</p>
+<p><span class="math display">\[
+d((x,y),\Pi)=\frac1{\|w\|}y(w\cdot x+b)
+\]</span></p>
+<p>这正是我们想要的结果。</p>
+<h3 id="间隔最大化">II.I.III. 间隔最大化</h3>
+<p>支持向量机的基本想法是求解能够正确划分训练数据集并且几何间隔最大的分离超平面。为了间隔最大化，只需要最大化几何间隔<span class="math inline">\(\gamma\)</span>，同时所有样本的几何间隔必须满足<span class="math inline">\(\gamma^{(i)}\geq\gamma,i=1,2,...,m\)</span></p>
+<p><span class="math display">\[max_{w,b}\ \gamma\]</span></p>
+<p><span class="math display">\[s.t.\ y^{(i)}\left(\frac{w^Tx^{(i)}+b}{||w||}\right)\geq\gamma\]</span></p>
+<p>上述问题，可以转变为一个凸二次规划问题，这是支持向量机的一个重要属性，局部极值即为全局最值。</p>
+<p>考虑函数间隔与几何间隔的关系：</p>
+<p><span class="math display">\[max_{\gamma,w,b}\ \frac{\hat{\gamma}}{||w||}\]</span></p>
+<p><span class="math display">\[s.t.\ y^{(i)}\left(w^Tx^{(i)}+b\right)\geq \hat{\gamma}\]</span></p>
+<p>当超平面参数<span class="math inline">\((w,b)\)</span>同时变为<span class="math inline">\((2w,2b)\)</span>，函数间隔也会变为<span class="math inline">\(2\hat{\gamma}\)</span>,目标函数的解并不会变化。即<span class="math inline">\(\hat{\gamma}\)</span>的取值不影响优化问题的解。因此令<span class="math inline">\(\hat{\gamma}=1\)</span>，目标函数变为最大化<span class="math inline">\(\frac{1}{||w||}\)</span>，即最小化<span class="math inline">\({\|w\|^2}\)</span>，为了后面的求解方便，添加因子1/2也不影响目标函数的解；</p>
+<div id="perceptron">
+
+</div>
+<h3 id="感知机模型">II.I.IV. 感知机模型</h3>
+<p>感知机模型只有<span class="math inline">\(w\)</span>和<span class="math inline">\(b\)</span>这两个参数，它们决定了一张超平<span class="math inline">\(\Pi:w\cdot x+b=0\)</span>。感知机最终目的是使得<span class="math inline">\(y(w\cdot x+b)&gt;0,\forall(x,y)\in D\)</span>，其中D是训练数据集、y只能取正负。</p>
+<p>训练方法则是梯度下降，其中梯度公式为：</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial w}(x_i,y_i) = -y_ix_i、\frac{\partial L}{\partial b}(x_i,y_i)=-y_i
+\]</span></p>
+<p>我们在实际实现时，采用了“极大梯度下降法”（亦即每次只选出使得损失函数最大的样本点来进行梯度下降）。然后有理论证明，只要数据集线性可分，这样下去就一定能收敛。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">for _ in range(epoch):</span><br><span class="line">    # 计算 w·x+b</span><br><span class="line">    y_pred = x.dot(self._w) + self._b</span><br><span class="line">    # 选出使得损失函数最大的样本</span><br><span class="line">    idx = np.argmax(np.maximum(0, -y_pred * y))</span><br><span class="line">    # 若该样本被正确分类，则结束训练</span><br><span class="line">    if y[idx] * y_pred[idx] &gt; 0:</span><br><span class="line">        break</span><br><span class="line">    # 否则，让参数沿着负梯度方向走一步</span><br><span class="line">    delta = lr * y[idx]</span><br><span class="line">    self._w += delta * x[idx]</span><br><span class="line">    self._b += delta</span><br></pre></td></tr></table></figure>
+<div id="optimization-equivalence">
+
+</div>
+<h3 id="优化问题的等价性">II.I.V. 优化问题的等价性</h3>
+<p>为方便，称优化问题：</p>
+<p><span class="math display">\[
+\min_{w,b}\left[\frac {\|w\|^2}2+C\sum_{i=1}^N\xi_i\right]，使得y_i(w\cdot x_i+b)\ge1-\xi_i,\forall(x_i,y_i)\in D（\xi_i\ge0）
+\]</span></p>
+<p>为<strong>问题一</strong>；称：</p>
+<p><span class="math display">\[
+\min_{w,b}{\left[\frac{\|w\|^2}2 + C\sum_{i=1}^N[1-y_i(w\cdot x_i+b)]_ +\right]}
+\]</span></p>
+<p>为<strong>问题二</strong>，则我们需要证明问题一与问题二等价</p>
+<p>先来看问题一怎么转为问题二。事实上不难得知：</p>
+<p><span class="math display">\[
+y_i(w\cdot x_i+b)\ge1-\xi_i,\forall(x_i,y_i)\in D\Rightarrow\xi_i\ge1-y_i(w\cdot x_i+b)
+\]</span></p>
+<p>注意问题一是针对w和b进行优化的，且当w和b固定时，为使<span class="math inline">\(\frac {\|w\|^2}2+C\sum_{i=1}^N\xi_i\)</span>最小，必有：</p>
+<ul>
+<li><span class="math inline">\(1-y_i(w\cdot x_i+b)\ge0\)</span>时，<span class="math inline">\(\xi_i=1-y_i(w\cdot x_i+b)\)</span></li>
+<li><span class="math inline">\(1-y_i(w\cdot x_i+b)&lt;0\)</span>时，<span class="math inline">\(\xi_i=0\)</span>（因为我们要求<span class="math inline">\(\xi_i\ge0\)</span>）</li>
+</ul>
+<p>亦即<span class="math inline">\(\xi_i=[1-y_i(w\cdot x_i+b)]_ +\)</span>。此时损失函数即为<span class="math inline">\(\frac{\|w\|^2}2 + C\sum_{i=1}^N[1-y_i(w\cdot x_i+b)]_ +\)</span>，换句话说，我们就把问题一转为了问题二。</p>
+<p>再来看问题二怎么转为问题一。事实上，直接令<span class="math inline">\(\xi_i=[1-y_i(w\cdot x_i+b)]_ +\)</span>，就有：</p>
+<ul>
+<li>模型的损失为<span class="math inline">\(\frac {\|w\|^2}2+C\sum_{i=1}^N\xi_i\)</span></li>
+<li>模型的约束为<span class="math inline">\(\xi_i\ge 1-y_i(w\cdot x_i+b)且\xi_i\ge0\)</span></li>
+</ul>
+<p>亦即转为了问题一</p>
+<div id="quadratic-programming">
+
+</div>
+<h3 id="带约束的二次规划求解">II.I.VI. 带约束的二次规划求解</h3>
+<p>不妨设我们选取出来的两个参数就是<span class="math inline">\(\alpha_1\)</span>和<span class="math inline">\(\alpha_2\)</span>，那么问题的关键就在于如何把<span class="math inline">\(\alpha_1\)</span>和<span class="math inline">\(\alpha_2\)</span>相关的东西抽取出来并把其它东西扔掉。</p>
+<p>注意到我们的对偶问题为</p>
+<p><span class="math display">\[
+\max_\alpha L(\alpha)=-\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_i\cdot x_j) + \sum_{i=1}^N\alpha_i\]</span></p>
+<p>使得对<span class="math inline">\(i=1,...,N\)</span>、都有<span class="math inline">\(\sum_{i=1}^N\alpha_iy_i=0、0\le\alpha_i\le C\)</span>。</p>
+<p>Gram 矩阵： <span class="math inline">\(G=(x_i\cdot x_j)_ {N\times N}\)</span></p>
+<p>所以L就可以改写为</p>
+<p><span class="math display">\[L(\alpha)=-\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_jG_{ij}+\sum_{i=1}^N\alpha_i\]</span></p>
+<p>把和<span class="math inline">\(\alpha_1\)</span>、<span class="math inline">\(\alpha_2\)</span>无关的东西扔掉之后，L可以化简为：</p>
+<p><span class="math display">\[
+L(\alpha)=-\frac12(G_{11}\alpha_1^2+2y_1y_2G_{12}\alpha_1\alpha_2+G_{22}\alpha_2^2)-\left(y_1\alpha_1\sum_{i=3}^Ny_i\alpha_iG_{i1}+y_2\alpha_2\sum_{i=3}^Ny_i\alpha_iG_{i2}\right)+(\alpha_1+\alpha_2)
+\]</span></p>
+<p>约束条件则可以化简为对i=1和i=2，都有<span class="math inline">\(y_1\alpha_1+y_2\alpha_2=-\sum_{i=3}^Ny_i\alpha_i=c\)</span>、<span class="math inline">\(0\le\alpha_i\le C\)</span>，其中<span class="math inline">\(c\)</span>是某个常数</p>
+<p>而带约束的二次规划求解过程也算简单：只需先求出无约束下的最优解，然后根据约束“裁剪”该最优解即可。</p>
+<p>无约束下的求解过程其实就是求偏导并令其为 0。以<span class="math inline">\(\alpha_1\)</span>为例，注意到</p>
+<p><span class="math display">\[
+y_1\alpha_1+y_2\alpha_2=c\Rightarrow\alpha_2=\frac c{y_2}-\frac{y_1}{y_2}\alpha_1
+\]</span></p>
+<p>令<span class="math inline">\(c^{\ast}=\frac c{y_2}\)</span>,<span class="math inline">\(s=y_1y_2\)</span>，则<span class="math inline">\(c^{\ast}\)</span>亦是常数，且由于<span class="math inline">\(y_1\)</span>、<span class="math inline">\(y_2\)</span>都只能取正负 1，故不难发现<span class="math inline">\(\frac{y_2}{y_1}=\frac{y_1}{y_2}=s\)</span>，从而<span class="math inline">\(\alpha_2=c^{\ast}-s\alpha_1\Rightarrow\frac{\partial\alpha_2}{\partial\alpha_1}=-s\)</span></p>
+<p>于是</p>
+<p><span class="math display">\[
+\begin{align}
+\frac{\partial L}{\partial\alpha_1}=&amp;-G_{11}\alpha_1-y_1y_2G_{12}(\alpha_2+\alpha_1\frac{\partial\alpha_2}{\partial\alpha_1})-G_{22}\alpha_2\frac{\partial\alpha_2}{\partial\alpha_1} \\
+&amp;-y_1\sum_{i=3}^Ny_i\alpha_iG_{i1}-y_2\frac{\partial\alpha_2}{\partial\alpha_1}\sum_{i=3}^Ny_i\alpha_iG_{i2}+1 \\
+=&amp;-G_{11}\alpha_1-sG_{12}(c^{\ast}-s\alpha_1-\alpha_1\cdot s)-G_{22}(c^{\ast}-s\alpha_1)\cdot(-s) \\
+&amp;-y_1\sum_{i=3}^Ny_i\alpha_iG_{i1}+sy_2\sum_{i=3}^Ny_i\alpha_iG_{i2}+\left(\frac{\partial\alpha_2}{\partial\alpha_1}+1\right)
+\end{align}
+\]</span></p>
+<p>考虑到<span class="math inline">\(s^2=1\)</span>、<span class="math inline">\(sy_2=y_1\)</span>、Gram 矩阵是对称阵、且模型在第k个样本<span class="math inline">\(x_k\)</span>处的输出为<span class="math inline">\(f(x_k)=\sum_{i=1}^N\alpha_iy_i(x_i\cdot x_k)+b=\sum_{i=1}^N\alpha_iy_iG_{ik}+b\)</span>，从而可知</p>
+<p><span class="math display">\[
+\begin{align}
+\frac{\partial L}{\partial\alpha_1}=&amp;-G_{11}\alpha_1-sG_{12}c^{\ast}+2G_{12}\alpha_1+sG_{22}c^{\ast}-G_{22}\alpha_1 \\
+&amp;-y_1[f(x_1)-y_1\alpha_1G_{11}-y_2\alpha_2G_{21}] \\
+&amp;+y_1[f(x_2)-y_1\alpha_1G_{12}-y_2\alpha_2G_{22}] +(1-s)
+\end{align}
+\]</span></p>
+<p>令<span class="math inline">\(v_i=(f(x_i)-b)-y_1\alpha_1G_{1i}-y_2\alpha_2G_{2i}\ \ (i=1,2)\)</span>，则</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial\alpha_1}=-(G_{11}-2G_{12}+G_{22})\alpha_1-sc^{\ast}(G_{12}-G_{22})-y_1(v_1-v_2)+(1-s)
+\]</span></p>
+<p>于是</p>
+<p><span class="math display">\[
+\begin{align}
+\frac{\partial L}{\partial\alpha_1}=0\Rightarrow\alpha_1&amp;=-\frac{sc^{\ast}(G_{12}-G_{22})+y_1(v_1-v_2)-(1-s)}{G_{11}-2G_{12}+G_{22}} \\
+&amp;=-\frac{y_1[y_2c^{\ast}(G_{12}-G_{22})+(v_1-v_2)-(y_1-y_2)]}{G_{11}-2G_{12}+G_{22}}
+\end{align}
+\]</span></p>
+<p>注意到<span class="math inline">\(c^{\ast}=s\alpha_1+\alpha_2\)</span>，从而</p>
+<p><span class="math display">\[
+y_2c^{\ast}(G_{12}-G_{22})=y_2(s\alpha_1+\alpha_2)(G_{12}-G_{22})=(y_1\alpha_1+y_2\alpha_2)(G_{12}-G_{22})
+\]</span></p>
+<p>令<span class="math inline">\(dG=G_{11}-2G_{12}+G_{22}、e_i=f(x_i)-y_i\ \ (i=1,2)\)</span>，则</p>
+<p><span class="math display">\[
+y_2c^{\ast}(G_{12}-G_{22})+(v_1-v_2)-(y_2+y_1)=... =e_1 - e_2 - y_1\alpha_1dG
+\]</span></p>
+<p>从而</p>
+<p><span class="math display">\[
+\alpha_1^{new,raw}=\alpha_1^{old}-\frac{y_1(e_1-e_2)}{dG}
+\]</span></p>
+<p>接下来就要对其进行裁剪了。注意到我们的约束为<span class="math inline">\(0\le\alpha_i\le C\)</span>、<span class="math inline">\(\alpha_1y_1+\alpha_2y_2\)</span>为常数，所以我们需要分情况讨论<span class="math inline">\(\alpha_1\)</span>的下、上界。</p>
+<ul>
+<li>当<span class="math inline">\(y_1\)</span>,<span class="math inline">\(y_2\)</span>异号（<span class="math inline">\(y_1y_2=-1\)</span>）时，可知<span class="math inline">\(\alpha_1-\alpha_2\)</span>为常数、亦即 <span class="math inline">\(\alpha_1^{new}-\alpha_2^{new}=\alpha_1^{old}-\alpha_2^{old}\Rightarrow\alpha_2^{new}=\alpha_1^{new}-(\alpha_1^{old}-\alpha_2^{old})\)</span>，结合<span class="math inline">\(0\le\alpha_2\le C\)</span>，可知：
+<ul>
+<li><span class="math inline">\(\alpha_1^{new}\)</span>不应小于<span class="math inline">\(\alpha_1^{old}-\alpha_2^{old}\)</span>，否则<span class="math inline">\(\alpha_2\)</span>将小于 0</li>
+<li><span class="math inline">\(\alpha_1^{new}\)</span>不应大于<span class="math inline">\(C+\alpha_1^{old}-\alpha_2^{old}\)</span>，否则<span class="math inline">\(\alpha_2\)</span>将大于 <span class="math inline">\(C\)</span></li>
+</ul></li>
+<li>当<span class="math inline">\(y_1\)</span>,<span class="math inline">\(y_2\)</span>同号（<span class="math inline">\(y_1y_2=1\)</span>）时，可知<span class="math inline">\(\alpha_1+\alpha_2\)</span>为常数、亦即 <span class="math inline">\(\alpha_1^{new}+\alpha_2^{new}=\alpha_1^{old}+\alpha_2^{old}\Rightarrow\alpha_2^{new}=(\alpha_1^{old}+\alpha_2^{old}) - \alpha_1^{new}\)</span>，结合<span class="math inline">\(0\le\alpha_2\le C\)</span>，可知：
+<ul>
+<li><span class="math inline">\(\alpha_1^{new}\)</span>不应小于<span class="math inline">\(\alpha_1^{old}+\alpha_2^{old}-C\)</span>，否则<span class="math inline">\(\alpha_2\)</span>将大于 <span class="math inline">\(C\)</span></li>
+<li><span class="math inline">\(\alpha_1^{new}\)</span>不应大于<span class="math inline">\(\alpha_1^{old}+\alpha_2^{old}\)</span>，否则<span class="math inline">\(\alpha_2\)</span>将小于 0</li>
+</ul></li>
+</ul>
+<p>综上可知</p>
+<ul>
+<li><span class="math inline">\(\alpha_1^{new}\)</span>的下界为<span class="math inline">\(U=\left\{\begin{aligned} \max\{0,\alpha_1^{old}-\alpha_2^{old}\}\ \ &amp;y_1y_2=-1 \\ \max\{0,\alpha_1^{old}+\alpha_2^{old}-C\}\ \ &amp;y_1y_2=1 \end{aligned} \right.\)</span></li>
+<li><span class="math inline">\(\alpha_1^{new}\)</span>的上界为<span class="math inline">\(V=\left\{\begin{aligned} \min\{C,C+\alpha_1^{old}-\alpha_2^{old}\}\ \ &amp;y_1y_2=-1 \\ \max\{C,\alpha_1^{old}+\alpha_2^{old}\}\ \ &amp;y_1y_2=1 \end{aligned} \right.\)</span></li>
+</ul>
+<p>那么直接做一个 clip 即可得到更新后的<span class="math inline">\(\alpha_1\)</span>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alpha1_new = np.clip(alpha1_new_raw, u, v)</span><br></pre></td></tr></table></figure>
+<p>注意由于我们要保持<span class="math inline">\(\alpha_1y_1+\alpha_2y_2\)</span>为常数，所以（注意<span class="math inline">\(\frac{y_1}{y_2}=y_1y_2\)</span>）</p>
+<p><span class="math display">\[
+\begin{align}
+\alpha_2^{new}&amp;=\frac1{y_2}(\alpha_1^{old}y_1+\alpha_2^{old}y_2-\alpha_1^{new}y_1) \\
+&amp;=\alpha_2^{old}+y_1y_2(\alpha_1^{old}-\alpha_1^{new})
+\end{align}
+\]</span></p>
+<p>综上所述，我们就完成了一次参数的更新，之后就不断地更新直至满足停机条件即可</p>
+<div id="hard-linear-svm">
+
+</div>
+<h2 id="hard-linear-svm">II.II. Hard Linear SVM</h2>
+<p>注意我们<a href="#perceptron">感知机</a>的损失函数为 <span class="math inline">\(\sum_{i=1}^N[-y(w\cdot x+b)]_ +\)</span>。由感知机损失函数的形式可知，感知机只要求样本被正确分类，而不要求样本被“很好地正确分类”。这就导致感知机弄出来的超平面（通常又称“决策面”）经常会“看上去很不舒服”。</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729124109.png"></p>
+<p>从直观上来说，我们希望得到的是这样的决策面：</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729124126.png"></p>
+<p>那么应该如何将这种理想的决策面的状态翻译成机器能够学习的东西呢？直观来说，就是让决策面离正负样本点的间隔都尽可能大。</p>
+<p>首先定义超平面：<span class="math inline">\(\mathbf w^T \vec x_i + b = 0\)</span>（w是这个超平面的法向量），接下来为了方便，设 <span class="math inline">\(\vec x = (x_1,x_2)\)</span> 即一条直线。任意点 <span class="math inline">\(\vec x_i\)</span> 到该直线的距离为 <span class="math inline">\(d=\frac{1}{\lVert \mathbf w \lVert} |\mathbf w^T \vec x_i + b|\)</span> （解析几何的知识）。对于空间内所有训练点的坐标记为 <span class="math inline">\((\vec x_i,y_i)\)</span>，其中 <span class="math inline">\(y_i\)</span> = 1 or -1， 表示点 <span class="math inline">\(\vec x_i\)</span> 所属的类。绝对值符号会导致函数不平滑，又因为数据集是线性可分的，所以我们可以把距离公式改写为：<span class="math inline">\(d=\frac{1}{\lVert \mathbf w \lVert} y_i (\mathbf w^T \vec x_i + b)\)</span>。</p>
+<p>因此，这个“间隔”翻译成数学语言，其实就是简单的：</p>
+<p><span class="math display">\[
+d((x,y),\Pi)=\frac {1}{\|w\|}y(w\cdot x+b)
+\]</span></p>
+<p>在有了样本点到决策面的间隔后，数据集到决策面的间隔也就好定义了：</p>
+<p><span class="math display">\[
+d(D, \Pi)=\min_{(x,y)\in D}d((x,y),\Pi)
+\]</span></p>
+<p>如果这些训练数据是线性可分的，也可称为硬间隔（Hard Margin）。选出两条直线（图中的虚线），使得他们的距离尽可能的大，这两条直线的中央就是待求的超平面（直线）。为了表达直观，我们定义这两个超平面（直线）分别为 <span class="math inline">\(\mathbf w^T \vec x_i + b = 1\)</span> 和 <span class="math inline">\(\mathbf w^T \vec x_i + b = -1\)</span>，两个超平面（直线）之间的距离为 <span class="math inline">\(\gamma = \frac{2}{\lVert \mathbf w \lVert}\)</span> 。</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729124149.png"></p>
+<p>为了使得所有样本数据都在间隔区（两条虚线）以外，我们需要保证对于所有的 <span class="math inline">\(i\)</span> 满足下列的条件: <span class="math inline">\(\mathbf w^T \vec x_i + b \geqslant 1\)</span> 若 <span class="math inline">\(y_i = 1\)</span>，<span class="math inline">\(\mathbf w^T \vec x_i + b \leqslant -1\)</span> 若 <span class="math inline">\(y_i = -1\)</span> 。上述两个条件可以写作 <span class="math inline">\(y_i(\mathbf w^T \vec x_i + b) \geqslant 1, \quad\text{for all}\quad 1\leqslant i \leqslant n\)</span> ，这里的n指样本点的数量。</p>
+<p>上面的表达（Directly Representation）可以被写成：让所有样本点都被正确分类：<span class="math inline">\(y(w\cdot x+b)&gt;0,\forall(x,y)\in D\)</span> 让决策面离正负样本点的间隔都尽可能大，最终目的是找到具有“最大间隔”（Maximum Margin）的划分超平面（直线），找到参数 <span class="math inline">\(\mathbf w\)</span> 和 <span class="math inline">\(b\)</span> 使得 <span class="math inline">\(d\)</span> 最大。</p>
+<p><span class="math display">\[
+margin(b,w)=min_{w,b} \quad d \tag{2}\]</span></p>
+<p><span class="math display">\[
+arg \operatorname*{max}_{\mathbf w,b} \left\{ {\frac{1}{\lVert \mathbf w \lVert} \operatorname*{min}_{n} [y_i(\mathbf w^T\vec x_i}+b)]\right\} \tag{3}
+\]</span></p>
+<p><span class="math display">\[
+\max\min_{(x,y)\in D}\frac {1}{\|w\|}y(w\cdot x+b)
+\]</span></p>
+<p>注意到<span class="math inline">\(y(w\cdot x+b)&gt;0\)</span>的性质和<span class="math inline">\(\frac {1}{\|w\|}y(w\cdot x+b)\)</span>的值在w和b同时扩大 k 倍时不会改变。</p>
+<blockquote>
+<p>我们知道同时放缩一个超平面的系数并不会改变这个超平面，such as 3wx+3b=0=wx+b，所以我们可以假设离我们超平面最近的那个向量到平面的距离为1。选择1的好处是，w和b进行尺缩变换（kw和kb）不改变距离，方便计算。</p>
+</blockquote>
+<p>所以我们完全可以假设：若 <span class="math inline">\((x^{\ast},y^{\ast})=\arg\min_{(x,y)\in D}\frac {1}{\|w\|}y(w\cdot x+b)\)</span>，则<span class="math inline">\(y^{\ast}(w\cdot x^{\ast}+b)=1\)</span> （否则假设<span class="math inline">\(y^{\ast}(w\cdot x^{\ast}+b)=c\)</span>，令<span class="math inline">\(w\leftarrow\frac wc\)</span>,<span class="math inline">\(b\leftarrow\frac bc\)</span>即可）。</p>
+<p>注意由于<span class="math inline">\((x^{\ast},y^{\ast})=\arg\min_{(x,y)\in D}\frac {1}{\|w\|}y(w\cdot x+b)\)</span>这个最小化过程中<span class="math inline">\(w\)</span>是固定的，所以我们可以把<span class="math inline">\(\frac1{\|w\|}\)</span>这一项拿掉，从而：</p>
+<p><span class="math display">\[
+(x^{\ast},y^{\ast})=\arg\min_{(x,y)\in D}y(w\cdot x+b)
+\]</span></p>
+<p>所以<span class="math inline">\(y^{\ast}(w\cdot x^{\ast}+b)=1\Rightarrow y(w\cdot x+b)\ge1,\forall(x,y)\in D\)</span></p>
+<p>则可以对<span class="math inline">\((3)\)</span>式进行形式变换，得到 canonical representation（最大化问题不是很好解决，我们可以转换为我们熟悉最小化问题）：</p>
+<p><span class="math display">\[
+\max_{w,b}\frac {1}{\|w\|}，使得y_i(w\cdot x_i+b)\ge1,\forall(x_i,y_i)\in D
+\]</span></p>
+<p><span class="math display">\[
+\min_{w,b}\frac {\|w\|^2}2，使得y_i(w\cdot x_i+b)\ge1,\forall(x_i,y_i)\in D
+\]</span></p>
+<p><span class="math display">\[
+arg \operatorname*{max}_{\mathbf w,b} \frac{2}{\lVert \mathbf w \lVert} \implies  arg \operatorname*{min}_{\mathbf w,b} \frac{1}{2}\lVert \mathbf w \lVert ^2 \\
+s.t.\quad y_i(\mathbf w^T\vec x_i+b) \geqslant1,\quad i = 1,2,\ldots,m  \tag{4}
+\]</span></p>
+<blockquote>
+<p>注：s.t.：subject to 表示约束条件，表达的意思等价于：为了使得所有样本数据都在间隔区（两条虚线）以外。</p>
+</blockquote>
+<p>但是这会导致另一个问题：当数据集线性不可分时，上述优化问题是必定无解的，这就会导致模型震荡（换句话说，<span class="math inline">\(y_i(w\cdot x_i+b)\ge1\)</span>这个约束太“硬”了）。</p>
+<div id="dual-linear-svm">
+
+</div>
+<h2 id="dual-linear-svm">II.III. Dual Linear SVM</h2>
+<p>为什么我们还要考虑它的对偶问题？这是因为化作对偶问题后会更容易求解，同样也方便引入Kernel Trick。表现在 SMO 上的话就是，我们可以通过简单粗暴地将核矩阵K代替 Gram 矩阵G来完成核方法的应用。直观地说，我们只需将上面所有出现过的<span class="math inline">\(G\)</span>都换成<span class="math inline">\(K\)</span>就行了。</p>
+<p>为了解<span class="math inline">\((4)\)</span>式，需要用到<a target="_blank" rel="noopener" href="https://sli1989.github.io/lagrange-multiplier">拉格朗日乘子法</a>（Method of lagrange multiplier），它是用来求解在约束条件目标函数的极值的。）</p>
+<p>根据约束的形式，我们引入m个拉格朗日乗法子，记为 <span class="math inline">\(\boldsymbol \lambda = (\lambda_1,\ldots,\lambda_m)^T\)</span> ，原因是，有m个约束，所以需要m个拉格朗日乗法子。可以得出拉格朗日方程如下：</p>
+<p><span class="math display">\[
+\mathcal{L}(\mathbf w,b,\boldsymbol \lambda) = \frac{1}{2}\lVert \mathbf w \lVert ^2  - \sum_{i=1}^m \lambda_i \{  y_i(\mathbf w^T\vec x_i+b) -1 \} \tag{5}
+\]</span></p>
+<p>根据拉格朗日对偶性，原始的约束最优化问题可等价于极大极小的对偶问题：</p>
+<p><span class="math display">\[ \max_{\alpha} \min_{w,b} \quad \mathcal{L}(w,b,\lambda) \]</span></p>
+<p>解这个拉格朗日方程，对 <span class="math inline">\(\mathbf w\)</span> 和 <span class="math inline">\(b\)</span> 求偏导数并令其等于0，可以得到以下两个条件</p>
+<p><span class="math display">\[
+\mathbf w = \sum_{i=1}^m \lambda_i y_i \vec x_i \\
+0 = \sum_{i=1}^m \lambda_i y_i
+\]</span></p>
+<p>将这两个条件带回公式(4)，可以得到对偶形式（dual representaiton），我们的目的也变为最大化 <span class="math inline">\(\mathcal{L}(\boldsymbol \lambda)\)</span>，表达式如下:</p>
+<p><span class="math display">\[
+arg \operatorname*{max}_{\boldsymbol \lambda}\mathcal{L}(\boldsymbol \lambda)  = \sum_{i=1}^m \lambda_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \lambda_i \lambda_j \vec x_i \vec x_j \mathbf x_i^T \mathbf x_j \\
+s.t. \quad \lambda_i \geqslant 0, \forall i;\quad \sum_{i=1}^m \lambda_i y_i = 0 \tag{6}
+\]</span></p>
+<p>等价于最优化问题：</p>
+<p><span class="math display">\[
+\begin{align}
+\min_{\alpha} \quad  \frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j (x_i \cdot x_j) - \sum_{i=1}^{N}\alpha_i \\
+s.t. \quad \sum_{i=1}^{N}\alpha_i y_i = 0 ; \alpha_i \ge 0, \quad i=1,2,\cdots,N
+\end{align}
+\]</span></p>
+<p>以上表达式可以通过二次规划算法解出 <span class="math inline">\(\boldsymbol \lambda\)</span> 后，带回，求出<span class="math inline">\(\mathbf w\)</span> 和 <span class="math inline">\(b\)</span>，即可得到模型：</p>
+<p><span class="math display">\[
+f(\mathbf x) = \mathbf w^T\mathbf x + b = \sum_{i=1}^m \lambda_i y_i \mathbf x_i^T \mathbf x + b \tag{7}
+\]</span></p>
+<p>这显然又是一个二次规划问题！所<span class="math inline">\((4)\)</span>式的约束是一个不等式约束，所以我们可以使用<a target="_blank" rel="noopener" href="https://sli1989.github.io/kkt">KKT条件</a>得到三个条件：</p>
+<p><span class="math display">\[
+\lambda_i \geqslant0 ;\quad y_i f(\mathbf x_i)-1 \geqslant0; \quad \lambda_i\{ y_i f(\mathbf x_i)-1 \}=0
+\]</span></p>
+<p>使用这些条件，可以构建高效算法来解这个方程，比如SMO（Sequential Minimal Optimization）就是其中一个比较著名的，这就是对偶问题的求解方案。至于SMO是如何做的，考虑到现代很多SVM的Pakage都是直接拿来用，秉承着前人付出了努力造了轮子就不重复造的核心精神，直接调用就好 。</p>
+<div id="soft-linear-svm">
+
+</div>
+<h2 id="soft-linear-svm">II.IV. Soft Linear SVM</h2>
+<p>上面的例子很简单，因为那些数据是线性可分的——我们可以通过画一条直线来简单地分割红色和蓝色。然而，大多数情况下事情没有那么简单。如果样本数据你中有我我中有你（线性不可分），应该如何处理呢？你无法找出一个线性决策边界（一条直线分开两个类别）。这里就需要引入软间隔（Soft Margin），意味着，允许支持向量机在一定程度上出错。</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729124206.png"></p>
+<p>由上一节我们得知，约束为： <span class="math inline">\(y_i(\mathbf w^T\vec x_i+b) \geqslant1,\quad i = 1,2,\ldots,m\)</span> ，目标是使目标函数可以在一定程度不满足这个约束条件，我们引入常数 <span class="math inline">\(C\)</span> 和 损失函数 <span class="math inline">\(\ell_{0/1}(z)\)</span> 为0/1损失函数，当z小于0函数值为1，否则函数值为0。</p>
+<p><span class="math display">\[
+\operatorname*{min}_{\mathbf w,b} \frac{1}{2}\lVert w \lVert^2 + C \sum_{i=1}^m \ell_{0/1}(y_i(\mathbf w^T\vec x_i+b) -1) \tag {8}
+\]</span></p>
+<p>对于<span class="math inline">\((8)\)</span>式来说 <span class="math inline">\(C \geqslant 0\)</span> 是个常数，当C无穷大时，迫使所有样本均满足约束；当C取有限值时，允许一些样本不满足约束。但 <span class="math inline">\(\ell_{0/1}(z)\)</span> 损失函数非凸、非连续，数学性质不好，不易直接求解，我们用其他一些函数来代替它，叫做替代损失函数（surrogate loss）。</p>
+<p><span class="math display">\[
+\begin{align}
+&amp; \text{hinge损失:} \ell_{hinge}(z) = max(0,1-z)\\
+&amp; \text{指数损失:} \ell_{exp}(z) =  e^{-z}\\
+&amp; \text{对数损失:} \ell_{log}(z) = log(1+e^{-z})\\
+\end{align}
+\]</span></p>
+<p>三种常见损失函数如下图：</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729124226.png"></p>
+<p>我们已知Hard LinearSVM 问题为</p>
+<p><span class="math display">\[
+\min_{w,b}\frac {\|w\|^2}2，使得y_i(w\cdot x_i+b)\ge1,\forall(x_i,y_i)\in D
+\]</span></p>
+<p>且式中的<span class="math inline">\(y_i(w\cdot x_i+b)\)</span>其实就是（没有抹去 scale 的影响的）间隔。所以想要放松对模型的限制的话，很自然的想法就是让这个间隔不必一定要不小于 1、而是只要不小于<span class="math inline">\(1-\xi_i\)</span>就行，其中<span class="math inline">\(\xi_i\)</span>是个不小于 0 的数。</p>
+<p>所以为了让模型在线性不可分的数据上仍有不错的表现，从直观来说，我们应该“放松”对我们模型的限制（让我们模型的约束“软”一点），引入<strong>松弛变量（slack variables）</strong> ：</p>
+<p><span class="math display">\[
+\min_{w,b}\frac {\|w\|^2}2，使得y_i(w\cdot x_i+b)\ge1-\xi_i,\forall(x_i,y_i)\in D, \xi_i \ge 0
+\]</span></p>
+<p>正如前文所说，只放松限制的话肯定不行，会使模型变得怠惰，还得给这个放松一些惩罚。若假设数据集为<span class="math inline">\(D=\left\{(x_1,y_1),...,(x_N,y_N)\right\}\)</span>的话，那么经过数学变换后，可将<span class="math inline">\((8)\)</span>式重写为：</p>
+<p><span class="math display">\[
+\min_{w,b}{\left[\frac{\|w\|^2}2 + C\sum_{i=1}^N[1-y_i(w\cdot x_i+b)]_ +\right]}
+\]</span></p>
+<p>其中 “<span class="math inline">\([ \cdot ]_ +\)</span>”其实就是 ReLU 函数。于是可以看出，SVM 在形式上和感知机的差别只在于损失函数，且这两个损失函数确实长得很像。</p>
+<p><span class="math display">\[
+[x]_ +=\left\{ \begin{aligned} 0&amp;\ \ x\le0 \\ x&amp;\ \ x&gt;0 \end{aligned} \right.
+\]</span></p>
+<p>综上所述，在目标优化函数中加一个<span class="math inline">\(C\xi_i\)</span>，其中<span class="math inline">\(C\)</span>是个大于 0 的常数，可以理解为对放松的惩罚力度。优化问题即可合理地转化为：</p>
+<p><span class="math display">\[
+\min_{w,b}\left[\frac {\|w\|^2}2+C\sum_{i=1}^N\xi_i\right]，使得y_i(w\cdot x_i+b)\ge1-\xi_i,\forall(x_i,y_i)\in D（\xi_i\ge0）
+\]</span></p>
+<p><span class="math display">\[
+\operatorname*{min}_{\mathbf w,b,\xi_i} \frac{1}{2}\lVert w \lVert^2 + C \sum_{i=1}^m \xi_i
+\\ s.t. \quad y_i(\mathbf w^T\vec x_i+b) \geqslant 1 - \xi_i ;\quad \xi_i \geqslant 0,\quad i = 1,2,\ldots,m \tag{9}
+\]</span></p>
+<p><span class="math inline">\((9)\)</span>式就是常见的<strong>软间隔支持向量机</strong>，其中，每一个样本都有一个对应的松弛变量，用以<strong>表征该样本不满足约束的程度</strong>。<span class="math inline">\(C\)</span>为惩罚函数，目标函数有两层含义：margin尽量大，误分类的样本点计量少。</p>
+<p>不难得知原始问题相应的拉格朗日函数为：</p>
+<p><span class="math display">\[
+L=\frac{\|w\|^2}2+C\sum_{i=1}^N\xi_i-\sum_{i=1}^N\alpha_i[y_i(w\cdot x_i+b)-1+\xi_i]-\sum_{i=1}^N\beta_i\xi_i
+\]</span></p>
+<p>其中<span class="math inline">\(\alpha_i\ge0、\beta_i\ge0\)</span>，</p>
+<p>于是 KKT 条件的其中四个约束即为（不妨设最优解为<span class="math inline">\(w^{\ast}\)</span>、<span class="math inline">\(b^{\ast}\)</span>、<span class="math inline">\(\xi^{\ast}\)</span>、<span class="math inline">\(\alpha^{\ast}\)</span>和<span class="math inline">\(\beta^{\ast}\)</span>）：</p>
+<ul>
+<li><span class="math inline">\(\alpha_i^{\ast}\ge0\)</span>,<span class="math inline">\(\beta_i^{\ast}\ge0\)</span>（这是拉格朗日乘子法自身的要求）</li>
+<li><span class="math inline">\(\xi_i^{\ast}\ge0\)</span>、<span class="math inline">\(y_i(w^{\ast}\cdot x_i+b^{\ast})-1+\xi_i^{\ast}\ge0\)</span>（此即原始约束）</li>
+<li><span class="math inline">\(\alpha_i^{\ast}[y_i(w^{\ast}\cdot x_i+b^{\ast})-1+\xi_i^{\ast}]=0\)</span>（换句话说，<span class="math inline">\(\alpha_i^{\ast}\)</span>和<span class="math inline">\(y_i(w^{\ast}\cdot x_i+b)-1+\xi_i^{\ast}\)</span>中必有一个为 0）</li>
+<li>该等式有着很好的直观：设想它们同时不为 0，则必有<span class="math inline">\(y_i(w^{\ast}\cdot x_i+b)-1+\xi_i^{\ast}&gt;0\)</span>（注意原始约束）、从而<span class="math inline">\(\alpha_i^{\ast}[y_i(w^{\ast}\cdot x_i+b^{\ast})-1+\xi_i^{\ast}]\ge0\)</span>，等号当且仅当<span class="math inline">\(\alpha_i=0\)</span>时取得。然而由于<span class="math inline">\(\alpha_i^{\ast}\ne0\)</span>，所以若将<span class="math inline">\(\alpha_i\)</span>取为 0、则上述L将会变大。换句话说，将参数<span class="math inline">\(\alpha_i\)</span>取为 0 将会使得目标函数比参数取<span class="math inline">\(\alpha_i^{\ast}\)</span>时的目标函数要大，这与<span class="math inline">\(\alpha_i^{\ast}\)</span>的最优性矛盾</li>
+<li><span class="math inline">\(\beta_i^{\ast}\xi_i^{\ast}=0（\)</span>换句话说，<span class="math inline">\(\beta_i^{\ast}\)</span>和<span class="math inline">\(\xi_i^{\ast}\)</span>中必有一个为 0，理由同上）</li>
+</ul>
+<p>对偶问题的实质，其实就是将原始问题</p>
+<p><span class="math display">\[
+\min_{w,b,\xi}\max_{\alpha,\beta} L
+\]</span></p>
+<p>转化为对偶问题</p>
+<p><span class="math display">\[
+\max_{\alpha,\beta}\min_{w,b,\xi}L
+\]</span></p>
+<p>于是我们需要求偏导并令它们为 0：</p>
+<ul>
+<li>对<span class="math inline">\(w\)</span>求偏导：<span class="math inline">\(\frac{\partial L}{\partial w}=w-\sum_{i=1}^N\alpha_iy_ix_i=0\Rightarrow w=\sum_{i=1}^N\alpha_iy_ix_i\)</span></li>
+<li>对<span class="math inline">\(b\)</span>求偏导：<span class="math inline">\(\frac{\partial L}{\partial b}=-\sum_{i=1}^N\alpha_iy_i=0\Rightarrow\sum_{i=1}^N\alpha_iy_i=0\)</span></li>
+<li>对<span class="math inline">\(\xi_i\)</span>求偏导：<span class="math inline">\(\frac{\partial L}{\partial\xi_i}=C-\alpha_i-\beta_i=0\Rightarrow\alpha_i+\beta_i=C\)</span></li>
+</ul>
+<p>后一个 KKT 条件：最优解自然需要满足这么个条件：</p>
+<p><span class="math display">\[\nabla_wL(w^{\ast},b^{\ast},\xi^{\ast},\alpha^{\ast},\beta^{\ast})=\nabla_bL(w^{\ast},b^{\ast},\xi^{\ast},\alpha^{\ast},\beta^{\ast})=\\
+\nabla_\xi L(w^{\ast},b^{\ast},\xi^{\ast},\alpha^{\ast},\beta^{\ast})=0\]</span></p>
+<p>注意这些约束中<span class="math inline">\(\beta_i\)</span>除了<span class="math inline">\(\beta_i\ge0\)</span>之外没有其它约束，<span class="math inline">\(\alpha_i+\beta_i=C\)</span>的约束可以转为<span class="math inline">\(\alpha_i\le C\)</span>。然后把这些东西代入拉格朗日函数L、即可得到：</p>
+<p><span class="math display">\[
+\begin{align} L&amp;=\frac{\|\sum_{i=1}^N\alpha_iy_ix_i\|^2}2+\sum_{i=1}^N(C-\alpha_i-\beta_i)\xi_i-\sum_{i=1}^N\alpha_iy_i\left(\sum_{j=1}^N\alpha_jy_jx_j\right)\cdot x_i\\
+-b\sum_{i=1}^N\alpha_iy_i+\sum_{i=1}^N\alpha_i \\ &amp;=-\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)+\sum_{i=1}^N\alpha_i \end{align}
+\]</span></p>
+<p>于是对偶问题为</p>
+<p><span class="math display">\[
+\max_{\alpha}\left[ -\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)+\sum_{i=1}^N\alpha_i\right]，使得\sum_{i=1}^N\alpha_iy_i=0、0\le\alpha_i\le C
+\]</span></p>
+<p>亦即</p>
+<p><span class="math display">\[
+\min_{\alpha}\left[ \frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j(x_i\cdot x_j)-\sum_{i=1}^N\alpha_i\right]，使得\sum_{i=1}^N\alpha_iy_i=0、0\le\alpha_i\le C
+\]</span></p>
+<p>可以看到在对偶形式中，<strong>样本仅以内积的形式<span class="math inline">\(（x_i\cdot x_j）\)</span>出现，这就使得核方法的引入变得简单而自然</strong>。</p>
+<p>通过构造拉格朗日函数并求解偏导可得到等价的对偶问题：</p>
+<p><span class="math display">\[
+\begin{align}
+\min_{\alpha} \quad \frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j (x_i \cdot x_j) - \sum_{i=1}^{N} {\alpha_i}\\
+s.t. \quad \sum_{i=1}^{N}\alpha_i y_i = 0 ; \quad 0 \le \alpha_i \le C, \quad i=1,2,\cdots,N
+\end{align}
+\]</span></p>
+<h2 id="soft-linear-svm的训练">II.V. Soft Linear SVM的训练</h2>
+<p>虽然比较简单，但是调优 LinearSVM 的训练这个过程是相当有启发性的事情。关于各种梯度下降算法的定义、性质等等可以参见<a target="_blank" rel="noopener" href="http://www.carefree0910.com/posts/55a23cf0/">参数的更新</a>。</p>
+<h3 id="极大梯度下降法">II.V.I. 极大梯度下降法</h3>
+<p>极大梯度下降法其实就是随机梯度下降SGD 的特殊形式。</p>
+<p>我们已知：</p>
+<p><span class="math display">\[
+L(D)=\frac{\|w\|^2}2 + C\sum_{i=1}^N[1-y_i(w\cdot x_i+b)]_ +
+\]</span></p>
+<p>所以我们可以认为：</p>
+<p><span class="math display">\[
+L(x,y)=\frac{\|w\|^2}2+C[1-y(w\cdot x+b)]_ +
+\]</span></p>
+<p>于是：</p>
+<ul>
+<li>当<span class="math inline">\(y(w\cdot x+b)\ge1\)</span>时：<span class="math inline">\(\frac{\partial L(x,y)}{\partial w} = w\)</span>、<span class="math inline">\(\frac{\partial L(x,y)}{\partial b}=0\)</span></li>
+<li>当<span class="math inline">\(y(w\cdot x+b)&lt;1\)</span>时：<span class="math inline">\(\frac{\partial L(x,y)}{\partial w} = w-Cyx\)</span>、<span class="math inline">\(\frac{\partial L(x,y)}{\partial b}=-Cy\)</span></li>
+</ul>
+<p>所以我们可以把极大梯度下降的形式写成（假设学习速率为<span class="math inline">\(\eta\)</span>）：</p>
+<p><span class="math display">\[w\leftarrow (1-\eta)w\]</span></p>
+<p>若<span class="math inline">\(y(w\cdot x+b)&lt;1\)</span>，则选出某个被错分的样本(x,y)，然后：</p>
+<p><span class="math display">\[w\leftarrow w+\eta Cyx\]</span></p>
+<p><span class="math display">\[b\leftarrow b+\eta Cy\]</span></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">class LinearSVM:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self._w = self._b = None</span><br><span class="line"></span><br><span class="line">    def fit(self, x, y, c=1, lr=0.01, epoch=10000):</span><br><span class="line">        x, y = np.asarray(x, np.float32), np.asarray(y, np.float32)</span><br><span class="line">        self._w = np.zeros(x.shape[1])</span><br><span class="line">        self._b = 0.</span><br><span class="line">        for _ in range(epoch):</span><br><span class="line">            self._w *= 1 - lr</span><br><span class="line">            err = 1 - y * self.predict(x, True)</span><br><span class="line">            idx = np.argmax(err)</span><br><span class="line">            # 注意即使所有 x, y 都满足 w·x + b &gt;= 1</span><br><span class="line">            # 由于损失里面有一个 w 的模长平方</span><br><span class="line">            # 所以仍然不能终止训练，只能截断当前的梯度下降</span><br><span class="line">            if err[idx] &lt;= 0:</span><br><span class="line">                continue</span><br><span class="line">            delta = lr * c * y[idx]</span><br><span class="line">            self._w += delta * x[idx]</span><br><span class="line">            self._b += delta</span><br><span class="line"></span><br><span class="line">    def predict(self, x, raw=False):</span><br><span class="line">        x = np.asarray(x, np.float32)</span><br><span class="line">        y_pred = x.dot(self._w) + self._b</span><br><span class="line">        if raw:</span><br><span class="line">            return y_pred</span><br><span class="line">        return np.sign(y_pred).astype(np.float32)</span><br></pre></td></tr></table></figure>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/2019-7-29.gif"></p>
+<p>虽然看上去不错，但仍然存在着问题：</p>
+<ul>
+<li>训练过程其实非常不稳定</li>
+<li>从直观上来说，由于 LinearSVM 的损失函数比感知机要更复杂，所以相应的函数形状也会更复杂。这意味着当数据集稍微差一点的时候，直接单纯地应用极大梯度下降法可能会导致一些问题——比如说模型会卡在某个很奇怪的地方无法自拔。解释1：每次只取使得损失函数极大的一个样本进行梯度下降</li>
+</ul>
+<p>通过将正负样本点的“中心”从原点 (0, 0)（默认值）挪到 (5, 5)（亦即破坏了一定的对称性）并将正负样本点之间的距离拉近一点，我们可以复现这个问题：</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/2019-7-29-2.gif"></p>
+<h3 id="mini-batch-梯度下降法mbgd">II.V.II. Mini-Batch 梯度下降法（MBGD）</h3>
+<p>解决方案的话，主要还是从改进随机梯度下降（SGD）的思路入手（因为极大梯度下降法其实就是 SGD 的特殊形式）。我们知道 SGD 的“升级版”是 MBGD、亦即拿随机 Mini-Batch 代替随机抽样。这样的话，通常而言会比 SGD 要好 。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">self._w *= 1 - lr</span><br><span class="line"># 随机选取 batch_size 个样本</span><br><span class="line">batch = np.random.choice(len(x), batch_size)</span><br><span class="line">x_batch, y_batch = x[batch], y[batch]</span><br><span class="line">err = 1 - y_batch * self.predict(x_batch, True)</span><br><span class="line">if np.max(err) &lt;= 0:</span><br><span class="line">    continue</span><br><span class="line"># 注意这里我们只能利用误分类的样本做梯度下降</span><br><span class="line"># 因为被正确分类的样本处、这一部分的梯度为 0</span><br><span class="line">mask = err &gt; 0</span><br><span class="line">delta = lr * c * y_batch[mask]</span><br><span class="line"># 取各梯度平均并做一步梯度下降</span><br><span class="line">self._w += np.mean(delta[..., None] * x_batch[mask], axis=0)</span><br><span class="line">self._b += np.mean(delta)</span><br></pre></td></tr></table></figure>
+<p>但是问题仍然是存在的：那就是它们所运用的梯度下降法都只是朴素的 Vanilla Update，这会导致当数据的 scale 很大时模型对参数极为敏感、从而导致持续的震荡（所谓的 scale 比较大，可以理解为“规模很大”，或者直白一点——以二维数据为例的话——就是横纵坐标的数值很大）。</p>
+<div id="kernel-trick">
+
+</div>
+<h2 id="kernel-trick">II.VI. Kernel Trick</h2>
+<blockquote>
+<p>注意，<strong>核函数技巧实际上并不是 SVM 的一部分</strong>。它可以与其他线性分类器共同使用，如逻辑回归等。支持向量机只负责找到决策边界。</p>
+</blockquote>
+<p>以上我们求解的支持向量机都是在线性情况下的，那么非线性情况下如何处理？这里就引入：<strong>核方法</strong><a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>。</p>
+<p>核方法是将一个低维的线性不可分的数据映射到一个高维的特征空间、并期望映射后的数据在高维特征空间里是线性可分的。</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729124435.png"></p>
+<p>至此，似乎问题就转化为了如何寻找合适的映射<span class="math inline">\(\phi\)</span>、使得数据集在被它映射到高维空间后变得线性可分。不过可以想象的是，现实任务中的数据集要比上文我们拿来举例的异或数据集要复杂得多、直接构造一个恰当的<span class="math inline">\(\phi\)</span>的难度甚至可能高于解决问题本身。另外一个方面，这也会带来维度的急剧上升和很大的计算成本，使得模型求解效率大大下降。</p>
+<p>而核方法的巧妙之处就在于，它能将构造映射这个过程再次进行转化、从而使得问题变得简易：它通过核函数来避免显式定义映射<span class="math inline">\(\phi\)</span>。往简单里说，核方法会通过用能够表示成<span class="math inline">\(K(x_i,x_j)=\phi(x_i)\cdot\phi(x_j)\)</span>的核函数<span class="math inline">\(K(x_i,x_j)\)</span>替换各算式中出现的内积<span class="math inline">\(x_i\cdot x_j\)</span>来完成将数据从低维映射到高维的过程。</p>
+<p>假设<span class="math inline">\(x, z\in \mathbb{R}^n\)</span>, <span class="math inline">\(K(x,z)=(x^Tz)^2.\)</span>, 展开<span class="math inline">\(K(x,z)\)</span>:</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/006V2m65ly1fnf8a3i4nfj30fe04m3yf.jpg"></p>
+<p>其中:</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/006V2m65ly1fnf8b5pxffj308i0830t0.jpg"></p>
+<p>在这个例子中，映射后特征的内积和原始特征的内积的平方是等价的。 也就是说， 我们只需要计算原始特征的内积再进行平方就可以了，并不需要先得到映射后的特征再计算映射后特征的内积。计算原始特征内积的时间复杂度为<span class="math inline">\(\mathcal{O}(n)\)</span>, 而计算映射特征<span class="math inline">\(\phi(x)\)</span>的时间复杂度为<span class="math inline">\(\mathcal{O}(x^2)\)</span>。</p>
+<p><span class="math display">\[
+x^{(i)}\cdot x^{(j)}\longrightarrow \phi(x^{(i)})\cdot \phi(x^{(j)}) =K(x^{(i)},x^{(j)})
+\]</span></p>
+<p>映射函数 <span class="math inline">\(\phi\)</span> 的作用是将低维空间的数据映射到高维空间中，核函数 <span class="math inline">\(K\)</span> 表示的是映射之后高维空间中两个矢量的点积。</p>
+<p>看一下这个列子：</p>
+<p><span class="math display">\[
+x=[x_1, x_2, x_3]^T,y=[y_1, y_2, y_3]^T
+\]</span></p>
+<p><span class="math display">\[
+\phi(x)=[x_1x_1,x_1x_2,x_1x_3,x_2x_1,x_2x_2,x_2x_3,x_3x_1,x_3x_2,x_3x_3]
+\]</span></p>
+<p><span class="math display">\[
+\begin{split}
+\phi(1,2,3)&amp;=[1,2,3,2,4,6,3,6,9]^T\\
+\phi(4,5,6)&amp;=[16,20,24,20,25,30,24,30,36]^T\\
+\phi(1,2,3) \cdot \phi(4,5,6) &amp;=1\times16+2\times 20 + 3\times 24 + 2\times 20 + 4 \times 25 + 6 \times 30 + 3 \times 24 + 6 \times 30 + 9\times 36=1024
+\end{split}
+\]</span></p>
+<p><span class="math display">\[
+\begin{split}
+\phi(x)\cdot \phi(y)&amp;=[x_1x_1,x_1x_2,x_1x_3,x_2x_1,x_2x_2,x_2x_3,x_3x_1,x_3x_2,x_3x_3]^T\cdot [y_1y_1,y_1y_2,y_1y_3,y_2y_1,y_2y_2,y_2y_3,y_3y_1,y_3y_2,y_3y_3] \\
+&amp;= x_1y_1x_1y_1+x_1y_1x_2y_2+x_1y_1x_3y_3+x_2y_2x_1y_1+x_2y_2x_2y_2+x_2y_2x_3y_3\\&amp;+x_3y_3x_1y_1+x_3y_3x_2y_2+x_3y_3x_3y_3\\
+&amp;=(x_1y_1+x_2y_2+x_3y_3)^2\\
+&amp;=(x^Ty)^2\\
+&amp;=K(x,y)
+\end{split}
+\]</span></p>
+<p><span class="math display">\[
+\begin{split}
+K(x,y)=K((1,2,3),(4,5,6))=(1\times 4 + 2\times 5 + 3\times 6)^2=(32)^2=1024
+\end{split}
+\]</span></p>
+<p>相比于从低维映射到高维空间再进行矢量积运算，核函数大大简化了计算的过程，使得向更高维转化变为了可能，我们不需要知道低维空间的数据是怎样映射到高维空间的，我们只需要知道结果是怎么计算出来的。</p>
+<p>我们再来看另一个kernels:</p>
+<p><span class="math display">\[
+\begin{align} K(x,z) &amp; =(x^Tz+c)^2 \\ &amp; = \sum_{i,j=1}^n(x_ix_j)(z_iz_j) + \sum_{i=1}^n(\sqrt{2c}x_i)(\sqrt{2c}x_j)+c^2. \end{align}
+\]</span></p>
+<p>更广泛的来说，我们有：<span class="math inline">\(K(x,z)=(x^Tz+c)^d\)</span>，这个kernel将n维的特征映射为<span class="math inline">\({ {n+d} \choose d }\)</span>维。</p>
+<p>核方法的思想如下：</p>
+<ul>
+<li>将算法表述成样本点内积的组合（这经常能通过算法的对偶形式实现）</li>
+<li>设法找到核函数<span class="math inline">\(K(x_i,x_j)\)</span>，它能返回样本点<span class="math inline">\(x_i、x_j\)</span>被<span class="math inline">\(\phi\)</span>作用后的内积</li>
+<li>用<span class="math inline">\(K(x_i,x_j)\)</span>替换<span class="math inline">\(x_i\cdot x_j\)</span>、完成低维到高维的映射（同时也完成了从线性算法到非线性算法的转换）</li>
+</ul>
+<p>如果我们有一个新的问题我们该如何构造一个kernel？假设我们有映射后的特征向量<span class="math inline">\(\phi(x)\)</span>和<span class="math inline">\(\phi(z)\)</span>, kernel就是用来计算它们两之间的内积。如果<span class="math inline">\(\phi(x)\)</span>和<span class="math inline">\(\phi(z)\)</span>相似的话，即这两个向量的夹角很小，那么这个内积就会很大；相反地，如果它们差别很大，那么这个内积就会很小。所以，我们可以这样想kernels，当<span class="math inline">\(x\)</span>和<span class="math inline">\(z\)</span>相似时，<span class="math inline">\(K(x,z)\)</span>很大。反之，当<span class="math inline">\(x\)</span>和<span class="math inline">\(z\)</span>不同时， <span class="math inline">\(K(x,z)\)</span>很小。</p>
+<p>我们再来看一个kernel:</p>
+<p><span class="math display">\[
+K(x,z)=exp\left(-\frac{||x-z||^2}{2\sigma^2}\right).
+\]</span></p>
+<p>这个kernel应该挺符合上面的想法吧。这个kernel长得像高斯分布，我们一般叫他高斯kernel，也可以叫Radial basis funtction kernel，简称RBF核。</p>
+<p>下面有张图说明在低维线性不可分时，映射到高维后就可分了，使用高斯核函数。</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/006V2m65ly1fnf8jmctxgj30fg07umxs.jpg"></p>
+<h3 id="核函数有效性判定">II.VI.I. 核函数有效性判定</h3>
+<p>并不是所有的函数<span class="math inline">\(K\)</span>都能够对应一个映射（亦即不是所有的<span class="math inline">\(K(x_i,x_j)\)</span>都能拆成<span class="math inline">\(\phi(x_i)\cdot\phi(x_j)\)</span>；比如说，显然<span class="math inline">\(K(x_i,x_j)\)</span>至少需要是一个对称函数）。</p>
+<p>幸运的是，1909 年提出的 Mercer 定理解决了这个问题。Mercer 定理为寻找核函数带来了极大的便利。如果<span class="math inline">\(K\)</span>是一个有效的kernel，那么对于在训练集上的核矩阵<span class="math inline">\(K\)</span>一定是半正定的。事实上，这不仅仅是个必要条件，它也是充分条件。有效核也叫作Mercer Kernel。</p>
+<blockquote>
+<p>Mercer 定理: 函数<span class="math inline">\(K\)</span>是<span class="math inline">\(\mathbb{R}^n\times\mathbb{R}^n\to\mathbb{R}\)</span>上的映射. 如果<span class="math inline">\(K\)</span>是一个有效的(Mercer)Kernel, 那么当且仅当对于任意<span class="math inline">\(\lbrace x^{(1)},…,x^{(m)}\rbrace, (m\lt\infty)\)</span>, 相应的kernel matrix是半正定的。</p>
+</blockquote>
+<p><span class="math display">\[K_{ij}=K(x^{(i)}, x^{(j)})=\phi(x^{(i)})^T\phi(x^{(j)})=\phi(x^{(j)})^T\phi(x^{(i)})=K(x^{(j)}, x^{(i)})=K_{ji}\]</span></p>
+<p>那么核方法的应用场景有哪些呢？在 2002 年由 Scholkopf 和 Smola 证明的表示定理告诉我们它的应用场景非常广泛。</p>
+<div id="kernel-svm">
+
+</div>
+<h2 id="kernel-svm">II.VII. Kernel SVM</h2>
+<p>因此，SVM 其实并不需要真正的向量，它可以用它们的数量积（点积）来进行分类。核函数可以减少大量的计算资源需求。通常，内核是线性的，所以我们得到了一个线性分类器。但如果使用非线性内核，我们可以在完全不改变数据的情况下得到一个非线性分类器：我们只需改变点积为我们想要的空间，SVM 就会对它忠实地进行分类。这意味着我们可以避免耗费计算资源的境地了。（<a target="_blank" rel="noopener" href="https://v.qq.com/x/page/k05170ntgzc.html">直观可视化解释</a>）。</p>
+<p>为了完成这个目的，令 <span class="math inline">\(\phi(\mathbf x)\)</span> 表示将 <span class="math inline">\(\mathbf x\)</span> <strong>映射后的特征向量</strong>，于是，在特征空间<strong>划分超平面</strong>所对应的模型可表示为：</p>
+<p><span class="math display">\[
+\sum_{k=1}^m\alpha_iy^{(i)}=0, w =\sum_{k=1}^m\alpha_iy^{(i)}x^{(i)} \\
+y=w^Tx+b
+\]</span></p>
+<p><span class="math display">\[
+\begin{split}
+y&amp;=\sum_{k=1}^m\alpha _ iy^{(i)}x^{(i)}x+b\\
+&amp;=\sum_{k=1}^m\alpha _ iy^{(i)}&lt; x^{(i)},x &gt;+b\\
+\end{split}
+\]</span></p>
+<p><span class="math display">\[
+y=\sum_{k=1}^m\alpha_iy^{(i)} &lt; \phi(x^{(i)}),\phi(x) &gt; +b
+\]</span></p>
+<p><span class="math display">\[
+f(\mathbf x) = \mathbf w^T \phi(\mathbf x) + b
+\]</span></p>
+<p><span class="math display">\[
+y=\sum_{k=1}^m\alpha _ iy^{(i)}K(x^{(i)},x)+b\\
+\]</span></p>
+<p>在SVM的等价对偶问题中的目标函数中有样本点的内积<span class="math inline">\((x_i \cdot x_j)\)</span>，，在空间变换后则是<span class="math inline">\((\phi(x_i) \cdot \phi(x_j))\)</span> 。由于维数增加导致内积计算成本增加，这时核函数（kernel function）便派上用场了，将映射后的高维空间内积转换成低维空间的函数：<span class="math inline">\(K(x,z)=\phi(x) \cdot \phi(z)\)</span>。</p>
+<p>同理上文中引入拉格朗日乘子，求解整个方程后可得：</p>
+<p><span class="math display">\[
+\begin{align}
+f(\mathbf x) &amp;=   \mathbf w^T \phi(\mathbf x) + b \\
+&amp;= \sum_{i=1}^m \lambda_i y_i \phi(\mathbf x_i)^T \phi(\mathbf x) + b \\
+&amp;= \sum_{i=1}^m \lambda_i y_i k(\mathbf x,\mathbf x_i)+ b
+\end{align}
+\]</span></p>
+<p>注意，使用核函数后，怎么分类新来的样本呢？是否先要找到<span class="math inline">\(\phi(\mathbf x)\)</span>，然后再预测？答案肯定不是了。只需要根据上式的值判断即可，如果值大于等于1，那么是正类，小于等于是负类。在两者之间，认为无法确定。</p>
+<p>这里的函数 <span class="math inline">\(k(\cdot,\cdot)\)</span> 就是<strong>核函数（kernel function）</strong> ，常见的核函数见下表：</p>
+<table style="width:17%;">
+<colgroup>
+<col width="5%">
+<col width="5%">
+<col width="5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">名称</th>
+<th align="center">表达式</th>
+<th align="center">参数</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">线性核</td>
+<td align="center"><span class="math inline">\(\boldsymbol x_i^T \boldsymbol x_j\)</span></td>
+<td align="center">无</td>
+</tr>
+<tr class="even">
+<td align="center">多项式核</td>
+<td align="center"><span class="math inline">\((\boldsymbol x_i^T \boldsymbol x_j)^d\)</span></td>
+<td align="center"><span class="math inline">\(d \geqslant 1\)</span> 多项式次数</td>
+</tr>
+<tr class="odd">
+<td align="center">高斯核</td>
+<td align="center"><span class="math inline">\(exp(-\frac{\lVert\boldsymbol x_i - \boldsymbol x_j \lVert^2}{2\sigma^2})\)</span></td>
+<td align="center"><span class="math inline">\(\sigma&gt;0\)</span> 高斯核带宽</td>
+</tr>
+<tr class="even">
+<td align="center">拉普拉斯核</td>
+<td align="center"><span class="math inline">\(exp(-\frac{\lVert\boldsymbol x_i - \boldsymbol x_j \lVert^2}{\sigma})\)</span></td>
+<td align="center"><span class="math inline">\(\sigma&gt;0\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">Sigmoid核</td>
+<td align="center"><span class="math inline">\(tanh(\beta \boldsymbol x_i^T\boldsymbol x_j + \theta)\)</span></td>
+<td align="center"><span class="math inline">\(\beta&gt;0\)</span> <span class="math inline">\(\theta&gt;0\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="感知器核方法">II.VII.I. 感知器核方法</h3>
+<p>怎么应用核方法？简单来说，就是把算法中涉及到样本（<span class="math inline">\(x_i\)</span>）的地方都通过某种变换、弄成样本的内积形式（<span class="math inline">\(x_i\cdot x_j\)</span>）。</p>
+<p>感知机的原始损失函数为</p>
+<p><span class="math display">\[
+L(D) = \sum_{i=1}^N\left[ -y_i(w\cdot x_i+b)\right]_ +
+\]</span></p>
+<p>为了让损失函数中的样本都变成内积形式，考虑令<span class="math inline">\(w = \sum_{i=1}^N\alpha_ix_i\)</span>（也有令<span class="math inline">\(w = \sum_{i=1}^N\alpha_iy_ix_i\)</span>的），则</p>
+<p><span class="math display">\[
+\begin{align}
+L(D) &amp;= \sum_{i=1}^N\left[ -y_i\left[\left(\sum_{j=1}^N\alpha_jx_j\right)\cdot x_i+b\right]\right]_ + \\
+&amp;= \sum_{i=1}^N\left[ -y_i\left(\sum_{j=1}^N\alpha_j(x_i\cdot x_j)+b\right)\right]_ +
+\end{align}
+\]</span></p>
+<p>在此之上应用核方法是平凡的：设核函数为<span class="math inline">\(K\)</span>，只需把所有的<span class="math inline">\(x_i\cdot x_j\)</span>换成<span class="math inline">\(K(x_i,x_j)\)</span>即可：</p>
+<p><span class="math display">\[
+L(D) = \sum_{i=1}^N\left[ -y_i\left(\sum_{j=1}^N\alpha_jK(x_i,x_j)+b\right)\right]_ +
+\]</span></p>
+<p>于是优化问题变为</p>
+<p><span class="math display">\[
+\min_{\alpha}\sum_{i=1}^N\left[ -y_i\left(\sum_{j=1}^N\alpha_jK(x_i,x_j)+b\right)\right]_ +
+\]</span></p>
+<p>预测步骤则变为</p>
+<p><span class="math display">\[
+y_{\text{pred}}=w\cdot x+b=\sum_{i=1}^N\alpha_iK(x_i, x)+b
+\]</span></p>
+<p>当我们对感知机应用核方法后，它就能对非线性数据集（比如螺旋线数据集）进行分类了 。</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/2019-7-29-3.gif"></p>
+<div id="soft-kernel-svm">
+
+</div>
+<h3 id="soft-kernel-svm">II.VII.II. Soft Kernel SVM</h3>
+<p>将其代入一般化的SVM学习算法的目标函数中，可得非线性SVM的最优化问题：</p>
+<p><span class="math display">\[
+L(D)=\frac12\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jK(x_i,x_j)+C\sum_{i=1}^N\left[ 1-y_i\left(\sum_{j=1}^N\alpha_jK(x_i,x_j)+b\right)\right]_ +
+\]</span></p>
+<p><span class="math display">\[
+\begin{align}
+\min_{\alpha} \quad  \frac{1}{2}\sum_{i=1}^{N}\sum_{j=1}^{N}\alpha_i \alpha_j y_i y_j K(x_i,x_j) - \sum_{i=1}^{N}\alpha_i  \\
+s.t. \quad \sum_{i=1}^{N}\alpha_i y_i = 0 ; \quad 0 \le \alpha_i \le C, \quad i=1,2,\cdots,N
+\end{align}
+\]</span></p>
+<p>预测步骤则仍然是：</p>
+<p><span class="math display">\[
+y_{\text{pred}}=w\cdot x+b=\sum_{i=1}^N\alpha_iK(x_i, x)+b
+\]</span></p>
+<h2 id="核方法的训练">II.VIII. 核方法的训练</h2>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/27445103">核感知机的梯度下降法</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/27662928">SMO算法</a>的效果</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/2019-7-29-4.gif"></p>
+<h1 id="svr">III. SVR</h1>
+<p>对SVM解回归问题，进行分析。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/luoshixian099/article/details/51121767">【机器学习详解】SVM解回归问题</a></li>
+</ul>
+<h1 id="扩展应用">IV. 扩展应用</h1>
+<p>当数据未被标记时，不能进行监督式学习，需要用非监督式学习，它会尝试找出数据到簇的自然聚类，并将新数据映射到这些已形成的簇。将支持向量机改进的聚类算法被称为支持向量聚类，当数据未被标记或者仅一些数据被标记时，支持向量聚类经常在工业应用中用作分类步骤的预处理。</p>
+<h1 id="matlab实现">V. MATLAB实现</h1>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="http://www.csie.ntu.edu.tw/~cjlin/libsvm/index.html">LIBSVM -- A Library for Support Vector Machines</a></p></li>
+<li><p><a target="_blank" rel="noopener" href="http://blog.sciencenet.cn/blog-111625-837534.html">LibSVM 在matlab中的使用以及libsvm-mat在MATLAB平台下的安装</a></p></li>
+<li><p><a target="_blank" rel="noopener" href="http://www.it610.com/article/4759080.htm">How to use libsvm for regression in matlab</a></p></li>
+</ul>
+<p>得到数值temp1：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmd = [&#x27;-v &#x27;,num2str(v),&#x27; -c &#x27;,num2str(ga_bestc),&#x27; -g &#x27;,num2str(ga_bestg),&#x27; -s 3 -p 0.01&#x27;];</span><br><span class="line">temp1 = svmtrain(train_label,train_data,cmd);</span><br></pre></td></tr></table></figure>
+<p>得到训练的模型temp2：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmd = [&#x27;-t 2&#x27;,&#x27; -c &#x27;,num2str(ga_bestc),&#x27; -g &#x27;,num2str(ga_bestg),&#x27; -s 3 -p 0.01&#x27;];</span><br><span class="line">temp2 = svmtrain(train_label,train_data,cmd);</span><br></pre></td></tr></table></figure>
+<p>livsvm的svr验证：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">% 训练集输入</span><br><span class="line">[pn_train,inputps] = mapminmax(p_train&#x27;);</span><br><span class="line">pn_train = pn_train&#x27;;</span><br><span class="line">% 测试集输入</span><br><span class="line">pn_test = mapminmax(&#x27;apply&#x27;,p_test&#x27;,inputps);</span><br><span class="line">pn_test = pn_test&#x27;;</span><br><span class="line">% 训练集预测验证</span><br><span class="line">t_svr_train = zeros(len_train,1);</span><br><span class="line">for i = 1:len_train</span><br><span class="line">    x = pn_train(i,:);</span><br><span class="line">    t_svr_train (i,1) = SVRDecisionFunction(x,gs_model);</span><br><span class="line">end</span><br><span class="line">% 反归一化</span><br><span class="line">t_svr_train_1 = mapminmax(&#x27;reverse&#x27;,t_svr_train,outputps);</span><br><span class="line">% 测试集预测验证</span><br><span class="line">t_svr_test = zeros(len_test,1);</span><br><span class="line">for i = 1:len_test</span><br><span class="line">    x = pn_test(i,:);</span><br><span class="line">    t_svr_test (i,1) = SVRDecisionFunction(x,gs_model);</span><br><span class="line">end</span><br><span class="line">% 反归一化</span><br><span class="line">t_svr_test_1 = mapminmax(&#x27;reverse&#x27;,t_svr_test,outputps);</span><br><span class="line"></span><br><span class="line">figure</span><br><span class="line">hold on</span><br><span class="line">h200=plot(1:length(set_num),[t_train;t_test]&#x27;,&#x27;r-o&#x27;);</span><br><span class="line">h202=plot(1:length(set_num),[gs_predict_1;gs_predict_2]&#x27;,&#x27;b-+&#x27;);</span><br><span class="line">h203=plot(1:length(set_num),[t_svr_train_1;t_svr_test_1]&#x27;,&#x27;g-+&#x27;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<div id="parameter-selection">
+
+</div>
+<h1 id="svm-参数优化">VI. SVM 参数优化</h1>
+<p><a target="_blank" rel="noopener" href="https://www.researchgate.net/post/In_support_vector_machinesSVM_how_we_adjust_the_parameter_C_why_we_use_this_parameter">In support vector machines (SVM) how can we adjust the parameter C?</a></p>
+<p>C is a trade-off between training error and the flatness of the solution. The larger C is the less the final training error will be. But if you increase C too much you risk losing the generalization properties of the classifier, because it will try to fit as best as possible all the training points (including the possible errors of your dataset). In addition a large C, usually increases the time needed for training.</p>
+<p>If C is small, then the classifier is flat (meaning that its derivatives are small - close to zero, at least for the gaussian rbf kernel this is substantiated theoretically). You have to find a C that keeps the training erro small, but also generalizes well (i.e., it doesn't have large fluctuations). There are several methods to find the best possible C automatically, but you must keep in mind that this depends on the application you are interested in.</p>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p><a target="_blank" rel="noopener" href="https://monkeylearn.com/blog/introduction-to-support-vector-machines-svm/">详解支持向量机SVM：快速可靠的分类算法</a><a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p><a target="_blank" rel="noopener" href="http://daniellaah.github.io/2016/CS229-Machine-Learning-Notes-Lecture-8.html">CS229机器学习笔记(七)-SVM之Kernels</a><a href="#fnref2">↩</a></p></li>
+</ol>
+</div>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="Alex LEE 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="Alex LEE 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/MachineLearning/" rel="tag"><i class="fa fa-tag"></i> MachineLearning</a>
+              <a href="/tags/SVM/" rel="tag"><i class="fa fa-tag"></i> SVM</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/graphical-abstract/" rel="prev" title="如何制作高质量的图文摘要">
+                  <i class="fa fa-angle-left"></i> 如何制作高质量的图文摘要
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/music/" rel="next" title="音乐视频外链">
+                  音乐视频外链 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex LEE</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">317k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:14</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><div class="footer-custom"> Hosted by <a target="_blank" href="https://pages.github.com">GitHub Pages</a>  |  <a target="_blank"  href="https://about.gitlab.com/stages-devops-lifecycle/pages/">Gitlab Pages</a> </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sli1989","repo":"gitalk","client_id":"9fa53d6156d8791703b5","client_secret":"706eeec44bf22fe410e90d364fe8a348ab8bcaed","admin_user":"sli1989","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"82efabae0a632a52c82da6540ac5446d"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title></title>
+	<link rel="stylesheet" href="/static/css/player.css">
+</head>
+
+<div id="QPlayer">
+	<div id="pContent">
+		<div id="player">
+			<span class="cover"></span>
+			<div class="ctrl">
+				<div class="musicTag marquee">
+					<strong>Title</strong>
+					 <span> - </span>
+					<span class="artist">Artist</span>
+				</div>
+				<div class="progress">
+					<div class="timer left">0:00</div>
+					<div class="contr">
+						<div class="rewind icon"></div>
+						<div class="playback icon"></div>
+						<div class="fastforward icon"></div>
+					</div>
+					<div class="right">
+						<div class="liebiao icon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ssBtn">
+				<div class="adf"></div>
+		</div>
+	</div>
+	<ol id="playlist"></ol>
+</div>
+<script src="//cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  var playlist = [];
+  
+  playlist.push({title:'午后庭院',artist:'夏天播放',mp3:'https://music.163.com/song/media/outer/url?id=29095562.mp3',cover:'https://p1.music.126.net/5uQHiJSmUMo74VAR4KJCTA==/6670737045946097.jpg'})
+  
+  playlist.push({title:'远走高飞',artist:'金志文',mp3:'https://music.163.com/song/media/outer/url?id=1297742772.mp3',cover:'https://p1.music.126.net/elfqBKIdad0KYCCeKQpDSA==/18700493767108166.jpg'})
+  
+  playlist.push({title:'她',artist:'不可撤销乐队',mp3:'https://music.163.com/song/media/outer/url?id=29747622.mp3',cover:'https://p1.music.126.net/4x2X7W_VGHQeHoMR4a3Wbw==/3227066628477266.jpg'})
+  
+  playlist.push({title:'给你',artist:'陈奕迅',mp3:'https://music.163.com/song/media/outer/url?id=64706.mp3',cover:'https://p1.music.126.net/GK7EB01AIEE9-qHkBi-3vg==/89060441862562.jpg'})
+  
+  playlist.push({title:'千禧',artist:'徐秉龙',mp3:'https://music.163.com/song/media/outer/url?id=522510615.mp3',cover:'https://y.gtimg.cn/music/photo_new/T002R300x300M000004UOSJ5117bcd.jpg'})
+  
+  playlist.push({title:'年度之歌',artist:'谢安琪',mp3:'https://music.163.com/song/media/outer/url?id=308169.mp3',cover:'http://p1.music.126.net/SkSda5laDTH73h_a9ZYEig==/109951164146248533.jpg'})
+  
+  playlist.push({title:'边走边唱',artist:'李荣浩',mp3:'https://music.163.com/song/media/outer/url?id=31134197.mp3',cover:'https://p1.music.126.net/4Pu7M0q88fVVoo1ZFS_nmw==/3408486047237011.jpg'})
+  
+  var isRotate = true;
+  var autoplay = false;
+</script>
+<script src="/static/js/player.js"></script>
+<script>
+  function bgChange(){
+	var lis= $('.lib');
+	for(var i=0; i<lis.length; i+=2)
+	lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+  }
+  window.onload = bgChange;
+</script>
+
+  <script type="text/javascript" src="/js/custom.js"></script>
+</body>
+</html>

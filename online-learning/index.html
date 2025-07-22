@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"saili.science","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":true,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="机器学习算法可以分成两类。离线学习和在线学习。在线机器学习指每次通过一个训练实例学习模型的学习方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在线学习">
+<meta property="og:url" content="http://saili.science/online-learning/index.html">
+<meta property="og:site_name" content="Alex LEE&#39;s Blog">
+<meta property="og:description" content="机器学习算法可以分成两类。离线学习和在线学习。在线机器学习指每次通过一个训练实例学习模型的学习方法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-10-11T12:23:06.000Z">
+<meta property="article:modified_time" content="2018-10-29T10:15:41.000Z">
+<meta property="article:author" content="Alex LEE">
+<meta property="article:tag" content="MachineLearning">
+<meta property="article:tag" content="OnlineLearning">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://saili.science/online-learning/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":true,"isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://saili.science/online-learning/","path":"online-learning/","title":"在线学习"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>在线学习 | Alex LEE's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/6.1.3/pangu.umd.js" integrity="sha256-erngBMP3zzoIM6eqQ8dmrReh2vqCRgWmORroIfVoDlE=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://saili.science/online-learning/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex LEE's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex LEE's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">77</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">25</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A6%BB%E7%BA%BF%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0"><span class="nav-text">I. 离线学习与在线学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A6%BB%E7%BA%BF%E5%AD%A6%E4%B9%A0"><span class="nav-text">I.I. 离线学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0"><span class="nav-text">I.II. 在线学习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A2%9E%E9%87%8F%E5%BC%8F%E7%AE%97%E6%B3%95"><span class="nav-text">II. 增量式算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%8F%E9%87%8F%E5%BC%8F%E7%AE%97%E6%B3%95"><span class="nav-text">III. 减量式算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B"><span class="nav-text">IV. 实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%9A%84%E4%BA%8C%E5%80%BC%E5%88%86%E7%B1%BB"><span class="nav-text">IV.I. 在线学习的二值分类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%B5%84%E6%BA%90"><span class="nav-text">V. 代码资源</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex LEE"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Alex LEE</p>
+  <div class="site-description" itemprop="description">There is no royal road to learning.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:im.sai.li@outlook.com" title="E-Mail → mailto:im.sai.li@outlook.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/sli1989" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;sli1989" rel="noopener me" target="_blank"><i class="telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitter.im/sli1989" title="Gitter → https:&#x2F;&#x2F;gitter.im&#x2F;sli1989" rel="noopener me" target="_blank"><i class="github-alt fa-fw"></i>Gitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/sli1989/HEXO-NEXT-CUSTOM" title="https:&#x2F;&#x2F;github.com&#x2F;sli1989&#x2F;HEXO-NEXT-CUSTOM" rel="noopener" target="_blank">About the Blog</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://fontawesome.com/icons" title="https:&#x2F;&#x2F;fontawesome.com&#x2F;icons" rel="noopener" target="_blank">Font Awesome Icons</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://getemoji.com/" title="https:&#x2F;&#x2F;getemoji.com&#x2F;" rel="noopener" target="_blank">Copy and Paste Emoji</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://saili.science/online-learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Alex LEE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex LEE's Blog">
+      <meta itemprop="description" content="There is no royal road to learning.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="在线学习 | Alex LEE's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在线学习
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2018-10-29 18:15:41" itemprop="dateModified" datetime="2018-10-29T18:15:41+08:00">2018-10-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类：</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Research/" itemprop="url" rel="index"><span itemprop="name">Research</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>11 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>机器学习算法可以分成两类。离线学习和在线学习。在线机器学习指每次通过一个训练实例学习模型的学习方法。</p>
+<span id="more"></span>
+<blockquote>
+<p>Gama J, Žliobaitė I, Bifet A, et al. A survey on concept drift adaptation[J]. ACM computing surveys (CSUR), 2014, 46(4): 44.<br>
+Shalev-Shwartz S. Online learning and online convex optimization[J]. Foundations and Trends® in Machine Learning, 2012, 4(2): 107-194.<br>
+Žliobaitė I, Pechenizkiy M, Gama J. An overview of concept drift applications[M]//Big data analysis: new algorithms for a new society. Springer, Cham, 2016: 91-114.</p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://machinelearningmastery.com/gentle-introduction-concept-drift-machine-learning/">A Gentle Introduction to Concept Drift in Machine Learning</a></p>
+</blockquote>
+<p>Concept Drift:</p>
+<h1 id="离线学习与在线学习">I. 离线学习与在线学习</h1>
+<p>We can distinguish two learning modes: offline learning and online learning.</p>
+<h2 id="离线学习">I.I. 离线学习</h2>
+<p>In offline learning the whole training data must be available at the time of model training. Only when training is completed the model can be used for predicting.</p>
+<p>不同理解方式：</p>
+<ul>
+<li>也称批量学习（batch learning）：一个batch训练完才更新权重，这样的话要求所有的数据必须在每一个训练操作中（batch中）都是可用的，这样不会因为偶然的错误把网络带向极端。在监督学习的批量方法中，多层感知器的突出权值的调整在训练样本集合的所有N个例子都出现后进行，这构成了训练的一个回合。换句话说，批量学习的代价函数是由平均误差能量定义的。多层感知器的突触权值的调整是以回合-回合为基础的。相应地，学习曲线的一种实现方式是通过描绘平均误差能量对回合数的图形而得到，对于训练的每一个回合，训练样本集合的样例是随机选取的。学习曲线通过对足够大量的这样实现的总体平均来计算，这里每次实现是在随机选取不同初始条件下完成的。这一特点符合交叉验证的规律，实验中的实验集、验证集、测试集一般都是批量处理的典例。
+<ul>
+<li>只有训练完成了之后，模型才能被拿来用。简而言之，先训练，再用模型，不训练完就不用模型。</li>
+</ul></li>
+<li>你有一个样本，你把第一条带入训练，调整权重，然后带入下一条，直至跑完整个样本，这个时候的误差率可能不让你满意，于是你把整个样本又做了上述操作，直到误差很小。 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">initialize all weights to random value</span><br><span class="line">repeat:</span><br><span class="line">  for t in training_set:</span><br><span class="line">    compute train_error for t</span><br><span class="line">    adjust weights base on train_error</span><br><span class="line">until error rate is very small or error rate variation stops</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>优点：</p>
+<ol style="list-style-type: decimal">
+<li>消除样本顺序的影响</li>
+<li>对梯度向量的精确估计，因此，在简单条件下，保证了这一方法最速下降到局部极小点的收敛性。</li>
+<li>学习的并行性。</li>
+</ol>
+<p>缺点：</p>
+<ol style="list-style-type: decimal">
+<li>有着存储需求</li>
+</ol>
+<h2 id="在线学习">I.II. 在线学习</h2>
+<p>不同理解方式：</p>
+<ul>
+<li>online and batch learning：在线算法按照顺序处理数据，一个数据点训练完了直接更新权重。它们产生一个模型，并在把这个模型放入实际操作中，而不需要在一开始就提供完整的训练数据集。随着更多的实时数据到达，模型会在操作中不断地更新。In contrast, online algorithms process data sequentially. They produce a model and put it in operation without having the complete training data set available at the beginning. The model is continuously updated during operation as more training data arrives. Less restrictive than online algorithms are incremental algorithms that process input examples one by one (or batch by batch) and update the decision model after receiving each example. Incremental algorithms may have random access to previous examples or representative/selected examples. In such a case, these algorithms are called incremental algorithms with partial memory. Typically, in incremental algorithms, for any new presentation of data, the update operation of the model is based on the previous one. Streaming algorithms are online algorithms for processing high-speed continuous flows of data. In streaming, examples are processed sequentially as well and can be examined in only a few passes (typically just one). These algorithms use limited memory and limited processing time per item.
+<ul>
+<li>通常来讲，一种Online learning算法对于一个序列进行一系列处理可以分为三步<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>：第一步，算法获得一个训练实例；第二步，算法预测训练实例的类别；第三步，算法获得正确类别，并根据预测类别与正确类别更新模型假设。</li>
+<li>我们无法得知这一次的更新权重是正确的还是错误的，如果恰恰是错误的一次更新，那么我们的模型会有可能渐渐地走向错误方向，残差出现。</li>
+</ul></li>
+<li>你有一个样本，你把第一条带入训练，调整权重，再把这一条带进去一次，重复多次，直至误差率很小，然后再带入下一条，直至跑完整个样本。 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">initialize all weights to random value</span><br><span class="line">  for t in training_set:</span><br><span class="line">    repeat:</span><br><span class="line">    compute train_error for t</span><br><span class="line">    adjust weights base on train_error</span><br><span class="line">  until error rate is very small or error rate variation stops</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>在监督学习的在线方法下，对于多层感知器突触权值的调整是以样例-样例为基础的，用来最小化的代价函数是全体瞬时误差能量。和批量学习一样，在线学习的学习曲线是通过足够大量的随机选取的初始条件上的总体平均来计算的。对于给定的网络结构，在线学习下获得的学习曲线和批量学习下获得的学习曲线有着很大的不同。</p>
+<p>给定训练样本以随机的方式呈现给网络，在线学习的使用使得在多维权值空间中的搜索事实上是随机的；正是由于这个原因，在线学习方法有时被称为随机方法。</p>
+<p>优点：</p>
+<ol style="list-style-type: decimal">
+<li>容易执行</li>
+<li>对于大规模和困难模式分类问题它提供有效解。</li>
+<li>随机性使得不容易陷入局部极值点</li>
+<li>存储量少得多</li>
+</ol>
+<h1 id="增量式算法">II. 增量式算法</h1>
+<p>增量式算法就是每当新增数据时，并不需要重建所有的知识库，而是在原有知识库的基础上，仅做由于新增数据所引起的更新，这更加符合人的思维原理。一个增量学习算法应同时具有以下特点：</p>
+<ul>
+<li>可以从新数据中学习新知识；<br>
+</li>
+<li>以前已经处理过的数据不需要重复处理；</li>
+<li>每次只有一个训练观测样本被看到和学习；</li>
+<li>学习新知识的同时能保存以前学习到的大部分知识；</li>
+<li>—旦学习完成后训练观测样本被丢弃；</li>
+<li>学习系统没有关于整个训练样本的先验知识；</li>
+</ul>
+<h1 id="减量式算法">III. 减量式算法</h1>
+<p>decremental learning，即抛弃“价值最低”的保留的训练样本。这两个概念在incremental and decremental svm这篇论文里面可以看到具体的操作过程。</p>
+<blockquote>
+<p>Cauwenberghs G, Poggio T. Incremental and decremental support vector machine learning[C]//Advances in neural information processing systems. 2001: 409-415.<br>
+Gâlmeanu H, Andonie R. Implementation issues of an incremental and decremental SVM[C]//International Conference on Artificial Neural Networks. Springer, Berlin, Heidelberg, 2008: 325-335.</p>
+</blockquote>
+<h1 id="实例">IV. 实例</h1>
+<p>两种典型在线机器学习算法：Perceptron、MIRA，他们都属于线性分类算法族，它们具有相同的模型形式。在学习阶段，算法对于每个类别，通过训练数据估计一个参数向量w。在推理阶段，算法在给定一组参数向量w和数据x的条件下，以w和x的乘积作为数据与该类的相似度度量。</p>
+<h2 id="在线学习的二值分类">IV.I. 在线学习的二值分类</h2>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://qingyuanxingsi.github.io/tag/perception.html">机器学习番外篇之在线学习(I):Online Learning与感知器</a></p>
+</blockquote>
+<p>假设样例按照到来的先后顺序依次定义为<span class="math inline">\(((x^{(1)},y^{(1)}),(x^{(2)},y^{(2)}),\cdots,(x^{(m)},y^{(m)}))\)</span>。<span class="math inline">\(X\)</span>为样本特征，<span class="math inline">\(y\)</span>为类别标签。我们的任务是到来一个样例<span class="math inline">\(x\)</span>，给出其类别结果<span class="math inline">\(y\)</span>的预测值，之后我们会看到<span class="math inline">\(y\)</span>的真实值，然后根据真实值来重新调整模型参数，整个过程是重复迭代的过程，直到所有的样例完成。</p>
+<p>我们的假设函数为:</p>
+<p><span class="math display">\[
+\begin{equation} h_{\theta}(x) = g(\theta^T x) \end{equation}
+\]</span></p>
+<p>其中<span class="math inline">\(x\)</span>是<span class="math inline">\(n+1\)</span>维特征向量,最后一维为常量<span class="math inline">\(1\)</span>，<span class="math inline">\(\theta\)</span>是<span class="math inline">\(n+1\)</span>维参数权重,最后一维表示Bias。函数<span class="math inline">\(g\)</span>用来将<span class="math inline">\(\theta^Tx\)</span>计算结果映射到<span class="math inline">\(-1\)</span>和<span class="math inline">\(1\)</span>上。具体公式如下：</p>
+<p><span class="math display">\[
+\begin{equation} \begin{split} g(z) = \left \lbrace \begin{array}{cc} 1 &amp; \text{if} \ z \geq 0 \\ -1 &amp; \text{if} \ z &lt; 0 \end{array} \right. \end{split} \end{equation}
+\]</span></p>
+<p>这个也是logistic回归中<span class="math inline">\(g\)</span>的简化形式。</p>
+<p>现在我们提出一个在线学习算法如下：</p>
+<p>新来一个样例<span class="math inline">\((x,y)\)</span>，我们先用从之前样例学习到的<span class="math inline">\(h_{\theta}(x)\)</span>来得到样例的预测值<span class="math inline">\(y\)</span>，如果<span class="math inline">\(h_{\theta}(x) = y\)</span>（即预测正确），那么不改变<span class="math inline">\(\theta\)</span>，反之</p>
+<p><span class="math display">\[
+\begin{equation} \theta := \theta + yx \end{equation}
+\]</span></p>
+<p>也就是说，如果对于预测错误的样例，<span class="math inline">\(\theta\)</span>进行调整时只需加上（实际上为正例）或者减去（实际负例）样本特征<span class="math inline">\(x\)</span>值即可。<span class="math inline">\(\theta\)</span>初始值为向量0。这里我们关心的是<span class="math inline">\(\theta^Tx\)</span>的符号，而不是它的具体值。调整方法非常简单。然而这个简单的调整方法还是很有效的，它的错误率不仅是有上界的，而且这个上界不依赖于样例数和特征维度。</p>
+<p>下面定理阐述了<strong>错误率上界</strong>：</p>
+<blockquote>
+<p>定理（Block and Novikoff）: 给定按照顺序到来的<span class="math inline">\((x^{(1)},y^{(1)}),(x^{(2)},y^{(2)},\cdots,(x^{(m)},y^{(m)}))\)</span>样例。假设对于所有的样例<span class="math inline">\(||x^{(i)} \leq D\)</span>，也就是说特征向量长度有界为<span class="math inline">\(D\)</span>。更进一步，假设存在一个单位长度向量<span class="math inline">\(u\)</span>且<span class="math inline">\(y^{(i)}(u^Tx^{(i)})\geq \gamma\)</span>。也就是说对于<span class="math inline">\(y=1\)</span>的正例，<span class="math inline">\(u^Tx^{(i)} \geq \gamma\)</span>，反例<span class="math inline">\(u^Tx^{(i)} \leq -\gamma\)</span>，<span class="math inline">\(u\)</span>能够有<span class="math inline">\(\gamma\)</span>的间隔将正例和反例分开。那么感知算法的预测的错误样例数不超过<span class="math inline">\(({D \over \gamma})^2\)</span>。</p>
+</blockquote>
+<p>根据对SVM的理解，这个定理就可以阐述为：如果训练样本线性可分，并且几何间距至少是<span class="math inline">\(\gamma\)</span>，样例样本特征向量最长为<span class="math inline">\(D\)</span>，那么感知算法错误数不会超过<span class="math inline">\(({D \over \gamma})^2\)</span>。这个定理是62年提出的，63年Vapnik提出SVM，可见提出也不是偶然的，感知算法也许是当时的热门。</p>
+<div class="note info">
+<p>
+定理证明
+</p>
+</div>
+<p>感知算法只在样例预测错误时进行更新，定义<span class="math inline">\(\theta^{(k)}\)</span>是第<span class="math inline">\(k\)</span>次预测错误时使用的样本特征权重，<span class="math inline">\(\theta^{(1)} = \vec{0}\)</span> 初始化为<span class="math inline">\(\vec{0}\)</span>向量。假设第<span class="math inline">\(k\)</span>次预测错误发生在样例<span class="math inline">\((x^{(i)},y^{(i)})\)</span>上，利用<span class="math inline">\(\theta^{(k)}\)</span>计算<span class="math inline">\(y^{(i)}\)</span>值时得到的结果不正确。也就是说下面的公式成立：</p>
+<p><span class="math display">\[
+\begin{equation} (x^{(i)})^T\theta^{(k)}y^{(i)} \leq 0 \end{equation}
+\]</span></p>
+<p>根据感知算法的更新方法，我们有<span class="math inline">\(\theta^{(k+1)} = \theta^{(k)} + y^{(i)}x^{(i)}\)</span>。这时候，两边都乘以<span class="math inline">\(u\)</span>得到:</p>
+<p><span class="math display">\[
+\begin{equation} \begin{split} (\theta^{(k+1)})^Tu &amp;= (\theta^{(k)})^u + y^{(i)}(x^{(i)})^Tu \\ &amp;\geq (\theta^{(k)})^Tu + \gamma \end{split} \end{equation}
+\]</span></p>
+<p>这个式子是个递推公式，就像等差数列一样<span class="math inline">\(f_{n+1}=f_n+d\)</span>。由此我们可得</p>
+<p><span class="math display">\[
+\begin{equation} (\theta^{(k+1)})^Tu \geq k\gamma \end{equation}
+\]</span></p>
+<p>因为初始<span class="math inline">\(\theta\)</span>为<span class="math inline">\(\vec{0}\)</span>。</p>
+<p>下面我们利用前面推导出的<span class="math inline">\((x^{(i)})^T\theta^{(k)}y^{(i)} \leq 0\)</span>和<span class="math inline">\(||x^{(i)}|| \leq D\)</span>得到</p>
+<p><span class="math display">\[
+\begin{equation} \begin{split} ||\theta^{(k+1)}||^2 &amp;= ||\theta^{(k)} + y^{(i)}x^{(i)}||^2 \\ &amp;= ||\theta^{k}||^2 + ||x^{(i)}||^2 + 2y^{(i)}(x^{(i)})^T\theta^{(i)} \\ &amp;\leq ||\theta^{k}||^2 + ||x^{(i)}||^2 \\ &amp;\leq ||\theta^{k}||^2 + D^2 \end{split} \end{equation}
+\]</span></p>
+<p>也就是说<span class="math inline">\(\theta^{(k+1)}\)</span>的长度平方不会超过<span class="math inline">\(\theta^{(k)}\)</span>与<span class="math inline">\(D\)</span>的平方和。</p>
+<p>又是一个等差不等式，得到：</p>
+<p><span class="math display">\[
+\begin{equation} ||\theta^{k+1}||^2 \leq kD^2 \end{equation}
+\]</span></p>
+<p>两边开根号得：</p>
+<p><span class="math display">\[
+\begin{equation} \begin{split} \sqrt{k}D &amp; \geq ||\theta^{(k+1)}|| \\ &amp; \geq (\theta^{(k+1)})^Tu \\ &amp; \geq k\gamma \end{split} \end{equation}
+\]</span></p>
+<p>其中第二步可能有点迷惑，我们细想<span class="math inline">\(u\)</span>是单位向量的话:</p>
+<p><span class="math display">\[
+\begin{equation} z^Tu = ||z||||u||cos \phi \leq ||z||||u|| \end{equation}
+\]</span></p>
+<p>因此上面的不等式成立，最后得到：</p>
+<p><span class="math display">\[
+\begin{equation} k \leq (D/\gamma)^2 \end{equation}
+\]</span></p>
+<p>也就是预测错误的数目不会超过样本特征向量<span class="math inline">\(x\)</span>的最长长度除以几何间隔的平方。实际上整个调整过程中<span class="math inline">\(\theta\)</span>就是<span class="math inline">\(x\)</span>的线性组合。</p>
+<h1 id="代码资源">V. 代码资源</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cs.huji.ac.il/~shais/">Shai Shalev-Shwartz</a></li>
+</ul>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p><a target="_blank" rel="noopener" href="http://yjliu.net/blog/2012/07/14/a-brief-talk-about-online-learning.html">浅谈在线机器学习算法</a><a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="Alex LEE 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="Alex LEE 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/MachineLearning/" rel="tag"><i class="fa fa-tag"></i> MachineLearning</a>
+              <a href="/tags/OnlineLearning/" rel="tag"><i class="fa fa-tag"></i> OnlineLearning</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/covariance/" rel="prev" title="协方差矩阵">
+                  <i class="fa fa-angle-left"></i> 协方差矩阵
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/nsfc/" rel="next" title="国家自然科学基金">
+                  国家自然科学基金 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex LEE</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">317k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:14</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><div class="footer-custom"> Hosted by <a target="_blank" href="https://pages.github.com">GitHub Pages</a>  |  <a target="_blank"  href="https://about.gitlab.com/stages-devops-lifecycle/pages/">Gitlab Pages</a> </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sli1989","repo":"gitalk","client_id":"9fa53d6156d8791703b5","client_secret":"706eeec44bf22fe410e90d364fe8a348ab8bcaed","admin_user":"sli1989","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"22b74dc145b0064fca58c999103c4eab"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title></title>
+	<link rel="stylesheet" href="/static/css/player.css">
+</head>
+
+<div id="QPlayer">
+	<div id="pContent">
+		<div id="player">
+			<span class="cover"></span>
+			<div class="ctrl">
+				<div class="musicTag marquee">
+					<strong>Title</strong>
+					 <span> - </span>
+					<span class="artist">Artist</span>
+				</div>
+				<div class="progress">
+					<div class="timer left">0:00</div>
+					<div class="contr">
+						<div class="rewind icon"></div>
+						<div class="playback icon"></div>
+						<div class="fastforward icon"></div>
+					</div>
+					<div class="right">
+						<div class="liebiao icon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ssBtn">
+				<div class="adf"></div>
+		</div>
+	</div>
+	<ol id="playlist"></ol>
+</div>
+<script src="//cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  var playlist = [];
+  
+  playlist.push({title:'午后庭院',artist:'夏天播放',mp3:'https://music.163.com/song/media/outer/url?id=29095562.mp3',cover:'https://p1.music.126.net/5uQHiJSmUMo74VAR4KJCTA==/6670737045946097.jpg'})
+  
+  playlist.push({title:'远走高飞',artist:'金志文',mp3:'https://music.163.com/song/media/outer/url?id=1297742772.mp3',cover:'https://p1.music.126.net/elfqBKIdad0KYCCeKQpDSA==/18700493767108166.jpg'})
+  
+  playlist.push({title:'她',artist:'不可撤销乐队',mp3:'https://music.163.com/song/media/outer/url?id=29747622.mp3',cover:'https://p1.music.126.net/4x2X7W_VGHQeHoMR4a3Wbw==/3227066628477266.jpg'})
+  
+  playlist.push({title:'给你',artist:'陈奕迅',mp3:'https://music.163.com/song/media/outer/url?id=64706.mp3',cover:'https://p1.music.126.net/GK7EB01AIEE9-qHkBi-3vg==/89060441862562.jpg'})
+  
+  playlist.push({title:'千禧',artist:'徐秉龙',mp3:'https://music.163.com/song/media/outer/url?id=522510615.mp3',cover:'https://y.gtimg.cn/music/photo_new/T002R300x300M000004UOSJ5117bcd.jpg'})
+  
+  playlist.push({title:'年度之歌',artist:'谢安琪',mp3:'https://music.163.com/song/media/outer/url?id=308169.mp3',cover:'http://p1.music.126.net/SkSda5laDTH73h_a9ZYEig==/109951164146248533.jpg'})
+  
+  playlist.push({title:'边走边唱',artist:'李荣浩',mp3:'https://music.163.com/song/media/outer/url?id=31134197.mp3',cover:'https://p1.music.126.net/4Pu7M0q88fVVoo1ZFS_nmw==/3408486047237011.jpg'})
+  
+  var isRotate = true;
+  var autoplay = false;
+</script>
+<script src="/static/js/player.js"></script>
+<script>
+  function bgChange(){
+	var lis= $('.lib');
+	for(var i=0; i<lis.length; i+=2)
+	lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+  }
+  window.onload = bgChange;
+</script>
+
+  <script type="text/javascript" src="/js/custom.js"></script>
+</body>
+</html>

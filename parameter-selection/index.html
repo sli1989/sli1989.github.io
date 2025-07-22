@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"saili.science","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":true,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="模型的参数可分成两类：参数与超参数，前者是模型通过自身的训练学习得到的参数数据；后者则需要通过自身经验设置，以提高模型训练的效果。如神经网络中的隐层个数、每个隐层神经元个数、采用什么激活函数及学习算法、学习率以及正则化系数等都属于超参数。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Parameter Selection">
+<meta property="og:url" content="http://saili.science/parameter-selection/index.html">
+<meta property="og:site_name" content="Alex LEE&#39;s Blog">
+<meta property="og:description" content="模型的参数可分成两类：参数与超参数，前者是模型通过自身的训练学习得到的参数数据；后者则需要通过自身经验设置，以提高模型训练的效果。如神经网络中的隐层个数、每个隐层神经元个数、采用什么激活函数及学习算法、学习率以及正则化系数等都属于超参数。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729125349.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmacy1g1j20e4099mz6.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmb4x4o7j20e9097aev.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmbqiit1j20dk08tgnh.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmclb1caj20er05n0v9.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmklr1ldj20eg09g75w.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmkvex6sj20eh09fabx.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmla95ztj20ej09ggnr.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmlkta65j20er09kdi8.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmluu7daj20en09jdi0.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmm44e8dj20en09i0un.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmmdy6doj20eq09lq4t.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmmjijpij20er09kjt6.jpg">
+<meta property="article:published_time" content="2018-05-12T07:57:08.000Z">
+<meta property="article:modified_time" content="2025-07-21T06:22:10.000Z">
+<meta property="article:author" content="Alex LEE">
+<meta property="article:tag" content="MachineLearning">
+<meta property="article:tag" content="OptimizationAlgorithm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729125349.png">
+
+
+<link rel="canonical" href="http://saili.science/parameter-selection/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":true,"isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://saili.science/parameter-selection/","path":"parameter-selection/","title":"Parameter Selection"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Parameter Selection | Alex LEE's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/6.1.3/pangu.umd.js" integrity="sha256-erngBMP3zzoIM6eqQ8dmrReh2vqCRgWmORroIfVoDlE=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://saili.science/parameter-selection/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex LEE's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex LEE's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">77</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">25</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B6%85%E5%8F%82%E6%95%B0%E9%80%89%E6%8B%A9%E6%96%B9%E6%B3%95"><span class="nav-text">I. 超参数选择方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E6%A0%BC%E6%90%9C%E7%B4%A2"><span class="nav-text">I.I. 网格搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%90%9C%E7%B4%A2"><span class="nav-text">I.II. 随机搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E4%BC%98%E5%8C%96"><span class="nav-text">I.III. 贝叶斯优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B1"><span class="nav-text">I.III.I. 实例1</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#svm-parameter-selection"><span class="nav-text">II. SVM Parameter Selection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#metaheuristics"><span class="nav-text">II.I. Metaheuristics</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex LEE"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Alex LEE</p>
+  <div class="site-description" itemprop="description">There is no royal road to learning.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:im.sai.li@outlook.com" title="E-Mail → mailto:im.sai.li@outlook.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/sli1989" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;sli1989" rel="noopener me" target="_blank"><i class="telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitter.im/sli1989" title="Gitter → https:&#x2F;&#x2F;gitter.im&#x2F;sli1989" rel="noopener me" target="_blank"><i class="github-alt fa-fw"></i>Gitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/sli1989/HEXO-NEXT-CUSTOM" title="https:&#x2F;&#x2F;github.com&#x2F;sli1989&#x2F;HEXO-NEXT-CUSTOM" rel="noopener" target="_blank">About the Blog</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://fontawesome.com/icons" title="https:&#x2F;&#x2F;fontawesome.com&#x2F;icons" rel="noopener" target="_blank">Font Awesome Icons</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://getemoji.com/" title="https:&#x2F;&#x2F;getemoji.com&#x2F;" rel="noopener" target="_blank">Copy and Paste Emoji</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://saili.science/parameter-selection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Alex LEE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex LEE's Blog">
+      <meta itemprop="description" content="There is no royal road to learning.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Parameter Selection | Alex LEE's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Parameter Selection
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-07-21 14:22:10" itemprop="dateModified" datetime="2025-07-21T14:22:10+08:00">2025-07-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类：</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Research/" itemprop="url" rel="index"><span itemprop="name">Research</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>8 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>模型的参数可分成两类：参数与超参数，前者是模型通过自身的训练学习得到的参数数据；后者则需要通过自身经验设置，以提高模型训练的效果。如神经网络中的隐层个数、每个隐层神经元个数、采用什么激活函数及学习算法、学习率以及正则化系数等都属于超参数。</p>
+<span id="more"></span>
+<p>一个模型的落地流程如下：</p>
+<ol style="list-style-type: decimal">
+<li>收集日志，并从日志中抽象出特征，再把特征喂给模型，模型在初始的超参数指导下学习第一类参数；</li>
+<li>通过离线效果指标评估超参数的设定是否合适；</li>
+<li>若不合适则继续不断调整。</li>
+</ol>
+<p>在这个调参过程中主要有 2 个难点：</p>
+<ol style="list-style-type: decimal">
+<li>参数空间大，尝试成本高。在工业界往往数据规模巨大、模型复杂，计算成本很高，并且每个类型的超参数都有众多选择。</li>
+<li>目标模型是黑盒。在搜索超参数的过程中只能看到模型的输入和输出，无法获取模型内部信息（如梯度等），亦无法直接对最优超参数组合建立目标函数进行优化。</li>
+</ol>
+<h1 id="超参数选择方法">I. 超参数选择方法</h1>
+<p>业界常用的搜索超参数方法主要有网格搜索、随机搜索和贝叶斯优化。</p>
+<h2 id="网格搜索">I.I. 网格搜索</h2>
+<p>网格搜索（Grid Search）是指在所有候选的参数选择中，通过循环遍历尝试每一种可能性，表现最好的参数就是最终的结果。</p>
+<p>举个例子，有两类超参数，每类超参数有 3 个待探索的值，对它们进行笛卡尔积后得到 9 个超参数组合，通过网格搜索使用每种组合来训练模型，并在验证集上挑选出最好的超参数。</p>
+<p>网格搜索算法思路及实现方式都很简单，但经过笛卡尔积组合后会扩大搜索空间，并且在存在某种不重要的超参数的情况下，网格搜索会浪费大量的时间及空间做无用功，因此它只适用于超参数数量小的情况。</p>
+<h2 id="随机搜索">I.II. 随机搜索</h2>
+<p>针对网格搜索的不足，Bengio 等人提出了随机搜索（Random Search）方法<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>。随机搜索首先为每类超参数定义一个边缘分布，通常取均匀分布，然后在这些参数上采样进行搜索。</p>
+<p>随机搜索虽然有随机因素导致搜索结果可能特别差，但是也可能效果特别好。总体来说效率比网格搜索更高，但是不保证一定能找到比较好的超参数。</p>
+<h2 id="贝叶斯优化">I.III. 贝叶斯优化</h2>
+<p>举个简单的例子，假设关于模型最优超参数组合的函数是一维曲线，由于它是一个黑盒无法直到具体的函数形式，但是可以输入某些值并得到输出。我们随机尝试了 4 个超参数，并得到了对应的性能指标，如下图所示<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>。</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729125349.png"></p>
+<p>那么问题来了，最优超参数可能在哪里？下一个待探索的超参数是哪个？而每个人猜测的是不一样的，因此每次生成的函数也不同：</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmacy1g1j20e4099mz6.jpg"></p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmb4x4o7j20e9097aev.jpg"></p>
+<p>可以看到大部分都认为最优超参数是在第 3 个点附近， 由于开始时在右侧采点的离线指标是最差的，所以先验认为最优超参数在这里的可能性不大。接着把这个过程取极限，就会得到一个关于最优超参数的概率分布。假设每个分布都是高斯分布，那么得到的是一个高斯过程，其中高斯分布的均值为 0，方差大概为 5。</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmbqiit1j20dk08tgnh.jpg"></p>
+<p>这样无论我们猜测最优超参数是取哪个值，总能得到一个关于超参数好坏的描述，即是均值和方差，这里实际上我们用一个无限维的高斯过程来模拟黑盒的超参数搜索的目标函数形式。</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmclb1caj20er05n0v9.jpg"></p>
+<p>总结来说，超参数搜索问题其实是一个黑盒优化问题，贝叶斯优化通过无限维的高斯过程来描述黑盒，在这个高斯过程中可以得到每一组输入超参数的均值和方差。</p>
+<p>得到了均值和方差则解决了上文提到的第一个问题：「最优超参数可能在哪里？」，那么下一个待探索的超参数是哪个？这其实是一个 E&amp;E 问题（探索与利用问题），是稳妥地在目前已有的最大值附近搜索还是在不确定性大的地方搜索？后者效果可能很差，但也可能有意想不到的收获。而 Acquisition function 正是平衡 E&amp;E 问题的方式。</p>
+<ul>
+<li>Upper (lower) Confidence Band 方法用线性加权的方式直接对 E&amp;E 采样进行平衡，第一项是当前最好的超参数值，在当前最好的结果附近稳妥的搜索；第二项是方差，表示去探索更未知的空间，beta 参数用来控制力度，这种方法简单有效。</li>
+<li>Maximum Probability of Improvement 方法的目的是下一个待搜索的值能最大限度提升概率，假设当前最好的是 y_best, 那么 MPI 表示的是下一个待搜索的点能比 y_best 小的概率，这种方法容易陷入在局部最小值附近。</li>
+<li>Expected Improvement 描述的是下一个待搜索的点能比当前最好的值更好的期望，因为是高斯过程，这里的后验概率是高斯形式，积分有闭式解，实现起来较为简单，因此这种方法也较为常用。</li>
+</ul>
+<p>可以看出贝叶斯优化（Bayesian Optimization）是通过 acquisition function 平衡均值和方差，做 E&amp;E 问题探索下一个可能的最优超参数。</p>
+<h3 id="实例1">I.III.I. 实例1</h3>
+<p>如上方图所示，虚线代表关于最优超参数的真实函数形式（但实际上它是个黑盒，不知道其具体形式），实线代表当前最好的超参所在位置，两条浅灰线表示的是当前点的方差。</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmklr1ldj20eg09g75w.jpg"></p>
+<p>下方图表示已知的和待探索超参数的 Expected Improvement，此时很多地方都有希望能取得比当前最好值更好的超参数，主要需要探索，我们首先选择 0.0 点作为下一个待探索的超参数。</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmkvex6sj20eh09fabx.jpg"></p>
+<p>可以看到，此时 0.0 点的方差变为 0。继续寻找下一个待探索的超参数，选择 1.0。</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmla95ztj20ej09ggnr.jpg"></p>
+<p>如图，1.0 点的方差变为 0，经过两次探索我们注意到不需要再探索右侧区域，因为我们在右边得到的超参数效果比左边的差。继续选择下一个超参数位置，选择 0.25 点左右的位置。</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmlkta65j20er09kdi8.jpg"></p>
+<p>按照 EI 方法，依次寻找下一个待探索的超参数，这次我们选择的超参数位置大概在 0.7 点。</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmluu7daj20en09jdi0.jpg"></p>
+<p>选择 0.7 点的超参数效果比之前选择的更好，此时 Expected Improvement acquision 建议应该加大在 0.7 附近搜索的力度。</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmm44e8dj20en09i0un.jpg"></p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmmdy6doj20eq09lq4t.jpg"></p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fwsmmjijpij20er09kjt6.jpg"></p>
+<p>经过几轮探索之后发现最优超参数应该在 0.8 点附近。</p>
+<h1 id="svm-parameter-selection">II. SVM Parameter Selection</h1>
+<p>Support Vector Regression, which evolved from the support vector classification for doing regression tasks by introduction of the <span class="math inline">\(\varepsilon\)</span>-insensitive loss function, is a data-driven machine learning methodology.</p>
+<p>The parameter <span class="math inline">\(C\)</span> controls the trade-off between the complexity of the function and the frequency in which errors are allowed. The parameter <span class="math inline">\(\sigma\)</span> affects the mapping transformation of the input data to the feature space and controls the complexity of the model, thus, it is important to select suitable parameters, and the value of parameter <span class="math inline">\(\sigma\)</span> should be selected more carefully than <span class="math inline">\(C\)</span> .</p>
+<div class="note info">
+<p>
+Li, S., Fang, H. &amp; Liu, X., 2018. Parameter optimization of support vector regression based on sine cosine algorithm. Expert Systems with Applications, 91, pp.63–77. Available at: http://dx.doi.org/10.1016/j.eswa.2017.08.038.
+</p>
+</div>
+<div class="note info">
+<p>
+Li, S., Fang, H., 2017. A WOA-based algorithm for parameter optimization of support vector regression and its application to condition prognostics. 2017 36th Chinese Control Conference (CCC). Available at: http://dx.doi.org/10.23919/chicc.2017.8028516.
+</p>
+</div>
+<h2 id="metaheuristics">II.I. Metaheuristics</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/faruto/Libsvm-FarutoUltimate-Version">libsvm matlab implement</a></li>
+<li><a target="_blank" rel="noopener" href="http://yarpiz.com/category/metaheuristics">Metaheuristics implement in Matlab&amp;Python</a></li>
+</ul>
+<p>The matlab samples for svm parameter selection can be found in my <a target="_blank" rel="noopener" href="https://github.com/sli1989/svm-parameter-selection">Source repository</a>.</p>
+<p>To be continued...</p>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p>http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>http://gpss.cc/gpmc17/slides/LancasterMasterclass_1.pdf<a href="#fnref2">↩</a></p></li>
+</ol>
+</div>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="Alex LEE 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="Alex LEE 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/MachineLearning/" rel="tag"><i class="fa fa-tag"></i> MachineLearning</a>
+              <a href="/tags/OptimizationAlgorithm/" rel="tag"><i class="fa fa-tag"></i> OptimizationAlgorithm</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/spark/" rel="prev" title="Spark 安装与使用教程">
+                  <i class="fa fa-angle-left"></i> Spark 安装与使用教程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/model-selection/" rel="next" title="模型选择">
+                  模型选择 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex LEE</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">317k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:14</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><div class="footer-custom"> Hosted by <a target="_blank" href="https://pages.github.com">GitHub Pages</a>  |  <a target="_blank"  href="https://about.gitlab.com/stages-devops-lifecycle/pages/">Gitlab Pages</a> </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sli1989","repo":"gitalk","client_id":"9fa53d6156d8791703b5","client_secret":"706eeec44bf22fe410e90d364fe8a348ab8bcaed","admin_user":"sli1989","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"37a6c9ea6d1daede17c220bd443378aa"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title></title>
+	<link rel="stylesheet" href="/static/css/player.css">
+</head>
+
+<div id="QPlayer">
+	<div id="pContent">
+		<div id="player">
+			<span class="cover"></span>
+			<div class="ctrl">
+				<div class="musicTag marquee">
+					<strong>Title</strong>
+					 <span> - </span>
+					<span class="artist">Artist</span>
+				</div>
+				<div class="progress">
+					<div class="timer left">0:00</div>
+					<div class="contr">
+						<div class="rewind icon"></div>
+						<div class="playback icon"></div>
+						<div class="fastforward icon"></div>
+					</div>
+					<div class="right">
+						<div class="liebiao icon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ssBtn">
+				<div class="adf"></div>
+		</div>
+	</div>
+	<ol id="playlist"></ol>
+</div>
+<script src="//cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  var playlist = [];
+  
+  playlist.push({title:'午后庭院',artist:'夏天播放',mp3:'https://music.163.com/song/media/outer/url?id=29095562.mp3',cover:'https://p1.music.126.net/5uQHiJSmUMo74VAR4KJCTA==/6670737045946097.jpg'})
+  
+  playlist.push({title:'远走高飞',artist:'金志文',mp3:'https://music.163.com/song/media/outer/url?id=1297742772.mp3',cover:'https://p1.music.126.net/elfqBKIdad0KYCCeKQpDSA==/18700493767108166.jpg'})
+  
+  playlist.push({title:'她',artist:'不可撤销乐队',mp3:'https://music.163.com/song/media/outer/url?id=29747622.mp3',cover:'https://p1.music.126.net/4x2X7W_VGHQeHoMR4a3Wbw==/3227066628477266.jpg'})
+  
+  playlist.push({title:'给你',artist:'陈奕迅',mp3:'https://music.163.com/song/media/outer/url?id=64706.mp3',cover:'https://p1.music.126.net/GK7EB01AIEE9-qHkBi-3vg==/89060441862562.jpg'})
+  
+  playlist.push({title:'千禧',artist:'徐秉龙',mp3:'https://music.163.com/song/media/outer/url?id=522510615.mp3',cover:'https://y.gtimg.cn/music/photo_new/T002R300x300M000004UOSJ5117bcd.jpg'})
+  
+  playlist.push({title:'年度之歌',artist:'谢安琪',mp3:'https://music.163.com/song/media/outer/url?id=308169.mp3',cover:'http://p1.music.126.net/SkSda5laDTH73h_a9ZYEig==/109951164146248533.jpg'})
+  
+  playlist.push({title:'边走边唱',artist:'李荣浩',mp3:'https://music.163.com/song/media/outer/url?id=31134197.mp3',cover:'https://p1.music.126.net/4Pu7M0q88fVVoo1ZFS_nmw==/3408486047237011.jpg'})
+  
+  var isRotate = true;
+  var autoplay = false;
+</script>
+<script src="/static/js/player.js"></script>
+<script>
+  function bgChange(){
+	var lis= $('.lib');
+	for(var i=0; i<lis.length; i+=2)
+	lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+  }
+  window.onload = bgChange;
+</script>
+
+  <script type="text/javascript" src="/js/custom.js"></script>
+</body>
+</html>

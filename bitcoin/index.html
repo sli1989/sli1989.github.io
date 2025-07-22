@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"saili.science","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":true,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="比特币（BitCoin）的概念最初由中本聪在2008年提出，根据中本聪的思路设计发布的开源软件以及建构其上的P2P网络。比特币是一种P2P形式的数字货币。与大多数货币不同，比特币不依靠特定货币机构发行，它依据特定算法，通过大量的计算产生，比特币经济使用整个P2P网络中众多节点构成的分布式数据库来确认并记录所有的交易行为，并使用密码学的设计来确保货币流通各个环节安全性。比特币与其他虚拟货币最大的不同">
+<meta property="og:type" content="article">
+<meta property="og:title" content="比特币">
+<meta property="og:url" content="http://saili.science/bitcoin/index.html">
+<meta property="og:site_name" content="Alex LEE&#39;s Blog">
+<meta property="og:description" content="比特币（BitCoin）的概念最初由中本聪在2008年提出，根据中本聪的思路设计发布的开源软件以及建构其上的P2P网络。比特币是一种P2P形式的数字货币。与大多数货币不同，比特币不依靠特定货币机构发行，它依据特定算法，通过大量的计算产生，比特币经济使用整个P2P网络中众多节点构成的分布式数据库来确认并记录所有的交易行为，并使用密码学的设计来确保货币流通各个环节安全性。比特币与其他虚拟货币最大的不同">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/01.png">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/02.png">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/03.png">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/04.png">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/05.png">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/06.png">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/07.png">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/08.png">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/09.png">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/10.png">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/11.png">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/12.png">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/13.png">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/14.png">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/15.png">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/16.png">
+<meta property="og:image" content="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/17.png">
+<meta property="article:published_time" content="2017-06-05T10:52:02.000Z">
+<meta property="article:modified_time" content="2020-03-13T03:12:27.000Z">
+<meta property="article:author" content="Alex LEE">
+<meta property="article:tag" content="Bitcoin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/01.png">
+
+
+<link rel="canonical" href="http://saili.science/bitcoin/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://saili.science/bitcoin/","path":"bitcoin/","title":"比特币"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>比特币 | Alex LEE's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/6.1.3/pangu.umd.js" integrity="sha256-erngBMP3zzoIM6eqQ8dmrReh2vqCRgWmORroIfVoDlE=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://saili.science/bitcoin/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex LEE's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex LEE's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">77</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">25</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%94%E7%89%B9%E5%B8%81%E9%92%B1%E5%8C%85"><span class="nav-text">I. 比特币钱包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E7%9A%84%E6%8F%90%E5%87%BA"><span class="nav-text">II. 问题的提出</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5%E7%89%A9%E6%98%93%E7%89%A9%E7%9A%84%E6%AF%94%E7%89%B9%E6%9D%91"><span class="nav-text">II.I. 以物易物的比特村</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%89%A9%E8%B4%A7%E5%B8%81"><span class="nav-text">II.II. 实物货币</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E8%B4%A7%E5%B8%81"><span class="nav-text">II.III. 符号货币</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E5%A4%AE%E7%B3%BB%E7%BB%9F%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81"><span class="nav-text">II.IV. 中央系统虚拟货币</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81"><span class="nav-text">II.V. 分布式虚拟货币</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E6%90%AD%E5%BB%BA"><span class="nav-text">III. 基础设施搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%A6%E7%B0%BF%E5%85%AC%E5%BC%80%E6%9C%BA%E5%88%B6"><span class="nav-text">III.I. 账簿公开机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BA%AB%E4%BB%BD%E4%B8%8E%E7%AD%BE%E5%90%8D%E6%9C%BA%E5%88%B6%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86%E7%B3%BB%E7%BB%9F"><span class="nav-text">III.II. 身份与签名机制（公钥加密系统）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%90%E7%AB%8B%E8%99%9A%E6%8B%9F%E7%9F%BF%E5%B7%A5%E7%BB%84%E7%BB%87%E6%8C%96%E7%9F%BF%E7%BE%A4%E4%BD%93"><span class="nav-text">III.III. 成立虚拟矿工组织（挖矿群体）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%88%9D%E5%A7%8B%E8%B4%A6%E7%B0%BF%E5%88%9B%E4%B8%96%E5%9D%97"><span class="nav-text">III.IV. 建立初始账簿（创世块）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%94%AF%E4%BB%98%E4%B8%8E%E4%BA%A4%E6%98%93"><span class="nav-text">IV. 支付与交易</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%98%E6%AC%BE%E4%BA%BA%E7%AD%BE%E7%BD%B2%E4%BA%A4%E6%98%93%E5%8D%95"><span class="nav-text">IV.I. 付款人签署交易单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B6%E6%AC%BE%E4%BA%BA%E7%A1%AE%E8%AE%A4%E5%8D%95%E6%8D%AE%E7%AD%BE%E7%BD%B2%E4%BA%BA"><span class="nav-text">IV.II. 收款人确认单据签署人</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B6%E6%AC%BE%E4%BA%BA%E7%A1%AE%E8%AE%A4%E4%BB%98%E6%AC%BE%E4%BA%BA%E4%BD%99%E9%A2%9D"><span class="nav-text">IV.III. 收款人确认付款人余额</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9F%BF%E5%B7%A5%E7%9A%84%E5%B7%A5%E4%BD%9C"><span class="nav-text">V. 矿工的工作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%BF%E5%B7%A5%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="nav-text">V.I. 矿工的工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B6%E9%9B%86%E4%BA%A4%E6%98%93%E5%8D%95"><span class="nav-text">V.II. 收集交易单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A1%AB%E5%86%99%E8%B4%A6%E7%B0%BF"><span class="nav-text">V.III. 填写账簿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AE%E8%AE%A4%E8%B4%A6%E7%B0%BF"><span class="nav-text">V.IV. 确认账簿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%A6%E7%B0%BF%E7%A1%AE%E8%AE%A4%E5%8F%8D%E9%A6%88"><span class="nav-text">V.V. 账簿确认反馈</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6%E5%88%86%E6%9E%90"><span class="nav-text">VI. 工作机制分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E5%90%8C%E6%97%B6%E6%94%B6%E5%88%B0%E4%B8%A4%E4%BB%BD%E5%90%88%E6%B3%95%E7%9A%84%E8%B4%A6%E7%B0%BF%E9%A1%B5%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="nav-text">VI.I. 如果同时收到两份合法的账簿页怎么办？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E6%8C%96%E7%9F%BF%E5%B0%8F%E7%BB%84%E6%9C%89%E4%BA%BA%E4%BC%AA%E9%80%A0%E8%B4%A6%E7%B0%BF%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="nav-text">VI.II. 如果挖矿小组有人伪造账簿怎么办</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%94%E7%89%B9%E5%B8%81%E4%BC%9A%E4%B8%80%E7%9B%B4%E5%A2%9E%E5%8A%A0%E4%B8%8B%E5%8E%BB%E5%B2%82%E4%B8%8D%E6%98%AF%E4%BC%9A%E4%B8%A5%E9%87%8D%E9%80%9A%E8%B4%A7%E8%86%A8%E8%83%80"><span class="nav-text">VI.III. 比特币会一直增加下去，岂不是会严重通货膨胀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B2%A1%E6%9C%89%E5%A5%96%E5%8A%B1%E5%90%8E%E5%B0%B1%E6%B2%A1%E4%BA%BA%E5%81%9A%E7%9F%BF%E5%B7%A5%E4%BA%86%E5%B2%82%E4%B8%8D%E6%98%AF%E6%B2%A1%E4%BA%BA%E5%B8%AE%E5%BF%99%E7%A1%AE%E8%AE%A4%E4%BA%A4%E6%98%93%E4%BA%86"><span class="nav-text">VI.IV. 没有奖励后，就没人做矿工了，岂不是没人帮忙确认交易了</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%BF%E5%B7%A5%E5%A6%82%E6%9E%9C%E8%B6%8A%E6%9D%A5%E8%B6%8A%E5%A4%9A%E6%AF%94%E7%89%B9%E5%B8%81%E7%94%9F%E6%88%90%E9%80%9F%E5%BA%A6%E4%BC%9A%E5%8F%98%E5%BF%AB%E5%90%97"><span class="nav-text">VI.V. 矿工如果越来越多，比特币生成速度会变快吗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%BD%E7%84%B6%E6%AF%8F%E4%B8%AA%E4%BA%BA%E7%9A%84%E4%BB%A3%E5%8F%B7%E6%98%AF%E5%8C%BF%E5%90%8D%E7%9A%84%E4%BD%86%E5%A6%82%E6%9E%9C%E6%B3%84%E9%9C%B2%E4%BA%86%E6%9F%90%E4%B8%AA%E4%BA%BA%E7%9A%84%E4%BB%A3%E5%8F%B7%E8%B4%A6%E7%B0%BF%E5%8F%88%E6%98%AF%E5%85%AC%E5%BC%80%E7%9A%84%E5%B2%82%E4%B8%8D%E6%98%AF%E4%BB%96%E7%9A%84%E6%89%80%E6%9C%89%E8%B4%A6%E7%9B%AE%E9%83%BD%E6%9F%A5%E5%87%BA%E6%9D%A5%E4%BA%86"><span class="nav-text">VI.VI. 虽然每个人的代号是匿名的，但如果泄露了某个人的代号，账簿又是公开的，岂不是他的所有账目都查出来了</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%BA%E5%9D%97%E7%9A%84%E6%89%A9%E5%AE%B9"><span class="nav-text">VI.VII. 区块的扩容</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-text">VII. 说明</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex LEE"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Alex LEE</p>
+  <div class="site-description" itemprop="description">There is no royal road to learning.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:im.sai.li@outlook.com" title="E-Mail → mailto:im.sai.li@outlook.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/sli1989" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;sli1989" rel="noopener me" target="_blank"><i class="telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitter.im/sli1989" title="Gitter → https:&#x2F;&#x2F;gitter.im&#x2F;sli1989" rel="noopener me" target="_blank"><i class="github-alt fa-fw"></i>Gitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/sli1989/HEXO-NEXT-CUSTOM" title="https:&#x2F;&#x2F;github.com&#x2F;sli1989&#x2F;HEXO-NEXT-CUSTOM" rel="noopener" target="_blank">About the Blog</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://fontawesome.com/icons" title="https:&#x2F;&#x2F;fontawesome.com&#x2F;icons" rel="noopener" target="_blank">Font Awesome Icons</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://getemoji.com/" title="https:&#x2F;&#x2F;getemoji.com&#x2F;" rel="noopener" target="_blank">Copy and Paste Emoji</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://saili.science/bitcoin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Alex LEE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex LEE's Blog">
+      <meta itemprop="description" content="There is no royal road to learning.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="比特币 | Alex LEE's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          比特币
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2020-03-13 11:12:27" itemprop="dateModified" datetime="2020-03-13T11:12:27+08:00">2020-03-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类：</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Wiki/" itemprop="url" rel="index"><span itemprop="name">Wiki</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>9.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>36 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>比特币（BitCoin）的概念最初由<a target="_blank" rel="noopener" href="https://bitcoin.org/en/bitcoin-paper">中本聪在2008年提出</a>，根据中本聪的思路设计发布的开源软件以及建构其上的P2P网络。比特币是一种P2P形式的数字货币。与大多数货币不同，比特币不依靠特定货币机构发行，它依据特定算法，通过大量的计算产生，比特币经济使用整个P2P网络中众多节点构成的分布式数据库来确认并记录所有的交易行为，并使用密码学的设计来确保货币流通各个环节安全性。比特币与其他虚拟货币最大的不同，是其总数量非常有限，具有极强的稀缺性。比特币可以用来兑现，可以兑换成大多数国家的货币。</p>
+<span id="more"></span>
+<p>本文根据博文“<a target="_blank" rel="noopener" href="http://blog.codinglabs.org/articles/bitcoin-mechanism-make-easy.html">一个故事告诉你比特币的原理及运作机制</a>”和“<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2018/01/bitcoin-tutorial.html">比特币入门教程</a>”整理一下比特币提出的动机、解决了什么问题以及一些关键组件的目标和设计方案。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://bitcoin.org/bitcoin.pdf">Bitcoin: A Peer-to-Peer Electronic Cash System</a><br>
+<a target="_blank" rel="noopener" href="https://bitcoin.it/">https://bitcoin.it</a><br>
+<a target="_blank" rel="noopener" href="http://blog.codingnow.com/2011/05/bitcoin.html">云风的BLOG: Bitcoin 的基本原理</a><br>
+<a target="_blank" rel="noopener" href="http://www.btc123.com/data/docs/easy_understood_bitcoin_mechanism.pdf">易懂的比特币工作机理详解</a></p>
+</blockquote>
+<h1 id="比特币钱包">I. 比特币钱包</h1>
+<p>比特币暴涨，其他加密货币（cryptocurrency）也像雨后春笋一样冒出来，已经有1000多种了。</p>
+<p>钱的本质，或者说货币的本质，就是它的可信性。它必须使人们相信，它是有价值的，然后才能成为钱，才能被收藏和支付。可信的东西是否就是钱？一样东西能否成为钱，只取决于人们是否相信它的价值，至于它是不是真的有价值，根本不重要。</p>
+<p>比特币要解决的核心问题，就是创造一种可信的数字凭证。由于这种凭证可信，所以能够当做货币。比特币的技术基础是加密学，这也是这一类数字凭证被称为&quot;加密货币&quot;的原因。</p>
+<ul>
+<li>它不会被轻易偷走。理解比特币必须理解非对称加密。公钥是公开的，任何人都可以获取。私钥是保密的，只有拥有者才能使用。他人使用你的公钥加密信息，然后发送给你，你用私钥解密，取出信息。反过来，你也可以用私钥加密信息，别人用你的公钥解开，从而证明这个信息确实是你发出的，且未被篡改，这叫做数字签名（更详细的介绍请看<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html">《什么是数字签名》</a>）。由于支付的钱必须通过私钥取出，所以你是谁并不重要，重要的是谁拥有私钥。对于比特币来说，钱不是支付给个人的，而是支付给某一把私钥。这就是交易匿名性的根本原因，因为没有人知道，那些私钥背后的主人是谁。所以，比特币交易的第一件事，就是你必须拥有自己的公钥和私钥，而且一定要保护好私钥。</li>
+<li>它无法伪造。每一个比特币都能追溯来源，而所有比特币都来源于矿工获得的奖励。矿工只有新建区块，才能获得奖励，这是很难的事情，所以无法伪造比特币。</li>
+<li>它无法大批生成。原因跟上一条一样，比特币的发行速度是稳定的，现在每10分钟新增12.5个，然后每四年减半，最终停止增长。因此不会像纸币那样，政府滥发导致通货膨胀。</li>
+</ul>
+<p>你去网上那些比特币交易所开户，它们会让你首先生成一个比特币钱包（wallet）。这个钱包不是用来存放比特币，而是存放你的公钥和私钥。</p>
+<p>根据协议，公钥的长度是512位。因此协议又规定，要为公钥生成一个160位的指纹。所谓指纹，就是一个比较短的、易于传播的哈希值。这个字符串就叫做钱包的地址，它是唯一的，即每个钱包的地址肯定都是不一样的。你向别人收钱时，只要告诉对方你的钱包地址即可，对方向这个地址付款。</p>
+<h1 id="问题的提出">II. 问题的提出</h1>
+<p>我们先从比特币产生的动机开始。</p>
+<h2 id="以物易物的比特村">II.I. 以物易物的比特村</h2>
+<p>话说在这个世界上，有一个叫比特村的小村庄，村庄共有几百户人家。这个村庄几乎与世隔绝，过着自给自足的生活。由于没有大规模贸易，比特村村民一直过着以物易物的生活，也就是说村民之间并没有使用统一的货币，互相间的贸易基本上就是老张家拿一袋面粉换老李家一只羊，王大嫂拿一筐野果换刘大婶两尺布。村民们一直就这么纯朴的生活着。</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/01.png"></p>
+<h2 id="实物货币">II.II. 实物货币</h2>
+<p>终于有一天，村民觉得一直这样以物易物实在太不方便了，于是村子全员开会，讨论如何解决这个问题。有人提议，以便于分割且稀有的东西，例如黄金，作为一般等价物，把其它物品和黄金的对应关系编成一张表格，例如一克黄金对应一只羊，一克黄金对应一袋面粉等等，此时老张再也不用扛着一袋面粉气喘吁吁的去老李家换羊了，他只要从家里摸出一克金子，就可以去老李家牵回一只羊，而老李拿着这一克黄金可以从任何愿意出让面粉的人那里换回一袋面粉，当然也可以换取任何和一克黄金等值的物品。</p>
+<p>此时比特村进入了实物货币时代。</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/02.png"></p>
+<h2 id="符号货币">II.III. 符号货币</h2>
+<p>好景不长，过了一段时间，实物货币的弊端也出现了。因为比特村附近金矿并不多，开采和冶炼金子太费时费力了。而随着使用，金子总是不断会因为磨损、丢失或有人故意囤积而发生损耗。全村人又一次坐在了一起，开始商讨对策。此时有人说，其实大家也不必一定要真的用黄金啊，随便找张纸，写上“一克黄金”，只要全村人都认同这张纸就等于一克黄金，问题不就解决了。其他人纷纷表示认同，但同时也有了新的问题：真实的黄金是需要开采和冶炼的，金矿有限，开采和冶炼也需要成本，所以没有人可以短期凭空制造大量的黄金，可写字就不同了，只要我纸够笔够，随便像写多少写多少，那这就变成拼谁家里纸多了，搞不好到时一万张纸才能换一只羊（实际上这就发生了经济学上的通货膨胀）。</p>
+<p>大家一想也是啊。不过此时又有人提出了解决方案：这个纸不是谁写都有效，我们只认村里德高望重的老村长写得，大家都认识老村长的字。老村长写一些纸，同时按照各家黄金存量发给大家等量的纸，例如老张家有二百克黄金，老村长就发给老张二百张写着“一克黄金”的纸，同时将老张家的黄金拿走作为抵押。就这样，老村长将村里所有黄金收归到自己的家里，并按各家上交的黄金数量发给等值的写有字的纸。此时村民就可以拿着这些纸当黄金进行贸易了，而且大家都认得老村长的字，其他人伪造不出来。另外，如果谁的纸磨损太严重，也可拿到老村长那里兑换新的等值的纸，另外老村长承诺任何人如果想要换成真黄金，只要拿纸回来，老村长就会把等值的黄金还给那人。因为老村长写得纸的黄金量和真实放在家里的黄金量是一样的，所以只要严格按照销毁多少纸新写多少纸的原则，每一张有效的纸总能换回相应的真黄金。</p>
+<p>此时，比特村进入了符号货币（纸币）时代。而老村长就承担了政府和银行的角色。</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/03.png"></p>
+<h2 id="中央系统虚拟货币">II.IV. 中央系统虚拟货币</h2>
+<p>又过了几年，老村长由于每天都要核对大量的旧纸币，写新的纸币，还要把各种账目仔细做好记录。一来二去，老村长操劳过度不幸驾鹤西去了。</p>
+<p>比特村再次召开全体大会，讨论应该怎么办。此时老村长的儿子二狗子自告奋勇接过了父亲的笔，承担起货币发行的责任。这个年轻的村长二狗子很聪明，他做了几天，发现好像也不用真的写那么多纸。完全可以这样：村民把纸币都交上来，销毁，但是二狗子会记录下每户上交的纸币数量。以后如果要进行付钱，例如老张要拿一克金子向老李换一只羊，就一起给二狗子打个电话，说明要将老张名下的一克金子划归老李名下，二狗子拿出账本，看看老张名下是否有一克金子，如果有就在老张的名下减掉一克，在老李的名下加上一克，这样就完成了支付，此时老李在电话中听到二狗子确认转账完成，就可以放心让老张把羊牵走了。</p>
+<p>此时比特村进入了中央系统虚拟货币时代。每个村民都不需要用实物支付，支付过程变成了二狗子那边维护的账本上数字的变更。</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/04.png"></p>
+<h2 id="分布式虚拟货币">II.V. 分布式虚拟货币</h2>
+<p>这新上任的二狗子是聪明，不过这人有时候是聪明反被聪明误。有一天二狗子盯着这账本，心想这全村各户谁有多少钱就是我说的算，那我岂不是……。于是他头脑一热，私自从老张帐下划了十克金子到自己名下。</p>
+<p>本以为天衣无缝，但没想到老张也有记账的习惯，有一天他正要付钱却被二狗子告知账户没钱了。老张核对了一下自己的账本，明明还有十克啊，于是拿着账本去找二狗子理论，这一核对发现了那笔未经老张同意的转账。</p>
+<p>东窗事发！比特村炸开锅了。二狗子被弹劾是不可避免了，不过通过这件事，大家发现了账本集中在一个人手里的弊端：</p>
+<ul>
+<li>这个体系完全依赖于账本持有人的个人信用，如果这个人不守规矩，随意篡改账本，那么整个货币系统就会崩溃</li>
+<li>如果这个人家里失火或者账本失窃，同样也会为整个体系带来毁灭性的打击</li>
+</ul>
+<p>正当人们不知所措时，村里一个叫中本聪的宅男科学家走上了台，告诉大家他已经设计了一套不依赖任何中央处理人的叫比特币的虚拟货币系统，可以解决上述问题。然后他缓缓讲述了自己的方案。</p>
+<p>下面我们就来看看中本聪同学是如何设计这套系统的。</p>
+<h1 id="基础设施搭建">III. 基础设施搭建</h1>
+<h2 id="账簿公开机制">III.I. 账簿公开机制</h2>
+<p>中本聪首先说明，要对现有账簿进行如下改造：</p>
+<ol style="list-style-type: decimal">
+<li>账簿上不再记载每户村民的余额，而只记载每一笔交易。即记载每一笔交易的付款人、收款人和付款金额。只要账簿的初始状态确定，每一笔交易记录可靠并有时序，当前每个人持有多少钱是可以推算出来的。</li>
+<li>账簿由私有改为公开，只要任何村民需要，都可以获得当前完整的账簿，账簿上记录了从账簿创建开始到当前所有的交易记录。</li>
+</ol>
+<p>此言一出，下面立刻炸锅了。第一条还无所谓，但是第二条简直无法接受，因为账簿可是记录了所有村民的交易，这样大家的隐私不全暴露了吗。</p>
+<p>中本聪倒是不慌不忙，拿出了一对奇怪的东西。</p>
+<h2 id="身份与签名机制公钥加密系统">III.II. 身份与签名机制（公钥加密系统）</h2>
+<p>中本聪说，大家不要慌。在他的这套机制下，任何人都不使用真实身份交易，而是使用一个唯一的代号交易。</p>
+<p>他展示了手里神奇的东西，说这两件东西分别叫保密印章和印章扫描器。后面他会给村里每一户发一个保密印章和一个印章扫描器。两者的作用如下：</p>
+<ul>
+<li>保密印章可以在纸上盖一个章，每个印章盖出的章都隐含了一个全村唯一的一串字符，但是凭肉眼是看不出来的。也无法通过观察来制造出相应的印章。</li>
+<li>印章扫描器可以扫描某个已经盖好的章，读出隐含的信息，并在液晶屏上显示出一串字符。</li>
+</ul>
+<p>有了这两个神奇的东西，大家就可以在不暴露真实身份的情况下进行交易了，而印章隐含的那一串字符就是这户人家的代号。具体如何巧妙利用保密印章和印章扫描器进行交易，会在下文详述。</p>
+<h2 id="成立虚拟矿工组织挖矿群体">III.III. 成立虚拟矿工组织（挖矿群体）</h2>
+<p>下一步，中本聪面向全村招募虚拟矿工，招募要求如下：</p>
+<ul>
+<li>矿工以组为单位，一组可以是单独的一户，也可以是几户联合为一组</li>
+<li>成为矿工不影响正常使用货币</li>
+<li>矿工每天要花费一定时间从事比特币“挖矿”活动，但是不同于挖金矿，虚拟矿工不需要拿着工具去野外作业，在家里就可以完成工作</li>
+<li>矿工有一定可能性获得报酬，在挖矿活动中付出的努力越多，获得报酬的可能性越大</li>
+<li>矿工可以随时退出，也可以随时有新的矿工加进来</li>
+</ul>
+<p>很快，大约有五分之一的村民加入比特币矿工组织，共分成了7个组。</p>
+<h2 id="建立初始账簿创世块">III.IV. 建立初始账簿（创世块）</h2>
+<p>下面，中本聪宣布，先根据二狗子手里的账簿，把抵押的所有黄金按账簿记录的余额退还给每位村民，然后彻底销毁这本账簿。</p>
+<p>然后，中本聪拿出一本新账簿，在账簿的第一页上记录了一些交易记录，特别的是，这些记录的付款人一栏全都是“系统”，而收款人分别是每个印章对应的隐含字符，代表初始时刻，系统为每一户默认分配了一定数量比特币，但是数量非常少，都只有几枚，甚至有些不幸的村户没有获得比特币。</p>
+<p>接着中本聪说，由于目前市面上比特币非常少，大家可以先回到用黄金做货币的时代，由于我不是村长，我也没有权利强迫大家一定要承认比特币，大家可以自行决定要不要接受比特币。不过随着比特币的流动和矿工的活动，比特币会慢慢多起来。</p>
+<h1 id="支付与交易">IV. 支付与交易</h1>
+<p>做了这么多铺垫，终于说到重点了，下面说一下在这样一个体系下如何完成支付。以老张付给老李10个比特币为例。</p>
+<h2 id="付款人签署交易单">IV.I. 付款人签署交易单</h2>
+<p>为了支付10个比特币，老张首先要询问老李的标识字符串，例如是“ABCDEFG”，同时老张也有一个标识字符串例如是“HIJKLMN”，然后老张写一张单子，内容为“HILKLMN支付10比特币给ABCDEFG”，然后用自己的保密印章改一个章，将这张单子交给老李。另外为了便于追溯这笔钱的来源，还要在单子里注明这笔钱的来源记在哪一页，例如这个单子里，老张的10比特币来自建立账簿时系统的赠送，记录在账簿第一页。</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/05.png"></p>
+<p>转出比特币的一方还必须提供以下数据：</p>
+<ul>
+<li>上一笔交易的 Hash（你从哪里得到这些比特币）</li>
+<li>本次交易双方的地址</li>
+<li>支付方的公钥</li>
+<li>支付方的私钥生成的数字签名</li>
+</ul>
+<h2 id="收款人确认单据签署人">IV.II. 收款人确认单据签署人</h2>
+<p>验证这笔交易是否属实，需要三步：</p>
+<ul>
+<li>第一步，找到上一笔交易，确认支付方的比特币来源。</li>
+<li>第二步，算出支付方公钥的指纹，确认与支付方的地址一致，从而保证公钥属实。</li>
+<li>第三步，使用公钥去解开数字签名，保证私钥属实。</li>
+</ul>
+<p>老李拿到这个单子后，需要确认这个单子确实是来自“HIJKLMN”这个人（也就是老张）签署的，这个并不困难。因为单子上必须有保密章，老李拿出印章扫描器，扫一下章，如果液晶屏显示出的字符和付款人字符是一致的（这里是“HIJKLMN”），就可以确认单子确实是付款人签署的。这是因为根据保密印章的机制，没有其他人可以伪造印章，任何一个人只要扫描一下印章，都可以确认单子的付款人和盖章人是否一致。</p>
+<h2 id="收款人确认付款人余额">IV.III. 收款人确认付款人余额</h2>
+<p>这个系统到目前还是很有问题。通过保密印章，收款人虽然可以确认付款人确实签署了这份单子，但是无法自行确认付款人是否有足够的余额支付。之前的中央虚拟货币系统中，二狗子负责检查付款人的余额，并通知收款人交易是否有效，现在把二狗子开了，谁来负责记账和确认每笔交易的有效性呢？</p>
+<p>之前说过，中本聪设计的这个系统是分布式货币系统，不依赖任何中央人物，所以不会有一个或少数几个人负责这件事，最终承担这份工作的是之前所提到的矿工组织。老张、老李和全村其他任何使用比特币进行交易的村民都依赖矿工组织的工作才能完成交易。</p>
+<h1 id="矿工的工作">V. 矿工的工作</h1>
+<p>矿工的工作是整个系统的核心，也是最复杂性最高的地方。首先，所有的交易数据都会传送到矿工那里。矿工负责把这些交易写入区块链。下面逐步介绍矿工的工作内容和目的。</p>
+<p>根据比特币协议，一个区块的大小最大是 1MB，而一笔交易大概是500字节左右，因此一个区块最多可以包含2000多笔交易。矿工负责把这2000多笔交易打包在一起，组成一个区块，然后计算这个区块的 Hash。计算 Hash 的过程叫做采矿，这需要大量的计算。矿工之间也在竞争，谁先算出 Hash，谁就能第一个添加新区块进入区块链，从而享受这个区块的全部收益，而其他矿工将一无所获。</p>
+<h2 id="矿工的工具">V.I. 矿工的工具</h2>
+<p>俗话说，工欲善其事，必先利其器。比特币矿工虽然不用铁撅、铁锨和探照灯等工具，不过也要有一些必备的东西。</p>
+<p>初始账簿。每个组首先自己复制一份初始账簿，初始账簿只有一页，记录了系统的第一次赠送</p>
+<p>空账簿纸。每个小组有若干账簿纸，每一页纸上仅有账簿结构，没有填内容，具体内容的书写规则后面讲述。下面是一张空账簿纸的样子，各个字段的意义后面会说到</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/06.png"></p>
+<p>编码生成器（哈希函数）。中本聪又向矿工组织的每个组分发了若干编码生成器，这个东西很神奇，将一页账簿填好内容的账簿纸放入这个机器，机器会在账簿纸的“本账单编号”一栏自动打印一串由“0”和“1”组成的编号，共256个。最神奇的是，编号生成器有如下功能：</p>
+<ul>
+<li>生成的编号仅与账簿纸上填入的内容有关，与填写人、字体、填写时间等因素均无关</li>
+<li>内容相同的账簿纸生成的编号总是相同，但是如果内容哪怕只改一个字符，编号就会面目全非</li>
+<li>编码生成器在打印编码时还需要将所有填入账簿纸的交易单放入，机器会扫描交易单和填入交易单的一致性，尤其是保密印章，如果发现保密印章和付款人不一致，会拒绝打印编码</li>
+<li>将一张已打印的账簿纸放入，机器会判定编号是否是有效的机器打印，并且判定编号和内容是否一致，这个编号无法伪造</li>
+<li>交易单收件箱。每个矿工小组需要在门口挂一个箱子用于收集交易单。</li>
+<li>公告板。每个矿工小组同样需要一个公告板公示一些信息。</li>
+</ul>
+<p>有了上面的工具，矿工组织就可以开工了！</p>
+<h2 id="收集交易单">V.II. 收集交易单</h2>
+<p>中本聪规定，每笔交易的发起人，不但要将交易单给到收款人，还要同时复制若干份一模一样的交易单投递到每个矿工小组的收件箱里。</p>
+<p>矿工小组的人定期到自己的收件箱里把收集到的交易单一并取出来。</p>
+<h2 id="填写账簿">V.III. 填写账簿</h2>
+<p>此时小组的人拿出一张空的账簿纸，把这些交易填写到“交易清单”一栏，同时找到当前账簿最后一页，将最后一页的编号抄写到“上一张账单编号一栏”。 注意还有个“幸运数字”，可以随便填上一个数字，如12345。然后，将这样账簿纸放入编号生成器，打印好编号，一张账簿就算完成了。</p>
+<p>如果你以为矿工的工作就这么简单，那就大错特错了，中本聪有个变态的规定：只有编号的前10个数均为0，这页账簿纸才算有效。</p>
+<p>根据之前对编号生成器的描述，要修改编号，只能修改账簿纸的内容，而“交易清单”和“上一张账簿纸编号”是不能随便改的，那么只能改幸运数字了。于是为了生成有效的账簿纸，小组里的矿工就不断抄写账簿纸，但每张纸的幸运数字都不同，然后不断的重复将纸放入编码器，如果生成的编号不符合规定，这张纸就算废了，重复这个过程直到生成一串有效的编号。</p>
+<p>我们知道，如果编号的每一个数字都是随机的，那么平均写1000多张幸运数字不同的纸才能获得一个有效的编号。</p>
+<p>这就奇怪了，这些矿工为什么要拼命干这看似无意义的事情呢？还记得之前说过矿工有报酬吧，这就是矿工的动力了。中本聪规定：每一张账簿纸的交易清单第一条交易为“系统给这个小组支付50个比特币”。也就是说，如果你生成了一张有意义的账簿纸，并且被所有挖矿小组接受了，那么就意味着这条交易也被接受了，你的挖矿小组获得了50个比特币。</p>
+<p>这就是矿工被叫做矿工的原因，也是为什么之前说随着交易和矿工的活动，比特币的数量会不断增多。例如下面是一个挖矿过程，这个小组的公共比特币帐号为“UVWXYZ”。</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/07.png"></p>
+<p>在幸运数字尝试到“533”时，系统生成了一页有效账簿。</p>
+<h2 id="确认账簿">V.IV. 确认账簿</h2>
+<p>当某挖矿小组幸运的生成了一张有意义的账簿，为了得到奖励，必须立刻请其它小组确认自己的工作。前面说过，当前村里有7个挖矿组，所以这个小组必须将有效账簿纸誊抄6份快马加鞭送到其他6个小组请求确认。</p>
+<p>中本聪规定，当某个小组接到其他小组送来的账簿纸时，必须立即停下手里的挖矿工作进行账簿确认。</p>
+<p>需要确认的信息有三个：</p>
+<ol style="list-style-type: decimal">
+<li>账簿的编号有效</li>
+<li>账簿的前一页账簿有效</li>
+<li>交易清单有效</li>
+</ol>
+<p>首先看第一个，这个确认比较简单。只要将送来的账簿纸放入编码生成器进行验证，如果验证通过，则编号有效。</p>
+<p>第二部分需要将账簿页上的“上一页账簿纸编号”和这个小组目前保存的有效账簿最后一页编号比对，如果相同则确认，如果不同，需要顺着已有账簿向前比对，直到找到这个编号的页。如果没有找到指定的“上一页账簿纸编号”对应的页，这个小组会将此页丢掉。不予确认。</p>
+<p>注意，由上面的机制可以保证，如果各个小组手里的账簿纸是相同的，那么他们都能按同样的顺序装订成相同的账簿。因为后面一张纸的编号总是依赖前面的纸的编号，编码生成器的机制保证了所有合法账簿纸的相对先后顺序在每个小组那里都是相同的（可能会有分支，但不会出现环，后面细讲）。</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/08.png"></p>
+<p>最后是如何确认交易清单有效，其实也就是要确认当前每笔交易的付款人有足够的余额支付这笔钱。由于交易信息里包含这笔钱是如何来的，还包含了记录来源交易的账单编号。例如，HIJKLMN要给ABCDEFG10个比特币，并注明了这10个比特币来自之前OPQRST支付给HIJKLMN的一笔交易，确认时首先要确认之前这笔交易是否存在，同时还要检查HIJKLMN在这之前没有将这10个比特币支付给别人。这一切确认后，这笔交易有效性就被确认了。</p>
+<p>其中第一笔是系统奖励给生成这页账簿的小组的50个，这笔交易大家都默认承认，后面的只要按照上述方法追溯，就可以确认HIJKLMN是否当前真有10个比特币支付给ABCDEFG。</p>
+<p>如果完成了所有了上述验证并全部通过，这个小组就认可了上述账簿纸有效，然后将这张账簿纸并入小组的主账簿，舍弃目前正在进行的工作，后面的挖矿工作会基于这本更新后的主账本进行。</p>
+<h2 id="账簿确认反馈">V.V. 账簿确认反馈</h2>
+<p>对于挖矿小组来说，当账簿纸送出去后，如果后面有收到其他小组送来的账簿纸，其“上一页账簿纸编号”为自己之前送出去的账簿纸，那么就表示他们的工作成功被其他小组认可了，因为已经有小组基于他们的账簿纸继续工作了。此时，可以粗略的说可以认为已经得到了50个比特币。</p>
+<p>另外，任何一个小组当新生成有效账簿纸或确认了别的小组的账簿纸时，就将最新被这个小组承认的交易写到公告牌上，那么收款人只要发现相关交易被各个小组认可了，基本就可以认为这笔钱已经到了自己的账上，后面他就可以在付款时将钱的来源指向这笔交易了。</p>
+<p>以上就是整个比特币的支付体系。下面我们来分析一下，这个体系为什么可以工作下去，以及这个体系可能面临的风险。</p>
+<h1 id="工作机制分析">VI. 工作机制分析</h1>
+<p>虽然上面阐述了比特币的基本运作规则，但是村民们还是有不少疑问。所以中本聪同学专门开了个答疑会，解答常见问题。下面总结一下村民最集中关心的问题。</p>
+<h2 id="如果同时收到两份合法的账簿页怎么办">VI.I. 如果同时收到两份合法的账簿页怎么办？</h2>
+<p>注意在上面的运行机制中，各个挖矿小组是并行工作的，因此完全可能出现这样的情况：某小组收到两份不一样的账簿页，它们都基于当前这个小组的主账簿的最后一页，并且内容也都完全合法，怎么办？</p>
+<p>关于这个问题，中本聪同学说，小组不应该以线性方式组织账簿，而应该以树状组织账簿，任何时刻，都以当前最长分支作为主账簿，但是保留其它分支。举个例子，某小组同时收到A、B两份账簿页，经核算都是合法的，此时小组应该将两页以分叉的形式组织起来，如下图所示：</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/09.png"></p>
+<p>黑色表示当前账簿主干。此时，可以随便选择一个页作为当前主分支，例如选择A：</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/10.png"></p>
+<p>此时如果有一个新的账簿页是基于A的，那么这个主干就延续下去：</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/11.png"></p>
+<p>如果这个主干一直这么延续下去，表示大家基本都以A为主干，B就会被遗忘。但是也有可能忽然B变成更长了：</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/12.png"></p>
+<p>那么我们就需要将B分支作为当前主干，基于这个分支进行后续工作。</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/13.png"></p>
+<p>从局部来看，虽然在某一时刻各个小组的账簿主干可能存在不一致，但大方向是一致的，那些偶尔由于不同步产生的小分支，会很快被淹没在历史中。</p>
+<h2 id="如果挖矿小组有人伪造账簿怎么办">VI.II. 如果挖矿小组有人伪造账簿怎么办</h2>
+<p>关于这个问题，中本聪同学说，只要挖矿组织中大多数人是诚实的，这个系统就可靠，具体分几个方面给予答复。</p>
+<p>首先，基于保密印章机制，没有人能伪造他人身份进行付款，因为编码生成器在打印编码时会核对所有交易单的保密印章，印章和付款人不一致会拒绝打印。</p>
+<p>而且诚实的矿工也不会承认不合法的交易（如某笔交易付款方余额不够）。</p>
+<p>所以只有一种可能的攻击行为，即在收款人确认收款后，从另一条分支上建立另外的交易单，取消之前的付款，而将同一笔钱再次付款给另一个人（即所谓的double-spending问题）。下面同样用一个例子说明这个问题。</p>
+<p>先假设有一个攻击者拥有10个比特币，他准备将这笔钱同时支付给两名受害者A和B，并都得到承认。</p>
+<p>第一步，攻击者准备从受害者A手里买10比特币的黄金，他签署交易单给受害者A，转10个比特币给受害者A。</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/14.png"></p>
+<p>第二步，这笔交易在最新的账簿页中被确认，并被各个挖矿小组公告出来。受害人A看到公告，确认比特币到账，给了攻击者10个比特币等值的黄金。</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/15.png"></p>
+<p>第三步，攻击者找到账簿，从包含刚才交易的账簿页的前一页做出一个分支，生成更多的账单页，超过刚才的分支。由于此时刚才攻击者制造的分支变成了主干分支，而包含受害者A得到钱的分支变成了旁支，因此挖矿组织不再承认刚才的转账，受害者A得到的10比特币被取消了。</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/16.png"></p>
+<p>第四步，攻击者可以再次签署交易单，将同一笔钱支付给受害者B。受害者B确认钱到账后，支付给攻击者等值黄金。</p>
+<p><img src="http://blog.codinglabs.org/uploads/pictures/bitcoin-mechanism-make-easy/17.png"></p>
+<p>至此，攻击者将10个比特币花了两次，从两名受害者那里各购得等值黄金。攻击者还可以如法炮制，取消与受害者B的转账，将同一笔钱再支付给其他人……</p>
+<p>关于这种攻击，中本聪给出的解决方案是，建议收款人不要在公告挂出时立即确认交易完成，而是应该再看一段时间，等待各个挖矿小组再挂出6张确认账簿，并且之前的账簿没有被取消，才确认钱已到账。</p>
+<p>中本聪解释道，之前设定变态的编号规则，正是为了防御这一点。根据前面所述，生成有效账簿页不是那么简单的，要花费大量的人力反复试不同的幸运数字，而且过程完全是碰运气。如果某账簿页包含你收到钱的确认，并且在后面又延续了6个，那么攻击者想要在落后6页的情况下从另一个分支赶超当前主分支是非常困难的，除非攻击者拥有非常多的人力，超过其他所有诚实矿工的人力之和。</p>
+<p>而且，如果攻击者有如此多人力，与其花这么大力气搞这种攻击，还不如做良民挖矿来的收益大。这就从动机上杜绝了攻击的形成。</p>
+<h2 id="比特币会一直增加下去岂不是会严重通货膨胀">VI.III. 比特币会一直增加下去，岂不是会严重通货膨胀</h2>
+<p>中本聪说，这一点我也想到了。前面忘了说了，我给矿工组织的操作细则手册会说明，刚开始我们协议每生成一页账簿，奖励小组50个比特币，后面，每当账簿增加21,000页，奖励就减半，例如当达到210,000页后，每生成一页账簿奖励25个比特币，420,000页后，每生成一页奖励12.5个，依次类推，等账簿达到6,930,000页后，新生成账簿页就没有奖励了。此时比特币全量约为21,000,000个，这就是比特币的总量，所以不会无限增加下去。</p>
+<h2 id="没有奖励后就没人做矿工了岂不是没人帮忙确认交易了">VI.IV. 没有奖励后，就没人做矿工了，岂不是没人帮忙确认交易了</h2>
+<p>比特币协议规定，挖到新区块的矿工将获得奖励，一开始（2008年）是50个比特币，然后每4年减半，目前（2018年）是12.5个比特币。这也是比特币的供给增加机制，流通中新增的比特币都是这样诞生的。么到了2140年，矿工将得不到任何奖励，比特币的数量也将停止增加。到时，矿工的收益会由挖矿所得变为收取手续费。例如，你在转账时可以指定其中1%作为手续费支付给生成账簿页的小组，各个小组会挑选手续费高的交易单优先确认。</p>
+<h2 id="矿工如果越来越多比特币生成速度会变快吗">VI.V. 矿工如果越来越多，比特币生成速度会变快吗</h2>
+<p>不会。中本聪解释，虽然可以任意加入和退出矿工组织，导致矿工人数变化，每个矿工也会拿到一个编码生成器，不过我已经在编码生成器中加入了调控机制，当前工作的编码生成器越多，每个机器的效率就越低，保证新账簿页生成速率不变。</p>
+<h2 id="虽然每个人的代号是匿名的但如果泄露了某个人的代号账簿又是公开的岂不是他的所有账目都查出来了">VI.VI. 虽然每个人的代号是匿名的，但如果泄露了某个人的代号，账簿又是公开的，岂不是他的所有账目都查出来了</h2>
+<p>确实是这样的。例如你要和某人交易，必然要要到他的代号才能填写交易单。因为收款人一栏要填入那人的代号。不过中本聪说可以提供无限制的保密印章，建议每一次交易用不同的保密印章，这样查账簿就追查不到同一个人的所有账目了。</p>
+<h2 id="区块的扩容">VI.VII. 区块的扩容</h2>
+<p>《区块链入门教程》说过，比特币协议规定，平均10分钟诞生一个区块。区块的大小只有 1MB，最多只能包含2000多笔交易。也就是说，比特币网络每10分钟，最多只能处理2000多笔交易，换算一下，就是处理速度为3～5笔/秒。全世界的比特币交易这么多，可是区块链每秒最多只能处理5笔，这已经成为制约比特币发展的一个瓶颈。</p>
+<p>很早就有人呼吁，改革比特币协议，提升处理速度。这件事在2017年8月有了一点眉目，当时区块链发生了一次分叉，诞生了一个新协议，称为 Bitcoin Cash（简称 BCH）。这种新货币其他方面都与比特币一致，就是每个区块的大小从 1MB 增加到了 8MB，因此处理速度提升了8倍，手续费也低得多。该协议是对原有区块链的分叉，因此当时持有比特币的人，等于一人获赠了一份同样数量的 BCH。</p>
+<p>BCH 等于创造了一种新货币，还有人提议，原始比特币的区块大小提升到 2MB，这称为 SegWit2x 。这个建议原定于2017年11月实施，但是最后一刻由于缺乏共识，就被取消了，目前还在讨论中。</p>
+<h1 id="说明">VII. 说明</h1>
+<p>本文用通俗比喻的方式讲解了比特币的运行机制。有几点需要说明：</p>
+<ol style="list-style-type: decimal">
+<li>为了便于理解，我做了很多简化，因此有些机制细节和实际的比特币可能不完全相同。但总体思想和关键原理是一致的。</li>
+<li>由于很多计算机世界的东西（如公钥体系、网络传输）在现实世界中并没有特别好的对等物，所以故事里难免有一些生硬和不合常理的细节。</li>
+<li>本文描述的是比特币网络本身的技术原理和运作机制，当在如Mtgox这种买卖市场中进行比特币交易时，市场做了中间代理，并不遵从上述机制</li>
+</ol>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="Alex LEE 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="Alex LEE 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Bitcoin/" rel="tag"><i class="fa fa-tag"></i> Bitcoin</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/remember-name/" rel="prev" title="记住对方的名字">
+                  <i class="fa fa-angle-left"></i> 记住对方的名字
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/wuhan-bicycle/" rel="next" title="武汉骑行地图">
+                  武汉骑行地图 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex LEE</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">317k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:14</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><div class="footer-custom"> Hosted by <a target="_blank" href="https://pages.github.com">GitHub Pages</a>  |  <a target="_blank"  href="https://about.gitlab.com/stages-devops-lifecycle/pages/">Gitlab Pages</a> </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sli1989","repo":"gitalk","client_id":"9fa53d6156d8791703b5","client_secret":"706eeec44bf22fe410e90d364fe8a348ab8bcaed","admin_user":"sli1989","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"61a7ca19c11d8eea04e0ca905093ab2b"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title></title>
+	<link rel="stylesheet" href="/static/css/player.css">
+</head>
+
+<div id="QPlayer">
+	<div id="pContent">
+		<div id="player">
+			<span class="cover"></span>
+			<div class="ctrl">
+				<div class="musicTag marquee">
+					<strong>Title</strong>
+					 <span> - </span>
+					<span class="artist">Artist</span>
+				</div>
+				<div class="progress">
+					<div class="timer left">0:00</div>
+					<div class="contr">
+						<div class="rewind icon"></div>
+						<div class="playback icon"></div>
+						<div class="fastforward icon"></div>
+					</div>
+					<div class="right">
+						<div class="liebiao icon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ssBtn">
+				<div class="adf"></div>
+		</div>
+	</div>
+	<ol id="playlist"></ol>
+</div>
+<script src="//cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  var playlist = [];
+  
+  playlist.push({title:'午后庭院',artist:'夏天播放',mp3:'https://music.163.com/song/media/outer/url?id=29095562.mp3',cover:'https://p1.music.126.net/5uQHiJSmUMo74VAR4KJCTA==/6670737045946097.jpg'})
+  
+  playlist.push({title:'远走高飞',artist:'金志文',mp3:'https://music.163.com/song/media/outer/url?id=1297742772.mp3',cover:'https://p1.music.126.net/elfqBKIdad0KYCCeKQpDSA==/18700493767108166.jpg'})
+  
+  playlist.push({title:'她',artist:'不可撤销乐队',mp3:'https://music.163.com/song/media/outer/url?id=29747622.mp3',cover:'https://p1.music.126.net/4x2X7W_VGHQeHoMR4a3Wbw==/3227066628477266.jpg'})
+  
+  playlist.push({title:'给你',artist:'陈奕迅',mp3:'https://music.163.com/song/media/outer/url?id=64706.mp3',cover:'https://p1.music.126.net/GK7EB01AIEE9-qHkBi-3vg==/89060441862562.jpg'})
+  
+  playlist.push({title:'千禧',artist:'徐秉龙',mp3:'https://music.163.com/song/media/outer/url?id=522510615.mp3',cover:'https://y.gtimg.cn/music/photo_new/T002R300x300M000004UOSJ5117bcd.jpg'})
+  
+  playlist.push({title:'年度之歌',artist:'谢安琪',mp3:'https://music.163.com/song/media/outer/url?id=308169.mp3',cover:'http://p1.music.126.net/SkSda5laDTH73h_a9ZYEig==/109951164146248533.jpg'})
+  
+  playlist.push({title:'边走边唱',artist:'李荣浩',mp3:'https://music.163.com/song/media/outer/url?id=31134197.mp3',cover:'https://p1.music.126.net/4Pu7M0q88fVVoo1ZFS_nmw==/3408486047237011.jpg'})
+  
+  var isRotate = true;
+  var autoplay = false;
+</script>
+<script src="/static/js/player.js"></script>
+<script>
+  function bgChange(){
+	var lis= $('.lib');
+	for(var i=0; i<lis.length; i+=2)
+	lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+  }
+  window.onload = bgChange;
+</script>
+
+  <script type="text/javascript" src="/js/custom.js"></script>
+</body>
+</html>

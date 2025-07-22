@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"saili.science","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":true,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="cmd是command的缩写。即命令提示符（CMD），是在OS &#x2F; 2 ， Windows CE与Windows NT平台为基础的操作系统（包括Windows 2000和XP中， Vista中，和Server 2003 ）下的“MS-DOS 方式”。中文版Windows XP 中的命令提示符进一步提高了与DOS 下操作命令的兼容性，用户可以在命令提示符直接输入中文调用文件。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CMD命令">
+<meta property="og:url" content="http://saili.science/cmd/index.html">
+<meta property="og:site_name" content="Alex LEE&#39;s Blog">
+<meta property="og:description" content="cmd是command的缩写。即命令提示符（CMD），是在OS &#x2F; 2 ， Windows CE与Windows NT平台为基础的操作系统（包括Windows 2000和XP中， Vista中，和Server 2003 ）下的“MS-DOS 方式”。中文版Windows XP 中的命令提示符进一步提高了与DOS 下操作命令的兼容性，用户可以在命令提示符直接输入中文调用文件。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-04-17T04:39:04.000Z">
+<meta property="article:modified_time" content="2018-03-23T12:25:03.000Z">
+<meta property="article:author" content="Alex LEE">
+<meta property="article:tag" content="CMD">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://saili.science/cmd/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://saili.science/cmd/","path":"cmd/","title":"CMD命令"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>CMD命令 | Alex LEE's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/6.1.3/pangu.umd.js" integrity="sha256-erngBMP3zzoIM6eqQ8dmrReh2vqCRgWmORroIfVoDlE=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://saili.science/cmd/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex LEE's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex LEE's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">77</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">25</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#cmd%E5%91%BD%E4%BB%A4"><span class="nav-text">I. CMD命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E4%BB%B6"><span class="nav-text">II. 批处理文件</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex LEE"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Alex LEE</p>
+  <div class="site-description" itemprop="description">There is no royal road to learning.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:im.sai.li@outlook.com" title="E-Mail → mailto:im.sai.li@outlook.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/sli1989" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;sli1989" rel="noopener me" target="_blank"><i class="telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitter.im/sli1989" title="Gitter → https:&#x2F;&#x2F;gitter.im&#x2F;sli1989" rel="noopener me" target="_blank"><i class="github-alt fa-fw"></i>Gitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/sli1989/HEXO-NEXT-CUSTOM" title="https:&#x2F;&#x2F;github.com&#x2F;sli1989&#x2F;HEXO-NEXT-CUSTOM" rel="noopener" target="_blank">About the Blog</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://fontawesome.com/icons" title="https:&#x2F;&#x2F;fontawesome.com&#x2F;icons" rel="noopener" target="_blank">Font Awesome Icons</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://getemoji.com/" title="https:&#x2F;&#x2F;getemoji.com&#x2F;" rel="noopener" target="_blank">Copy and Paste Emoji</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://saili.science/cmd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Alex LEE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex LEE's Blog">
+      <meta itemprop="description" content="There is no royal road to learning.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="CMD命令 | Alex LEE's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CMD命令
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2018-03-23 20:25:03" itemprop="dateModified" datetime="2018-03-23T20:25:03+08:00">2018-03-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类：</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Programming/" itemprop="url" rel="index"><span itemprop="name">Programming</span></a>
+        </span>
+          <span> > </span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Programming/CMD/" itemprop="url" rel="index"><span itemprop="name">CMD</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>16 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>cmd是command的缩写。即命令提示符（CMD），是在OS / 2 ， Windows CE与Windows NT平台为基础的操作系统（包括Windows 2000和XP中， Vista中，和Server 2003 ）下的“MS-DOS 方式”。中文版Windows XP 中的命令提示符进一步提高了与DOS 下操作命令的兼容性，用户可以在命令提示符直接输入中文调用文件。</p>
+<span id="more"></span>
+<h1 id="cmd命令">I. CMD命令</h1>
+<ul>
+<li><p>如果要切换的目录和当前目录在一个盘符下（比如都是C盘），</p>
+<blockquote>
+<p>cd c:</p>
+</blockquote></li>
+<li><p>要切换到不同的盘符，如D盘，</p>
+<blockquote>
+<p>输入 cd /d 路径 回车<br>
+或者 输入 d: 回车</p>
+</blockquote></li>
+<li><p>进入 E:/Program Files/PHP，</p>
+<blockquote>
+<p>输入 E: 回车<br>
+输入 CD &quot;Program Files&quot;/PHP 回车</p>
+</blockquote></li>
+<li><p>当前盘符的根目录 ‘CD /’，进入上一层目录 ‘CD ..’，当前目录‘CD .’，显示目录下的文件及目录 ‘dir’</p></li>
+</ul>
+<h1 id="批处理文件">II. 批处理文件</h1>
+<p>批处理文件（batch file）包含一系列 DOS命令，通常用于自动执行重复性任务。用户只需双击批处理文件便可执行任务，而无需重复输入相同指令。编写批处理文件非常简单，但难点在于确保一切按顺序执行。编写严谨的批处理文件可以极大程度地节省时间，在应对重复性工作时尤其有效。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://xstarcd.github.io/wiki/windows/windows_cmd_summary_commands.html">批处理常用命令总结 - 批处理命令简介</a><br>
+<a target="_blank" rel="noopener" href="http://xstarcd.github.io/wiki/windows/windows_cmd_summary_symbols.html">批处理常用命令总结 - 批处理符号简介</a></p>
+</blockquote>
+<p>Windows Batch 常用命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br></pre></td><td class="code"><pre><span class="line">1 echo 和 @</span><br><span class="line">回显命令</span><br><span class="line">@                     #关闭单行回显</span><br><span class="line">echo off              #从下一行开始关闭回显</span><br><span class="line">@echo off             #从本行开始关闭回显。一般批处理第一行都是这个</span><br><span class="line">echo on               #从下一行开始打开回显</span><br><span class="line">echo                  #显示当前是 echo off 状态还是 echo on 状态</span><br><span class="line">echo.                 #输出一个”回车换行”，空白行</span><br><span class="line">                         #(同echo, echo; echo+ echo[ echo] echo/ echo)</span><br><span class="line">2 errorlevel</span><br><span class="line">echo %errorlevel%</span><br><span class="line">每个命令运行结束，可以用这个命令行格式查看返回码</span><br><span class="line">默认值为0，一般命令执行出错会设 errorlevel 为1</span><br><span class="line">3 dir</span><br><span class="line">显示文件夹内容</span><br><span class="line">dir                  #显示当前目录中的文件和子目录</span><br><span class="line">dir /a               #显示当前目录中的文件和子目录，包括隐藏文件和系统文件</span><br><span class="line">dir c: /a:d          #显示 C 盘当前目录中的目录</span><br><span class="line">dir c: /a:-d         #显示 C 盘根目录中的文件</span><br><span class="line">dir c: /b/p         #/b只显示文件名，/p分页显示</span><br><span class="line">dir *.exe /s         #显示当前目录和子目录里所有的.exe文件</span><br><span class="line">4 cd</span><br><span class="line">切换目录</span><br><span class="line">cd                  #进入根目录</span><br><span class="line">cd                   #显示当前目录</span><br><span class="line">cd /d d:sdk         #可以同时更改盘符和目录</span><br><span class="line">5 md</span><br><span class="line">创建目录</span><br><span class="line">md d:abc          #如果 d:a 不存在，将会自动创建中级目录</span><br><span class="line">#如果命令扩展名被停用，则需要键入 mkdir abc。</span><br><span class="line">6 rd</span><br><span class="line">删除目录</span><br><span class="line">rd abc               #删除当前目录里的 abc 子目录，要求为空目录</span><br><span class="line">rd /s/q d:temp      #删除 d:temp 文件夹及其子文件夹和文件，/q安静模式</span><br><span class="line">7 del</span><br><span class="line">删除文件</span><br><span class="line">del d:test.txt      #删除指定文件，不能是隐藏、系统、只读文件</span><br><span class="line">del /q/a/f d:temp*.*</span><br><span class="line">删除 d:temp 文件夹里面的所有文件，包括隐藏、只读、系统文件，不包括子目录</span><br><span class="line">del /q/a/f/s d:temp*.*</span><br><span class="line">删除 d:temp 及子文件夹里面的所有文件，包括隐藏、只读、系统文件，不包括子目录</span><br><span class="line">8 ren</span><br><span class="line">重命名命令</span><br><span class="line">ren d:temp tmp      #支持对文件夹的重命名</span><br><span class="line">9 cls</span><br><span class="line">清屏</span><br><span class="line">10 type</span><br><span class="line">显示文件内容</span><br><span class="line">type c:boot.ini     #显示指定文件的内容，程序文件一般会显示乱码</span><br><span class="line">type *.txt           #显示当前目录里所有.txt文件的内容</span><br><span class="line">11 copy</span><br><span class="line">拷贝文件</span><br><span class="line">copy c:test.txt d:test.bak</span><br><span class="line">复制 c:test.txt 文件到 d: ，并重命名为 test.bak</span><br><span class="line">copy con test.txt</span><br><span class="line">从屏幕上等待输入，按 Ctrl+Z 结束输入，输入内容存为test.txt文件</span><br><span class="line">con代表屏幕，prn代表打印机，nul代表空设备</span><br><span class="line">copy 1.txt + 2.txt 3.txt</span><br><span class="line">合并 1.txt 和 2.txt 的内容，保存为 3.txt 文件</span><br><span class="line">如果不指定 3.txt ，则保存到 1.txt</span><br><span class="line">copy test.txt +</span><br><span class="line">复制文件到自己，实际上是修改了文件日期</span><br><span class="line">12 title</span><br><span class="line">设置cmd窗口的标题</span><br><span class="line">title 新标题         #可以看到cmd窗口的标题栏变了</span><br><span class="line">13 ver</span><br><span class="line">显示系统版本</span><br><span class="line">14 label 和 vol</span><br><span class="line">设置卷标</span><br><span class="line">vol                  #显示卷标</span><br><span class="line">label                #显示卷标，同时提示输入新卷标</span><br><span class="line">label c:system       #设置C盘的卷标为 system</span><br><span class="line">15 pause</span><br><span class="line">暂停命令</span><br><span class="line">16 rem 和 ::</span><br><span class="line">注释命令</span><br><span class="line">注释行不执行操作</span><br><span class="line">17 date 和 time</span><br><span class="line">日期和时间</span><br><span class="line">date           #显示当前日期，并提示输入新日期，按&quot;回车&quot;略过输入</span><br><span class="line">date/t         #只显示当前日期，不提示输入新日期</span><br><span class="line">time           #显示当前时间，并提示输入新时间，按&quot;回车&quot;略过输入</span><br><span class="line">time/t         #只显示当前时间，不提示输入新时间</span><br><span class="line">18 goto 和 :</span><br><span class="line">跳转命令</span><br><span class="line">:label         #行首为:表示该行是标签行，标签行不执行操作</span><br><span class="line">goto label     #跳转到指定的标签那一行</span><br><span class="line">19 find (外部命令)</span><br><span class="line">查找命令</span><br><span class="line">find &quot;abc&quot; c:test.txt</span><br><span class="line">在 c:test.txt 文件里查找含 abc 字符串的行</span><br><span class="line">如果找不到，将设 errorlevel 返回码为1</span><br><span class="line">find /i “abc” c:test.txt</span><br><span class="line">查找含 abc 的行，忽略大小写</span><br><span class="line">find /c &quot;abc&quot; c:test.txt</span><br><span class="line">显示含 abc 的行的行数</span><br><span class="line">20 more (外部命令)</span><br><span class="line">逐屏显示</span><br><span class="line">more c:test.txt     #逐屏显示 c:test.txt 的文件内容</span><br><span class="line">21 tree</span><br><span class="line">显示目录结构</span><br><span class="line">tree d:             #显示D盘的文件目录结构</span><br><span class="line">22 &amp;</span><br><span class="line">顺序执行多条命令，而不管命令是否执行成功</span><br><span class="line">23 &amp;&amp;</span><br><span class="line">顺序执行多条命令，当碰到执行出错的命令后将不执行后面的命令</span><br><span class="line">find &quot;ok&quot; c:test.txt &amp;&amp; echo 成功</span><br><span class="line">如果找到了&quot;ok&quot;字样，就显示&quot;成功&quot;，找不到就不显示</span><br><span class="line">24 ||</span><br><span class="line">顺序执行多条命令，当碰到执行正确的命令后将不执行后面的命令</span><br><span class="line">find &quot;ok&quot; c:test.txt || echo 不成功</span><br><span class="line">如果找不到&quot;ok&quot;字样，就显示&quot;不成功&quot;，找到了就不显示</span><br><span class="line">25 |</span><br><span class="line">管道命令</span><br><span class="line">dir *.* /s/a | find /c &quot;.exe&quot;</span><br><span class="line">管道命令表示先执行 dir 命令，对其输出的结果执行后面的 find 命令</span><br><span class="line">该命令行结果：输出当前文件夹及所有子文件夹里的.exe文件的个数</span><br><span class="line">type c:test.txt|more</span><br><span class="line">这个和 more c:test.txt 的效果是一样的</span><br><span class="line">26 &gt; 和 &gt;&gt;</span><br><span class="line">输出重定向命令</span><br><span class="line">&gt; 清除文件中原有的内容后再写入</span><br><span class="line">&gt;&gt; 追加内容到文件末尾，而不会清除原有的内容</span><br><span class="line">主要将本来显示在屏幕上的内容输出到指定文件中</span><br><span class="line">指定文件如果不存在，则自动生成该文件</span><br><span class="line">type c:test.txt &gt;prn</span><br><span class="line">屏幕上不显示文件内容，转向输出到打印机</span><br><span class="line">echo hello world&gt;con</span><br><span class="line">在屏幕上显示hello world，实际上所有输出都是默认 &gt;con 的</span><br><span class="line">copy c:test.txt f: &gt;nul</span><br><span class="line">拷贝文件，并且不显示&quot;文件复制成功&quot;的提示信息，但如果f盘不存在，还是会显示出错信息</span><br><span class="line">copy c:test.txt f: &gt;nul 2&gt;nul</span><br><span class="line">不显示”文件复制成功”的提示信息，并且f盘不存在的话，也不显示错误提示信息</span><br><span class="line">echo ^^W ^&gt; ^W&gt;c:test.txt</span><br><span class="line">生成的文件内容为 ^W &gt; W</span><br><span class="line">^ 和 &gt; 是控制命令，要把它们输出到文件，必须在前面加个 ^ 符号</span><br><span class="line">27 &lt;</span><br><span class="line">从文件中获得输入信息，而不是从屏幕上</span><br><span class="line">一般用于 date time label 等需要等待输入的命令</span><br><span class="line">@echo off</span><br><span class="line">echo 2005-05-01&gt;temp.txt</span><br><span class="line">date &lt;temp.txt</span><br><span class="line">del temp.txt</span><br><span class="line">这样就可以不等待输入直接修改当前日期</span><br><span class="line">28 %0 %1 %2 %3 %4 %5 %6 %7 %8 %9 %*</span><br><span class="line">命令行传递给批处理的参数</span><br><span class="line">%0 批处理文件本身</span><br><span class="line">%1 第一个参数</span><br><span class="line">%9 第九个参数</span><br><span class="line">%* 从第一个参数开始的所有参数</span><br><span class="line">批参数(%n)的替代已被增强。您可以使用以下语法:</span><br><span class="line">     %~1          - 删除引号(&quot;)，扩充 %1</span><br><span class="line">     %~f1         - 将 %1 扩充到一个完全合格的路径名</span><br><span class="line">     %~d1         - 仅将 %1 扩充到一个驱动器号</span><br><span class="line">     %~p1         - 仅将 %1 扩充到一个路径</span><br><span class="line">     %~n1         - 仅将 %1 扩充到一个文件名</span><br><span class="line">     %~x1         - 仅将 %1 扩充到一个文件扩展名</span><br><span class="line">     %~s1         - 扩充的路径指含有短名</span><br><span class="line">     %~a1         - 将 %1 扩充到文件属性</span><br><span class="line">     %~t1         - 将 %1 扩充到文件的日期/时间</span><br><span class="line">     %~z1         - 将 %1 扩充到文件的大小</span><br><span class="line">     %~$PATH : 1 - 查找列在 PATH 环境变量的目录，并将 %1</span><br><span class="line">                   扩充到找到的第一个完全合格的名称。如果环境</span><br><span class="line">                   变量名未被定义，或者没有找到文件，此组合键会</span><br><span class="line">                   扩充到空字符串</span><br><span class="line">可以组合修定符来取得多重结果:</span><br><span class="line">    %~dp1        - 只将 %1 扩展到驱动器号和路径</span><br><span class="line">    %~nx1        - 只将 %1 扩展到文件名和扩展名</span><br><span class="line">    %~dp$PATH:1 - 在列在 PATH 环境变量中的目录里查找 %1，</span><br><span class="line">                   并扩展到找到的第一个文件的驱动器号和路径。</span><br><span class="line">    %~ftza1      - 将 %1 扩展到类似 DIR 的输出行。</span><br><span class="line">可以参照 call/? 或 for/? 看出每个参数的含意</span><br><span class="line">echo load &quot;%%1&quot; &quot;%%2&quot;&gt;c:test.txt</span><br><span class="line">生成的文件内容为 load &quot;%1&quot; &quot;%2&quot;</span><br><span class="line">批处理文件里，用这个格式把命令行参数输出到文件</span><br><span class="line">29 if</span><br><span class="line">判断命令</span><br><span class="line">if &quot;%1&quot;==&quot;/a&quot; echo 第一个参数是/a</span><br><span class="line">if /i &quot;%1&quot; equ &quot;/a&quot; echo 第一个参数是/a</span><br><span class="line">/i 表示不区分大小写，equ 和 == 是一样的，其它运算符参见 if/?</span><br><span class="line">if exist c:test.bat echo 存在c:test.bat文件</span><br><span class="line">if not exist c:windows (</span><br><span class="line">     echo 不存在c:windows文件夹</span><br><span class="line">     )</span><br><span class="line">if exist c:test.bat (</span><br><span class="line">     echo 存在c:test.bat</span><br><span class="line">     ) else (</span><br><span class="line">     echo 不存在c:test.bat</span><br><span class="line">     )</span><br><span class="line">30 setlocal 和 endlocal</span><br><span class="line">设置”命令扩展名”和”延缓环境变量扩充”</span><br><span class="line">SETLOCAL ENABLEEXTENSIONS             #启用&quot;命令扩展名&quot;</span><br><span class="line">SETLOCAL DISABLEEXTENSIONS            #停用&quot;命令扩展名&quot;</span><br><span class="line">SETLOCAL ENABLEDELAYEDEXPANSION       #启用&quot;延缓环境变量扩充&quot;</span><br><span class="line">SETLOCAL DISABLEDELAYEDEXPANSION      #停用&quot;延缓环境变量扩充&quot;</span><br><span class="line">ENDLOCAL                              #恢复到使用SETLOCAL语句以前的状态</span><br><span class="line">“命令扩展名”默认为启用</span><br><span class="line">“延缓环境变量扩充”默认为停用</span><br><span class="line">批处理结束系统会自动恢复默认值</span><br><span class="line">可以修改注册表以禁用&quot;命令扩展名&quot;，详见 cmd /? 。所以用到&quot;命令扩展名&quot;的程</span><br><span class="line">序，建议在开头和结尾加上 SETLOCAL ENABLEEXTENSIONS 和 ENDLOCAL 语句，以确</span><br><span class="line">保程序能在其它系统上正确运行</span><br><span class="line">&quot;延缓环境变量扩充&quot;主要用于 if 和 for 的符合语句，在 set 的说明里有其实用例程</span><br><span class="line">31 set</span><br><span class="line">设置变量</span><br><span class="line">引用变量可在变量名前后加 % ，即 %变量名%</span><br><span class="line">set                     #显示目前所有可用的变量，包括系统变量和自定义的变量</span><br><span class="line">echo %SystemDrive%      #显示系统盘盘符。系统变量可以直接引用</span><br><span class="line">set p                   #显示所有以p开头的变量，要是一个也没有就设errorlevel=1</span><br><span class="line">set p=aa1bb1aa2bb2      #设置变量p，并赋值为 = 后面的字符串，即aa1bb1aa2bb2</span><br><span class="line">echo %p%                #显示变量p代表的字符串，即aa1bb1aa2bb2</span><br><span class="line">echo %p:~6%             #显示变量p中第6个字符以后的所有字符，即aa2bb2</span><br><span class="line">echo %p:~6,3%           #显示第6个字符以后的3个字符，即aa2</span><br><span class="line">echo %p:~0,3%           #显示前3个字符，即aa1</span><br><span class="line">echo %p:~-2%            #显示最后面的2个字符，即b2</span><br><span class="line">echo %p:~0,-2%          #显示除了最后2个字符以外的其它字符，即aa1bb1aa2b</span><br><span class="line">echo %p:aa=c%           #用c替换变量p中所有的aa，即显示c1bb1c2bb2</span><br><span class="line">echo %p:aa=%            #将变量p中的所有aa字符串置换为空，即显示1bb12bb2</span><br><span class="line">echo %p:*bb=c%          #第一个bb及其之前的所有字符被替换为c，即显示c1aa2bb2</span><br><span class="line">set p=%p:*bb=c%         #设置变量p，赋值为 %p:*bb=c% ，即c1aa2bb2</span><br><span class="line">set /a p=39             #设置p为数值型变量，值为39</span><br><span class="line">set /a p=39/10          #支持运算符，有小数时用去尾法，39/10=3.9，去尾得3，p=3</span><br><span class="line">set /a p=p/10           #用 /a 参数时，在 = 后面的变量可以不加%直接引用</span><br><span class="line">set /a p=”1&amp;0″          #”与”运算，要加引号。其它支持的运算符参见set/?</span><br><span class="line">set p=                  #取消p变量</span><br><span class="line">set /p p=请输入</span><br><span class="line">屏幕上显示”请输入”，并会将输入的字符串赋值给变量p</span><br><span class="line">注意这条可以用来取代 choice 命令</span><br><span class="line">注意变量在 if 和 for 的复合语句里是一次性全部替换的，如</span><br><span class="line">@echo off</span><br><span class="line">set p=aaa</span><br><span class="line">if %p%==aaa (</span><br><span class="line">     echo %p%</span><br><span class="line">     set p=bbb</span><br><span class="line">     echo %p%</span><br><span class="line">     )</span><br><span class="line">结果将显示</span><br><span class="line">aaa</span><br><span class="line">aaa</span><br><span class="line">因为在读取 if 语句时已经将所有 %p% 替换为aaa</span><br><span class="line">这里的&quot;替换&quot;，在 /? 帮助里就是指&quot;扩充&quot;、&quot;环境变量扩充&quot;</span><br><span class="line">可以启用”延缓环境变量扩充”，用 ! 来引用变量，即 !变量名!</span><br><span class="line">@echo off</span><br><span class="line">SETLOCAL ENABLEDELAYEDEXPANSION</span><br><span class="line">set p=aaa</span><br><span class="line">if %p%==aaa (</span><br><span class="line">     echo %p%</span><br><span class="line">     set p=bbb</span><br><span class="line">     echo !p!</span><br><span class="line">     )</span><br><span class="line">ENDLOCAL</span><br><span class="line">结果将显示</span><br><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">还有几个动态变量，运行 set 看不到</span><br><span class="line">%CD%                   #代表当前目录的字符串</span><br><span class="line">%DATE%                 #当前日期</span><br><span class="line">%TIME%                 #当前时间</span><br><span class="line">%RANDOM%               #随机整数，介于0~32767</span><br><span class="line">%ERRORLEVEL%           #当前 ERRORLEVEL 值</span><br><span class="line">%CMDEXTVERSION%        #当前命令处理器扩展名版本号</span><br><span class="line">%CMDCMDLINE%           #调用命令处理器的原始命令行</span><br><span class="line">可以用echo命令查看每个变量值，如 echo %time%</span><br><span class="line">注意 %time% 精确到毫秒，在批处理需要延时处理时可以用到</span><br><span class="line">32 start</span><br><span class="line">批处理中调用外部程序的命令，否则等外部程序完成后才继续执行剩下的指令</span><br><span class="line">33 call</span><br><span class="line">批处理中调用另外一个批处理的命令，否则剩下的批处理指令将不会被执行</span><br><span class="line">有时有的应用程序用start调用出错的，也可以call调用</span><br><span class="line">34 choice (外部命令)</span><br><span class="line">选择命令</span><br><span class="line">让用户输入一个字符，从而选择运行不同的命令，返回码errorlevel为1234……</span><br><span class="line">win98里是choice.com</span><br><span class="line">win2000pro里没有，可以从win98里拷过来</span><br><span class="line">win2003里是choice.exe</span><br><span class="line">choice /N /C y /T 5 /D y&gt;nul</span><br><span class="line">延时5秒</span><br><span class="line">35 assoc 和 ftype</span><br><span class="line">文件关联</span><br><span class="line">assoc 设置&#x27;文件扩展名&#x27;关联，关联到&#x27;文件类型&#x27;</span><br><span class="line">ftype 设置&#x27;文件类型&#x27;关联，关联到&#x27;执行程序和参数&#x27;</span><br><span class="line">当你双击一个.txt文件时，windows并不是根据.txt直接判断用 notepad.exe 打开</span><br><span class="line">而是先判断.txt属于 txtfile &#x27;文件类型&#x27;</span><br><span class="line">再调用 txtfile 关联的命令行 txtfile=%SystemRoot%system32NOTEPAD.EXE %1</span><br><span class="line">可以在&quot;文件夹选项&quot;→&quot;文件类型&quot;里修改这2种关联</span><br><span class="line">assoc            #显示所有&#x27;文件扩展名&#x27;关联</span><br><span class="line">assoc .txt       #显示.txt代表的&#x27;文件类型&#x27;，结果显示 .txt=txtfile</span><br><span class="line">assoc .doc       #显示.doc代表的&#x27;文件类型&#x27;，结果显示 .doc=Word.Document.8</span><br><span class="line">assoc .exe       #显示.exe代表的&#x27;文件类型&#x27;，结果显示 .exe=exefile</span><br><span class="line">ftype            #显示所有&#x27;文件类型&#x27;关联</span><br><span class="line">ftype exefile    #显示exefile类型关联的命令行，结果显示 exefile=&quot;%1&quot; %*</span><br><span class="line">assoc .txt=Word.Document.8</span><br><span class="line">设置.txt为word类型的文档，可以看到.txt文件的图标都变了</span><br><span class="line">assoc .txt=txtfile</span><br><span class="line">恢复.txt的正确关联</span><br><span class="line">ftype exefile=&quot;%1&quot; %*</span><br><span class="line">恢复 exefile 的正确关联</span><br><span class="line">如果该关联已经被破坏，可以运行 command.com ，再输入这条命令</span><br><span class="line">36 pushd 和 popd</span><br><span class="line">切换当前目录</span><br><span class="line">@echo off</span><br><span class="line">c: &amp; cd &amp; md mp3        #在 C: 建立 mp3 文件夹</span><br><span class="line">md d:mp4                #在 D: 建立 mp4 文件夹</span><br><span class="line">cd /d d:mp4             #更改当前目录为 d:mp4</span><br><span class="line">pushd c:mp3             #保存当前目录，并切换当前目录为 c:mp3</span><br><span class="line">popd                     #恢复当前目录为刚才保存的 d:mp4</span><br><span class="line">37 for</span><br><span class="line">循环命令</span><br><span class="line">这个比较复杂，请对照 for/? 来看</span><br><span class="line">for %%i in (c: d: e: f:) do echo %%i</span><br><span class="line">依次调用小括号里的每个字符串，执行 do 后面的命令</span><br><span class="line">注意%%i，在批处理中 for 语句调用参数用2个%</span><br><span class="line">默认的字符串分隔符是&quot;空格键&quot;，&quot;Tab键&quot;，&quot;回车键&quot;</span><br><span class="line">for %%i in (*.txt) do find &quot;abc&quot; %%i</span><br><span class="line">对当前目录里所有的txt文件执行 find 命令</span><br><span class="line">for /r . %%i in (*.txt) do find &quot;abc&quot; %%i</span><br><span class="line">在当前目录和子目录里所有的.txt文件中搜索包含 abc 字符串的行</span><br><span class="line">for /r . %%i in (.) do echo %%~pni</span><br><span class="line">显示当前目录名和所有子目录名，包括路径，不包括盘符</span><br><span class="line">for /r d:mp3 %%i in (*.mp3) do echo %%i&gt;&gt;d:mp3.txt</span><br><span class="line">把 d:mp3 及其子目录里的mp3文件的文件名都存到 d:mp3.txt 里去</span><br><span class="line">for /l %%i in (2,1,8) do echo %%i</span><br><span class="line">生成2345678的一串数字，2是数字序列的开头，8是结尾，1表示每次加1</span><br><span class="line">for /f %%i in (&#x27;set&#x27;) do echo %%i</span><br><span class="line">对 set 命令的输出结果循环调用，每行一个</span><br><span class="line">for /f &quot;eol=P&quot; %%i in (&#x27;set&#x27;) do echo %%i</span><br><span class="line">取 set 命令的输出结果，忽略以 P 开头的那几行</span><br><span class="line">for /f %%i in (d:mp3.txt) do echo %%i</span><br><span class="line">显示 d:mp3.txt 里的每个文件名，每行一个，不支持带空格的名称</span><br><span class="line">for /f &quot;delims=&quot; %%i in (d:mp3.txt) do echo %%i</span><br><span class="line">显示 d:mp3.txt 里的每个文件名，每行一个，支持带空格的名称</span><br><span class="line">for /f &quot;skip=5 tokens=4&quot; %%a in (&#x27;dir&#x27;) do echo %%a</span><br><span class="line">对 dir 命令的结果，跳过前面5行，余下的每行取第4列</span><br><span class="line">每列之间的分隔符为默认的&quot;空格&quot;</span><br><span class="line">可以注意到 dir 命令输出的前5行是没有文件名的</span><br><span class="line">for /f &quot;tokens=1,2,3 delims=- &quot; %%a in (&#x27;date /t&#x27;) do (</span><br><span class="line">     echo %%a</span><br><span class="line">     echo %%b</span><br><span class="line">     echo %%c</span><br><span class="line">     )</span><br><span class="line">对 date /t 的输出结果，每行取1、2、3列</span><br><span class="line">第一列对应指定的 %%a ，后面的 %%b 和 %%c 是派生出来的，对应其它列</span><br><span class="line">分隔符指定为 - 和&quot;空格&quot;，注意 delims=- 后面有个&quot;空格&quot;</span><br><span class="line">其中 tokens=1,2,3 若用 tokens=1-3 替换，效果是一样的</span><br><span class="line">for /f &quot;tokens=2* delims=- &quot; %%a in (&#x27;date /t&#x27;) do echo %%b</span><br><span class="line">取第2列给 %%a ，其后的列都给 %%b</span><br><span class="line">38 subst (外部命令)</span><br><span class="line">映射磁盘。</span><br><span class="line">subst z: serverd      #这样输入z:就可以访问serverd了</span><br><span class="line">subst z: /d              #取消该映射</span><br><span class="line">subst                    #显示目前所有的映时</span><br><span class="line">39 xcopy (外部命令)</span><br><span class="line">文件拷贝</span><br><span class="line">xcopy d:mp3 e:mp3 /s/e/i/y</span><br><span class="line">复制 d:mp3 文件夹、所有子文件夹和文件到 e: ，覆盖已有文件</span><br><span class="line">加 /i 表示如果 e: 没有 mp3 文件夹就自动新建一个，否则会有询问</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="Alex LEE 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="Alex LEE 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/CMD/" rel="tag"><i class="fa fa-tag"></i> CMD</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/distance/" rel="prev" title="机器学习中的相似性度量">
+                  <i class="fa fa-angle-left"></i> 机器学习中的相似性度量
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/paper-submission/" rel="next" title="论文投稿">
+                  论文投稿 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex LEE</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">317k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:14</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><div class="footer-custom"> Hosted by <a target="_blank" href="https://pages.github.com">GitHub Pages</a>  |  <a target="_blank"  href="https://about.gitlab.com/stages-devops-lifecycle/pages/">Gitlab Pages</a> </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sli1989","repo":"gitalk","client_id":"9fa53d6156d8791703b5","client_secret":"706eeec44bf22fe410e90d364fe8a348ab8bcaed","admin_user":"sli1989","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"18f4e92b79c873595372dffe208b0457"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title></title>
+	<link rel="stylesheet" href="/static/css/player.css">
+</head>
+
+<div id="QPlayer">
+	<div id="pContent">
+		<div id="player">
+			<span class="cover"></span>
+			<div class="ctrl">
+				<div class="musicTag marquee">
+					<strong>Title</strong>
+					 <span> - </span>
+					<span class="artist">Artist</span>
+				</div>
+				<div class="progress">
+					<div class="timer left">0:00</div>
+					<div class="contr">
+						<div class="rewind icon"></div>
+						<div class="playback icon"></div>
+						<div class="fastforward icon"></div>
+					</div>
+					<div class="right">
+						<div class="liebiao icon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ssBtn">
+				<div class="adf"></div>
+		</div>
+	</div>
+	<ol id="playlist"></ol>
+</div>
+<script src="//cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  var playlist = [];
+  
+  playlist.push({title:'午后庭院',artist:'夏天播放',mp3:'https://music.163.com/song/media/outer/url?id=29095562.mp3',cover:'https://p1.music.126.net/5uQHiJSmUMo74VAR4KJCTA==/6670737045946097.jpg'})
+  
+  playlist.push({title:'远走高飞',artist:'金志文',mp3:'https://music.163.com/song/media/outer/url?id=1297742772.mp3',cover:'https://p1.music.126.net/elfqBKIdad0KYCCeKQpDSA==/18700493767108166.jpg'})
+  
+  playlist.push({title:'她',artist:'不可撤销乐队',mp3:'https://music.163.com/song/media/outer/url?id=29747622.mp3',cover:'https://p1.music.126.net/4x2X7W_VGHQeHoMR4a3Wbw==/3227066628477266.jpg'})
+  
+  playlist.push({title:'给你',artist:'陈奕迅',mp3:'https://music.163.com/song/media/outer/url?id=64706.mp3',cover:'https://p1.music.126.net/GK7EB01AIEE9-qHkBi-3vg==/89060441862562.jpg'})
+  
+  playlist.push({title:'千禧',artist:'徐秉龙',mp3:'https://music.163.com/song/media/outer/url?id=522510615.mp3',cover:'https://y.gtimg.cn/music/photo_new/T002R300x300M000004UOSJ5117bcd.jpg'})
+  
+  playlist.push({title:'年度之歌',artist:'谢安琪',mp3:'https://music.163.com/song/media/outer/url?id=308169.mp3',cover:'http://p1.music.126.net/SkSda5laDTH73h_a9ZYEig==/109951164146248533.jpg'})
+  
+  playlist.push({title:'边走边唱',artist:'李荣浩',mp3:'https://music.163.com/song/media/outer/url?id=31134197.mp3',cover:'https://p1.music.126.net/4Pu7M0q88fVVoo1ZFS_nmw==/3408486047237011.jpg'})
+  
+  var isRotate = true;
+  var autoplay = false;
+</script>
+<script src="/static/js/player.js"></script>
+<script>
+  function bgChange(){
+	var lis= $('.lib');
+	for(var i=0; i<lis.length; i+=2)
+	lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+  }
+  window.onload = bgChange;
+</script>
+
+  <script type="text/javascript" src="/js/custom.js"></script>
+</body>
+</html>

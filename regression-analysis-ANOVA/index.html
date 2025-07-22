@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"saili.science","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":true,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="回归分析（regression analysis)是确定两种或两种以上变量间相互依赖的定量关系的一种统计分析方法。运用十分广泛，回归分析按照涉及的变量的多少，分为一元回归和多元回归分析；按照因变量的多少，可分为简单回归分析和多重回归分析；按照自变量和因变量之间的关系类型，可分为线性回归分析和非线性回归分析。如果在回归分析中，只包括一个自变量和一个因变量，且二者的关系可用一条直线近似表示，这种回归分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="回归分析与方差分析">
+<meta property="og:url" content="http://saili.science/regression-analysis-ANOVA/index.html">
+<meta property="og:site_name" content="Alex LEE&#39;s Blog">
+<meta property="og:description" content="回归分析（regression analysis)是确定两种或两种以上变量间相互依赖的定量关系的一种统计分析方法。运用十分广泛，回归分析按照涉及的变量的多少，分为一元回归和多元回归分析；按照因变量的多少，可分为简单回归分析和多重回归分析；按照自变量和因变量之间的关系类型，可分为线性回归分析和非线性回归分析。如果在回归分析中，只包括一个自变量和一个因变量，且二者的关系可用一条直线近似表示，这种回归分">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-08-06T16:30:26.000Z">
+<meta property="article:modified_time" content="2018-03-23T12:25:03.000Z">
+<meta property="article:author" content="Alex LEE">
+<meta property="article:tag" content="RegressionAnalysis">
+<meta property="article:tag" content="VarianceAnalysis">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://saili.science/regression-analysis-ANOVA/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://saili.science/regression-analysis-ANOVA/","path":"regression-analysis-ANOVA/","title":"回归分析与方差分析"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>回归分析与方差分析 | Alex LEE's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/6.1.3/pangu.umd.js" integrity="sha256-erngBMP3zzoIM6eqQ8dmrReh2vqCRgWmORroIfVoDlE=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://saili.science/regression-analysis-ANOVA/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex LEE's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex LEE's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">77</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">25</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90"><span class="nav-text">I. 回归分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="nav-text">II. 线性回归</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90"><span class="nav-text">II.I. 原理分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AF%E5%B7%AE%E5%88%86%E6%9E%90"><span class="nav-text">II.II. 误差分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%9F%E5%90%88%E4%BC%98%E5%BA%A6%E6%A3%80%E9%AA%8C%E5%8F%8A%E7%BB%9F%E8%AE%A1%E9%87%8F"><span class="nav-text">II.III. 拟合优度检验及统计量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E9%AA%8C"><span class="nav-text">II.IV. 显著性检验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%AE%E4%BF%A1%E5%8C%BA%E9%97%B4"><span class="nav-text">II.V. 置信区间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8matlab%E5%81%9A%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90"><span class="nav-text">II.VI. 使用Matlab做回归分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90%E7%9A%84%E5%AE%9E%E9%99%85%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4"><span class="nav-text">II.VII. 回归分析的实际操作步骤</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90"><span class="nav-text">III. 方差分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%85%A5"><span class="nav-text">III.I. 引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E5%9B%A0%E7%B4%A0%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90"><span class="nav-text">III.II. 单因素方差分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8matlab%E8%BF%9B%E8%A1%8C%E5%8D%95%E5%9B%A0%E7%B4%A0%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90"><span class="nav-text">III.III. 用Matlab进行单因素方差分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E5%9B%A0%E7%B4%A0%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90"><span class="nav-text">III.IV. 双因素方差分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90%E4%B8%8E%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-text">IV. 回归分析与方差分析的比较</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">V. 参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex LEE"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Alex LEE</p>
+  <div class="site-description" itemprop="description">There is no royal road to learning.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:im.sai.li@outlook.com" title="E-Mail → mailto:im.sai.li@outlook.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/sli1989" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;sli1989" rel="noopener me" target="_blank"><i class="telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitter.im/sli1989" title="Gitter → https:&#x2F;&#x2F;gitter.im&#x2F;sli1989" rel="noopener me" target="_blank"><i class="github-alt fa-fw"></i>Gitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/sli1989/HEXO-NEXT-CUSTOM" title="https:&#x2F;&#x2F;github.com&#x2F;sli1989&#x2F;HEXO-NEXT-CUSTOM" rel="noopener" target="_blank">About the Blog</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://fontawesome.com/icons" title="https:&#x2F;&#x2F;fontawesome.com&#x2F;icons" rel="noopener" target="_blank">Font Awesome Icons</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://getemoji.com/" title="https:&#x2F;&#x2F;getemoji.com&#x2F;" rel="noopener" target="_blank">Copy and Paste Emoji</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://saili.science/regression-analysis-ANOVA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Alex LEE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex LEE's Blog">
+      <meta itemprop="description" content="There is no royal road to learning.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="回归分析与方差分析 | Alex LEE's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          回归分析与方差分析
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2018-03-23 20:25:03" itemprop="dateModified" datetime="2018-03-23T20:25:03+08:00">2018-03-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类：</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Research/" itemprop="url" rel="index"><span itemprop="name">Research</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>20 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>回归分析（regression analysis)是确定两种或两种以上变量间相互依赖的定量关系的一种统计分析方法。运用十分广泛，回归分析按照涉及的变量的多少，分为一元回归和多元回归分析；按照因变量的多少，可分为简单回归分析和多重回归分析；按照自变量和因变量之间的关系类型，可分为线性回归分析和非线性回归分析。如果在回归分析中，只包括一个自变量和一个因变量，且二者的关系可用一条直线近似表示，这种回归分析称为一元线性回归分析。如果回归分析中包括两个或两个以上的自变量，且自变量之间存在线性相关，则称为多重线性回归分析。</p>
+<p>方差分析(Analysis of Variance，简称ANOVA)，又称“变异数分析”，是R.A.Fisher发明的，用于两个及两个以上样本均数差别的显著性检验。 由于各种因素的影响，研究所得的数据呈现波动状。造成波动的原因可分成两类，一是不可控的随机因素，另一是研究中施加的对结果形成影响的可控因素。方差分析是从观测变量的方差入手，研究诸多控制变量中哪些变量是对观测变量有显著影响的变量。</p>
+<span id="more"></span>
+<p>这两者都是考察所研究的自变量与因变量之间的关系，而且其实任何的方差分析都可以看成是一种特殊的回归，因为二者都可以统一到一个大的范畴——线性模型(General Linear Model, GLM)。但是这两种分析对应的变量可以是不同的，方差分析的自变量一般都是分类变量（当然也可以是连续变量），因变量都是连续变量；而回归分析的自变量和因变量都是连续变量。这样，从形式上来看方差跟回归的形式差不多，但是线性回归中的自变量和因变量是一一对应的，而方差分析中的自变量和因变量可能是一对多的。</p>
+<p>虽然，很多教科书在介绍这两种分析方法时，都由于他们的分析目的不同而把他们界定为两种不同的分析方法，因为方差分析考察的是自变量对因变量的影响是否显著，而回归分析考察的是自变量与因变量之间的可以用数学表达式来表示的线性相关关系。但是分析的目的是基于研究目的，因为方差分析与回归分析对同一组数据得出的结果是一样的，那么在解释分析结果时，就要根据研究结果具体问题具体对待。</p>
+<p>因此从这两种分析的本质来讲，方差分析与回归分析总体上属于一个类别，都是线性模型（ linear model, LM）。至于到底选择什么模型，是方差分析还是线性回归，其实不必拘泥，可以根据实际的研究需要，选择相应的分析方法。</p>
+<blockquote>
+<p>摘录于<a target="_blank" rel="noopener" href="https://github.com/xiahouzuoxin/notes/blob/master/essays/%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86%E2%80%94%E2%80%94%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90%E4%B8%8E%E6%96%B9%E5%B7%AE%E5%88%86%E6%9E%90.md">数理统计知识整理——回归分析与方差分析</a></p>
+</blockquote>
+<h1 id="回归分析">I. 回归分析</h1>
+<p>回归分析的主要内容是通过试验或观测数据，寻找相关变量之间的统计规律性，再利用自变量的值有效预测因变量的可能取值。</p>
+<p>其实际操作的步骤是：</p>
+<ul>
+<li>设定回归方程</li>
+<li>根据误差分析，考虑搜集数据对回归方程参数的影响，有目的的搜集数据</li>
+<li>确定回归系数</li>
+<li>进行相关性检验</li>
+<li>预测</li>
+</ul>
+<h1 id="线性回归">II. 线性回归</h1>
+<h2 id="原理分析">II.I. 原理分析</h2>
+<p>要研究最大积雪深度x与灌溉面积y之间的关系，测试得到近10年的数据如下表：</p>
+<p>[][最大积雪深度-灌溉面积]</p>
+<p>使用线性回归的方法可以估计x与y之间的线性关系。</p>
+<p>线性回归方程式：</p>
+<p>[][回归方程]</p>
+<p>对应的估计方程式为</p>
+<p>[][线性回归方程]</p>
+<p>线性回归完成的任务是，依据观测数据集(x1,y1),(x2,y2),...,(xn,yn)使用线性拟合估计回归方程中的参数a和b。a,b都为估计结果，原方程中的真实值一般用α和β表示。</p>
+<p>为什么要做这种拟合呢？</p>
+<p>答案是：为了预测。比如根据前期的股票数据拟合得到股票的变化趋势（当然股票的变化可就不是这么简单的线性关系了）。</p>
+<p>线性回归的拟合过程使用最小二乘法，</p>
+<p>[][最小二乘法]</p>
+<p>最小二乘法的原理是：选择a,b的值，使得残差的平方和最小。</p>
+<p>为什么是平方和最小，不是绝对值的和？答案是，绝对值也可以，但是，绝对值进行代数运算没有平方那样的方便，4次方又显得太复杂，数学中这种“转化化归”的思路表现得是那么的优美！</p>
+<p>残差平方和Q，</p>
+<p>[][残差]</p>
+<p>求最小，方法有很多。代数方法是求导，还有一些运筹学优化的方法（梯度下降、牛顿法），这里只需要使用求导就OK了，</p>
+<p>[][残差和求导]</p>
+<p>为表示方便，引入一些符号，</p>
+<p>[][线性回归符号]</p>
+<p>最终估计参数a与b的结果是：</p>
+<p>[][b]</p>
+<p>[][a]</p>
+<p>自此，针对前面的例子，只要将观测数据带入上面表达式即可计算得到拟合之后的a和b。不妨试一试？</p>
+<p>从线性函数的角度，b表示的拟合直线的斜率，不考虑数学的严谨性，从应用的角度，结果的b可以看成是离散点的斜率，表示变化趋势，b的绝对值越大，表示数据的变化越快。</p>
+<p>线性回归的估计方法存在误差，误差的大小通过Q衡量。</p>
+<h2 id="误差分析">II.II. 误差分析</h2>
+<p>考虑获取观测数据的实验中存在其它的影响因素，将这些因素全部考虑到e~N(0,δ^2)中，回归方程重写为</p>
+<p>y = a + bx + e</p>
+<p>由此计算估计量a与b的方差结果为，</p>
+<p>[][Dab]</p>
+<p>a与b的方差不仅与δ和x的波动大小有关，而且还与观察数据的个数有关。在设计观测实验时，x的取值越分散，估计ab的误差就越小，数据量越大，估计量b的效果越好。这也许能为设计实验搜集数据提供某些指导。</p>
+<h2 id="拟合优度检验及统计量">II.III. 拟合优度检验及统计量</h2>
+<p>拟合优度检验模型对样本观测值的拟合程度，其方法是构造一个可以表征拟合程度的指标，称为统计量，统计量是样本的函数。从检验对象中计算出该统计量的数值，然后与某一标准进行比较，得出检验结论。</p>
+<p>这是又会问了，最小二乘法不是保证了模型最好的拟合样本观测值了吗？为什么还要检验拟合程度？</p>
+<p>最小二乘法保证的是同一个样本集使用最小二乘法拟合程度最好，而拟合优度检验结果表示的是多个不同样本集各自进行拟合后对拟合效果的比较。比如，下面的直线方程都是使用最小二乘法拟合的结果，但二者对样本观测值的拟合程度显然不同。</p>
+<p>[][拟合优度检验]</p>
+<p>为构造统计量，先定义三个表达式：</p>
+<p>[][Se]</p>
+<p>[][SR]</p>
+<p>[][ST]</p>
+<p>通过推倒可以发现：[][ST-Se-SR]</p>
+<p>[][_ST]表示观测值y1,y2,y3,...yn与它们的平均值的离差平方和，[][_ST]越大，则观测值的波动越大。因此称总离差平方和。</p>
+<p>[][_SR]表示回归直线上点的纵坐标<sup>y1,</sup>y2,...,^yn与与观测值均值的离差平方和。所以称为回归平方和。[][_SR]反映出回归直线因素对[][_ST]的影响。</p>
+<p>[][_Se]是最小二乘法中残差平方和Q的最小值，它是实际观测值yi与回归直线上的点(xi,<sup>yi)的纵坐标</sup>yi的离差平方和。[][_Se]是扣除线性影响外的剩余平方和，因此称为残差平方和。</p>
+<p>显然，一个拟合得比较好的模型，[][_ST]与[][_SR]应该比较接近，而[][_Se]应该尽可能的小。因此，可以通过构造某种[][_ST]与[][_SR]的表达式作为拟合优度检验中的统计量。</p>
+<ul>
+<li>构造统计量——相关系数</li>
+</ul>
+<p>因此，构造相关系数</p>
+<p>[][相关系数]</p>
+<p>不同的r值有不同的线性相关表示，如下图</p>
+<p>[][相关系数图]</p>
+<p>结论：</p>
+<pre><code>当|r|-&gt;0时，表示x与y之间的线性关系不明显，不适合使用线性回归建模。反之，当|r|越接近1时，表示x与y之间的线性关系越密切。</code></pre>
+<ul>
+<li>构造统计量——F</li>
+</ul>
+<p>[][统计量F]</p>
+<p>F值越小表示线性关系越密切，反之线性关系越弱。</p>
+<ul>
+<li>构造统计量——t</li>
+</ul>
+<p>[][统计量t]</p>
+<p>|t|越大，x与y之间的线性关系越密切；反之，越小，x与y之间的线性关系越微弱。</p>
+<p>不管是相关系数，还是F，或者t，都能用于描述x与y之间的线性相关程度。并且可以通过验证，这三种统计量用于下面的显著性检验是完全一致的。</p>
+<h2 id="显著性检验">II.IV. 显著性检验</h2>
+<p>显著性检验，</p>
+<p>以开头“最大积雪深度x与灌溉面积y之间的关系”的线性关系是否显著为例，使用上面构造的统计量进行显著性检验的过程如下：</p>
+<p>[][显著性检验-1]</p>
+<p>[][显著性检验-2]</p>
+<p>[][显著性检验-3]</p>
+<p>[][显著性检验-4]</p>
+<p>[][显著性检验-5]</p>
+<p>在当中，计算线性回归及显著性检验使用到如下的公式，下面的公式不用记住，使用时查询即可。</p>
+<p>[][线性回归季显著性检验的公式]</p>
+<p>相关系数的查表参见[相关系数显著性检验表]</p>
+<h2 id="置信区间">II.V. 置信区间</h2>
+<p>回归系数α以1-α为置信度的置信区间为</p>
+<p>[][alpha置信区间]</p>
+<p>回归系数β以1-α为置信度的置信区间为</p>
+<p>[][beta置信区间]</p>
+<p>其中S都为，</p>
+<p>[][S-Equal]</p>
+<h2 id="使用matlab做回归分析">II.VI. 使用Matlab做回归分析</h2>
+<p>使用最小二乘法做多元线性回归分析的函数为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[b,bint,r,rint,stats] = regress(y,X,alpha);</span><br><span class="line"></span><br><span class="line">% alpha  为显著性水平</span><br><span class="line">% b bint 为回归系数估计值向量及其置信区间</span><br><span class="line">% r rint 为残差向量及其置信区间，可用rcoplot(r,rint)绘图</span><br></pre></td></tr></table></figure>
+<p>下面是一个使用Matlab做线性回归分析的实例：</p>
+<pre><code>EG:
+x  0.10 0.11 0.12 0.13  0.14 0.15 0.16 0.17 0.18
+y  42.0 41.5 45.0 45.5 45.0 47.5 49.0 55.0 50.0</code></pre>
+<p>Matlab代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">clear all</span><br><span class="line">clf</span><br><span class="line">close all</span><br><span class="line"></span><br><span class="line">% 绘制(X,Y)散点图</span><br><span class="line">figure,</span><br><span class="line">x=0.1:0.01:0.18;</span><br><span class="line">y=[42,41.5,45.0,45.5,45.0,47.5,49.0,55.0,50.0];</span><br><span class="line">plot(x,y,&#x27;+&#x27;)</span><br><span class="line"></span><br><span class="line">% 线性回归分析</span><br><span class="line">x1=x&#x27;;</span><br><span class="line">y1=y&#x27;;  </span><br><span class="line">x2=[ones(9,1),x1];</span><br><span class="line">[b,bint,r,rint,stats]=regress(y1,x2);</span><br><span class="line"></span><br><span class="line">% 绘制拟合直线</span><br><span class="line">y = b(2)*x + b(1);</span><br><span class="line">hold on,plot(x,y,&#x27;r&#x27;);</span><br><span class="line"></span><br><span class="line">% 绘制残差图</span><br><span class="line">figure,rcoplot(r,rint);</span><br></pre></td></tr></table></figure>
+<p>结果为拟合直线图和残差图如下：</p>
+<p>[][回归分析Matlab1] [][回归分析Matlab2]</p>
+<p>在Matlab中还可以使用polyfit函数非常方便的对数据进行拟合，polyfit除了能进行线性拟合，还可以进行非线性的拟合。</p>
+<p>使用polyfit拟合方法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">% 绘制(X,Y)散点图</span><br><span class="line">figure,</span><br><span class="line">x=0.1:0.01:0.18;</span><br><span class="line">y=[42,41.5,45.0,45.5,45.0,47.5,49.0,55.0,50.0];</span><br><span class="line">plot(x,y,&#x27;+&#x27;);</span><br><span class="line"></span><br><span class="line">% 绘制拟合直线</span><br><span class="line">hold on,</span><br><span class="line">p = polyfit(x&#x27;,y&#x27;,1);</span><br><span class="line">y = p(1).*x + p(2);</span><br><span class="line">plot(x,y2，&#x27;r&#x27;);</span><br></pre></td></tr></table></figure>
+<p>拟合结果与上面的一样。</p>
+<h2 id="回归分析的实际操作步骤">II.VII. 回归分析的实际操作步骤</h2>
+<p>回归分析的主要内容是通过试验或观测数据，寻找相关变量之间的统计规律性，再利用自变量的值有效预测因变量的可能取值。</p>
+<p>其实际操作的步骤是：</p>
+<ol style="list-style-type: decimal">
+<li>设定回归方程</li>
+<li>根据误差分析，考虑搜集数据对回归方程参数的影响，有目的的搜集数据</li>
+<li>确定回归系数</li>
+<li>进行相关性检验</li>
+<li>预测</li>
+</ol>
+<h1 id="方差分析">III. 方差分析</h1>
+<p>方差分析问题：用数理统计分析试验结果、鉴别各因素对结果影响程度的方法称为方差分析（Analysis Of Variance），记作ANOVA。</p>
+<p>方差分析主要分为'①单因素一元方差分析'； '②双因素一元方差分析 '； '③多因素一元方差分析 '； '④单因素多元方差分析 '。</p>
+<h2 id="引入">III.I. 引入</h2>
+<p>[][灯泡寿命-灯丝]</p>
+<p>如上图，对A1~A4共4种不同灯丝的灯泡进行抽样检测灯泡寿命，根据测试数据，现在要问：灯泡寿命是否与灯丝材料的不同有关。</p>
+<p>问题特点有：</p>
+<ul>
+<li>1项指标（<strong>因变量</strong>）：寿命</li>
+<li>影响指标的因素（<strong>因子</strong>）：灯丝</li>
+<li>因素存在多个不同状态（<strong>水平</strong>），要求分析因素的不同状态是否对指标有显著影响</li>
+</ul>
+<p>这就是方差分析问题：用数理统计分析试验结果、鉴别各因素对结果影响程度的方法称为方差分析（Analysis Of Variance），记作ANOVA。</p>
+<h2 id="单因素方差分析">III.II. 单因素方差分析</h2>
+<p>其它因素不变，只考虑一个因素A，因素存在多个水平，在每个水平上做若干次实验，从实验结果推断是否该因素对指标有显著影响？这就是单因素的方差分析，上面的例子就是单因素方差分析的例子。</p>
+<ul>
+<li>前提假设</li>
+</ul>
+<p>设因素A的r个水平为A1,A1,...,Ar，每个水平下的指标服从正态分布N(u1,δ2),N(u2,δ2),...,N(ur,δ2)。</p>
+<ul>
+<li>模型建立</li>
+</ul>
+<p>实验数据的格式：</p>
+<p>[][单因素方差分析实验数据表]</p>
+<p>因子对指标是否有影响取决于指标的正态分布是否一致，如果有影响，则正态分布应该存在差异，而正态分布由均值和方差决定，假设中方差相同，因此各个水平下的正态分布均值直接决定因素是否对指标有影响。</p>
+<p>所以，问题可以转化为假设检验，设</p>
+<p>H0: u1=u2=u3=...=ur</p>
+<p>检验结果如果拒绝原假设，则认为因素A对指标有显著影响，否则认为无显著影响。</p>
+<p>设</p>
+<p>u = (1/r)_1^a{ui}</p>
+<p>αi = ui - u</p>
+<p>则，H0假设改写成</p>
+<p>H0: α1=α2=α3=...=αr=0</p>
+<ul>
+<li>构造统计量（摘自《数学建模Matlab大全》）</li>
+</ul>
+<p>[][方差分析1] [][方差分析2]</p>
+<ul>
+<li>单因素方差分析表</li>
+</ul>
+<p>过对上面模型中相关参数进行计算，为计算分析方便，将结果填入下表中：</p>
+<p>[][单因素方差分析表]</p>
+<p>表中的Pr反映的就是&gt;F值的概率，F值通过因素A均方除以误差均方获得。</p>
+<p>因此，有</p>
+<ol style="list-style-type: decimal">
+<li>如果Pr大于α，则接受H0，因素对指标无显著影响</li>
+<li>如果Pr小于α，则拒绝H0，因素对指标有显著影响</li>
+</ol>
+<p>Matlab的输出结果即为上面的方差分析表，因此，用matlab很容易进行方差分析。</p>
+<h2 id="用matlab进行单因素方差分析">III.III. 用Matlab进行单因素方差分析</h2>
+<p>[][单因素方差分析题]</p>
+<p>能否认为这三所小学五年级男学生的平均身高相同？取显著水平α=0.05.</p>
+<p>假设H0: 这三所小学五年级男学生的平均身高相同。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">data = [...</span><br><span class="line"><span class="number">128.1</span>	<span class="number">134.1</span>	<span class="number">131.1</span>	<span class="number">138.9</span>	<span class="number">140.8</span>	<span class="number">127.4</span>; ...</span><br><span class="line"><span class="number">150.3</span>	<span class="number">147.9</span>	<span class="number">136.8</span>	<span class="number">126.0</span>	<span class="number">150.7</span>	<span class="number">155.8</span>; ...</span><br><span class="line"><span class="number">140.6</span>	<span class="number">143.1</span>	<span class="number">144.5</span>	<span class="number">143.7</span>	<span class="number">148.5</span>	<span class="number">146.4</span>...</span><br><span class="line">];</span><br><span class="line">data = data&#x27;;</span><br><span class="line"></span><br><span class="line">P=anova1(data);  <span class="comment">% 方差分析函数anova1</span></span><br></pre></td></tr></table></figure>
+<p>Matlab程序的运行结果为：</p>
+<p>[][单因素方差分析Matlab]</p>
+<p>∵ Pr=0.0275 &lt; α ∴ 拒绝H0，即不能认为这三所小学五年级男学生的平均身高相同。</p>
+<p>实验数据也可以是非平衡数据，如上，假设小学2的测试数据少一组：</p>
+<p>[][单因素方差分析题1]</p>
+<p>此时，anova1调用格式有所改变，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">p=anova1(x,group)</span><br><span class="line"></span><br><span class="line">% x 为向量，从第 1 组到第r组数据依次排列；group 为与 x 同长度的向量，标志 x 中数</span><br><span class="line">% 据的组别（在与 x 第i组数据相对应的位置处输入整数 i=1,2,..r）</span><br></pre></td></tr></table></figure>
+<p>此时的Matlab代码为：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">x = [...</span><br><span class="line"><span class="number">128.1</span>	<span class="number">134.1</span>	<span class="number">131.1</span>	<span class="number">138.9</span>	<span class="number">140.8</span>	<span class="number">127.4</span>; ...</span><br><span class="line"><span class="number">150.3</span>	<span class="number">147.9</span>	<span class="number">136.8</span>	<span class="number">126.0</span>	<span class="number">150.7</span>	<span class="number">0</span>; ...</span><br><span class="line"><span class="number">140.6</span>	<span class="number">143.1</span>	<span class="number">144.5</span>	<span class="number">143.7</span>	<span class="number">148.5</span>	<span class="number">146.4</span>...</span><br><span class="line">];</span><br><span class="line">x = [x(<span class="number">1</span>,:),x(<span class="number">2</span>,<span class="number">1</span>:<span class="number">5</span>),x(<span class="number">3</span>,:)];</span><br><span class="line">g = [<span class="built_in">ones</span>(<span class="number">1</span>,<span class="number">6</span>),<span class="number">2</span>*<span class="built_in">ones</span>(<span class="number">1</span>,<span class="number">5</span>),<span class="number">3</span>*<span class="built_in">ones</span>(<span class="number">1</span>,<span class="number">6</span>)];</span><br><span class="line"></span><br><span class="line">P=anova1(x, g);</span><br></pre></td></tr></table></figure>
+<p>结果为</p>
+<p>[][单因素方差分析Matlab1]</p>
+<p>因为仅改变了一个实验数据，其结果和前面的一致。</p>
+<h2 id="双因素方差分析">III.IV. 双因素方差分析</h2>
+<p>关于双因素方差分析的模型请参考[3]，这里从实际角度出发：</p>
+<ul>
+<li>考虑如何测试实验数据</li>
+</ul>
+<p>按下表测试数据，每组t各数据，共r x s组。</p>
+<p>[][双因素分析实验数据表]</p>
+<ul>
+<li>考虑双因素间是否有交互影响</li>
+</ul>
+<p>无交互影响时可简化测试的实验数据数，每组测一个数据（令t=1）即可，因为无交互影响双因素方差分析表中各量都与t无关。</p>
+<p>[][无交互影响双因素方差分析表]</p>
+<p>有交互影响的方差分析表如下：</p>
+<p>[][有交互影响方差分析表]</p>
+<p>从方差分析表中可以看出：与单因素方差分析相比，双因素方差分析只是多了一个因素，因此方差分析表中多了一行而已，再加上要考虑交互影响，则方差分析表中再增加1行。</p>
+<ul>
+<li>考虑如何使用Matlab进行分析</li>
+</ul>
+<p>Matlab中通过 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p=anova2(x,reps)</span><br></pre></td></tr></table></figure> 进行双因素的方差分析，不妨使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; help anova2</span><br></pre></td></tr></table></figure>
+<p>查看anova2函数的使用方法。</p>
+<pre><code>对无交互关系的双因素方差分析，此时每个单元只需要测一个值，reps=1
+对于交互关系的双因素方差分析，此时每个单元需要测多个值（t&gt;1）,reps=2</code></pre>
+<p>参数x的格式为：</p>
+<pre><code>% 列因素有3个水平(s=3)，行因素有2个水平(r=2)，每组测试2个数据(t=2)
+x =[x111 x121 x131
+    x112 x122 x132
+    x211 x221 x231
+    x221 x222 x232]</code></pre>
+<p>1. 无交互作用双因素方差分析的例子</p>
+<blockquote>
+<blockquote>
+<p>一种火箭使用了四种燃料、三种推进器，进行射程试验，对于每种燃料与每种推进器的组合作一次试验，得到如下数据表，问各种燃料之间及各种推进器之间有无显著差异？设显著性水平α=0.05. [][火箭试验数据]</p>
+</blockquote>
+</blockquote>
+<p>Matlab解题代码如下：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x=[<span class="number">58.2</span> <span class="number">56.2</span> <span class="number">65.3</span></span><br><span class="line"><span class="number">49.1</span> <span class="number">54.1</span> <span class="number">51.6</span></span><br><span class="line"><span class="number">60.1</span> <span class="number">70.9</span> <span class="number">39.2</span></span><br><span class="line"><span class="number">75.8</span> <span class="number">58.2</span> <span class="number">48.7</span>];</span><br><span class="line"></span><br><span class="line">[p,t,st]=anova2(x,<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>分析结果的方差分析表如下：</p>
+<p>[][双因素方差分析EG1]</p>
+<p>求得p=[0.4491 0.7387]，都大于α，所以各种燃料之间及各种推进器的差异都对火箭射程没影响。</p>
+<p>2. 有交互作用双因素方差分析的例子</p>
+<blockquote>
+<p>一种火箭使用了四种燃料、三种推进器，进行射程试验，对于每种燃料与每种推进器的组合作2次试验，得到如下数据表，问各种燃料之间及各种推进器之间有无显著差异？两因素的交互作用是否显著？设显著性水平α=0.05. [][火箭试验数据2]</p>
+</blockquote>
+<p>Matlab解题代码如下：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">x0=[<span class="number">58.2</span>,<span class="number">52.6</span> <span class="number">56.2</span>,<span class="number">41.2</span>  <span class="number">65.3</span>,<span class="number">60.8</span></span><br><span class="line"><span class="number">49.1</span>,<span class="number">42.8</span> <span class="number">54.1</span>,<span class="number">50.5</span> <span class="number">51.6</span>,<span class="number">48.4</span></span><br><span class="line"><span class="number">60.1</span>,<span class="number">58.3</span> <span class="number">70.9</span>,<span class="number">73.2</span> <span class="number">39.2</span>,<span class="number">40.7</span></span><br><span class="line"><span class="number">75.8</span>,<span class="number">71.5</span> <span class="number">58.2</span>,<span class="number">51.0</span> <span class="number">48.7</span>,<span class="number">41.4</span>];</span><br><span class="line"></span><br><span class="line">x1=x0(:,<span class="number">1</span>:<span class="number">2</span>:<span class="number">5</span>);x2=x0(:,<span class="number">2</span>:<span class="number">2</span>:<span class="number">6</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">4</span></span><br><span class="line">    x(<span class="number">2</span>*<span class="built_in">i</span><span class="number">-1</span>,:)=x1(<span class="built_in">i</span>,:);</span><br><span class="line">    x(<span class="number">2</span>*<span class="built_in">i</span>,:)=x2(<span class="built_in">i</span>,:);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">[p,t,st]=anova2(x,<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<p>分析结果的方差分析表如下：</p>
+<p>[][双因素方差分析EG2]</p>
+<p>求得p=[ 0.0035 0.0260 0.0001]，都小于α，所以各实验均值相等的概率很小，认为不同燃料、不同推进器下的射程有显著差异，交互作用也是显著的。</p>
+<h1 id="回归分析与方差分析的比较">IV. 回归分析与方差分析的比较</h1>
+<p>回归分析与方差分析之间都是研究相关关系的统计方法，就我理解，两者之间的差异在于：</p>
+<ol style="list-style-type: decimal">
+<li><p>回归分析在于建立自变量与因变量之间的定量关系（表达式），这种定量的关系可用于将来的预测（如：根据14年以前的房价数据建立回归模型，可用于14年的房价预测）；方差分析在于解释因素的不同水平（状态）是否对指标有显著影响，如有显著影响，其具体影响的定量关系还需要用其它方法做进一步的分析（如：通过测试试验数据，分析货币的价值（因素）是否对房价（指标）有显著影响，方差分析无法提供房价与货币价值间的定量表达式）</p></li>
+<li><p>应用上：当不确定谋因素是否对指标有影响时，可先测量小部分数据，做方差分析。若确定因素对指标有影响，则增加测量因素在不同状态下的数据，进一步用回归分析确定因素与指标之间的定量关系。否则认为因素与指标之间无关。</p></li>
+</ol>
+<h1 id="参考">V. 参考</h1>
+<ol style="list-style-type: decimal">
+<li>[相关系数显著性检验表]</li>
+<li>北京科技大学统计优化研究生课程课件</li>
+<li>数学建模Matlab大全（共30章）</li>
+</ol>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="Alex LEE 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="Alex LEE 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/RegressionAnalysis/" rel="tag"><i class="fa fa-tag"></i> RegressionAnalysis</a>
+              <a href="/tags/VarianceAnalysis/" rel="tag"><i class="fa fa-tag"></i> VarianceAnalysis</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/write-review/" rel="prev" title="如何写综述">
+                  <i class="fa fa-angle-left"></i> 如何写综述
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/time-series-prediction/" rel="next" title="时间序列预测">
+                  时间序列预测 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex LEE</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">317k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:14</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><div class="footer-custom"> Hosted by <a target="_blank" href="https://pages.github.com">GitHub Pages</a>  |  <a target="_blank"  href="https://about.gitlab.com/stages-devops-lifecycle/pages/">Gitlab Pages</a> </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sli1989","repo":"gitalk","client_id":"9fa53d6156d8791703b5","client_secret":"706eeec44bf22fe410e90d364fe8a348ab8bcaed","admin_user":"sli1989","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"956ae10634f4c8fb451b07d869d5a500"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title></title>
+	<link rel="stylesheet" href="/static/css/player.css">
+</head>
+
+<div id="QPlayer">
+	<div id="pContent">
+		<div id="player">
+			<span class="cover"></span>
+			<div class="ctrl">
+				<div class="musicTag marquee">
+					<strong>Title</strong>
+					 <span> - </span>
+					<span class="artist">Artist</span>
+				</div>
+				<div class="progress">
+					<div class="timer left">0:00</div>
+					<div class="contr">
+						<div class="rewind icon"></div>
+						<div class="playback icon"></div>
+						<div class="fastforward icon"></div>
+					</div>
+					<div class="right">
+						<div class="liebiao icon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ssBtn">
+				<div class="adf"></div>
+		</div>
+	</div>
+	<ol id="playlist"></ol>
+</div>
+<script src="//cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  var playlist = [];
+  
+  playlist.push({title:'午后庭院',artist:'夏天播放',mp3:'https://music.163.com/song/media/outer/url?id=29095562.mp3',cover:'https://p1.music.126.net/5uQHiJSmUMo74VAR4KJCTA==/6670737045946097.jpg'})
+  
+  playlist.push({title:'远走高飞',artist:'金志文',mp3:'https://music.163.com/song/media/outer/url?id=1297742772.mp3',cover:'https://p1.music.126.net/elfqBKIdad0KYCCeKQpDSA==/18700493767108166.jpg'})
+  
+  playlist.push({title:'她',artist:'不可撤销乐队',mp3:'https://music.163.com/song/media/outer/url?id=29747622.mp3',cover:'https://p1.music.126.net/4x2X7W_VGHQeHoMR4a3Wbw==/3227066628477266.jpg'})
+  
+  playlist.push({title:'给你',artist:'陈奕迅',mp3:'https://music.163.com/song/media/outer/url?id=64706.mp3',cover:'https://p1.music.126.net/GK7EB01AIEE9-qHkBi-3vg==/89060441862562.jpg'})
+  
+  playlist.push({title:'千禧',artist:'徐秉龙',mp3:'https://music.163.com/song/media/outer/url?id=522510615.mp3',cover:'https://y.gtimg.cn/music/photo_new/T002R300x300M000004UOSJ5117bcd.jpg'})
+  
+  playlist.push({title:'年度之歌',artist:'谢安琪',mp3:'https://music.163.com/song/media/outer/url?id=308169.mp3',cover:'http://p1.music.126.net/SkSda5laDTH73h_a9ZYEig==/109951164146248533.jpg'})
+  
+  playlist.push({title:'边走边唱',artist:'李荣浩',mp3:'https://music.163.com/song/media/outer/url?id=31134197.mp3',cover:'https://p1.music.126.net/4Pu7M0q88fVVoo1ZFS_nmw==/3408486047237011.jpg'})
+  
+  var isRotate = true;
+  var autoplay = false;
+</script>
+<script src="/static/js/player.js"></script>
+<script>
+  function bgChange(){
+	var lis= $('.lib');
+	for(var i=0; i<lis.length; i+=2)
+	lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+  }
+  window.onload = bgChange;
+</script>
+
+  <script type="text/javascript" src="/js/custom.js"></script>
+</body>
+</html>

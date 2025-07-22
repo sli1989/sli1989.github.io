@@ -1,0 +1,2360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"saili.science","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":true,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Markdown 是一种轻量级标记语言，创始人为约翰·格鲁伯（John Gruber）。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的XHTML(或者HTML)文档”。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。本文主要介绍目前各种Markdown编辑器平台的优缺点，以及一些常用Markdown语言。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown使用指南">
+<meta property="og:url" content="http://saili.science/markdown-user-guide/index.html">
+<meta property="og:site_name" content="Alex LEE&#39;s Blog">
+<meta property="og:description" content="Markdown 是一种轻量级标记语言，创始人为约翰·格鲁伯（John Gruber）。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的XHTML(或者HTML)文档”。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。本文主要介绍目前各种Markdown编辑器平台的优缺点，以及一些常用Markdown语言。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-17T04:39:04.000Z">
+<meta property="article:modified_time" content="2020-04-01T06:24:02.000Z">
+<meta property="article:author" content="Alex LEE">
+<meta property="article:tag" content="Markdown">
+<meta property="article:tag" content="MathJax">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://saili.science/markdown-user-guide/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://saili.science/markdown-user-guide/","path":"markdown-user-guide/","title":"Markdown使用指南"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Markdown使用指南 | Alex LEE's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/6.1.3/pangu.umd.js" integrity="sha256-erngBMP3zzoIM6eqQ8dmrReh2vqCRgWmORroIfVoDlE=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://saili.science/markdown-user-guide/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex LEE's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex LEE's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">77</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">25</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#markdown%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E6%8F%92%E4%BB%B6"><span class="nav-text">I. Markdown复制粘贴插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#markdown%E7%BC%96%E8%BE%91%E5%99%A8"><span class="nav-text">II. Markdown编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#markdown%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8"><span class="nav-text">II.I. Markdown在线编辑器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#markdown%E7%A6%BB%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8"><span class="nav-text">II.II. Markdown离线编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#atom"><span class="nav-text">II.II.I. Atom</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sublime-text"><span class="nav-text">II.II.II. Sublime text</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#markdown%E8%AF%AD%E6%B3%95"><span class="nav-text">III. Markdown语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F"><span class="nav-text">III.I. 数学公式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mathjax%E6%B8%B2%E6%9F%93%E5%99%A8"><span class="nav-text">III.I.I. MathJax渲染器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#markdown-pad%E6%98%BE%E7%A4%BA%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F"><span class="nav-text">III.I.II. Markdown Pad显示数学公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#atom%E4%B8%AD%E6%98%BE%E7%A4%BA%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F"><span class="nav-text">III.I.III. Atom中显示数学公式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#markdown-preview-plus%E6%8F%92%E4%BB%B6"><span class="nav-text">III.I.III.I. Markdown Preview Plus插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#markdown-preview-enhanced%E6%8F%92%E4%BB%B6"><span class="nav-text">III.I.III.II. Markdown-preview-enhanced插件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo%E4%B8%AD%E6%98%BE%E7%A4%BA%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F"><span class="nav-text">III.I.IV. Hexo中显示数学公式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%B8%B2%E6%9F%93%E5%99%A8"><span class="nav-text">III.I.IV.I. 选择渲染器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEmathjax"><span class="nav-text">III.I.IV.II. 配置MathJax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%AC%E5%BC%8F%E6%B5%8B%E8%AF%95"><span class="nav-text">III.I.IV.III. 公式测试</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E5%8F%89%E5%BC%95%E7%94%A8"><span class="nav-text">III.II. 交叉引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E6%8E%92%E5%88%97"><span class="nav-text">III.III. 列表排列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2%E8%B7%B3%E8%BD%AC"><span class="nav-text">III.IV. 页面跳转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#emoji"><span class="nav-text">III.V. Emoji</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%84%9A%E6%B3%A8"><span class="nav-text">III.VI. 脚注</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo%E6%98%BE%E7%A4%BA%E8%84%9A%E6%B3%A8"><span class="nav-text">III.VI.I. Hexo显示脚注</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E9%93%BE%E6%92%AD%E6%94%BE%E5%99%A8"><span class="nav-text">III.VII. 外链播放器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E4%BD%93%E5%AD%97%E5%8F%B7%E4%B8%8E%E9%A2%9C%E8%89%B2"><span class="nav-text">III.VIII. 字体、字号与颜色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E4%BD%93%E9%A2%9C%E8%89%B2%E5%90%8D%E5%88%97%E8%A1%A8"><span class="nav-text">III.VIII.I. 字体颜色名列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E8%89%B2"><span class="nav-text">III.IX. 背景色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E8%89%B2%E5%88%97%E8%A1%A8"><span class="nav-text">III.IX.I. 背景色列表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E5%BA%8A"><span class="nav-text">IV. 图床</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%B6%E4%BD%9Cppt"><span class="nav-text">V. 制作PPT</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex LEE"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Alex LEE</p>
+  <div class="site-description" itemprop="description">There is no royal road to learning.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:im.sai.li@outlook.com" title="E-Mail → mailto:im.sai.li@outlook.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/sli1989" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;sli1989" rel="noopener me" target="_blank"><i class="telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitter.im/sli1989" title="Gitter → https:&#x2F;&#x2F;gitter.im&#x2F;sli1989" rel="noopener me" target="_blank"><i class="github-alt fa-fw"></i>Gitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/sli1989/HEXO-NEXT-CUSTOM" title="https:&#x2F;&#x2F;github.com&#x2F;sli1989&#x2F;HEXO-NEXT-CUSTOM" rel="noopener" target="_blank">About the Blog</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://fontawesome.com/icons" title="https:&#x2F;&#x2F;fontawesome.com&#x2F;icons" rel="noopener" target="_blank">Font Awesome Icons</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://getemoji.com/" title="https:&#x2F;&#x2F;getemoji.com&#x2F;" rel="noopener" target="_blank">Copy and Paste Emoji</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://saili.science/markdown-user-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Alex LEE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex LEE's Blog">
+      <meta itemprop="description" content="There is no royal road to learning.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Markdown使用指南 | Alex LEE's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Markdown使用指南
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2020-04-01 14:24:02" itemprop="dateModified" datetime="2020-04-01T14:24:02+08:00">2020-04-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类：</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Software/" itemprop="url" rel="index"><span itemprop="name">Software</span></a>
+        </span>
+          <span> > </span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Software/Markdown/" itemprop="url" rel="index"><span itemprop="name">Markdown</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>10k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>37 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Markdown 是一种轻量级标记语言，创始人为约翰·格鲁伯（John Gruber）。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的XHTML(或者HTML)文档”。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。本文主要介绍目前各种Markdown编辑器平台的优缺点，以及一些常用Markdown语言。</p>
+<span id="more"></span>
+<h1 id="markdown复制粘贴插件">I. Markdown复制粘贴插件</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://markdown.readmorejoy.com">Markdown, Please!</a> 是一款能够将任意网页转换为 MarkDown 格式的在线服务，利用浏览器小书签，只需要点一下转换按钮即可获得 MarkDown 格式的网页内容。</li>
+<li><a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/copy-as-markdown/dgoenpnkphkichnohepecnmpmihnabdg">拷贝为Markdown - Google Chrome</a>：将你在页面中选中的HTML格式转化为Markdown格式。</li>
+</ul>
+<h1 id="markdown编辑器">II. Markdown编辑器</h1>
+<p>国产 Markdown 软件的数量虽然不多，但质量都很高，比如 <a target="_blank" rel="noopener" href="https://sspai.com/app/MWeb">MWeb</a> 和 <a target="_blank" rel="noopener" href="https://sspai.com/app/MarkEditor">MarkEditor</a>，也已有着各自的稳定用户群。Ulysses 的付费策略似乎让大家很不爽，网络上又开始聊起了「<a target="_blank" rel="noopener" href="https://sspai.com/post/40358">有哪些好用的 Markdown 工具</a>」的话题。</p>
+<h2 id="markdown在线编辑器">II.I. Markdown在线编辑器</h2>
+<p>大体语法一致，有些功能不支持。推荐使用<a target="_blank" rel="noopener" href="https://www.zybuluo.com/">作业部落 Cmd Markdown</a>和<a target="_blank" rel="noopener" href="https://note.youdao.com/web">有道云笔记</a>。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.zybuluo.com/">作业部落 Cmd Markdown</a>：实时更新预览，<strong>推荐用于快速编辑分享</strong>。没有批量导出功能，没有独立博客主页面。</li>
+<li><a target="_blank" rel="noopener" href="https://note.youdao.com/web">有道云笔记</a>：排版一般，没有TOC列表。<strong>推荐用于笔记保存</strong>。</li>
+<li><a target="_blank" rel="noopener" href="http://markdown.xiaoshujiang.com/">小书匠主页地址</a>：加载缓慢。</li>
+<li><a target="_blank" rel="noopener" href="http://mdp.tylingsoft.com/">Markdown Plus</a>：不支持公开分享。</li>
+<li><a target="_blank" rel="noopener" href="http://mahua.jser.me/">MaHua</a>：向编辑器mou致敬</li>
+<li><a target="_blank" rel="noopener" href="https://maxiang.io/">马可飞象主页地址</a>：支持公式、TOC等高级功能，不支持公开分享链接，账户等级限制</li>
+<li><a target="_blank" rel="noopener" href="http://www.jianshu.com/">简书</a>：不支持公式、TOC等高级功能。体验很一般。</li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/">CSDN博客</a>：预览模式有bug，体验一般。</li>
+<li><a target="_blank" rel="noopener" href="http://dillinger.io/">Online Markdown Editor</a>：不支持同步预览。</li>
+</ul>
+<h2 id="markdown离线编辑器">II.II. Markdown离线编辑器</h2>
+<p>Windows离线编辑器则推荐使用<a href="#atom">atom</a>（配合GIT BLOG使用）和<a target="_blank" rel="noopener" href="https://cloose.github.io/CuteMarkEd/">CuteMarkEd</a>。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://cloose.github.io/CuteMarkEd/">CuteMarkEd</a>：内容过多时，反应速度慢，同步预览存在差距。</li>
+<li><a target="_blank" rel="noopener" href="http://markdownpad.com/">MarkdownPad</a>：[TOC]和<code>~~</code>删除线无效。<a target="_blank" rel="noopener" href="http://pan.baidu.com/share/link?uk=4279083791&amp;shareid=1114954037">破解版下载地址</a>，更多介绍<a target="_blank" rel="noopener" href="https://wizardforcel.gitbooks.io/markdown-simple-world/content/1.html">点击</a>查看。</li>
+<li>从 Win 8 开始右侧预览页面打不开，解决办法就是安装 <a target="_blank" rel="noopener" href="http://pan.baidu.com/s/1jGxpWxg">Awesomium 1.6.6 SDK</a>，如果还是不行就再安装 <a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/download/details.aspx?id=8109">Microsoft's DirectX End-User Runtimes (June 2010)</a>。一般只需要安装前者就可以了。</li>
+<li><a target="_blank" rel="noopener" href="https://ivarptr.github.io/yu-writer.site/">Yu Writer</a>：支持全文搜索、支持 Tag（标签）管理。支持阅读模式。</li>
+</ul>
+<div id="atom">
+
+</div>
+<h3 id="atom">II.II.I. Atom</h3>
+<ol style="list-style-type: decimal">
+<li>下载<a target="_blank" rel="noopener" href="https://atom.io/">atom</a>，并安装 <code>Visual Studio</code>。</li>
+<li>呼出<code>Panel</code>对话框(<code>Ctrl + Shift + P</code>)，跟Sublime Text是一样的。</li>
+<li>打开<code>settings</code>界面，点击左侧栏的<code>Install</code>按钮。然后在搜索框中输入关键字点击packages开始搜索，点击安装即可。</li>
+<li>重启ATOM</li>
+</ol>
+<p>如果由于墙内原因，无法顺利安装。就需要进行离线安装packages</p>
+<ol style="list-style-type: decimal">
+<li>到对应的github仓库下载压缩文件解压</li>
+<li>运行CMD，CD到对应文件夹</li>
+<li>运行npm install，不要用apm install，重启。</li>
+</ol>
+<p>常用插件可以参考：<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/b4c8479cfaa5">Atom：优雅迷人的编辑神器</a>，<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/39938370">Atom 有什么优秀插件</a>。</p>
+<p>这里推荐以下几种：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://atom.io/packages/markdown-preview-enhanced">markdown-preview-enhanced</a>，支持跟随预览、Tex公式、Pandoc等。<a target="_blank" rel="noopener" href="https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/">Markdown Preview En hanced使用指南</a></li>
+<li><a target="_blank" rel="noopener" href="https://atom.io/packages/markdown-writer">markdown-writer</a>：支持快捷管理链接。安装后<code>Ctrl + Shift + P</code>运行<code>Markdown Writer: Create Default keymaps</code>并重启。<br>
+</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/heroicyang/atom-hexo">Atom-Hexo</a>，设置插件目录 <code>Current Working Directory</code>，执行<code>cmd-shift-P</code>，输入对应的命令即可。</li>
+</ul>
+<p>其他可选插件：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/jacogr/atom-git-control">git-control</a>，包括了比较,提交,撤销,获取,拉取,推送,合并,分支,版本发布等。</li>
+<li><a target="_blank" rel="noopener" href="https://atom.io/packages/language-markdown">language-markdown</a>：提供 Github Flavored Markdown 等 MD 高亮支持<br>
+</li>
+<li><a target="_blank" rel="noopener" href="https://atom.io/packages/markdown-scroll-sync">markdown-scroll-sync</a>：将内置插件 <a target="_blank" rel="noopener" href="https://atom.io/packages/markdown-preview">markdown-preview</a> 的编辑区和预览区同步滚动。</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/atom-community/markdown-preview-plus">Markdown Preview Plus</a>，支持显示latex公式。</li>
+<li><a target="_blank" rel="noopener" href="https://atom.io/packages/tool-bar-markdown-writer">tool-bar-markdown-writer</a>，提供markdown写作工具栏，替代输入指令，必须先安装<code>tool-bar</code>和<code>markdown-writer packages</code>。</li>
+<li><a target="_blank" rel="noopener" href="https://atom.io/packages/markdown-table-formatter">markdown-table-formatter</a>，格式化表格<br>
+</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/josa42/atom-pandoc-convert">atom-pandoc-convert</a></li>
+<li><a target="_blank" rel="noopener" href="https://atom.io/packages/markdown-pdf">markdown-pdf</a>，输出为PDF文件。在<code>Markdown Preview Plus</code>环境中无法使用，需要<code>markdown-preview atom package</code>。<br>
+</li>
+<li><a target="_blank" rel="noopener" href="https://atom.io/packages/markdown-themeable-pdf">markdown-themeable-pdf</a>，输出为PDF文件，公式不支持打印。遇到不能转换PDF时，打开cmd，执行 <code>npm install phantomjs-prebuilt</code>，看到<code>Done. Phantomjs binary available at C:\Users\wxl\node_modules\phantomjs-prebuilt\lib\phantom\bin\phantomjs.exe</code>，重启atom。点击右键选择Markdown to PDF，即可。</li>
+</ul>
+<h3 id="sublime-text">II.II.II. Sublime text</h3>
+<ol style="list-style-type: decimal">
+<li>安装<a target="_blank" rel="noopener" href="https://packagecontrol.io/installation">Package Control</a>、安装<a target="_blank" rel="noopener" href="https://www.sublimetext.com/3">Sublime text</a></li>
+<li>安装插件。<a target="_blank" rel="noopener" href="http://www.monring.com/front_end/sublime-text-2-install-package.html">Sublime Text 2安装插件方法详解</a>。在 Sublime Text 中，按 <code>Ctrl+Shift+P</code> 呼出 <code>Command Palette</code> 然后找到 <code>Package Control: Install Package</code>，输入名称搜索即可。</li>
+</ol>
+<p>推荐插件：</p>
+<ul>
+<li>markdown preview。默认没有快捷键，如下方式设置快捷键：在<code>Preferences -&gt; Key Bindings User</code>打开的文件的中括号中添加以下代码： <code>&#123; &quot;keys&quot;: [&quot;alt+m&quot;], &quot;command&quot;: &quot;markdown_preview&quot;, &quot;args&quot;: &#123; &quot;target&quot;: &quot;browser&quot;&#125; &#125;</code></li>
+<li>Markmon实时预览（<a target="_blank" rel="noopener" href="https://github.com/yyjhao/sublime-text-markmon">本地安装地址</a>）</li>
+<li>下载 <a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">node</a>，启动CMD，<code>node -v</code>，<code>npm -v</code> 测试安装。输入 <code>npm install -g markmon</code> 安装 markmon (npm)。参考 <a target="_blank" rel="noopener" href="http://www.jianshu.com/p/c4b3c8b435ab">node 和 npm 安装使用</a>。</li>
+<li>安装 <a target="_blank" rel="noopener" href="http://pandoc.org/installing.html">pandoc</a>，实时监控文件编辑，以便实时预览。</li>
+<li>配置：<code>Preferences-&gt;Package Settings-&gt;Markmon-&gt;Settings - User</code>，编辑文件如下：<code>&#123; &quot;executable&quot;: &quot;markmon.cmd&quot;, &#125;</code></li>
+<li>重启 Sublime</li>
+<li>通过菜单 <code>Tools &gt; markmo &gt; Launch</code>，或者 <code>Control+Shift+P：Markmon launch</code>。在浏览器会打开 localhost:3000 页面，对于 Sublime 中的改变，你就会在浏览器中实时看到。Sublime 切换文件的同时，浏览器也会自动跟随切换，方便。</li>
+</ul>
+<div id="markdowngrammar">
+
+</div>
+<h1 id="markdown语法">III. Markdown语法</h1>
+<p>常用的Markdown语法可以查看<a target="_blank" rel="noopener" href="https://www.zybuluo.com/mdeditor#527061">Cmd Markdown 编辑阅读器</a>。</p>
+<div id="math">
+
+</div>
+<h2 id="数学公式">III.I. 数学公式</h2>
+<p><a target="_blank" rel="noopener" href="http://mlworks.cn/posts/introduction-to-mathjax-and-latex-expression/">Mathjax与LaTex公式简介</a>从<a target="_blank" rel="noopener" href="http://math.stackexchange.com/">math.stackexchange.com</a>上名为<a target="_blank" rel="noopener" href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference/5044">MathJax basic tutorial and quick reference</a>的问题翻译而来，并有所改动。主要讲述了如何使用MathJax和相关的Latex语法。</p>
+<p>编辑TEX公式的详细内容可以点击查看<a target="_blank" rel="noopener" href="https://sli1989.github.io/tex/#tex-math">Latex公式使用技巧</a>，<a target="_blank" rel="noopener" href="https://www.zybuluo.com/codeep/note/163962">Cmd Markdown 公式指导手册</a>，<a target="_blank" rel="noopener" href="http://blog.csdn.net/testcs_dn/article/details/44229085">markdown编辑器使用LaTex数学公式</a>。</p>
+<h3 id="mathjax渲染器">III.I.I. MathJax渲染器</h3>
+<p><a target="_blank" rel="noopener" href="http://www.mathjax.org/" title="MathJax官方网站">MathJax</a>是一款运行在浏览器中的开源的数学符号渲染引擎，使用MathJax可以方便的在浏览器中显示数学公式，不需要使用图片。目前，MathJax可以解析Latex、MathML和ASCIIMathML的标记语言。著名的<a target="_blank" rel="noopener" href="http://stackoverflow.com/">Stackoverflow</a>网站上的漂亮公式，就是使用了MathJax插件的效果。添加MathJax插件也非常简单，只需要在markdown文件中，添加<code>MathJax CDN</code>，就可以在md文件中插入Tex格式的公式了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;</span><br><span class="line">   src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p><code>行间公式</code>的形式为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$ 此处插入公式 $$</span><br></pre></td></tr></table></figure>
+<p>而<code>行内公式</code>的形式为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\\( 此处插入公式 \\)</span><br></pre></td></tr></table></figure>
+<h3 id="markdown-pad显示数学公式">III.I.II. Markdown Pad显示数学公式</h3>
+<p>之前的博文有推荐<a target="_blank" rel="noopener" href="http://markdownpad.com/">Markdown Pad 2</a>作为Window下的Markdown编辑器。如果你是使用该软件作为markdown的编辑器，你只需要在软件的<code>Tools-&gt; Options-&gt; Advanced-&gt; HTML Head Editor</code>中添加上述的<code>MathJax CDN</code>即可。这样你就不必每次都在md文件中重复添加了。</p>
+<h3 id="atom中显示数学公式">III.I.III. Atom中显示数学公式</h3>
+<p>点击查看<a href="#atom">Atom的安装和使用</a>。实测在Atom实时渲染视图下，倘若使用<code>\ref</code>等标签可能无法正常显示公式，但是只要公式编写正确，在其他网站，如<a target="_blank" rel="noopener" href="http://latex.codecogs.com/eqneditor/editor.php">在线Latex编辑器</a>测试通过，那么就不必担心，猜测可能是markdown-preview-plus或者Atom的bug。另外，如果是通过apm安装的package，卸载时需要通过<code>apm uninstall &#123;package_name&#125;</code>或者<code>rm -rf .apm/&#123;package_name&#125;/</code>，通过GUI界面卸载可能会出现问题。</p>
+<h4 id="markdown-preview-plus插件">III.I.III.I. Markdown Preview Plus插件</h4>
+<p><a target="_blank" rel="noopener" href="https://github.com/atom-community/markdown-preview-plus">Markdown Preview Plus</a>插件支持显示latex公式。</p>
+<ul>
+<li>Search for and install markdown-preview-plus in Atom's Settings view.</li>
+<li>Search for and <strong>disable the built-in package markdown-preview</strong>.</li>
+<li>(Optional) Install and enable Pandoc.<br>
+</li>
+<li>Toggle Preview: ctrl-shift-m</li>
+<li>Toggle Math Rendering: ctrl-shift-x。Math Rendering Settings 可以指定两种不同parser：MathJax和Pandoc。<a target="_blank" rel="noopener" href="http://pandoc.org/">Pandoc</a>，堪称文档转换的瑞士军刀。勾选<code>markdown-preview-plus/Settins/Enable Pandoc Parser</code>，然后在<code>Pandoc Options: Path</code>输入pandoc的路径，如*nix系统可通过<code>which pandoc</code>获取。如果想获取公式渲染后的页面，那么在普通markdown渲染的基础上，还需要键入<code>Ctrl+Shift+X</code>以完成公式的渲染。</li>
+</ul>
+<h4 id="markdown-preview-enhanced插件">III.I.III.II. Markdown-preview-enhanced插件</h4>
+<p><a target="_blank" rel="noopener" href="https://atom.io/packages/markdown-preview-enhanced">Markdown-preview-enhanced</a>，包含<code>markdown-scroll-sync</code>插件，自动显示latex公式，可以输出公式格式。<strong>建议使用</strong>。安装后在设置面板使用Pandoc parser。</p>
+<div id="hexo-math">
+
+</div>
+<h3 id="hexo中显示数学公式">III.I.IV. Hexo中显示数学公式</h3>
+<p>Markdown本身没有支持Latex，hexo先用<a target="_blank" rel="noopener" href="http://lib.csdn.net/base/javascript" title="JavaScript知识库">marked.js</a>渲染，然后再交给MathJax渲染。</p>
+<p>在默认<code>hexo-renderer-marked</code>环境下，在<code>marked.js</code>渲染的时候下划线<code>_</code>是被escape掉并且换成了<code>&lt;em&gt;</code>标签，即斜体字，另外LaTeX中的<code>\\</code>也会被转义成一个<code>\</code>，这样会导致MathJax渲染时不认为它是一个换行符了。所以这个错误是由Markdown渲染器引起的。</p>
+<p>我们要做的是怎样解决 <code>Markdown</code> 与 <code>Mathjax</code> 的一些冲突的问题，接下来介绍一些常用的方法。</p>
+<h4 id="选择渲染器">III.I.IV.I. 选择渲染器</h4>
+<p>推荐使用<a href="#hexo-pandoc">pandoc渲染器</a>。</p>
+<div class="note info">
+<p>
+第一种方法：手动修改转义符。
+</p>
+</div>
+<p>这个方法最直接，需要转义我就转义。比如我需要在公式中写下标符号，那就修改写法写为: <code>$x\_i$</code>；需要换行就使用<code>\\\\</code>。 很明显，这种方式虽然可以解决问题，但通用性很差，比如想迁移到其它地方，就无法识别了，因为大部分的markdown引擎是没有这个问题的。</p>
+<p>文章<a target="_blank" rel="noopener" href="http://kubicode.me/2016/03/18/Hexo/The-Trick-about-Hexo-Support-MutliLine-Equation-using-Mathjax/">让Hexo在使用Mathjax时支持多行公式</a>提到如何解决这一问题：将换行符<code>\\</code>改写成<code>\\\\</code>。</p>
+<div class="note info">
+<p>
+第二种方法：修改渲染源码。
+</p>
+</div>
+<p>具体思路参考了<a target="_blank" rel="noopener" href="http://blog.csdn.net/emptyset110/article/details/50123231">使Marked.js与MathJax共存</a>，其他本地修改策略可以查看<a target="_blank" rel="noopener" href="http://lukang.me/2014/mathjax-for-hexo.html">在 Hexo 中完美使用 Mathjax 输出数学公式</a>，打开hexo的markdown引擎渲染源码<code>nodes_modules/marked/lib/marked.js</code>，进行如下修改（未测试）。这种方式指标不治本，因为保证不了还可能有其它的字符会冲突。</p>
+<p>第一步: 找到下面的代码，去掉<code>\\</code>的转义了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">escape: /^\\([\\`*&#123;&#125;\[\]()# +\-.!_&gt;])/,</span><br><span class="line">改为:</span><br><span class="line">escape: /^\\([`*&#123;&#125;\[\]()# +\-.!_&gt;])/,</span><br></pre></td></tr></table></figure>
+<p>第二步: 找到em的符号: 去掉<code>_</code>的斜体含义，markdown中有<code>*</code>也可以表示斜体，这样就解决了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">em: /^\b_((?:[^_]|__)+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span><br><span class="line">修改为</span><br><span class="line">em: /^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span><br><span class="line"></span><br><span class="line">em: /^_(?=\S)([\s\S]*?\S)_(?!_)|^\*(?=\S)([\s\S]*?\S)\*(?!\*)/</span><br><span class="line">修改为</span><br><span class="line">em: /^\*(?=\S)([\s\S]*?\S)\*(?!\*)/</span><br></pre></td></tr></table></figure>
+<div class="note info">
+<p>
+第三种方法：使用其他渲染器插件。
+</p>
+</div>
+<ul>
+<li>Rawblock插件（未测试）</li>
+</ul>
+<p>在<a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues/524">issue #524</a> 中，有人提到了<strong>可以使用 rawblock 来解决</strong>，可是每次要写公式都得在公式前后加上 rawblock 来声明实在太烦了，对于公式大户来说简直要崩溃。</p>
+<ul>
+<li><del>Hexo-math插件</del></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/emptyset110/article/details/50123231#t5">利用MathJax来渲染LaTeX数学公式</a>，首先通过安装Hexo-math插件，然后手动修改<code>marked.js</code>与MathJax并存，之后重新生成和部署网站即可。Gitlab方案无法执行，本地HEXO未测试。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-math --save</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Hexo-renderer-markdown-it插件</li>
+</ul>
+<p><del>在<a target="_blank" rel="noopener" href="http://jovi.cc/2016/12/03/%E4%B8%BAhexo%E6%B7%BB%E5%8A%A0%E4%B8%8A%E6%A0%87%E3%80%81%E4%B8%8B%E6%A0%87%E3%80%81%E8%84%9A%E6%B3%A8%E7%AD%89%E5%8A%9F%E8%83%BD/">为hexo添加上标、下标、脚注等功能</a>中使用 <a target="_blank" rel="noopener" href="https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki/Getting-Started">hexo-renderer-markdown-it</a> 进行渲染，先卸载Hexo自带的Markdown解析器 hexo-renderer-marked，再安装 <code>hexo-renderer-markdown-it</code> 就可以了。安装完以后，先 <code>hexo clean &amp;&amp; hexo g</code> 重新生成静态网页，然后 <code>hexo s</code> 查看，这回公式能正常显示了。</del></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br><span class="line">npm install hexo-renderer-markdown-it --save</span><br></pre></td></tr></table></figure>
+<p>但是使用 hexo-renderer-markdown-it 渲染之后，<font color="red">原本为Markdown编写的TOC里的链接都失效了，侧边栏的快速导航链接也失效了，也不支持NexT的<code>&lt;!–more–&gt;</code>标签</font> 。本地hexo推送可以参考<a target="_blank" rel="noopener" href="http://www.jasonsi.com/2016/08/12/20/">使用hexo-markdown-it导致文章目录失效的解决方案</a>。</p>
+<ul>
+<li>Hexo-renderer-kramed插件（未测试）</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://github.com/sun11/hexo-renderer-kramed">Hexo-renderer-kramed</a>插件fork了 hexo-renderer-marked 项目，并且只针对MathJax支持进行了改进。卸载 hexo-renderer-marked（注意，如果你使用了其他的渲染插件，请卸载对应的插件），然后安装 hexo-renderer-kramed。这下，不仅能正常使用TOC，也能完美地支持MathJax渲染了。至此，问题得到了解决。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br><span class="line">npm install hexo-renderer-kramed --save</span><br></pre></td></tr></table></figure>
+<p>但<font color="red"> 关于行内代码，确实还存在一点问题</font>。因为kramed只是提高了LaTeX公式渲染的优先级，使类似 <code>'formula'</code>的语法不会被Markdown引擎替换，从而可以正确的被渲染成LaTeX公式。也就是说，对于kramed而言，出现 <code>'</code> 符以后的两个 <code>$</code> 符之间的部分才会被kramed认为是行内公式。要解决这个问题需要修改kramed的渲染机制。</p>
+<div id="hexo-pandoc">
+
+</div>
+<ul>
+<li>hexo-renderer-pandoc插件<font color="blue">（推荐）</font></li>
+</ul>
+<p>Hexo 默认的渲染器为 marked (hexo-renderer-marked) 渲染器，该渲染器仅支持 md 的基本规范。感兴趣的朋友也不妨去<a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-renderer-pandoc">hexo-renderer-pandoc主页</a>看看。<strong>Pandoc也可以实现在gitlab自动部署</strong>，查看<a target="_blank" rel="noopener" href="http://sli1989.github.io/git/#gitlab-ci"><code>.gitlab-ci.yml</code></a>文件设置。</p>
+<p>本地hexo博客的搭建：</p>
+<ol style="list-style-type: decimal">
+<li>首先需安装 <a target="_blank" rel="noopener" href="https://github.com/jgm/pandoc">pandoc</a> 软件。</li>
+<li><p>然后卸载Hexo自带的Markdown解析器 <code>hexo-renderer-marked</code>，再安装 hexo-renderer-pandoc 就可以了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm un hexo-renderer-marked --save</span><br><span class="line">npm install hexo-renderer-pandoc --save</span><br></pre></td></tr></table></figure></li>
+</ol>
+<div class="note info">
+<p>
+由于<code>hexo-renderer-pandoc</code>更新加入了<code>template</code>设置，需要在站点配置文件<code>~/blog/_config.yml</code>中加入默认配置（<a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-renderer-pandoc/issues/16">issues</a>）。
+</p>
+</div>
+<div class="note info">
+<p>
+考虑到<a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-renderer-pandoc/issues/34">图片块解析错误</a>，建议添加<code>-implicit_figures</code>选项。
+</p>
+</div>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">pandoc:</span><br><span class="line">  filters:</span><br><span class="line">  extra:</span><br><span class="line">  template:</span><br><span class="line">  meta:</span><br><span class="line">  mathEngine:</span><br><span class="line">  extensions:</span><br><span class="line">    - &#x27;-implicit_figures&#x27;</span><br></pre></td></tr></table></figure>
+<div id="hexo-mathjax">
+
+</div>
+<h4 id="配置mathjax">III.I.IV.II. 配置MathJax</h4>
+<p>Hexo内置的Mathjax开启方式:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"># Math Equations Render Support</span><br><span class="line">math:</span><br><span class="line">  enable: false</span><br><span class="line"></span><br><span class="line">  # Default(true) will load mathjax/katex script on demand</span><br><span class="line">  # That is it only render those page who has &#x27;mathjax: true&#x27; in Front Matter.</span><br><span class="line">  # If you set it to false, it will load mathjax/katex srcipt EVERY PAGE.</span><br><span class="line">  per_page: true</span><br><span class="line"></span><br><span class="line">  engine: mathjax</span><br><span class="line">  #engine: katex</span><br><span class="line"></span><br><span class="line">  # hexo-rendering-pandoc (or hexo-renderer-kramed) needed to full MathJax support.</span><br><span class="line">  mathjax:</span><br><span class="line">    # Use 2.7.1 as default, jsdelivr as default CDN, works everywhere even in China</span><br><span class="line">    cdn: //cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML</span><br><span class="line">    # For newMathJax CDN (cdnjs.cloudflare.com) with fallback to oldMathJax (cdn.mathjax.org).</span><br><span class="line">    #cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML</span><br><span class="line">    # For direct link to MathJax.js with CloudFlare CDN (cdnjs.cloudflare.com).</span><br><span class="line">    #cdn: //cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML</span><br><span class="line"></span><br><span class="line">  # hexo-renderer-markdown-it-plus (or hexo-renderer-markdown-it with markdown-it-katex plugin)</span><br><span class="line">  # needed to full Katex support.</span><br><span class="line">  katex:</span><br><span class="line">    # Use 0.7.1 as default, jsdelivr as default CDN, works everywhere even in China</span><br><span class="line">    cdn: //cdn.jsdelivr.net/npm/katex@0.7.1/dist/katex.min.css</span><br><span class="line">    # CDNJS, provided by cloudflare, maybe the best CDN, but not works in China</span><br><span class="line">    #cdn: //cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css</span><br></pre></td></tr></table></figure>
+<div class="note info">
+<p>
+如果在 Next 低版本中Mathjax开启后还是无法显示公式，尝试更改主题配置文件<code>~/blog/themes/next/_config.yml</code>中 CDN 地址，相关<a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next/issues/19">issues</a>。
+</p>
+</div>
+<div class="note info">
+<p>
+如果上述配置成功，不必修改以下。
+</p>
+</div>
+<p>如果CDN还是失效，可以尝试进行如下修改。</p>
+<p><a target="_blank" rel="noopener" href="https://maxchendt.github.io/Blog/20161007NextSet.html">NexT 主题私人定制</a>遵照 <a target="_blank" rel="noopener" href="http://docs.mathjax.org/en/latest/configuration.html">Loading and Configuring MathJax</a> 的指引，修改MathJax为纯 JavaScript 代码。对于整个博客网站，只需要载入一次，任何页面都不需要重复载入。</p>
+<ol style="list-style-type: decimal">
+<li><p>在<code>/themes/next/source/js</code>中添加文件<code>custom.js</code>，在<code>custom.js</code>中添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//MathJax</span><br><span class="line">window.MathJax = &#123;</span><br><span class="line">    AuthorInit: function () &#123;</span><br><span class="line">      MathJax.Hub.Register.StartupHook(&quot;Begin&quot;,function () &#123;</span><br><span class="line">        MathJax.Hub.Queue(function() &#123;</span><br><span class="line">      var all = MathJax.Hub.getAllJax(), i;</span><br><span class="line">      for (i=0; i &lt; all.length; i += 1) &#123;</span><br><span class="line">        all[i].SourceElement().parentNode.className += &#x27; has-jax&#x27;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">window.MathJax = &#123;</span><br><span class="line">    tex2jax: &#123;</span><br><span class="line">      inlineMath: [ [&#x27;$&#x27;,&#x27;$&#x27;], [&quot;\\(&quot;,&quot;\\)&quot;] ],</span><br><span class="line">      processEscapes: true,</span><br><span class="line">      skipTags: [&#x27;script&#x27;, &#x27;noscript&#x27;, &#x27;style&#x27;, &#x27;textarea&#x27;, &#x27;pre&#x27;, &#x27;code&#x27;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//  &lt;script type=&quot;text/javascript&quot; src=&quot;//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;</span><br><span class="line">// jQuery</span><br><span class="line">$.getScript(&#x27;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML&#x27;, function()</span><br><span class="line">&#123;</span><br><span class="line">    // script is now loaded and executed.</span><br><span class="line">    // put your dependent JS here.</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<li><p>然后在文件<code>/layout/_layout.swig</code>中<code>/body</code>前加入以下代码。<del>为了避免首页MathJax加载出错，配合判断条件<code>page.comments</code>使用（需要显示公式的文章一定要设置<code>comments: true</code>）。</del></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//&#123;% if page.comments %&#125;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;/js/custom.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">//&#123;% endif %&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="公式测试">III.I.IV.III. 公式测试</h4>
+<p><font color="red">Bug 提醒</font> ：<a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues/2064">hexo issues/2064</a> 提到了 连续两个花括号的问题，即两个连续 <code>&#123; &#123;</code>会提示渲染错误<code>Template render error: (unknown path) expected variable end</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$EI=\&#123;&#123;EI&#125;_1,&#123;EI&#125;_2,\cdots,&#123;EI&#125;_V\&#125;$</span><br><span class="line">1+e^&#123;&#123;\mathbf&#123;v&#125;_&#123;w_j&#125;^&#123;&#x27;&#125;&#125;^&#123;T&#125;&#125;`</span><br></pre></td></tr></table></figure>
+<p><font color="red">目前暂时解决办法是</font> ：</p>
+<ol style="list-style-type: decimal">
+<li>采用<code>\lbrace</code>和<code>\rbrace</code>替换原先的<code>&#123;</code>和<code>&#125;</code></li>
+<li>两个<code>&#123;</code>中间加个空格：<code>$\mathrm&#123;cov&#125;_&#123;t_&#123;b&#125;&#125;^&#123; &#123;&#125;&#125;\left(  S(t_&#123;c&#125;),F(t_&#123;c&#125;)\right)$</code>，其中空上标 <code>^&#123; &#123;&#125;&#125;</code> 无效果，应该改成 <code>^&#123;\,&#125;</code>。或者使用使用 <code>\</code> 保留外层花括号：<code>$EI=\&#123; &#123;EI&#125;_1,&#123;EI&#125;_2,\cdots,&#123;EI&#125;_V\&#125;$</code> 。</li>
+</ol>
+<p><font color="blue">行内公式：测试正常。</font></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">行内公式： $R&#123;m \times n&#125; = U&#123;m \times m&#125; S&#123;m \times n&#125; V&#123;n \times n&#125;’$，$d_&#123;1&#125;=\frac&#123;\ln(S_&#123;t&#125;/K)  +(r+\sigma^&#123;2&#125;/2)(T-t)&#125;&#123;\sigma\sqrt&#123;T-t&#125;&#125;$。This is an example for $x_mu$ and $y_mu$. This is an example for $x_&#123;mu&#125;$ and $y_&#123;mu&#125;$.</span><br><span class="line">This is an example for $x\_mu$ and $y\_mu$.</span><br></pre></td></tr></table></figure>
+<p>行内公式测试： <span class="math inline">\(R{m \times n} = U{m \times m} S{m \times n} V{n \times n}’\)</span>，<span class="math inline">\(d_{1}=\frac{\ln(S_{t}/K) +(r+\sigma^{2}/2)(T-t)}{\sigma\sqrt{T-t}}\)</span>。This is an example for <span class="math inline">\(x_mu\)</span> and <span class="math inline">\(y_mu\)</span>. This is an example for <span class="math inline">\(x_{mu}\)</span> and <span class="math inline">\(y_{mu}\)</span>.</p>
+<p><font color="blue">行间公式：测试正常。一个<code>$ $</code>公式为行内公式，显示不居中。二个<code>$$ $$</code>公式为行间公式，显示居中。加入转义符就是转义符意思。</font></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$T(n) = \Theta(n)$</span><br><span class="line">$$T(n) = \Theta(n)$$</span><br></pre></td></tr></table></figure>
+<p><span class="math inline">\(T(n) = \Theta(n)\)</span></p>
+<p><span class="math display">\[T(n) = \Theta(n)\]</span></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$$R&#123;m \times n&#125; = U&#123;m \times m&#125; S&#123;m \times n&#125; V&#123;n \times n&#125;’$$</span><br><span class="line">$$R_&#123;m \times n&#125; = U_&#123;m \times m&#125; S_&#123;m \times n&#125; V_&#123;n \times n&#125;&#x27;$$</span><br></pre></td></tr></table></figure>
+<p><span class="math display">\[R{m \times n} = U{m \times m} S{m \times n} V{n \times n}’\]</span> <span class="math display">\[R_{m \times n} = U_{m \times m} S_{m \times n} V_{n \times n}&#39;\]</span></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$$d_&#123;1&#125;=\frac&#123;\ln(S_&#123;t&#125;/K)  +(r+\sigma^&#123;2&#125;/2)(T-t)&#125;&#123;\sigma\sqrt&#123;T-t&#125;&#125;$$</span><br><span class="line"></span><br><span class="line">加markdown转义字符：</span><br><span class="line">$$d\_&#123;1&#125;=\frac&#123;\ln(S\_&#123;t&#125;/K)  +(r+\sigma^&#123;2&#125;/2)(T-t)&#125;&#123;\sigma\sqrt&#123;T-t&#125;&#125;$$</span><br></pre></td></tr></table></figure>
+<p><span class="math display">\[d_{1}=\frac{\ln(S_{t}/K)  +(r+\sigma^{2}/2)(T-t)}{\sigma\sqrt{T-t}}\]</span></p>
+<p><span class="math display">\[d\_{1}=\frac{\ln(S\_{t}/K)  +(r+\sigma^{2}/2)(T-t)}{\sigma\sqrt{T-t}}\]</span></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$T(n) = \Theta(n) + \sum&#123;i=0&#125;^&#123;n-1&#125;&#123;O(&#123;n&#125;&#123;i&#125;^2)&#125;$$</span><br><span class="line">$$T(n) = \Theta(n) + \sum_&#123;i=0&#125;^&#123;n-1&#125;&#123;O(&#123;n&#125;_&#123;i&#125;^2)&#125;$$</span><br><span class="line">$$T(n) = \Theta(n) + \sum\_&#123;i=0&#125;^&#123;n-1&#125;&#123;O(&#123;n&#125;\_&#123;i&#125;^2)&#125;$$</span><br></pre></td></tr></table></figure>
+<p><span class="math display">\[T(n) = \Theta(n) + \sum{i=0}^{n-1}{O({n}{i}^2)}\]</span> <span class="math display">\[T(n) = \Theta(n) + \sum_{i=0}^{n-1}{O({n}_{i}^2)}\]</span> <span class="math display">\[T(n) = \Theta(n) + \sum\_{i=0}^{n-1}{O({n}\_{i}^2)}\]</span></p>
+<p><font color="blue">麦克斯韦方程组查看LaTeX效果：测试正常。</font></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\begin&#123;eqnarray&#125;</span><br><span class="line">\nabla\cdot\vec&#123;E&#125; &amp;=&amp; \frac&#123;\rho&#125;&#123;\epsilon_0&#125; \\</span><br><span class="line">\nabla\cdot\vec&#123;B&#125; &amp;=&amp; 0 \\</span><br><span class="line">\nabla\times\vec&#123;E&#125; &amp;=&amp; -\frac&#123;\partial B&#125;&#123;\partial t&#125; \\</span><br><span class="line">\nabla\times\vec&#123;B&#125; &amp;=&amp; \mu_0\left(\vec&#123;J&#125;+\epsilon_0\frac&#123;\partial E&#125;&#123;\partial t&#125; \right)</span><br><span class="line">\end&#123;eqnarray&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p><span class="math display">\[
+\begin{eqnarray}
+\nabla\cdot\vec{E} &amp;=&amp; \frac{\rho}{\epsilon_0} \\
+\nabla\cdot\vec{B} &amp;=&amp; 0 \\
+\nabla\times\vec{E} &amp;=&amp; -\frac{\partial B}{\partial t} \\
+\nabla\times\vec{B} &amp;=&amp; \mu_0\left(\vec{J}+\epsilon_0\frac{\partial E}{\partial t} \right)
+\end{eqnarray}
+\]</span></p>
+<h2 id="交叉引用">III.II. 交叉引用</h2>
+<div id="hexo-crossref">
+
+</div>
+<p>在HEXO中使用交叉引用，you only need learning how to install <code>Haskell</code> package。</p>
+<div class="note warning">
+<p>
+未测试
+</p>
+</div>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-renderer-pandoc">hexo-renderer-pandoc</a>. But there seems some confusion in its <code>readme.md</code>, and you could investigate more deeply by <a target="_blank" rel="noopener" href="http://bitwan.net/2018/02/20/hackHexoRenderPandoc/">blog</a>.</li>
+<li><a target="_blank" rel="noopener" href="http://pandoc.org/installing.html">pandoc</a>. You just need to install it if you only use <code>hexo-renderer-pandoc</code>.</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/jgm/pandoc-citeproc">pandoc-citeproc</a>. You just need to install it if you only use <code>hexo-renderer-pandoc</code>.</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/lierdakil/pandoc-crossref">pandoc-crossref</a>. And its syntax usage when writing your markdown.</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Do not use <code>Haskell</code> within <code>windows operation system</code>;<br>
+</li>
+<li>Do not mess up the order of the filters, i.e. <code>pandoc-crossref</code> and <code>pandoc-citeproc</code>, as well as <code>--bibliography</code>. At least when use <code>pandoc</code> in <code>shell</code>, if you mess up the order of them, it won't work as you expect. ( refer to: <a target="_blank" rel="noopener" href="https://www.google.de/search?q=pandoc+multiple+filters&amp;ie=utf-8&amp;oe=utf-8&amp;gws_rd=cr&amp;dcr=0&amp;ei=fhSVWpWJB8GhUZyBoNgK"><code>pandoc</code>, <code>multiple filter</code></a>)</li>
+</ol>
+<h2 id="列表排列">III.III. 列表排列</h2>
+<p>Markdown在使用有序列表和无序列表的时候，如果中间插入其他内容（甚至是子层级的内容），有序列表的自动编码功能以及无序代码的层级功能会遇到问题。解决方法是，有点类似于编程中，通过缩进对齐的方式（通过Tab键），最外层同级别的不需要缩进，然后下一级的都缩进一次（点一次Tab），然后如果还继续细分下一层，那么输入的时候就缩进两次。</p>
+<p>第一次测试：（Tab键以[Tab]展示，空格以[空格]展示）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.[空格]测试文字1</span><br><span class="line">[Tab]-[空格]测试文字1-1</span><br><span class="line">[Tab]-[空格]测试文字1-2</span><br><span class="line">2.[空格]测试文字2</span><br><span class="line">[Tab]-[空格]测试文字2-1</span><br><span class="line">[Tab][Tab]-[空格]测试文字2-1-1</span><br><span class="line">[Tab][Tab]-[空格]测试文字2-1-2</span><br><span class="line">[Tab]-[空格]测试文字2-2</span><br></pre></td></tr></table></figure>
+<h2 id="页面跳转">III.IV. 页面跳转</h2>
+<p>定义一个锚，其中<code>id=&quot;jump_label&quot;</code>是自己设定的该位置标记，可以随意修改。推荐使用<code>div</code>标签实现跳转。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;jump_label&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;span id=&quot;jump_label&quot;&gt;text&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>页内跳转</li>
+</ul>
+<p>将定义好的位置标记放到要跳转到的地方，Hexo主题不支持<a target="_blank" rel="noopener" href="http://fontawesome.io/3.2.1/icons/">内嵌图标</a>显示。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[这句话是想要跳转到footer处的锚点链接，点击即会跳转](#jump_label)</span><br><span class="line">[&lt;i class=&quot;icon-home&quot;&gt;&lt;/i&gt;](#jump_label)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>页间跳转</li>
+</ul>
+<p>最直接的方法，jekyll主题博客点击目录标签，复制地址栏地址即可。hexo主题博客需要在目录标签处右键复制链接即可。但是如果存在中文内容，该方法不好看。推荐使用自定义标签方法。</p>
+<p>首先，先定义一个锚，然后添加跳转到的页面的链接，再加<code>/#jump_label</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[现在点击此链接，可实现页间跳转](http://blog.csdn.net/thither_shore/article/details/52185758/#jump_label)</span><br></pre></td></tr></table></figure>
+<h2 id="emoji">III.V. Emoji</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:camel:</span><br><span class="line">:blush:</span><br><span class="line">:smile:</span><br></pre></td></tr></table></figure>
+<div id="footnotes">
+
+</div>
+<h2 id="脚注">III.VI. 脚注</h2>
+<p>脚注是在需要标记脚注文字的后面增加一个方括号，方括号中的内容必须以 <code>^</code> 开头，再接着是数字、字符串标记：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Footnotes[^1] have a label[^label] and a definition[^2].</span><br></pre></td></tr></table></figure>
+<p>Footnotes<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> have a label<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> and a definition<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>.</p>
+<p>接着，在文件的任意地方，你可以把这个脚注的内容定义出来：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[^1]: This is a footnote</span><br><span class="line">[^label]: A footnote on &quot;label&quot;</span><br><span class="line">[^2]: The definition of a footnote.</span><br></pre></td></tr></table></figure>
+<p>脚注内容定义的形式就是前面引用脚注的内容，接着一个冒号，再接着一个以上的空格或制表符，最后是脚注定义的内容。</p>
+<p>A footnote definition may contain multiple lines, paragraphs, code blocks, blockquotes and most any other markdown syntax. The additional line simply must be indented at least an additional four spaces. 脚注定义的内容可以包含多行、段落、代码区块、区块引用和大多数其他 markdown 格式的内容。对于多行的内容只需要简单缩进至少4个空格。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[^1]: The first paragraph of the definition.</span><br><span class="line"></span><br><span class="line">        Paragraph two of the definition.</span><br><span class="line"></span><br><span class="line">        &gt; A blockquote with</span><br><span class="line">        &gt; multiple lines.</span><br><span class="line"></span><br><span class="line">                a code block</span><br><span class="line"></span><br><span class="line">        A final paragraph.</span><br></pre></td></tr></table></figure>
+<p>By default, the footnote definitions are placed at the end of the resulting HTML document. However, you may want the footnotes in another location within the document. Simply place the following text at that location within your markdown document.</p>
+<p>默认情况下，脚注内容位于生成的 HTML 文档末尾。但是，你也许想将脚注内容放在文档的其他位置。只需要将如下内容放在需要的 markdown 文档位置即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">///Footnotes Go Here///</span><br></pre></td></tr></table></figure>
+<div id="hexo-footnotes">
+
+</div>
+<h3 id="hexo显示脚注">III.VI.I. Hexo显示脚注</h3>
+<p>关于脚注的支持，<a target="_blank" rel="noopener" href="https://github.com/LouisBarranqueiro/hexo-footnotes">hexo-footnotes</a>，脚注要人工编号，也不支持 inline 脚注。 <a target="_blank" rel="noopener" href="https://github.com/markdown-it/markdown-it">Markdown-it</a> 对脚注等支持体验不佳，不仅需要改变渲染器，并且配置复杂，此外还需要 <a target="_blank" rel="noopener" href="https://github.com/markdown-it/markdown-it-footnote">markdown-it-footnote</a> 插件。</p>
+<ol style="list-style-type: decimal">
+<li><p><del>第一种方法，hexo-reference插件，这个插件默认使用的是一个 CDN 的CSS，我给改成本地的了，需要修改的是<code>node_modules/hexo-reference/index.js</code></del>。<strong>测试后该插件版式异常，不要使用</strong>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-reference --save</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// Add CDN CSS resources</span><br><span class="line">hexo.extend.filter.register(&#x27;after_post_render&#x27;, function(data) &#123;</span><br><span class="line">  data.content =</span><br><span class="line">      util.htmlTag(&#x27;link&#x27;, &#123;rel: &#x27;stylesheet&#x27;, type: &#x27;text/css&#x27;, href: &#x27;/css/lib/hint.min.css&#x27;&#125;) +</span><br><span class="line">      data.content;</span><br><span class="line">  return data;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>Pandoc is a universal document converter！对 md 扩展支持让我拜倒，例如<a target="_blank" rel="noopener" href="http://pandoc.org/MANUAL.html#footnotes">脚注的支持</a>部分。需要提醒的是：pandoc 渲染器对 md 的格式要求更加规范些，例如 链接需要用<code>&lt; &gt;</code>括号显式包含；quoteblock 每行必须跟两空格表示换行(如果后续行没有<code>&gt;</code>标记的话)。当然，把 <a target="_blank" rel="noopener" href="http://pandoc.org/MANUAL.html#pandocs-markdown">Pandoc’s Markdown</a> 浏览一下是很有必要的，或者 <a target="_blank" rel="noopener" href="http://pandoc.org/MANUAL.pdf">pdf 版本</a>。</p>
+<ol style="list-style-type: decimal">
+<li><p>第二种方法，使用Pandoc渲染器：</p>
+<p>在文件<code>/layout/_layout.swig</code>中<code>/body</code>前加入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;/js/custom.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>在<code>/themes/next/source/js</code>中添加文件<code>custom.js</code>，在<code>custom.js</code>中添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">// 函数: html 中去掉 某 tag 最后那一次出现</span><br><span class="line">var rmLastElm = function(text, selector) &#123;</span><br><span class="line">    var wrapped = $(&quot;&lt;div&gt;&quot; + text + &quot;&lt;/div&gt;&quot;);</span><br><span class="line">    wrapped.find(selector).last().remove();</span><br><span class="line">    return wrapped.html();</span><br><span class="line">&#125;</span><br><span class="line">// 弹出 tip 显示 脚注</span><br><span class="line">var $fRef = $(&quot;.footnoteRef&quot;);</span><br><span class="line">for(let i=0; i&lt;$fRef.length; i++) &#123;</span><br><span class="line">	var sup = $fRef.children(&quot;sup&quot;)[i];		//work reliably as long as there&#x27;s exactly one sup per footnotRef</span><br><span class="line">//	var sup = $fRef[i].children(&quot;sup&quot;);		//a classic Dom Element, so it doesn&#x27;t have any children method</span><br><span class="line">	sup.onmouseover = function(event) &#123;</span><br><span class="line">		$(&#x27;.footnoteTip&#x27;).remove();</span><br><span class="line">		var pTip = document.createElement(&#x27;div&#x27;);</span><br><span class="line">		pTip.className = &#x27;footnoteTip&#x27;;		// CSS</span><br><span class="line">		pTip.innerHTML = rmLastElm(document.getElementById($fRef[i].getAttribute(&quot;href&quot;).substring(1)).innerHTML,&quot;a&quot;);</span><br><span class="line">		document.body.appendChild(pTip);</span><br><span class="line"></span><br><span class="line">		var posLeft = event.pageX - 180;</span><br><span class="line">		if (posLeft&lt;0) posLeft = 20;</span><br><span class="line">		var posTop = event.pageY + 20;</span><br><span class="line">		var od = $(&#x27;.footnoteTip&#x27;);</span><br><span class="line">		var oH = od.outerHeight();</span><br><span class="line">		var oW = od.outerWidth();</span><br><span class="line">		if(posTop + oH - window.pageYOffset &gt; $(window).height()) 	posTop = posTop - oH -40;</span><br><span class="line">		if (posLeft + oW &gt; $(window).width()) posLeft = $(window).width() - oW -20;	//NexT.Mist pageXOffset=0</span><br><span class="line">		pTip.style.left = posLeft + &#x27;px&#x27;;</span><br><span class="line">		pTip.style.top = posTop + &#x27;px&#x27;;</span><br><span class="line"></span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	sup.onmouseout = function(event) &#123;</span><br><span class="line">		$(&#x27;.footnoteTip&#x27;).remove();</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="外链播放器">III.VII. 外链播放器</h2>
+<p>更多设置，查看<a target="_blank" rel="noopener" href="https://sli1989.github.io/music/">音乐外链</a>。</p>
+<h2 id="字体字号与颜色">III.VIII. 字体、字号与颜色</h2>
+<p>Markdown是一种可以使用普通文本编辑器编写的标记语言，通过类似HTML的标记语法，它可以使普通文本内容具有一定的格式。但是它本身是不支持修改字体、字号与颜色等功能的！<a target="_blank" rel="noopener" href="http://blog.csdn.net/testcs_dn/article/details/45719357">CSDN-markdown编辑器语法——字体、字号与颜色</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;font face=&quot;黑体&quot;&gt;我是黑体字&lt;/font&gt;</span><br><span class="line">&lt;font face=&quot;微软雅黑&quot;&gt;我是微软雅黑&lt;/font&gt;</span><br><span class="line">&lt;font face=&quot;STCAIYUN&quot;&gt;我是华文彩云&lt;/font&gt;</span><br><span class="line">&lt;font color=#0099ff size=7 face=&quot;黑体&quot;&gt;color=#0099ff size=72 face=&quot;黑体&quot;&lt;/font&gt;</span><br><span class="line">&lt;font color=#00ffff size=72&gt;color=#00ffff&lt;/font&gt;</span><br><span class="line">&lt;font color=gray size=72&gt;color=gray&lt;/font&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="字体颜色名列表">III.VIII.I. 字体颜色名列表</h3>
+<table>
+<thead>
+<tr class="header">
+<th>颜色名</th>
+<th>十六进制颜色值</th>
+<th>颜色</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><font color="AliceBlue">AliceBlue</font></td>
+<td><font color="#F0F8FF">#F0F8FF</font></td>
+<td>rgb(240, 248, 255)</td>
+</tr>
+<tr class="even">
+<td><font color="AntiqueWhite">AntiqueWhite</font></td>
+<td><font color="#FAEBD7">#FAEBD7</font></td>
+<td>rgb(250, 235, 215)</td>
+</tr>
+<tr class="odd">
+<td><font color="Aqua">Aqua</font></td>
+<td><font color="#00FFFF">#00FFFF</font></td>
+<td>rgb(0, 255, 255)</td>
+</tr>
+<tr class="even">
+<td><font color="Aquamarine">Aquamarine</font></td>
+<td><font color="#7FFFD4">#7FFFD4</font></td>
+<td>rgb(127, 255, 212)</td>
+</tr>
+<tr class="odd">
+<td><font color="Azure">Azure</font></td>
+<td><font color="#F0FFFF">#F0FFFF</font></td>
+<td>rgb(240, 255, 255)</td>
+</tr>
+<tr class="even">
+<td><font color="Beige">Beige</font></td>
+<td><font color="#F5F5DC">#F5F5DC</font></td>
+<td>rgb(245, 245, 220)</td>
+</tr>
+<tr class="odd">
+<td><font color="Bisque">Bisque</font></td>
+<td><font color="#FFE4C4">#FFE4C4</font></td>
+<td>rgb(255, 228, 196)</td>
+</tr>
+<tr class="even">
+<td><font color="Black">Black</font></td>
+<td><font color="#000000">#000000</font></td>
+<td>rgb(0, 0, 0)</td>
+</tr>
+<tr class="odd">
+<td><font color="BlanchedAlmond">BlanchedAlmond</font></td>
+<td><font color="#FFEBCD">#FFEBCD</font></td>
+<td>rgb(255, 235, 205)</td>
+</tr>
+<tr class="even">
+<td><font color="Blue">Blue</font></td>
+<td><font color="#0000FF">#0000FF</font></td>
+<td>rgb(0, 0, 255)</td>
+</tr>
+<tr class="odd">
+<td><font color="BlueViolet">BlueViolet</font></td>
+<td><font color="#8A2BE2">#8A2BE2</font></td>
+<td>rgb(138, 43, 226)</td>
+</tr>
+<tr class="even">
+<td><font color="Brown">Brown</font></td>
+<td><font color="#A52A2A">#A52A2A</font></td>
+<td>rgb(165, 42, 42)</td>
+</tr>
+<tr class="odd">
+<td><font color="BurlyWood">BurlyWood</font></td>
+<td><font color="#DEB887">#DEB887</font></td>
+<td>rgb(222, 184, 135)</td>
+</tr>
+<tr class="even">
+<td><font color="CadetBlue">CadetBlue</font></td>
+<td><font color="#5F9EA0">#5F9EA0</font></td>
+<td>rgb(95, 158, 160)</td>
+</tr>
+<tr class="odd">
+<td><font color="Chartreuse">Chartreuse</font></td>
+<td><font color="#7FFF00">#7FFF00</font></td>
+<td>rgb(127, 255, 0)</td>
+</tr>
+<tr class="even">
+<td><font color="Chocolate">Chocolate</font></td>
+<td><font color="#D2691E">#D2691E</font></td>
+<td>rgb(210, 105, 30)</td>
+</tr>
+<tr class="odd">
+<td><font color="Coral">Coral</font></td>
+<td><font color="#FF7F50">#FF7F50</font></td>
+<td>rgb(255, 127, 80)</td>
+</tr>
+<tr class="even">
+<td><font color="CornflowerBlue">CornflowerBlue</font></td>
+<td><font color="#6495ED">#6495ED</font></td>
+<td>rgb(100, 149, 237)</td>
+</tr>
+<tr class="odd">
+<td><font color="Cornsilk">Cornsilk</font></td>
+<td><font color="#FFF8DC">#FFF8DC</font></td>
+<td>rgb(255, 248, 220)</td>
+</tr>
+<tr class="even">
+<td><font color="Crimson">Crimson</font></td>
+<td><font color="#DC143C">#DC143C</font></td>
+<td>rgb(220, 20, 60)</td>
+</tr>
+<tr class="odd">
+<td><font color="Cyan">Cyan</font></td>
+<td><font color="#00FFFF">#00FFFF</font></td>
+<td>rgb(0, 255, 255)</td>
+</tr>
+<tr class="even">
+<td><font color="DarkBlue">DarkBlue</font></td>
+<td><font color="#00008B">#00008B</font></td>
+<td>rgb(0, 0, 139)</td>
+</tr>
+<tr class="odd">
+<td><font color="DarkCyan">DarkCyan</font></td>
+<td><font color="#008B8B">#008B8B</font></td>
+<td>rgb(0, 139, 139)</td>
+</tr>
+<tr class="even">
+<td><font color="DarkGoldenRod">DarkGoldenRod</font></td>
+<td><font color="#B8860B">#B8860B</font></td>
+<td>rgb(184, 134, 11)</td>
+</tr>
+<tr class="odd">
+<td><font color="DarkGray">DarkGray</font></td>
+<td><font color="#A9A9A9">#A9A9A9</font></td>
+<td>rgb(169, 169, 169)</td>
+</tr>
+<tr class="even">
+<td><font color="DarkGreen">DarkGreen</font></td>
+<td><font color="#006400">#006400</font></td>
+<td>rgb(0, 100, 0)</td>
+</tr>
+<tr class="odd">
+<td><font color="DarkKhaki">DarkKhaki</font></td>
+<td><font color="#BDB76B">#BDB76B</font></td>
+<td>rgb(189, 183, 107)</td>
+</tr>
+<tr class="even">
+<td><font color="DarkMagenta">DarkMagenta</font></td>
+<td><font color="#8B008B">#8B008B</font></td>
+<td>rgb(139, 0, 139)</td>
+</tr>
+<tr class="odd">
+<td><font color="DarkOliveGreen">DarkOliveGreen</font></td>
+<td><font color="#556B2F">#556B2F</font></td>
+<td>rgb(85, 107, 47)</td>
+</tr>
+<tr class="even">
+<td><font color="Darkorange">Darkorange</font></td>
+<td><font color="#FF8C00">#FF8C00</font></td>
+<td>rgb(255, 140, 0)</td>
+</tr>
+<tr class="odd">
+<td><font color="DarkOrchid">DarkOrchid</font></td>
+<td><font color="#9932CC">#9932CC</font></td>
+<td>rgb(153, 50, 204)</td>
+</tr>
+<tr class="even">
+<td><font color="DarkRed">DarkRed</font></td>
+<td><font color="#8B0000">#8B0000</font></td>
+<td>rgb(139, 0, 0)</td>
+</tr>
+<tr class="odd">
+<td><font color="DarkSalmon">DarkSalmon</font></td>
+<td><font color="#E9967A">#E9967A</font></td>
+<td>rgb(233, 150, 122)</td>
+</tr>
+<tr class="even">
+<td><font color="DarkSeaGreen">DarkSeaGreen</font></td>
+<td><font color="#8FBC8F">#8FBC8F</font></td>
+<td>rgb(143, 188, 143)</td>
+</tr>
+<tr class="odd">
+<td><font color="DarkSlateBlue">DarkSlateBlue</font></td>
+<td><font color="#483D8B">#483D8B</font></td>
+<td>rgb(72, 61, 139)</td>
+</tr>
+<tr class="even">
+<td><font color="DarkSlateGray">DarkSlateGray</font></td>
+<td><font color="#2F4F4F">#2F4F4F</font></td>
+<td>rgb(47, 79, 79)</td>
+</tr>
+<tr class="odd">
+<td><font color="DarkTurquoise">DarkTurquoise</font></td>
+<td><font color="#00CED1">#00CED1</font></td>
+<td>rgb(0, 206, 209)</td>
+</tr>
+<tr class="even">
+<td><font color="DarkViolet">DarkViolet</font></td>
+<td><font color="#9400D3">#9400D3</font></td>
+<td>rgb(148, 0, 211)</td>
+</tr>
+<tr class="odd">
+<td><font color="DeepPink">DeepPink</font></td>
+<td><font color="#FF1493">#FF1493</font></td>
+<td>rgb(255, 20, 147)</td>
+</tr>
+<tr class="even">
+<td><font color="DeepSkyBlue">DeepSkyBlue</font></td>
+<td><font color="#00BFFF">#00BFFF</font></td>
+<td>rgb(0, 191, 255)</td>
+</tr>
+<tr class="odd">
+<td><font color="DimGray">DimGray</font></td>
+<td><font color="#696969">#696969</font></td>
+<td>rgb(105, 105, 105)</td>
+</tr>
+<tr class="even">
+<td><font color="DodgerBlue">DodgerBlue</font></td>
+<td><font color="#1E90FF">#1E90FF</font></td>
+<td>rgb(30, 144, 255)</td>
+</tr>
+<tr class="odd">
+<td><font color="Feldspar">Feldspar</font></td>
+<td><font color="#D19275">#D19275</font></td>
+<td>rgb(209, 146, 117)</td>
+</tr>
+<tr class="even">
+<td><font color="FireBrick">FireBrick</font></td>
+<td><font color="#B22222">#B22222</font></td>
+<td>rgb(178, 34, 34)</td>
+</tr>
+<tr class="odd">
+<td><font color="FloralWhite">FloralWhite</font></td>
+<td><font color="#FFFAF0">#FFFAF0</font></td>
+<td>rgb(255, 250, 240)</td>
+</tr>
+<tr class="even">
+<td><font color="ForestGreen">ForestGreen</font></td>
+<td><font color="#228B22">#228B22</font></td>
+<td>rgb(34, 139, 34)</td>
+</tr>
+<tr class="odd">
+<td><font color="Fuchsia">Fuchsia</font></td>
+<td><font color="#FF00FF">#FF00FF</font></td>
+<td>rgb(255, 0, 255)</td>
+</tr>
+<tr class="even">
+<td><font color="Gainsboro">Gainsboro</font></td>
+<td><font color="#DCDCDC">#DCDCDC</font></td>
+<td>rgb(220, 220, 220)</td>
+</tr>
+<tr class="odd">
+<td><font color="GhostWhite">GhostWhite</font></td>
+<td><font color="#F8F8FF">#F8F8FF</font></td>
+<td>rgb(248, 248, 255)</td>
+</tr>
+<tr class="even">
+<td><font color="Gold">Gold</font></td>
+<td><font color="#FFD700">#FFD700</font></td>
+<td>rgb(255, 215, 0)</td>
+</tr>
+<tr class="odd">
+<td><font color="GoldenRod">GoldenRod</font></td>
+<td><font color="#DAA520">#DAA520</font></td>
+<td>rgb(218, 165, 32)</td>
+</tr>
+<tr class="even">
+<td><font color="Gray">Gray</font></td>
+<td><font color="#808080">#808080</font></td>
+<td>rgb(128, 128, 128)</td>
+</tr>
+<tr class="odd">
+<td><font color="Green">Green</font></td>
+<td><font color="#008000">#008000</font></td>
+<td>rgb(0, 128, 0)</td>
+</tr>
+<tr class="even">
+<td><font color="GreenYellow">GreenYellow</font></td>
+<td><font color="#ADFF2F">#ADFF2F</font></td>
+<td>rgb(173, 255, 47)</td>
+</tr>
+<tr class="odd">
+<td><font color="HoneyDew">HoneyDew</font></td>
+<td><font color="#F0FFF0">#F0FFF0</font></td>
+<td>rgb(240, 255, 240)</td>
+</tr>
+<tr class="even">
+<td><font color="HotPink">HotPink</font></td>
+<td><font color="#FF69B4">#FF69B4</font></td>
+<td>rgb(255, 105, 180)</td>
+</tr>
+<tr class="odd">
+<td><font color="IndianRed">IndianRed</font></td>
+<td><font color="#CD5C5C">#CD5C5C</font></td>
+<td>rgb(205, 92, 92)</td>
+</tr>
+<tr class="even">
+<td><font color="Indigo">Indigo</font></td>
+<td><font color="#4B0082">#4B0082</font></td>
+<td>rgb(75, 0, 130)</td>
+</tr>
+<tr class="odd">
+<td><font color="Ivory">Ivory</font></td>
+<td><font color="#FFFFF0">#FFFFF0</font></td>
+<td>rgb(255, 255, 240)</td>
+</tr>
+<tr class="even">
+<td><font color="Khaki">Khaki</font></td>
+<td><font color="#F0E68C">#F0E68C</font></td>
+<td>rgb(240, 230, 140)</td>
+</tr>
+<tr class="odd">
+<td><font color="Lavender">Lavender</font></td>
+<td><font color="#E6E6FA">#E6E6FA</font></td>
+<td>rgb(230, 230, 250)</td>
+</tr>
+<tr class="even">
+<td><font color="LavenderBlush">LavenderBlush</font></td>
+<td><font color="#FFF0F5">#FFF0F5</font></td>
+<td>rgb(255, 240, 245)</td>
+</tr>
+<tr class="odd">
+<td><font color="LawnGreen">LawnGreen</font></td>
+<td><font color="#7CFC00">#7CFC00</font></td>
+<td>rgb(124, 252, 0)</td>
+</tr>
+<tr class="even">
+<td><font color="LemonChiffon">LemonChiffon</font></td>
+<td><font color="#FFFACD">#FFFACD</font></td>
+<td>rgb(255, 250, 205)</td>
+</tr>
+<tr class="odd">
+<td><font color="LightBlue">LightBlue</font></td>
+<td><font color="#ADD8E6">#ADD8E6</font></td>
+<td>rgb(173, 216, 230)</td>
+</tr>
+<tr class="even">
+<td><font color="LightCoral">LightCoral</font></td>
+<td><font color="#F08080">#F08080</font></td>
+<td>rgb(240, 128, 128)</td>
+</tr>
+<tr class="odd">
+<td><font color="LightCyan">LightCyan</font></td>
+<td><font color="#E0FFFF">#E0FFFF</font></td>
+<td>rgb(224, 255, 255)</td>
+</tr>
+<tr class="even">
+<td><font color="LightGoldenRodYellow">LightGoldenRodYellow</font></td>
+<td><font color="#FAFAD2">#FAFAD2</font></td>
+<td>rgb(250, 250, 210)</td>
+</tr>
+<tr class="odd">
+<td><font color="LightGrey">LightGrey</font></td>
+<td><font color="#D3D3D3">#D3D3D3</font></td>
+<td>rgb(211, 211, 211)</td>
+</tr>
+<tr class="even">
+<td><font color="LightGreen">LightGreen</font></td>
+<td><font color="#90EE90">#90EE90</font></td>
+<td>rgb(144, 238, 144)</td>
+</tr>
+<tr class="odd">
+<td><font color="LightPink">LightPink</font></td>
+<td><font color="#FFB6C1">#FFB6C1</font></td>
+<td>rgb(255, 182, 193)</td>
+</tr>
+<tr class="even">
+<td><font color="LightSalmon">LightSalmon</font></td>
+<td><font color="#FFA07A">#FFA07A</font></td>
+<td>rgb(255, 160, 122)</td>
+</tr>
+<tr class="odd">
+<td><font color="LightSeaGreen">LightSeaGreen</font></td>
+<td><font color="#20B2AA">#20B2AA</font></td>
+<td>rgb(32, 178, 170)</td>
+</tr>
+<tr class="even">
+<td><font color="LightSkyBlue">LightSkyBlue</font></td>
+<td><font color="#87CEFA">#87CEFA</font></td>
+<td>rgb(135, 206, 250)</td>
+</tr>
+<tr class="odd">
+<td><font color="LightSlateBlue">LightSlateBlue</font></td>
+<td><font color="#8470FF">#8470FF</font></td>
+<td>rgb(132, 112, 255)</td>
+</tr>
+<tr class="even">
+<td><font color="LightSlateGray">LightSlateGray</font></td>
+<td><font color="#778899">#778899</font></td>
+<td>rgb(119, 136, 153)</td>
+</tr>
+<tr class="odd">
+<td><font color="LightSteelBlue">LightSteelBlue</font></td>
+<td><font color="#B0C4DE">#B0C4DE</font></td>
+<td>rgb(176, 196, 222)</td>
+</tr>
+<tr class="even">
+<td><font color="LightYellow">LightYellow</font></td>
+<td><font color="#FFFFE0">#FFFFE0</font></td>
+<td>rgb(255, 255, 224)</td>
+</tr>
+<tr class="odd">
+<td><font color="Lime">Lime</font></td>
+<td><font color="#00FF00">#00FF00</font></td>
+<td>rgb(0, 255, 0)</td>
+</tr>
+<tr class="even">
+<td><font color="LimeGreen">LimeGreen</font></td>
+<td><font color="#32CD32">#32CD32</font></td>
+<td>rgb(50, 205, 50)</td>
+</tr>
+<tr class="odd">
+<td><font color="Linen">Linen</font></td>
+<td><font color="#FAF0E6">#FAF0E6</font></td>
+<td>rgb(250, 240, 230)</td>
+</tr>
+<tr class="even">
+<td><font color="Magenta">Magenta</font></td>
+<td><font color="#FF00FF">#FF00FF</font></td>
+<td>rgb(255, 0, 255)</td>
+</tr>
+<tr class="odd">
+<td><font color="Maroon">Maroon</font></td>
+<td><font color="#800000">#800000</font></td>
+<td>rgb(128, 0, 0)</td>
+</tr>
+<tr class="even">
+<td><font color="MediumAquaMarine">MediumAquaMarine</font></td>
+<td><font color="#66CDAA">#66CDAA</font></td>
+<td>rgb(102, 205, 170)</td>
+</tr>
+<tr class="odd">
+<td><font color="MediumBlue">MediumBlue</font></td>
+<td><font color="#0000CD">#0000CD</font></td>
+<td>rgb(0, 0, 205)</td>
+</tr>
+<tr class="even">
+<td><font color="MediumOrchid">MediumOrchid</font></td>
+<td><font color="#BA55D3">#BA55D3</font></td>
+<td>rgb(186, 85, 211)</td>
+</tr>
+<tr class="odd">
+<td><font color="MediumPurple">MediumPurple</font></td>
+<td><font color="#9370D8">#9370D8</font></td>
+<td>rgb(147, 112, 216)</td>
+</tr>
+<tr class="even">
+<td><font color="MediumSeaGreen">MediumSeaGreen</font></td>
+<td><font color="#3CB371">#3CB371</font></td>
+<td>rgb(60, 179, 113)</td>
+</tr>
+<tr class="odd">
+<td><font color="MediumSlateBlue">MediumSlateBlue</font></td>
+<td><font color="#7B68EE">#7B68EE</font></td>
+<td>rgb(123, 104, 238)</td>
+</tr>
+<tr class="even">
+<td><font color="MediumSpringGreen">MediumSpringGreen</font></td>
+<td><font color="#00FA9A">#00FA9A</font></td>
+<td>rgb(0, 250, 154)</td>
+</tr>
+<tr class="odd">
+<td><font color="MediumTurquoise">MediumTurquoise</font></td>
+<td><font color="#48D1CC">#48D1CC</font></td>
+<td>rgb(72, 209, 204)</td>
+</tr>
+<tr class="even">
+<td><font color="MediumVioletRed">MediumVioletRed</font></td>
+<td><font color="#C71585">#C71585</font></td>
+<td>rgb(199, 21, 133)</td>
+</tr>
+<tr class="odd">
+<td><font color="MidnightBlue">MidnightBlue</font></td>
+<td><font color="#191970">#191970</font></td>
+<td>rgb(25, 25, 112)</td>
+</tr>
+<tr class="even">
+<td><font color="MintCream">MintCream</font></td>
+<td><font color="#F5FFFA">#F5FFFA</font></td>
+<td>rgb(245, 255, 250)</td>
+</tr>
+<tr class="odd">
+<td><font color="MistyRose">MistyRose</font></td>
+<td><font color="#FFE4E1">#FFE4E1</font></td>
+<td>rgb(255, 228, 225)</td>
+</tr>
+<tr class="even">
+<td><font color="Moccasin">Moccasin</font></td>
+<td><font color="#FFE4B5">#FFE4B5</font></td>
+<td>rgb(255, 228, 181)</td>
+</tr>
+<tr class="odd">
+<td><font color="NavajoWhite">NavajoWhite</font></td>
+<td><font color="#FFDEAD">#FFDEAD</font></td>
+<td>rgb(255, 222, 173)</td>
+</tr>
+<tr class="even">
+<td><font color="Navy">Navy</font></td>
+<td><font color="#000080">#000080</font></td>
+<td>rgb(0, 0, 128)</td>
+</tr>
+<tr class="odd">
+<td><font color="OldLace">OldLace</font></td>
+<td><font color="#FDF5E6">#FDF5E6</font></td>
+<td>rgb(253, 245, 230)</td>
+</tr>
+<tr class="even">
+<td><font color="Olive">Olive</font></td>
+<td><font color="#808000">#808000</font></td>
+<td>rgb(128, 128, 0)</td>
+</tr>
+<tr class="odd">
+<td><font color="OliveDrab">OliveDrab</font></td>
+<td><font color="#6B8E23">#6B8E23</font></td>
+<td>rgb(107, 142, 35)</td>
+</tr>
+<tr class="even">
+<td><font color="Orange">Orange</font></td>
+<td><font color="#FFA500">#FFA500</font></td>
+<td>rgb(255, 165, 0)</td>
+</tr>
+<tr class="odd">
+<td><font color="OrangeRed">OrangeRed</font></td>
+<td><font color="#FF4500">#FF4500</font></td>
+<td>rgb(255, 69, 0)</td>
+</tr>
+<tr class="even">
+<td><font color="Orchid">Orchid</font></td>
+<td><font color="#DA70D6">#DA70D6</font></td>
+<td>rgb(218, 112, 214)</td>
+</tr>
+<tr class="odd">
+<td><font color="PaleGoldenRod">PaleGoldenRod</font></td>
+<td><font color="#EEE8AA">#EEE8AA</font></td>
+<td>rgb(238, 232, 170)</td>
+</tr>
+<tr class="even">
+<td><font color="PaleGreen">PaleGreen</font></td>
+<td><font color="#98FB98">#98FB98</font></td>
+<td>rgb(152, 251, 152)</td>
+</tr>
+<tr class="odd">
+<td><font color="PaleTurquoise">PaleTurquoise</font></td>
+<td><font color="#AFEEEE">#AFEEEE</font></td>
+<td>rgb(175, 238, 238)</td>
+</tr>
+<tr class="even">
+<td><font color="PaleVioletRed">PaleVioletRed</font></td>
+<td><font color="#D87093">#D87093</font></td>
+<td>rgb(216, 112, 147)</td>
+</tr>
+<tr class="odd">
+<td><font color="PapayaWhip">PapayaWhip</font></td>
+<td><font color="#FFEFD5">#FFEFD5</font></td>
+<td>rgb(255, 239, 213)</td>
+</tr>
+<tr class="even">
+<td><font color="PeachPuff">PeachPuff</font></td>
+<td><font color="#FFDAB9">#FFDAB9</font></td>
+<td>rgb(255, 218, 185)</td>
+</tr>
+<tr class="odd">
+<td><font color="Peru">Peru</font></td>
+<td><font color="#CD853F">#CD853F</font></td>
+<td>rgb(205, 133, 63)</td>
+</tr>
+<tr class="even">
+<td><font color="Pink">Pink</font></td>
+<td><font color="#FFC0CB">#FFC0CB</font></td>
+<td>rgb(255, 192, 203)</td>
+</tr>
+<tr class="odd">
+<td><font color="Plum">Plum</font></td>
+<td><font color="#DDA0DD">#DDA0DD</font></td>
+<td>rgb(221, 160, 221)</td>
+</tr>
+<tr class="even">
+<td><font color="PowderBlue">PowderBlue</font></td>
+<td><font color="#B0E0E6">#B0E0E6</font></td>
+<td>rgb(176, 224, 230)</td>
+</tr>
+<tr class="odd">
+<td><font color="Purple">Purple</font></td>
+<td><font color="#800080">#800080</font></td>
+<td>rgb(128, 0, 128)</td>
+</tr>
+<tr class="even">
+<td><font color="Red">Red</font></td>
+<td><font color="#FF0000">#FF0000</font></td>
+<td>rgb(255, 0, 0)</td>
+</tr>
+<tr class="odd">
+<td><font color="RosyBrown">RosyBrown</font></td>
+<td><font color="#BC8F8F">#BC8F8F</font></td>
+<td>rgb(188, 143, 143)</td>
+</tr>
+<tr class="even">
+<td><font color="RoyalBlue">RoyalBlue</font></td>
+<td><font color="#4169E1">#4169E1</font></td>
+<td>rgb(65, 105, 225)</td>
+</tr>
+<tr class="odd">
+<td><font color="SaddleBrown">SaddleBrown</font></td>
+<td><font color="#8B4513">#8B4513</font></td>
+<td>rgb(139, 69, 19)</td>
+</tr>
+<tr class="even">
+<td><font color="Salmon">Salmon</font></td>
+<td><font color="#FA8072">#FA8072</font></td>
+<td>rgb(250, 128, 114)</td>
+</tr>
+<tr class="odd">
+<td><font color="SandyBrown">SandyBrown</font></td>
+<td><font color="#F4A460">#F4A460</font></td>
+<td>rgb(244, 164, 96)</td>
+</tr>
+<tr class="even">
+<td><font color="SeaGreen">SeaGreen</font></td>
+<td><font color="#2E8B57">#2E8B57</font></td>
+<td>rgb(46, 139, 87)</td>
+</tr>
+<tr class="odd">
+<td><font color="SeaShell">SeaShell</font></td>
+<td><font color="#FFF5EE">#FFF5EE</font></td>
+<td>rgb(255, 245, 238)</td>
+</tr>
+<tr class="even">
+<td><font color="Sienna">Sienna</font></td>
+<td><font color="#A0522D">#A0522D</font></td>
+<td>rgb(160, 82, 45)</td>
+</tr>
+<tr class="odd">
+<td><font color="Silver">Silver</font></td>
+<td><font color="#C0C0C0">#C0C0C0</font></td>
+<td>rgb(192, 192, 192)</td>
+</tr>
+<tr class="even">
+<td><font color="SkyBlue">SkyBlue</font></td>
+<td><font color="#87CEEB">#87CEEB</font></td>
+<td>rgb(135, 206, 235)</td>
+</tr>
+<tr class="odd">
+<td><font color="SlateBlue">SlateBlue</font></td>
+<td><font color="#6A5ACD">#6A5ACD</font></td>
+<td>rgb(106, 90, 205)</td>
+</tr>
+<tr class="even">
+<td><font color="SlateGray">SlateGray</font></td>
+<td><font color="#708090">#708090</font></td>
+<td>rgb(112, 128, 144)</td>
+</tr>
+<tr class="odd">
+<td><font color="Snow">Snow</font></td>
+<td><font color="#FFFAFA">#FFFAFA</font></td>
+<td>rgb(255, 250, 250)</td>
+</tr>
+<tr class="even">
+<td><font color="SpringGreen">SpringGreen</font></td>
+<td><font color="#00FF7F">#00FF7F</font></td>
+<td>rgb(0, 255, 127)</td>
+</tr>
+<tr class="odd">
+<td><font color="SteelBlue">SteelBlue</font></td>
+<td><font color="#4682B4">#4682B4</font></td>
+<td>rgb(70, 130, 180)</td>
+</tr>
+<tr class="even">
+<td><font color="Tan">Tan</font></td>
+<td><font color="#D2B48C">#D2B48C</font></td>
+<td>rgb(210, 180, 140)</td>
+</tr>
+<tr class="odd">
+<td><font color="Teal">Teal</font></td>
+<td><font color="#008080">#008080</font></td>
+<td>rgb(0, 128, 128)</td>
+</tr>
+<tr class="even">
+<td><font color="Thistle">Thistle</font></td>
+<td><font color="#D8BFD8">#D8BFD8</font></td>
+<td>rgb(216, 191, 216)</td>
+</tr>
+<tr class="odd">
+<td><font color="Tomato">Tomato</font></td>
+<td><font color="#FF6347">#FF6347</font></td>
+<td>rgb(255, 99, 71)</td>
+</tr>
+<tr class="even">
+<td><font color="Turquoise">Turquoise</font></td>
+<td><font color="#40E0D0">#40E0D0</font></td>
+<td>rgb(64, 224, 208)</td>
+</tr>
+<tr class="odd">
+<td><font color="Violet">Violet</font></td>
+<td><font color="#EE82EE">#EE82EE</font></td>
+<td>rgb(238, 130, 238)</td>
+</tr>
+<tr class="even">
+<td><font color="VioletRed">VioletRed</font></td>
+<td><font color="#D02090">#D02090</font></td>
+<td>rgb(208, 32, 144)</td>
+</tr>
+<tr class="odd">
+<td><font color="Wheat">Wheat</font></td>
+<td><font color="#F5DEB3">#F5DEB3</font></td>
+<td>rgb(245, 222, 179)</td>
+</tr>
+<tr class="even">
+<td><font color="White">White</font></td>
+<td><font color="#FFFFFF">#FFFFFF</font></td>
+<td>rgb(255, 255, 255)</td>
+</tr>
+<tr class="odd">
+<td><font color="WhiteSmoke">WhiteSmoke</font></td>
+<td><font color="#F5F5F5">#F5F5F5</font></td>
+<td>rgb(245, 245, 245)</td>
+</tr>
+<tr class="even">
+<td><font color="Yellow">Yellow</font></td>
+<td><font color="#FFFF00">#FFFF00</font></td>
+<td>rgb(255, 255, 0)</td>
+</tr>
+<tr class="odd">
+<td><font color="YellowGreen">YellowGreen</font></td>
+<td><font color="#9ACD32">#9ACD32</font></td>
+<td>rgb(154, 205, 50)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="背景色">III.IX. 背景色</h2>
+<p>由于 style 标签和标签的 style 属性都被和谐了（这让Markdown虽然有HTML的躯体，却没有HTML的灵魂！），所以这里只能是借助 table, tr, td 等表格标签的 bgcolor 属性来实现背景色的功能。<a target="_blank" rel="noopener" href="http://blog.csdn.net/testcs_dn/article/details/45766819">CSDN-markdown编辑器语法——背景色</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=#7FFFD4&gt;这里的背景色是：Aquamarine，  十六进制颜色值：#7FFFD4， rgb(127, 255, 212)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+<table>
+<tr>
+<td bgcolor="#7FFFD4">
+这里的背景色是：Aquamarine， 十六进制颜色值：#7FFFD4， rgb(127, 255, 212)
+</td>
+</tr>
+</table>
+<h3 id="背景色列表">III.IX.I. 背景色列表</h3>
+<table>
+<thead>
+<tr class="header">
+<th>颜色名</th>
+<th>十六进制颜色值</th>
+<th>颜色</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><font color="AliceBlue">AliceBlue</font></td>
+<td><font color="#F0F8FF">#F0F8FF</font></td>
+<td>rgb(240, 248, 255)</td>
+</tr>
+<tr class="even">
+<td><font color="AntiqueWhite">AntiqueWhite</font></td>
+<td><font color="#FAEBD7">#FAEBD7</font></td>
+<td>rgb(250, 235, 215)</td>
+</tr>
+<tr class="odd">
+<td><font color="Aqua">Aqua</font></td>
+<td><font color="#00FFFF">#00FFFF</font></td>
+<td>rgb(0, 255, 255)</td>
+</tr>
+<tr class="even">
+<td><font color="Aquamarine">Aquamarine</font></td>
+<td><font color="#7FFFD4">#7FFFD4</font></td>
+<td>rgb(127, 255, 212)</td>
+</tr>
+<tr class="odd">
+<td><font color="Azure">Azure</font></td>
+<td><font color="#F0FFFF">#F0FFFF</font></td>
+<td>rgb(240, 255, 255)</td>
+</tr>
+<tr class="even">
+<td><font color="Beige">Beige</font></td>
+<td><font color="#F5F5DC">#F5F5DC</font></td>
+<td>rgb(245, 245, 220)</td>
+</tr>
+<tr class="odd">
+<td><font color="Bisque">Bisque</font></td>
+<td><font color="#FFE4C4">#FFE4C4</font></td>
+<td>rgb(255, 228, 196)</td>
+</tr>
+<tr class="even">
+<td><font color="Black">Black</font></td>
+<td><font color="#000000">#000000</font></td>
+<td>rgb(0, 0, 0)</td>
+</tr>
+<tr class="odd">
+<td><font color="BlanchedAlmond">BlanchedAlmond</font></td>
+<td><font color="#FFEBCD">#FFEBCD</font></td>
+<td>rgb(255, 235, 205)</td>
+</tr>
+<tr class="even">
+<td><font color="Blue">Blue</font></td>
+<td><font color="#0000FF">#0000FF</font></td>
+<td>rgb(0, 0, 255)</td>
+</tr>
+<tr class="odd">
+<td><font color="BlueViolet">BlueViolet</font></td>
+<td><font color="#8A2BE2">#8A2BE2</font></td>
+<td>rgb(138, 43, 226)</td>
+</tr>
+<tr class="even">
+<td><font color="Brown">Brown</font></td>
+<td><font color="#A52A2A">#A52A2A</font></td>
+<td>rgb(165, 42, 42)</td>
+</tr>
+<tr class="odd">
+<td><font color="BurlyWood">BurlyWood</font></td>
+<td><font color="#DEB887">#DEB887</font></td>
+<td>rgb(222, 184, 135)</td>
+</tr>
+<tr class="even">
+<td><font color="CadetBlue">CadetBlue</font></td>
+<td><font color="#5F9EA0">#5F9EA0</font></td>
+<td>rgb(95, 158, 160)</td>
+</tr>
+<tr class="odd">
+<td><font color="Chartreuse">Chartreuse</font></td>
+<td><font color="#7FFF00">#7FFF00</font></td>
+<td>rgb(127, 255, 0)</td>
+</tr>
+<tr class="even">
+<td><font color="Chocolate">Chocolate</font></td>
+<td><font color="#D2691E">#D2691E</font></td>
+<td>rgb(210, 105, 30)</td>
+</tr>
+<tr class="odd">
+<td><font color="Coral">Coral</font></td>
+<td><font color="#FF7F50">#FF7F50</font></td>
+<td>rgb(255, 127, 80)</td>
+</tr>
+<tr class="even">
+<td><font color="CornflowerBlue">CornflowerBlue</font></td>
+<td><font color="#6495ED">#6495ED</font></td>
+<td>rgb(100, 149, 237)</td>
+</tr>
+<tr class="odd">
+<td><font color="Cornsilk">Cornsilk</font></td>
+<td><font color="#FFF8DC">#FFF8DC</font></td>
+<td>rgb(255, 248, 220)</td>
+</tr>
+<tr class="even">
+<td><font color="Crimson">Crimson</font></td>
+<td><font color="#DC143C">#DC143C</font></td>
+<td>rgb(220, 20, 60)</td>
+</tr>
+<tr class="odd">
+<td><font color="Cyan">Cyan</font></td>
+<td><font color="#00FFFF">#00FFFF</font></td>
+<td>rgb(0, 255, 255)</td>
+</tr>
+<tr class="even">
+<td><font color="DarkBlue">DarkBlue</font></td>
+<td><font color="#00008B">#00008B</font></td>
+<td>rgb(0, 0, 139)</td>
+</tr>
+<tr class="odd">
+<td><font color="DarkCyan">DarkCyan</font></td>
+<td><font color="#008B8B">#008B8B</font></td>
+<td>rgb(0, 139, 139)</td>
+</tr>
+<tr class="even">
+<td><font color="DarkGoldenRod">DarkGoldenRod</font></td>
+<td><font color="#B8860B">#B8860B</font></td>
+<td>rgb(184, 134, 11)</td>
+</tr>
+<tr class="odd">
+<td><font color="DarkGray">DarkGray</font></td>
+<td><font color="#A9A9A9">#A9A9A9</font></td>
+<td>rgb(169, 169, 169)</td>
+</tr>
+<tr class="even">
+<td><font color="DarkGreen">DarkGreen</font></td>
+<td><font color="#006400">#006400</font></td>
+<td>rgb(0, 100, 0)</td>
+</tr>
+<tr class="odd">
+<td><font color="DarkKhaki">DarkKhaki</font></td>
+<td><font color="#BDB76B">#BDB76B</font></td>
+<td>rgb(189, 183, 107)</td>
+</tr>
+<tr class="even">
+<td><font color="DarkMagenta">DarkMagenta</font></td>
+<td><font color="#8B008B">#8B008B</font></td>
+<td>rgb(139, 0, 139)</td>
+</tr>
+<tr class="odd">
+<td><font color="DarkOliveGreen">DarkOliveGreen</font></td>
+<td><font color="#556B2F">#556B2F</font></td>
+<td>rgb(85, 107, 47)</td>
+</tr>
+<tr class="even">
+<td><font color="Darkorange">Darkorange</font></td>
+<td><font color="#FF8C00">#FF8C00</font></td>
+<td>rgb(255, 140, 0)</td>
+</tr>
+<tr class="odd">
+<td><font color="DarkOrchid">DarkOrchid</font></td>
+<td><font color="#9932CC">#9932CC</font></td>
+<td>rgb(153, 50, 204)</td>
+</tr>
+<tr class="even">
+<td><font color="DarkRed">DarkRed</font></td>
+<td><font color="#8B0000">#8B0000</font></td>
+<td>rgb(139, 0, 0)</td>
+</tr>
+<tr class="odd">
+<td><font color="DarkSalmon">DarkSalmon</font></td>
+<td><font color="#E9967A">#E9967A</font></td>
+<td>rgb(233, 150, 122)</td>
+</tr>
+<tr class="even">
+<td><font color="DarkSeaGreen">DarkSeaGreen</font></td>
+<td><font color="#8FBC8F">#8FBC8F</font></td>
+<td>rgb(143, 188, 143)</td>
+</tr>
+<tr class="odd">
+<td><font color="DarkSlateBlue">DarkSlateBlue</font></td>
+<td><font color="#483D8B">#483D8B</font></td>
+<td>rgb(72, 61, 139)</td>
+</tr>
+<tr class="even">
+<td><font color="DarkSlateGray">DarkSlateGray</font></td>
+<td><font color="#2F4F4F">#2F4F4F</font></td>
+<td>rgb(47, 79, 79)</td>
+</tr>
+<tr class="odd">
+<td><font color="DarkTurquoise">DarkTurquoise</font></td>
+<td><font color="#00CED1">#00CED1</font></td>
+<td>rgb(0, 206, 209)</td>
+</tr>
+<tr class="even">
+<td><font color="DarkViolet">DarkViolet</font></td>
+<td><font color="#9400D3">#9400D3</font></td>
+<td>rgb(148, 0, 211)</td>
+</tr>
+<tr class="odd">
+<td><font color="DeepPink">DeepPink</font></td>
+<td><font color="#FF1493">#FF1493</font></td>
+<td>rgb(255, 20, 147)</td>
+</tr>
+<tr class="even">
+<td><font color="DeepSkyBlue">DeepSkyBlue</font></td>
+<td><font color="#00BFFF">#00BFFF</font></td>
+<td>rgb(0, 191, 255)</td>
+</tr>
+<tr class="odd">
+<td><font color="DimGray">DimGray</font></td>
+<td><font color="#696969">#696969</font></td>
+<td>rgb(105, 105, 105)</td>
+</tr>
+<tr class="even">
+<td><font color="DodgerBlue">DodgerBlue</font></td>
+<td><font color="#1E90FF">#1E90FF</font></td>
+<td>rgb(30, 144, 255)</td>
+</tr>
+<tr class="odd">
+<td><font color="Feldspar">Feldspar</font></td>
+<td><font color="#D19275">#D19275</font></td>
+<td>rgb(209, 146, 117)</td>
+</tr>
+<tr class="even">
+<td><font color="FireBrick">FireBrick</font></td>
+<td><font color="#B22222">#B22222</font></td>
+<td>rgb(178, 34, 34)</td>
+</tr>
+<tr class="odd">
+<td><font color="FloralWhite">FloralWhite</font></td>
+<td><font color="#FFFAF0">#FFFAF0</font></td>
+<td>rgb(255, 250, 240)</td>
+</tr>
+<tr class="even">
+<td><font color="ForestGreen">ForestGreen</font></td>
+<td><font color="#228B22">#228B22</font></td>
+<td>rgb(34, 139, 34)</td>
+</tr>
+<tr class="odd">
+<td><font color="Fuchsia">Fuchsia</font></td>
+<td><font color="#FF00FF">#FF00FF</font></td>
+<td>rgb(255, 0, 255)</td>
+</tr>
+<tr class="even">
+<td><font color="Gainsboro">Gainsboro</font></td>
+<td><font color="#DCDCDC">#DCDCDC</font></td>
+<td>rgb(220, 220, 220)</td>
+</tr>
+<tr class="odd">
+<td><font color="GhostWhite">GhostWhite</font></td>
+<td><font color="#F8F8FF">#F8F8FF</font></td>
+<td>rgb(248, 248, 255)</td>
+</tr>
+<tr class="even">
+<td><font color="Gold">Gold</font></td>
+<td><font color="#FFD700">#FFD700</font></td>
+<td>rgb(255, 215, 0)</td>
+</tr>
+<tr class="odd">
+<td><font color="GoldenRod">GoldenRod</font></td>
+<td><font color="#DAA520">#DAA520</font></td>
+<td>rgb(218, 165, 32)</td>
+</tr>
+<tr class="even">
+<td><font color="Gray">Gray</font></td>
+<td><font color="#808080">#808080</font></td>
+<td>rgb(128, 128, 128)</td>
+</tr>
+<tr class="odd">
+<td><font color="Green">Green</font></td>
+<td><font color="#008000">#008000</font></td>
+<td>rgb(0, 128, 0)</td>
+</tr>
+<tr class="even">
+<td><font color="GreenYellow">GreenYellow</font></td>
+<td><font color="#ADFF2F">#ADFF2F</font></td>
+<td>rgb(173, 255, 47)</td>
+</tr>
+<tr class="odd">
+<td><font color="HoneyDew">HoneyDew</font></td>
+<td><font color="#F0FFF0">#F0FFF0</font></td>
+<td>rgb(240, 255, 240)</td>
+</tr>
+<tr class="even">
+<td><font color="HotPink">HotPink</font></td>
+<td><font color="#FF69B4">#FF69B4</font></td>
+<td>rgb(255, 105, 180)</td>
+</tr>
+<tr class="odd">
+<td><font color="IndianRed">IndianRed</font></td>
+<td><font color="#CD5C5C">#CD5C5C</font></td>
+<td>rgb(205, 92, 92)</td>
+</tr>
+<tr class="even">
+<td><font color="Indigo">Indigo</font></td>
+<td><font color="#4B0082">#4B0082</font></td>
+<td>rgb(75, 0, 130)</td>
+</tr>
+<tr class="odd">
+<td><font color="Ivory">Ivory</font></td>
+<td><font color="#FFFFF0">#FFFFF0</font></td>
+<td>rgb(255, 255, 240)</td>
+</tr>
+<tr class="even">
+<td><font color="Khaki">Khaki</font></td>
+<td><font color="#F0E68C">#F0E68C</font></td>
+<td>rgb(240, 230, 140)</td>
+</tr>
+<tr class="odd">
+<td><font color="Lavender">Lavender</font></td>
+<td><font color="#E6E6FA">#E6E6FA</font></td>
+<td>rgb(230, 230, 250)</td>
+</tr>
+<tr class="even">
+<td><font color="LavenderBlush">LavenderBlush</font></td>
+<td><font color="#FFF0F5">#FFF0F5</font></td>
+<td>rgb(255, 240, 245)</td>
+</tr>
+<tr class="odd">
+<td><font color="LawnGreen">LawnGreen</font></td>
+<td><font color="#7CFC00">#7CFC00</font></td>
+<td>rgb(124, 252, 0)</td>
+</tr>
+<tr class="even">
+<td><font color="LemonChiffon">LemonChiffon</font></td>
+<td><font color="#FFFACD">#FFFACD</font></td>
+<td>rgb(255, 250, 205)</td>
+</tr>
+<tr class="odd">
+<td><font color="LightBlue">LightBlue</font></td>
+<td><font color="#ADD8E6">#ADD8E6</font></td>
+<td>rgb(173, 216, 230)</td>
+</tr>
+<tr class="even">
+<td><font color="LightCoral">LightCoral</font></td>
+<td><font color="#F08080">#F08080</font></td>
+<td>rgb(240, 128, 128)</td>
+</tr>
+<tr class="odd">
+<td><font color="LightCyan">LightCyan</font></td>
+<td><font color="#E0FFFF">#E0FFFF</font></td>
+<td>rgb(224, 255, 255)</td>
+</tr>
+<tr class="even">
+<td><font color="LightGoldenRodYellow">LightGoldenRodYellow</font></td>
+<td><font color="#FAFAD2">#FAFAD2</font></td>
+<td>rgb(250, 250, 210)</td>
+</tr>
+<tr class="odd">
+<td><font color="LightGrey">LightGrey</font></td>
+<td><font color="#D3D3D3">#D3D3D3</font></td>
+<td>rgb(211, 211, 211)</td>
+</tr>
+<tr class="even">
+<td><font color="LightGreen">LightGreen</font></td>
+<td><font color="#90EE90">#90EE90</font></td>
+<td>rgb(144, 238, 144)</td>
+</tr>
+<tr class="odd">
+<td><font color="LightPink">LightPink</font></td>
+<td><font color="#FFB6C1">#FFB6C1</font></td>
+<td>rgb(255, 182, 193)</td>
+</tr>
+<tr class="even">
+<td><font color="LightSalmon">LightSalmon</font></td>
+<td><font color="#FFA07A">#FFA07A</font></td>
+<td>rgb(255, 160, 122)</td>
+</tr>
+<tr class="odd">
+<td><font color="LightSeaGreen">LightSeaGreen</font></td>
+<td><font color="#20B2AA">#20B2AA</font></td>
+<td>rgb(32, 178, 170)</td>
+</tr>
+<tr class="even">
+<td><font color="LightSkyBlue">LightSkyBlue</font></td>
+<td><font color="#87CEFA">#87CEFA</font></td>
+<td>rgb(135, 206, 250)</td>
+</tr>
+<tr class="odd">
+<td><font color="LightSlateBlue">LightSlateBlue</font></td>
+<td><font color="#8470FF">#8470FF</font></td>
+<td>rgb(132, 112, 255)</td>
+</tr>
+<tr class="even">
+<td><font color="LightSlateGray">LightSlateGray</font></td>
+<td><font color="#778899">#778899</font></td>
+<td>rgb(119, 136, 153)</td>
+</tr>
+<tr class="odd">
+<td><font color="LightSteelBlue">LightSteelBlue</font></td>
+<td><font color="#B0C4DE">#B0C4DE</font></td>
+<td>rgb(176, 196, 222)</td>
+</tr>
+<tr class="even">
+<td><font color="LightYellow">LightYellow</font></td>
+<td><font color="#FFFFE0">#FFFFE0</font></td>
+<td>rgb(255, 255, 224)</td>
+</tr>
+<tr class="odd">
+<td><font color="Lime">Lime</font></td>
+<td><font color="#00FF00">#00FF00</font></td>
+<td>rgb(0, 255, 0)</td>
+</tr>
+<tr class="even">
+<td><font color="LimeGreen">LimeGreen</font></td>
+<td><font color="#32CD32">#32CD32</font></td>
+<td>rgb(50, 205, 50)</td>
+</tr>
+<tr class="odd">
+<td><font color="Linen">Linen</font></td>
+<td><font color="#FAF0E6">#FAF0E6</font></td>
+<td>rgb(250, 240, 230)</td>
+</tr>
+<tr class="even">
+<td><font color="Magenta">Magenta</font></td>
+<td><font color="#FF00FF">#FF00FF</font></td>
+<td>rgb(255, 0, 255)</td>
+</tr>
+<tr class="odd">
+<td><font color="Maroon">Maroon</font></td>
+<td><font color="#800000">#800000</font></td>
+<td>rgb(128, 0, 0)</td>
+</tr>
+<tr class="even">
+<td><font color="MediumAquaMarine">MediumAquaMarine</font></td>
+<td><font color="#66CDAA">#66CDAA</font></td>
+<td>rgb(102, 205, 170)</td>
+</tr>
+<tr class="odd">
+<td><font color="MediumBlue">MediumBlue</font></td>
+<td><font color="#0000CD">#0000CD</font></td>
+<td>rgb(0, 0, 205)</td>
+</tr>
+<tr class="even">
+<td><font color="MediumOrchid">MediumOrchid</font></td>
+<td><font color="#BA55D3">#BA55D3</font></td>
+<td>rgb(186, 85, 211)</td>
+</tr>
+<tr class="odd">
+<td><font color="MediumPurple">MediumPurple</font></td>
+<td><font color="#9370D8">#9370D8</font></td>
+<td>rgb(147, 112, 216)</td>
+</tr>
+<tr class="even">
+<td><font color="MediumSeaGreen">MediumSeaGreen</font></td>
+<td><font color="#3CB371">#3CB371</font></td>
+<td>rgb(60, 179, 113)</td>
+</tr>
+<tr class="odd">
+<td><font color="MediumSlateBlue">MediumSlateBlue</font></td>
+<td><font color="#7B68EE">#7B68EE</font></td>
+<td>rgb(123, 104, 238)</td>
+</tr>
+<tr class="even">
+<td><font color="MediumSpringGreen">MediumSpringGreen</font></td>
+<td><font color="#00FA9A">#00FA9A</font></td>
+<td>rgb(0, 250, 154)</td>
+</tr>
+<tr class="odd">
+<td><font color="MediumTurquoise">MediumTurquoise</font></td>
+<td><font color="#48D1CC">#48D1CC</font></td>
+<td>rgb(72, 209, 204)</td>
+</tr>
+<tr class="even">
+<td><font color="MediumVioletRed">MediumVioletRed</font></td>
+<td><font color="#C71585">#C71585</font></td>
+<td>rgb(199, 21, 133)</td>
+</tr>
+<tr class="odd">
+<td><font color="MidnightBlue">MidnightBlue</font></td>
+<td><font color="#191970">#191970</font></td>
+<td>rgb(25, 25, 112)</td>
+</tr>
+<tr class="even">
+<td><font color="MintCream">MintCream</font></td>
+<td><font color="#F5FFFA">#F5FFFA</font></td>
+<td>rgb(245, 255, 250)</td>
+</tr>
+<tr class="odd">
+<td><font color="MistyRose">MistyRose</font></td>
+<td><font color="#FFE4E1">#FFE4E1</font></td>
+<td>rgb(255, 228, 225)</td>
+</tr>
+<tr class="even">
+<td><font color="Moccasin">Moccasin</font></td>
+<td><font color="#FFE4B5">#FFE4B5</font></td>
+<td>rgb(255, 228, 181)</td>
+</tr>
+<tr class="odd">
+<td><font color="NavajoWhite">NavajoWhite</font></td>
+<td><font color="#FFDEAD">#FFDEAD</font></td>
+<td>rgb(255, 222, 173)</td>
+</tr>
+<tr class="even">
+<td><font color="Navy">Navy</font></td>
+<td><font color="#000080">#000080</font></td>
+<td>rgb(0, 0, 128)</td>
+</tr>
+<tr class="odd">
+<td><font color="OldLace">OldLace</font></td>
+<td><font color="#FDF5E6">#FDF5E6</font></td>
+<td>rgb(253, 245, 230)</td>
+</tr>
+<tr class="even">
+<td><font color="Olive">Olive</font></td>
+<td><font color="#808000">#808000</font></td>
+<td>rgb(128, 128, 0)</td>
+</tr>
+<tr class="odd">
+<td><font color="OliveDrab">OliveDrab</font></td>
+<td><font color="#6B8E23">#6B8E23</font></td>
+<td>rgb(107, 142, 35)</td>
+</tr>
+<tr class="even">
+<td><font color="Orange">Orange</font></td>
+<td><font color="#FFA500">#FFA500</font></td>
+<td>rgb(255, 165, 0)</td>
+</tr>
+<tr class="odd">
+<td><font color="OrangeRed">OrangeRed</font></td>
+<td><font color="#FF4500">#FF4500</font></td>
+<td>rgb(255, 69, 0)</td>
+</tr>
+<tr class="even">
+<td><font color="Orchid">Orchid</font></td>
+<td><font color="#DA70D6">#DA70D6</font></td>
+<td>rgb(218, 112, 214)</td>
+</tr>
+<tr class="odd">
+<td><font color="PaleGoldenRod">PaleGoldenRod</font></td>
+<td><font color="#EEE8AA">#EEE8AA</font></td>
+<td>rgb(238, 232, 170)</td>
+</tr>
+<tr class="even">
+<td><font color="PaleGreen">PaleGreen</font></td>
+<td><font color="#98FB98">#98FB98</font></td>
+<td>rgb(152, 251, 152)</td>
+</tr>
+<tr class="odd">
+<td><font color="PaleTurquoise">PaleTurquoise</font></td>
+<td><font color="#AFEEEE">#AFEEEE</font></td>
+<td>rgb(175, 238, 238)</td>
+</tr>
+<tr class="even">
+<td><font color="PaleVioletRed">PaleVioletRed</font></td>
+<td><font color="#D87093">#D87093</font></td>
+<td>rgb(216, 112, 147)</td>
+</tr>
+<tr class="odd">
+<td><font color="PapayaWhip">PapayaWhip</font></td>
+<td><font color="#FFEFD5">#FFEFD5</font></td>
+<td>rgb(255, 239, 213)</td>
+</tr>
+<tr class="even">
+<td><font color="PeachPuff">PeachPuff</font></td>
+<td><font color="#FFDAB9">#FFDAB9</font></td>
+<td>rgb(255, 218, 185)</td>
+</tr>
+<tr class="odd">
+<td><font color="Peru">Peru</font></td>
+<td><font color="#CD853F">#CD853F</font></td>
+<td>rgb(205, 133, 63)</td>
+</tr>
+<tr class="even">
+<td><font color="Pink">Pink</font></td>
+<td><font color="#FFC0CB">#FFC0CB</font></td>
+<td>rgb(255, 192, 203)</td>
+</tr>
+<tr class="odd">
+<td><font color="Plum">Plum</font></td>
+<td><font color="#DDA0DD">#DDA0DD</font></td>
+<td>rgb(221, 160, 221)</td>
+</tr>
+<tr class="even">
+<td><font color="PowderBlue">PowderBlue</font></td>
+<td><font color="#B0E0E6">#B0E0E6</font></td>
+<td>rgb(176, 224, 230)</td>
+</tr>
+<tr class="odd">
+<td><font color="Purple">Purple</font></td>
+<td><font color="#800080">#800080</font></td>
+<td>rgb(128, 0, 128)</td>
+</tr>
+<tr class="even">
+<td><font color="Red">Red</font></td>
+<td><font color="#FF0000">#FF0000</font></td>
+<td>rgb(255, 0, 0)</td>
+</tr>
+<tr class="odd">
+<td><font color="RosyBrown">RosyBrown</font></td>
+<td><font color="#BC8F8F">#BC8F8F</font></td>
+<td>rgb(188, 143, 143)</td>
+</tr>
+<tr class="even">
+<td><font color="RoyalBlue">RoyalBlue</font></td>
+<td><font color="#4169E1">#4169E1</font></td>
+<td>rgb(65, 105, 225)</td>
+</tr>
+<tr class="odd">
+<td><font color="SaddleBrown">SaddleBrown</font></td>
+<td><font color="#8B4513">#8B4513</font></td>
+<td>rgb(139, 69, 19)</td>
+</tr>
+<tr class="even">
+<td><font color="Salmon">Salmon</font></td>
+<td><font color="#FA8072">#FA8072</font></td>
+<td>rgb(250, 128, 114)</td>
+</tr>
+<tr class="odd">
+<td><font color="SandyBrown">SandyBrown</font></td>
+<td><font color="#F4A460">#F4A460</font></td>
+<td>rgb(244, 164, 96)</td>
+</tr>
+<tr class="even">
+<td><font color="SeaGreen">SeaGreen</font></td>
+<td><font color="#2E8B57">#2E8B57</font></td>
+<td>rgb(46, 139, 87)</td>
+</tr>
+<tr class="odd">
+<td><font color="SeaShell">SeaShell</font></td>
+<td><font color="#FFF5EE">#FFF5EE</font></td>
+<td>rgb(255, 245, 238)</td>
+</tr>
+<tr class="even">
+<td><font color="Sienna">Sienna</font></td>
+<td><font color="#A0522D">#A0522D</font></td>
+<td>rgb(160, 82, 45)</td>
+</tr>
+<tr class="odd">
+<td><font color="Silver">Silver</font></td>
+<td><font color="#C0C0C0">#C0C0C0</font></td>
+<td>rgb(192, 192, 192)</td>
+</tr>
+<tr class="even">
+<td><font color="SkyBlue">SkyBlue</font></td>
+<td><font color="#87CEEB">#87CEEB</font></td>
+<td>rgb(135, 206, 235)</td>
+</tr>
+<tr class="odd">
+<td><font color="SlateBlue">SlateBlue</font></td>
+<td><font color="#6A5ACD">#6A5ACD</font></td>
+<td>rgb(106, 90, 205)</td>
+</tr>
+<tr class="even">
+<td><font color="SlateGray">SlateGray</font></td>
+<td><font color="#708090">#708090</font></td>
+<td>rgb(112, 128, 144)</td>
+</tr>
+<tr class="odd">
+<td><font color="Snow">Snow</font></td>
+<td><font color="#FFFAFA">#FFFAFA</font></td>
+<td>rgb(255, 250, 250)</td>
+</tr>
+<tr class="even">
+<td><font color="SpringGreen">SpringGreen</font></td>
+<td><font color="#00FF7F">#00FF7F</font></td>
+<td>rgb(0, 255, 127)</td>
+</tr>
+<tr class="odd">
+<td><font color="SteelBlue">SteelBlue</font></td>
+<td><font color="#4682B4">#4682B4</font></td>
+<td>rgb(70, 130, 180)</td>
+</tr>
+<tr class="even">
+<td><font color="Tan">Tan</font></td>
+<td><font color="#D2B48C">#D2B48C</font></td>
+<td>rgb(210, 180, 140)</td>
+</tr>
+<tr class="odd">
+<td><font color="Teal">Teal</font></td>
+<td><font color="#008080">#008080</font></td>
+<td>rgb(0, 128, 128)</td>
+</tr>
+<tr class="even">
+<td><font color="Thistle">Thistle</font></td>
+<td><font color="#D8BFD8">#D8BFD8</font></td>
+<td>rgb(216, 191, 216)</td>
+</tr>
+<tr class="odd">
+<td><font color="Tomato">Tomato</font></td>
+<td><font color="#FF6347">#FF6347</font></td>
+<td>rgb(255, 99, 71)</td>
+</tr>
+<tr class="even">
+<td><font color="Turquoise">Turquoise</font></td>
+<td><font color="#40E0D0">#40E0D0</font></td>
+<td>rgb(64, 224, 208)</td>
+</tr>
+<tr class="odd">
+<td><font color="Violet">Violet</font></td>
+<td><font color="#EE82EE">#EE82EE</font></td>
+<td>rgb(238, 130, 238)</td>
+</tr>
+<tr class="even">
+<td><font color="VioletRed">VioletRed</font></td>
+<td><font color="#D02090">#D02090</font></td>
+<td>rgb(208, 32, 144)</td>
+</tr>
+<tr class="odd">
+<td><font color="Wheat">Wheat</font></td>
+<td><font color="#F5DEB3">#F5DEB3</font></td>
+<td>rgb(245, 222, 179)</td>
+</tr>
+<tr class="even">
+<td><font color="White">White</font></td>
+<td><font color="#FFFFFF">#FFFFFF</font></td>
+<td>rgb(255, 255, 255)</td>
+</tr>
+<tr class="odd">
+<td><font color="WhiteSmoke">WhiteSmoke</font></td>
+<td><font color="#F5F5F5">#F5F5F5</font></td>
+<td>rgb(245, 245, 245)</td>
+</tr>
+<tr class="even">
+<td><font color="Yellow">Yellow</font></td>
+<td><font color="#FFFF00">#FFFF00</font></td>
+<td>rgb(255, 255, 0)</td>
+</tr>
+<tr class="odd">
+<td><font color="YellowGreen">YellowGreen</font></td>
+<td><font color="#9ACD32">#9ACD32</font></td>
+<td>rgb(154, 205, 50)</td>
+</tr>
+</tbody>
+</table>
+<h1 id="图床">IV. 图床</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E5%9B%BE%E5%BA%8A/fdfdnfpdplfbbnemmmoklbfjbhecpnhf">微博图床CHROME插件</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zybuluo.com/yexiaoqi/note/210029">免费图床推荐</a></li>
+</ul>
+<h1 id="制作ppt">V. 制作PPT</h1>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://blog.sciencenet.cn/home.php?mod=space&amp;uid=377709&amp;do=blog&amp;id=1157738">如何用 Markdown 做幻灯</a></p>
+</blockquote>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p>This is a footnote<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>A footnote on &quot;label&quot;<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>The definition of a footnote.<a href="#fnref3">↩</a></p></li>
+</ol>
+</div>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="Alex LEE 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="Alex LEE 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Markdown/" rel="tag"><i class="fa fa-tag"></i> Markdown</a>
+              <a href="/tags/MathJax/" rel="tag"><i class="fa fa-tag"></i> MathJax</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/windows-use/" rel="prev" title="优雅高效地使用Windows">
+                  <i class="fa fa-angle-left"></i> 优雅高效地使用Windows
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/windows-install-list/" rel="next" title="电脑装机说明">
+                  电脑装机说明 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex LEE</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">317k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:14</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><div class="footer-custom"> Hosted by <a target="_blank" href="https://pages.github.com">GitHub Pages</a>  |  <a target="_blank"  href="https://about.gitlab.com/stages-devops-lifecycle/pages/">Gitlab Pages</a> </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sli1989","repo":"gitalk","client_id":"9fa53d6156d8791703b5","client_secret":"706eeec44bf22fe410e90d364fe8a348ab8bcaed","admin_user":"sli1989","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"2993430375bc15f79dd55c8e979f18ba"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title></title>
+	<link rel="stylesheet" href="/static/css/player.css">
+</head>
+
+<div id="QPlayer">
+	<div id="pContent">
+		<div id="player">
+			<span class="cover"></span>
+			<div class="ctrl">
+				<div class="musicTag marquee">
+					<strong>Title</strong>
+					 <span> - </span>
+					<span class="artist">Artist</span>
+				</div>
+				<div class="progress">
+					<div class="timer left">0:00</div>
+					<div class="contr">
+						<div class="rewind icon"></div>
+						<div class="playback icon"></div>
+						<div class="fastforward icon"></div>
+					</div>
+					<div class="right">
+						<div class="liebiao icon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ssBtn">
+				<div class="adf"></div>
+		</div>
+	</div>
+	<ol id="playlist"></ol>
+</div>
+<script src="//cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  var playlist = [];
+  
+  playlist.push({title:'午后庭院',artist:'夏天播放',mp3:'https://music.163.com/song/media/outer/url?id=29095562.mp3',cover:'https://p1.music.126.net/5uQHiJSmUMo74VAR4KJCTA==/6670737045946097.jpg'})
+  
+  playlist.push({title:'远走高飞',artist:'金志文',mp3:'https://music.163.com/song/media/outer/url?id=1297742772.mp3',cover:'https://p1.music.126.net/elfqBKIdad0KYCCeKQpDSA==/18700493767108166.jpg'})
+  
+  playlist.push({title:'她',artist:'不可撤销乐队',mp3:'https://music.163.com/song/media/outer/url?id=29747622.mp3',cover:'https://p1.music.126.net/4x2X7W_VGHQeHoMR4a3Wbw==/3227066628477266.jpg'})
+  
+  playlist.push({title:'给你',artist:'陈奕迅',mp3:'https://music.163.com/song/media/outer/url?id=64706.mp3',cover:'https://p1.music.126.net/GK7EB01AIEE9-qHkBi-3vg==/89060441862562.jpg'})
+  
+  playlist.push({title:'千禧',artist:'徐秉龙',mp3:'https://music.163.com/song/media/outer/url?id=522510615.mp3',cover:'https://y.gtimg.cn/music/photo_new/T002R300x300M000004UOSJ5117bcd.jpg'})
+  
+  playlist.push({title:'年度之歌',artist:'谢安琪',mp3:'https://music.163.com/song/media/outer/url?id=308169.mp3',cover:'http://p1.music.126.net/SkSda5laDTH73h_a9ZYEig==/109951164146248533.jpg'})
+  
+  playlist.push({title:'边走边唱',artist:'李荣浩',mp3:'https://music.163.com/song/media/outer/url?id=31134197.mp3',cover:'https://p1.music.126.net/4Pu7M0q88fVVoo1ZFS_nmw==/3408486047237011.jpg'})
+  
+  var isRotate = true;
+  var autoplay = false;
+</script>
+<script src="/static/js/player.js"></script>
+<script>
+  function bgChange(){
+	var lis= $('.lib');
+	for(var i=0; i<lis.length; i+=2)
+	lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+  }
+  window.onload = bgChange;
+</script>
+
+  <script type="text/javascript" src="/js/custom.js"></script>
+</body>
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"saili.science","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":true,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="In machine learning, pattern recognition and in image processing, feature extraction starts from an initial set of measured data and builds derived values (features) intended to be informative and non">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信号特征提取">
+<meta property="og:url" content="http://saili.science/feature-extraction/index.html">
+<meta property="og:site_name" content="Alex LEE&#39;s Blog">
+<meta property="og:description" content="In machine learning, pattern recognition and in image processing, feature extraction starts from an initial set of measured data and builds derived values (features) intended to be informative and non">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-05-10T04:39:04.000Z">
+<meta property="article:modified_time" content="2018-03-23T12:25:03.000Z">
+<meta property="article:author" content="Alex LEE">
+<meta property="article:tag" content="FeatureExtraction">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://saili.science/feature-extraction/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://saili.science/feature-extraction/","path":"feature-extraction/","title":"信号特征提取"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>信号特征提取 | Alex LEE's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/6.1.3/pangu.umd.js" integrity="sha256-erngBMP3zzoIM6eqQ8dmrReh2vqCRgWmORroIfVoDlE=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://saili.science/feature-extraction/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex LEE's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex LEE's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">77</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">25</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E5%A7%8B%E4%BF%A1%E5%8F%B7"><span class="nav-text">I. 原始信号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%97%B6%E5%9F%9F%E4%BF%A1%E5%8F%B7"><span class="nav-text">II. 时域信号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%91%E5%9F%9F%E4%BF%A1%E5%8F%B7"><span class="nav-text">III. 频域信号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%B4%E9%A2%91%E8%B0%B1-fft"><span class="nav-text">IV. 3维频谱-FFT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hilbert%E5%8C%85%E7%BB%9C"><span class="nav-text">V. hilbert包络</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fft%E9%A2%91%E8%B0%B1%E8%A7%A3%E8%B0%83"><span class="nav-text">VI. FFT频谱&#x2F;解调</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E6%B3%A2%E7%B3%BB%E6%95%B0%E5%88%86%E8%A7%A3%E4%B8%8E%E9%87%8D%E6%9E%84"><span class="nav-text">VII. 小波系数分解与重构</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex LEE"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Alex LEE</p>
+  <div class="site-description" itemprop="description">There is no royal road to learning.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:im.sai.li@outlook.com" title="E-Mail → mailto:im.sai.li@outlook.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/sli1989" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;sli1989" rel="noopener me" target="_blank"><i class="telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitter.im/sli1989" title="Gitter → https:&#x2F;&#x2F;gitter.im&#x2F;sli1989" rel="noopener me" target="_blank"><i class="github-alt fa-fw"></i>Gitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/sli1989/HEXO-NEXT-CUSTOM" title="https:&#x2F;&#x2F;github.com&#x2F;sli1989&#x2F;HEXO-NEXT-CUSTOM" rel="noopener" target="_blank">About the Blog</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://fontawesome.com/icons" title="https:&#x2F;&#x2F;fontawesome.com&#x2F;icons" rel="noopener" target="_blank">Font Awesome Icons</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://getemoji.com/" title="https:&#x2F;&#x2F;getemoji.com&#x2F;" rel="noopener" target="_blank">Copy and Paste Emoji</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://saili.science/feature-extraction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Alex LEE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex LEE's Blog">
+      <meta itemprop="description" content="There is no royal road to learning.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="信号特征提取 | Alex LEE's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          信号特征提取
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2018-03-23 20:25:03" itemprop="dateModified" datetime="2018-03-23T20:25:03+08:00">2018-03-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类：</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Research/" itemprop="url" rel="index"><span itemprop="name">Research</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>In <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Machine_learning" title="Machine learning">machine learning</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Pattern_recognition" title="Pattern recognition">pattern recognition</a> and in <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Image_processing" title="Image processing">image processing</a>, <strong>feature extraction</strong> starts from an initial set of measured data and builds derived values (<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Feature_(machine_learning)" title="Feature (machine learning)">features</a>) intended to be informative and non-redundant, facilitating the subsequent learning and generalization steps, and in some cases leading to better human interpretations. Feature extraction is related to <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Dimensionality_reduction" title="Dimensionality reduction">dimensionality reduction</a>.</p>
+<span id="more"></span>
+<p>When the input data to an <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Algorithm" title="Algorithm">algorithm</a> is too large to be processed and it is suspected to be redundant (e.g. the same measurement in both feet and meters, or the repetitiveness of images presented as <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Raster_image" title="Raster image">pixels</a>), then it can be transformed into a reduced set of <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Feature_(machine_learning)" title="Feature (machine learning)">features</a> (also named a <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Feature_vector" title="Feature vector">feature vector</a>). Determining a subset of the initial features is called <em>feature selection</em>.<sup id="cite_ref-alpaydin_1-0" class="reference"><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Feature_extraction#cite_note-alpaydin-1">[1]</a></sup> The selected features are expected to contain the relevant information from the input data, so that the desired task can be performed by using this reduced representation instead of the complete initial data.</p>
+<h1 id="原始信号">I. 原始信号</h1>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">x=x1;</span><br><span class="line">fs=15360;</span><br><span class="line">N=length(x);</span><br><span class="line">t=(0:N-1)/fs;</span><br><span class="line"></span><br><span class="line">figure</span><br><span class="line">plot(t,x);</span><br><span class="line">title(&#x27;sig1波形图&#x27;);</span><br><span class="line">xlabel(&#x27;时间 &#x27;);</span><br><span class="line">ylabel(&#x27;振幅 &#x27;);</span><br></pre></td></tr></table></figure>
+<h1 id="时域信号">II. 时域信号</h1>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">N=length(x);</span><br><span class="line">p1=mean(x); %均值 1/N*sum(x)</span><br><span class="line">p2=sqrt(sum((x-p1).^2)/N); %均方根值</span><br><span class="line">p3=(sum(sqrt(abs((x-p1))))/N).^2; %方根幅值</span><br><span class="line">p4=mean(abs((x-p1))); %绝对平均值</span><br><span class="line">p5=sum((x-p1).^3)/N; %偏斜度</span><br><span class="line">p6=sum((x-p1).^4)/N; %峭度</span><br><span class="line">p7=sum((x-p1).^2)/N; %方差</span><br><span class="line">p8=max(abs((x-p1)));%峰值 最大值</span><br><span class="line">p9=min((x-p1));%最小值</span><br><span class="line">p10=p8-p9;%峰峰值</span><br><span class="line"></span><br><span class="line">% val返回有量纲指标</span><br><span class="line">val=[p1; p2; p3; p4; p5; p6; p7; p8; p9; p10];</span><br><span class="line"></span><br><span class="line">%以上都是有量纲统计量，以下是无量纲统计量</span><br><span class="line">f1=p2./p4; %波形指标 f1=p2/(sum(x)/N);</span><br><span class="line">f2=p8./p2; %峰值指标 E[MAX(X)]=P8? 峰值/有效值</span><br><span class="line">f3=p8./p4; %脉冲指标</span><br><span class="line">f4=p8./p3; %裕度指标</span><br><span class="line">f5=p5./(p2.^3); %偏斜度指标</span><br><span class="line">f6=p6./(p2.^4); %峭度指标,峭度/标准差四次方</span><br><span class="line">% f6=kurtosis(x);%峭度指标</span><br><span class="line"></span><br><span class="line">% factor返回无量纲指标</span><br><span class="line">factor=[f1; f2; f3; f4; f5; f6];</span><br><span class="line"></span><br><span class="line">valfactor=[val;factor];</span><br></pre></td></tr></table></figure>
+<h1 id="频域信号">III. 频域信号</h1>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">fre_line_num=max(size(y));</span><br><span class="line">p1 = mean(y);</span><br><span class="line">% 均值频率 特征1,反映频域振动能量的大小；</span><br><span class="line">p2 = sum((y-p1).^2)/fre_line_num;</span><br><span class="line">% 标准差 特征2，表示频谱的分散或者集中程度；</span><br><span class="line">p3 = sum((y-p1).^3)/(fre_line_num*sqrt(p2^3));</span><br><span class="line">% 特征3，表示频谱的分散或者集中程度；</span><br><span class="line">p4 = sum((y-p1).^4)/(fre_line_num*p2^2);</span><br><span class="line">% 特征4，表示频谱的分散或者集中程度；</span><br><span class="line">meanf = sum(f.*y)/sum(y);</span><br><span class="line">p5 = meanf;</span><br><span class="line">% 频率中心 特征5，反映主频带位置的变化；</span><br><span class="line">sigma = sqrt(sum((f-meanf).^2.*y)/fre_line_num);</span><br><span class="line">p6 = sigma;</span><br><span class="line">% 特征6，表示频谱的分散或者集中程度；</span><br><span class="line">p7 = sqrt(sum(f.^2.*y)/sum(y));</span><br><span class="line">% 均方根频率 特征7，反映主频带位置的变化；</span><br><span class="line">p8 = sqrt(sum(f.^4.*y)/sum(f.^2.*y));</span><br><span class="line">% 特征8，反映主频带位置的变化；</span><br><span class="line">p9 = sum(f.^2.*y)/sqrt(sum(y)*sum(f.^4.*y));</span><br><span class="line">% 特征9，反映主频带位置的变化；</span><br><span class="line">p10 = sigma/meanf;</span><br><span class="line">% 特征10，表示频谱的分散或者集中程度；</span><br><span class="line">p11 = sum((f-meanf).^3.*y)/(sigma.^3*fre_line_num);</span><br><span class="line">% 特征11，表示频谱的分散或者集中程度；</span><br><span class="line">p12 = sum((f-meanf).^4.*y)/(sigma.^4*fre_line_num);</span><br><span class="line">% 特征12，表示频谱的分散或者集中程度；</span><br><span class="line">p13 = sum(sqrt(abs(f-meanf)).*y)/(sqrt(sigma)*fre_line_num);</span><br><span class="line">% 特征13，表示频谱的分散或者集中程度；</span><br><span class="line">fac=[p1;p2;p3;p4;p5;p6;p7;p8;p9;p10;p11;p12;p13];</span><br></pre></td></tr></table></figure>
+<h1 id="维频谱-fft">IV. 3维频谱-FFT</h1>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">load V200.txt;</span><br><span class="line">load V250.txt;</span><br><span class="line">load V300.txt;</span><br><span class="line">load V400.txt;</span><br><span class="line"></span><br><span class="line">sample_point=6144;%采样点数为6144点</span><br><span class="line">filenum=4;</span><br><span class="line">yumatrix=[V200,V250,V300,V400];</span><br><span class="line">rotate_speed=[406 531 719 906];</span><br><span class="line"></span><br><span class="line">%求频谱</span><br><span class="line">for k=1:1:filenum</span><br><span class="line">    temp_value(:,k)=fft(yumatrix(:,k))/sample_point;</span><br><span class="line">    for l=1:1:sample_point/2</span><br><span class="line">        frequency_value(l,k)=2*abs(temp_value(l,k));</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">for k=1:1:filenum</span><br><span class="line">    sample_frequency(k)=3200;%计算采样频率</span><br><span class="line">    f(k)=sample_frequency(k)/sample_point;%画图的频率</span><br><span class="line">    beipin(k)=rotate_speed(k)/60;</span><br><span class="line">    b(k)=f(k)/beipin(k);</span><br><span class="line">    for l=1:1:sample_point/2</span><br><span class="line">        z(l,k)=rotate_speed(k);</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line">for m=1:1:filenum</span><br><span class="line">    for n=1:1:200</span><br><span class="line">        final_f(n,m)=n*b(m);</span><br><span class="line">        final_value(n,m)=frequency_value(n,m);</span><br><span class="line">        final_z(n,m)=z(n,m);</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">figure</span><br><span class="line">plot3(final_f,final_z,final_value);</span><br><span class="line">xlabel(&#x27;倍频&#x27;);</span><br><span class="line">ylabel(&#x27;转速（rpm)&#x27;);</span><br><span class="line">zlabel(&#x27;幅值（um)&#x27;);</span><br><span class="line">grid on;</span><br></pre></td></tr></table></figure>
+<h1 id="hilbert包络">V. hilbert包络</h1>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">% hilbert包络</span><br><span class="line">y_hilbert_1=hilbert(x_input);</span><br><span class="line">y_hilbert_2=abs(y_hilbert_1); % 包络信号</span><br></pre></td></tr></table></figure>
+<h1 id="fft频谱解调">VI. FFT频谱/解调</h1>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">N=length(x_input);</span><br><span class="line">fs=15360;</span><br><span class="line">f=(0:N/2-1)*fs/N; % f=(0:N-1)*fs/N等价，为什么？</span><br><span class="line"></span><br><span class="line">% 功率谱,解调频谱图</span><br><span class="line">p=abs(fft(x_input-mean(x_input)),N)*2/N;</span><br><span class="line">% p=abs(fft(x_input),N)*2/N;</span><br><span class="line">% p=yfft.*conj(yfft)/N;</span><br><span class="line"></span><br><span class="line">figure</span><br><span class="line">plot(f,p(l:N/2),&#x27;k-&#x27;);</span><br><span class="line">xlabel(&#x27;频率 f/Hz&#x27;);</span><br><span class="line">ylabel(&#x27;幅值 P/W&#x27;); % (m/s2)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="小波系数分解与重构">VII. 小波系数分解与重构</h1>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">m=6;</span><br><span class="line">[c_11,l_11]=wavedec(y_11,m,&#x27;db6&#x27;);</span><br><span class="line"></span><br><span class="line">% 对第六层低频系数进行重构——</span><br><span class="line">a_11=wrcoef(&#x27;a&#x27;,c_11,l_11,&#x27;db6&#x27;,6);</span><br><span class="line"></span><br><span class="line">% 对分解的1-m层的高频系数（细节信号）进行重构</span><br><span class="line">    for i=1:m</span><br><span class="line">        d_11(m+1-i)=wrcoef(&#x27;d&#x27;,c_11,l_11,&#x27;db6&#x27;,m+1-i);</span><br><span class="line"></span><br><span class="line">        subplot(m+2,1,i+2)</span><br><span class="line">        plot(d_11(m+1-i))</span><br><span class="line">        ylabel([&#x27;d&#x27;,num2str(m+1-i)])</span><br><span class="line">    end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">% 分解</span><br><span class="line">wpt=wpdec(xdatac,3,&#x27;db1&#x27;,&#x27;shannon&#x27;);</span><br><span class="line">% 重构</span><br><span class="line">s330=wprcoef(wpt,[3,0]);</span><br><span class="line">s331=wprcoef(wpt,[3,1]);</span><br><span class="line">s332=wprcoef(wpt,[3,2]);</span><br><span class="line">s333=wprcoef(wpt,[3,3]);</span><br><span class="line">s334=wprcoef(wpt,[3,4]);</span><br><span class="line">s335=wprcoef(wpt,[3,5]);</span><br><span class="line">s336=wprcoef(wpt,[3,6]);</span><br><span class="line">s337=wprcoef(wpt,[3,7]);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">% 小波包分解，重构轴承振动信号，Hilbert包络，FFT进行频谱分析</span><br><span class="line">%采样频率</span><br><span class="line">fs=12000;</span><br><span class="line">%计算其自相关序列</span><br><span class="line">xdatac=xcorr(xdata);</span><br><span class="line">[t,d]=wpdec(xdatac,3,&#x27;db5&#x27;);% Wavelet packet decomposition 1-D</span><br><span class="line"></span><br><span class="line">%求每组系数&gt;&gt;&gt;&gt;&gt;阈值=均值+标准方差</span><br><span class="line">thr0=mean([3,0])+std([3,0]);</span><br><span class="line">thr1=mean([3,1])+std([3,1]);</span><br><span class="line">thr2=mean([3,2])+std([3,2]);</span><br><span class="line">thr3=mean([3,3])+std([3,3]);</span><br><span class="line">thr4=mean([3,4])+std([3,4]);</span><br><span class="line">thr5=mean([3,5])+std([3,5]);</span><br><span class="line">thr6=mean([3,6])+std([3,6]);</span><br><span class="line">thr7=mean([3,7])+std([3,7]);</span><br><span class="line">%THR=[thr0,thr1,thr2,thr3,thr4,thr5,thr6,thr7];</span><br><span class="line"></span><br><span class="line">%消噪</span><br><span class="line">xd0=wpdencmp([3,0],&#x27;s&#x27;,3,&#x27;db5&#x27;,&#x27;threshold&#x27;,thr0,0);</span><br><span class="line">xd1=wpdencmp([3,1],&#x27;s&#x27;,3,&#x27;db5&#x27;,&#x27;threshold&#x27;,thr1,0);</span><br><span class="line">xd2=wpdencmp([3,2],&#x27;s&#x27;,3,&#x27;db5&#x27;,&#x27;threshold&#x27;,thr2,0);</span><br><span class="line">xd3=wpdencmp([3,3],&#x27;s&#x27;,3,&#x27;db5&#x27;,&#x27;threshold&#x27;,thr3,0);</span><br><span class="line">xd4=wpdencmp([3,4],&#x27;s&#x27;,3,&#x27;db5&#x27;,&#x27;threshold&#x27;,thr4,0);</span><br><span class="line">xd5=wpdencmp([3,5],&#x27;s&#x27;,3,&#x27;db5&#x27;,&#x27;threshold&#x27;,thr5,0);</span><br><span class="line">xd6=wpdencmp([3,6],&#x27;s&#x27;,3,&#x27;db5&#x27;,&#x27;threshold&#x27;,thr6,0);</span><br><span class="line">xd7=wpdencmp([3,7],&#x27;s&#x27;,3,&#x27;db5&#x27;,&#x27;threshold&#x27;,thr7,0);</span><br><span class="line">%XD=wpdencmp([t,d],&#x27;s&#x27;,3,&#x27;db5&#x27;,&#x27;threshold&#x27;,THR,0);%用一个公式代替</span><br><span class="line"></span><br><span class="line">%计算每组系数的能量</span><br><span class="line">p0=sum(xd0^2);</span><br><span class="line">p1=sum(xd1^2);</span><br><span class="line">p2=sum(xd2^2);</span><br><span class="line">p3=sum(xd3^2);</span><br><span class="line">p4=sum(xd4^2);</span><br><span class="line">p5=sum(xd5^2);</span><br><span class="line">p6=sum(xd6^2);</span><br><span class="line">p7=sum(xd7^2);</span><br><span class="line">%找到最大的能量所对应的序数</span><br><span class="line">pmax=max(p0,p1,p2,p3,p4,p5,p6,p7);</span><br><span class="line">if pmax==p0 xdmax=xd0;</span><br><span class="line">elseif pmax==p1 xdmax=xd1;</span><br><span class="line">elseif pmax==p2 xdmax=xd2;</span><br><span class="line">elseif pmax==p3 xdmax=xd3;</span><br><span class="line">elseif pmax==p4 xdmax=xd4;</span><br><span class="line">elseif pmax==p5 xdmax=xd5;</span><br><span class="line">elseif pmax==p6 xdmax=xd6;</span><br><span class="line">else xdmax=xd7;</span><br><span class="line">end</span><br><span class="line">%计算其自相关序列</span><br><span class="line">rce=xcorr(xdmax);</span><br><span class="line">%hilbert包络&amp;FFT频谱分析</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="Alex LEE 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="Alex LEE 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/FeatureExtraction/" rel="tag"><i class="fa fa-tag"></i> FeatureExtraction</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/hypothesis-testing/" rel="prev" title="假设检验">
+                  <i class="fa fa-angle-left"></i> 假设检验
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/deep-learning-prediction/" rel="next" title="深度学习之时间序列预测">
+                  深度学习之时间序列预测 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex LEE</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">317k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:14</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><div class="footer-custom"> Hosted by <a target="_blank" href="https://pages.github.com">GitHub Pages</a>  |  <a target="_blank"  href="https://about.gitlab.com/stages-devops-lifecycle/pages/">Gitlab Pages</a> </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sli1989","repo":"gitalk","client_id":"9fa53d6156d8791703b5","client_secret":"706eeec44bf22fe410e90d364fe8a348ab8bcaed","admin_user":"sli1989","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"7bae1048ea7534850578bff860f8d5b9"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title></title>
+	<link rel="stylesheet" href="/static/css/player.css">
+</head>
+
+<div id="QPlayer">
+	<div id="pContent">
+		<div id="player">
+			<span class="cover"></span>
+			<div class="ctrl">
+				<div class="musicTag marquee">
+					<strong>Title</strong>
+					 <span> - </span>
+					<span class="artist">Artist</span>
+				</div>
+				<div class="progress">
+					<div class="timer left">0:00</div>
+					<div class="contr">
+						<div class="rewind icon"></div>
+						<div class="playback icon"></div>
+						<div class="fastforward icon"></div>
+					</div>
+					<div class="right">
+						<div class="liebiao icon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ssBtn">
+				<div class="adf"></div>
+		</div>
+	</div>
+	<ol id="playlist"></ol>
+</div>
+<script src="//cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  var playlist = [];
+  
+  playlist.push({title:'午后庭院',artist:'夏天播放',mp3:'https://music.163.com/song/media/outer/url?id=29095562.mp3',cover:'https://p1.music.126.net/5uQHiJSmUMo74VAR4KJCTA==/6670737045946097.jpg'})
+  
+  playlist.push({title:'远走高飞',artist:'金志文',mp3:'https://music.163.com/song/media/outer/url?id=1297742772.mp3',cover:'https://p1.music.126.net/elfqBKIdad0KYCCeKQpDSA==/18700493767108166.jpg'})
+  
+  playlist.push({title:'她',artist:'不可撤销乐队',mp3:'https://music.163.com/song/media/outer/url?id=29747622.mp3',cover:'https://p1.music.126.net/4x2X7W_VGHQeHoMR4a3Wbw==/3227066628477266.jpg'})
+  
+  playlist.push({title:'给你',artist:'陈奕迅',mp3:'https://music.163.com/song/media/outer/url?id=64706.mp3',cover:'https://p1.music.126.net/GK7EB01AIEE9-qHkBi-3vg==/89060441862562.jpg'})
+  
+  playlist.push({title:'千禧',artist:'徐秉龙',mp3:'https://music.163.com/song/media/outer/url?id=522510615.mp3',cover:'https://y.gtimg.cn/music/photo_new/T002R300x300M000004UOSJ5117bcd.jpg'})
+  
+  playlist.push({title:'年度之歌',artist:'谢安琪',mp3:'https://music.163.com/song/media/outer/url?id=308169.mp3',cover:'http://p1.music.126.net/SkSda5laDTH73h_a9ZYEig==/109951164146248533.jpg'})
+  
+  playlist.push({title:'边走边唱',artist:'李荣浩',mp3:'https://music.163.com/song/media/outer/url?id=31134197.mp3',cover:'https://p1.music.126.net/4Pu7M0q88fVVoo1ZFS_nmw==/3408486047237011.jpg'})
+  
+  var isRotate = true;
+  var autoplay = false;
+</script>
+<script src="/static/js/player.js"></script>
+<script>
+  function bgChange(){
+	var lis= $('.lib');
+	for(var i=0; i<lis.length; i+=2)
+	lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+  }
+  window.onload = bgChange;
+</script>
+
+  <script type="text/javascript" src="/js/custom.js"></script>
+</body>
+</html>

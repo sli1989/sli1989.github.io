@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"saili.science","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":true,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="MATLAB（矩阵实验室）是MATrix LABoratory的缩写，是一款由美国The MathWorks公司出品的商业数学软件。MATLAB是一种用于算法开发、数据可视化、数据分析以及数值计算的高级技术计算语言和交互式环境。除了矩阵运算、绘制函数&#x2F;数据图像等常用功能外，MATLAB还可以用来创建用户界面及与调用其它语言（包括C,C++,Java,Python和FORTRAN）编写的程序。本文主">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MATLAB使用指南">
+<meta property="og:url" content="http://saili.science/matlab/index.html">
+<meta property="og:site_name" content="Alex LEE&#39;s Blog">
+<meta property="og:description" content="MATLAB（矩阵实验室）是MATrix LABoratory的缩写，是一款由美国The MathWorks公司出品的商业数学软件。MATLAB是一种用于算法开发、数据可视化、数据分析以及数值计算的高级技术计算语言和交互式环境。除了矩阵运算、绘制函数&#x2F;数据图像等常用功能外，MATLAB还可以用来创建用户界面及与调用其它语言（包括C,C++,Java,Python和FORTRAN）编写的程序。本文主">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dgy1g0bun0hk5zj20f20d3q3f.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dgy1g0bunkxcq7j20fe0dst9g.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dgy1g0buohyd2cj20fm0dadgl.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dgy1g0bupjoi0bj20ir0aet9t.jpg">
+<meta property="og:image" content="http://bio-spring.info/wp-content/uploads/2011/02/errorbar.png">
+<meta property="og:image" content="http://bio-spring.info/wp-content/uploads/2011/02/errorbar2.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/573996/201310/26131739-f34c796c7c314e4385176ce65f715f4d.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/573996/201310/26131907-dd344d7b67ae4370855b6718d4ce4e77.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/573996/201310/26131918-bc3ce5ef389f45b6941965c186c89c6c.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/573996/201310/26131927-02a7b6995d604619bc828fbf1bda5db8.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/573996/201310/26131934-5e951516c87e4d70895420ce4f51080e.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/573996/201310/26132009-c539171f835945f1a021826da9f246e7.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/573996/201310/26132021-52c70d6c801340398f6b7d32f69b7ac7.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/573996/201310/26132030-5f47877fc0ac497ebdeff34aeeb5791a.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/573996/201310/26132039-156dac680a4244c9b02f36ff0aea3990.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/573996/201310/26132049-46609aeb473b45aca3ac92bba03c928e.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/573996/201310/26132100-b23e560023b44f10980eea2ba3c3db53.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/573996/201310/26132140-c0a6586a75004d8a9e1e111254bdc974.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/573996/201310/26132148-31721e5822454dacbd916a2dd515e84e.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/573996/201310/26132158-54d61b0361144b93b2487d3ee211edea.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/573996/201310/26132206-b963f24878f04023810a9abe93d53f84.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/573996/201310/26132216-1123722b3a3f4a0f85a91357df844f5a.png">
+<meta property="og:image" content="http://images.cnitblog.com/blog/573996/201310/26132244-69b6447eef2c48328753961c0520b5f2.png">
+<meta property="article:published_time" content="2017-04-17T04:39:04.000Z">
+<meta property="article:modified_time" content="2025-07-21T06:22:10.000Z">
+<meta property="article:author" content="Alex LEE">
+<meta property="article:tag" content="MATLAB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dgy1g0bun0hk5zj20f20d3q3f.jpg">
+
+
+<link rel="canonical" href="http://saili.science/matlab/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://saili.science/matlab/","path":"matlab/","title":"MATLAB使用指南"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MATLAB使用指南 | Alex LEE's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/6.1.3/pangu.umd.js" integrity="sha256-erngBMP3zzoIM6eqQ8dmrReh2vqCRgWmORroIfVoDlE=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://saili.science/matlab/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex LEE's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex LEE's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">77</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">25</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0"><span class="nav-text">I. 随机数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81"><span class="nav-text">I.I. 设置初始状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A7%E7%94%9F%E9%9D%9E%E9%87%8D%E5%A4%8D%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0"><span class="nav-text">I.II. 产生非重复的随机数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%B7%AF%E5%BE%84"><span class="nav-text">II. 添加路径</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%92%E5%88%86"><span class="nav-text">III. 数据集划分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E9%99%A4%E6%B3%95%E6%B1%82%E9%80%86%E8%BF%90%E7%AE%97"><span class="nav-text">IV. 矩阵除法求逆运算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#plot%E8%AE%BE%E7%BD%AE"><span class="nav-text">V. PLOT设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E6%94%BE%E5%A4%A7"><span class="nav-text">V.I. 局部放大</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fill%E5%A1%AB%E5%85%85"><span class="nav-text">VI. fill填充</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#legend%E6%8E%A7%E5%88%B6"><span class="nav-text">VII. Legend控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#legend%E4%BD%8D%E7%BD%AE"><span class="nav-text">VII.I. Legend位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E4%BE%8B%E8%AF%B4%E6%98%8Em%E6%9D%A1-m-n"><span class="nav-text">VII.II. 图例说明m条 （m &lt; n）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#annotation%E5%91%BD%E4%BB%A4"><span class="nav-text">VII.II.I. Annotation命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#legend%E5%91%BD%E4%BB%A4"><span class="nav-text">VII.III. legend命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%88%97legend"><span class="nav-text">VII.IV. 多列legend</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%BF%E5%85%8Dlegend%E8%A6%86%E7%9B%96%E6%9B%B2%E7%BA%BF"><span class="nav-text">VII.V. 避免legend覆盖曲线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#legend%E6%A8%AA%E6%8E%92"><span class="nav-text">VII.VI. legend横排</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#legend%E4%B8%8D%E6%98%BE%E7%A4%BA%E6%96%B9%E6%A1%86"><span class="nav-text">VII.VII. legend不显示方框</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#errorbar"><span class="nav-text">VIII. errorbar</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%B1%E7%8A%B6%E5%9B%BE"><span class="nav-text">IX. 柱状图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%A6%E6%9C%89%E8%AF%AF%E5%B7%AE%E7%BA%BF%E8%AF%AF%E5%B7%AE%E6%A0%87%E8%AE%B0%E7%9A%84%E6%9F%B1%E7%8A%B6%E5%9B%BE-errorbar"><span class="nav-text">IX.I. 带有误差线（误差标记）的柱状图 errorbar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B4%E6%96%B9%E5%9B%BE%E7%9A%84%E7%BB%98%E5%88%B6"><span class="nav-text">IX.II. 直方图的绘制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%B1%E7%8A%B6%E5%9B%BE%E7%9A%84%E8%BF%9B%E9%98%B6"><span class="nav-text">IX.III. 柱状图的进阶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%A9%E8%89%B2%E6%9F%B1%E7%8A%B6%E5%9B%BE"><span class="nav-text">IX.IV. 彩色柱状图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E7%BB%9F%E8%AE%A1%E7%9B%B4%E6%96%B9%E5%9B%BE"><span class="nav-text">IX.V. 绘制统计直方图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9D%87%E5%80%BC%E6%96%B9%E5%B7%AE%E7%9B%B4%E6%96%B9%E5%9B%BE"><span class="nav-text">IX.VI. 均值方差直方图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%A3%E7%82%B9%E5%9B%BE"><span class="nav-text">IX.VII. 散点图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E5%8C%BA%E5%9F%9F%E5%9B%BE"><span class="nav-text">IX.VIII. 绘制区域图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E9%A5%BC%E7%8A%B6%E5%9B%BE"><span class="nav-text">IX.IX. 绘制饼状图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E5%A1%AB%E8%89%B2%E5%A4%9A%E8%BE%B9%E5%BD%A2"><span class="nav-text">IX.X. 绘制填色多边形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E7%A6%BB%E6%95%A3%E6%95%B0%E6%8D%AE%E6%9D%86%E7%8A%B6%E5%9B%BE"><span class="nav-text">IX.XI. 绘制离散数据杆状图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E6%96%B9%E5%90%91%E5%92%8C%E9%80%9F%E5%BA%A6%E7%9F%A2%E9%87%8F%E5%9B%BE"><span class="nav-text">IX.XII. 绘制方向和速度矢量图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AE%E5%BB%93%E7%BA%BF%E5%9B%BE%E7%9A%84%E7%BB%98%E5%88%B6"><span class="nav-text">IX.XIII. 轮廓线图的绘制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#voronoi%E5%9B%BE%E5%92%8C%E4%B8%89%E8%A7%92%E5%89%96%E5%88%86"><span class="nav-text">IX.XIV. Voronoi图和三角剖分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E8%A7%92%E7%BD%91%E7%BA%BF%E5%92%8C%E4%B8%89%E8%A7%92%E6%9B%B2%E9%9D%A2%E5%9B%BE"><span class="nav-text">IX.XV. 三角网线和三角曲面图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%A9%E5%B8%A6%E5%9B%BEribbon"><span class="nav-text">IX.XVI. 彩带图ribbon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E7%89%B9%E6%AE%8A%E5%9D%90%E6%A0%87%E7%B3%BB%E4%B8%AD%E7%BB%98%E5%88%B6%E7%89%B9%E6%AE%8A%E5%9B%BE%E5%BD%A2"><span class="nav-text">IX.XVII. 在特殊坐标系中绘制特殊图形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E7%BB%B4%E8%A1%A8%E7%8E%B0"><span class="nav-text">IX.XVIII. 四维表现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%87%E7%89%87%E5%9B%BE%E5%92%8C%E5%88%87%E7%89%87%E7%AD%89%E4%BD%8D%E7%BA%BF%E5%9B%BE"><span class="nav-text">IX.XIX. 切片图和切片等位线图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%9B%BE%E5%BD%A2"><span class="nav-text">IX.XX. 动态图形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%B1%E7%89%87%E5%8A%A8%E7%94%BB"><span class="nav-text">IX.XXI. 影片动画</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#matlab%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%87%BAorigin%E7%94%BB%E5%9B%BE"><span class="nav-text">X. MATLAB数据导出origin画图</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex LEE"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Alex LEE</p>
+  <div class="site-description" itemprop="description">There is no royal road to learning.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:im.sai.li@outlook.com" title="E-Mail → mailto:im.sai.li@outlook.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/sli1989" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;sli1989" rel="noopener me" target="_blank"><i class="telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitter.im/sli1989" title="Gitter → https:&#x2F;&#x2F;gitter.im&#x2F;sli1989" rel="noopener me" target="_blank"><i class="github-alt fa-fw"></i>Gitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/sli1989/HEXO-NEXT-CUSTOM" title="https:&#x2F;&#x2F;github.com&#x2F;sli1989&#x2F;HEXO-NEXT-CUSTOM" rel="noopener" target="_blank">About the Blog</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://fontawesome.com/icons" title="https:&#x2F;&#x2F;fontawesome.com&#x2F;icons" rel="noopener" target="_blank">Font Awesome Icons</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://getemoji.com/" title="https:&#x2F;&#x2F;getemoji.com&#x2F;" rel="noopener" target="_blank">Copy and Paste Emoji</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://saili.science/matlab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Alex LEE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex LEE's Blog">
+      <meta itemprop="description" content="There is no royal road to learning.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MATLAB使用指南 | Alex LEE's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MATLAB使用指南
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-07-21 14:22:10" itemprop="dateModified" datetime="2025-07-21T14:22:10+08:00">2025-07-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类：</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Programming/" itemprop="url" rel="index"><span itemprop="name">Programming</span></a>
+        </span>
+          <span> > </span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Programming/MATLAB/" itemprop="url" rel="index"><span itemprop="name">MATLAB</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>9.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>33 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>MATLAB（矩阵实验室）是MATrix LABoratory的缩写，是一款由美国The MathWorks公司出品的商业数学软件。MATLAB是一种用于算法开发、数据可视化、数据分析以及数值计算的高级技术计算语言和交互式环境。除了矩阵运算、绘制函数/数据图像等常用功能外，MATLAB还可以用来创建用户界面及与调用其它语言（包括C,C++,Java,Python和FORTRAN）编写的程序。本文主要介绍MATLAB中常用命令，方便规范使用。</p>
+<span id="more"></span>
+<p>MATLAB 的替代品：</p>
+<ul>
+<li>Python是一门完全免费的通用编程语言，以开源的方式提供了大量各类用途的库与包，如 Numpy （数值计算）、 SciPy （数学、科学和工程计算）、 Matplotlib （类似MATLAB中plot的绘图工具）等等。</li>
+<li>Octave是GNU项目成员之一，提供了与MATLAB语法兼容的开放源代码科学计算及数值分析的工具。</li>
+<li>对于航天器轨道计算、任务分析等，可以尝试General Mission Analysis Tool (GMAT)。GMAT提供了图像化界面或脚本两种接口，相比于STK，GMAT的深空探测相关功能更加强大，可配置的资源也更多。</li>
+<li>GNU Radio是一个对学习，构建和部署软件定义无线电系统的免费软件工具包，可通过Python或类似于Simulink/Labview的图形化界面调用。 紫丁香、龙江等卫星的业余无线电接收解调软件就是在GNU Radio基础上开发并开源发布的。</li>
+<li>Robot Operating System (ROS)是一种针对于满足不同机器人软件协同工作的灵活软件框架。目的在于提高软件模块化能力和复用能力，并实现不同任务间的数据/信号量的有效共享，方便多种机器人平台之间创建复杂和鲁棒的机器人行为，同时它也是一种工具库的约定与集合。</li>
+</ul>
+<blockquote>
+<p>下载链接: https://www.iemblog.com/?s=matlab</p>
+</blockquote>
+<h1 id="随机数">I. 随机数</h1>
+<p>Matlab中的rand()函数产生的是伪随机数，但一般用来也可以接受。但是，如果我们知道伪随机数的初始状态，那么产生的伪随机数是唯一确定的。问题来了，Matlab每次启动会重置rand()和randn()的初始状态(重置为0)，也就是说，你产生的随机数会出现两次随机数一模一样的情况。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; rand(&#x27;state&#x27;,0)</span><br><span class="line">&gt;&gt; rand(3,1)</span><br><span class="line"></span><br><span class="line">ans =</span><br><span class="line"></span><br><span class="line">    0.9501</span><br><span class="line">    0.2311</span><br><span class="line">    0.6068</span><br><span class="line"></span><br><span class="line">&gt;&gt; rand(3,1)</span><br><span class="line"></span><br><span class="line">ans =</span><br><span class="line"></span><br><span class="line">    0.4860</span><br><span class="line">    0.8913</span><br><span class="line">    0.7621</span><br><span class="line"></span><br><span class="line">&gt;&gt; rand(&#x27;state&#x27;,0)</span><br><span class="line">&gt;&gt; rand(3,1)</span><br><span class="line"></span><br><span class="line">ans =</span><br><span class="line"></span><br><span class="line">    0.9501</span><br><span class="line">    0.2311</span><br><span class="line">    0.6068</span><br></pre></td></tr></table></figure>
+<p>设定初始状态的好处是，只需要保存那时的初始状态再运行一遍程序你就可以重现之前的计算过程和结果。缺点是虽然程序使用了随机数，但由于(每次启动后)初始状态一样，实际运行出来却是相同的重复过程，你需要人工设定一个保证随机性的初始状态。</p>
+<h2 id="设置初始状态">I.I. 设置初始状态</h2>
+<p>设置随机数初始状态有三种语法形式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rand(&#x27;seed&#x27;, S)</span><br></pre></td></tr></table></figure>
+<p>S是表示初始状态的整数。seed、state、twister就比较奇怪，令人捉摸不透，不知道该选用哪个。这实际上是产生随机数的不同算法。seed表示采用v4版本的随机数产生器，state是v5版本的随机数产生器，最后的twister用的则是Mersenne Twister随机数产生器。前两个随机数产生器都是“flawed”，推荐大家使用twister随机数产生器。</p>
+<p>新版的Matlab默认采用Mersenne Twister随机数产生器，rng(S) 函数表示设定初始状态，rng('shuffle') 表示随机分配一个初始状态。所以现在只需要记住rng()函数设置初始状态，然后用rand产生随机数就可以了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rng(1);</span><br><span class="line">A = rand(2,2)</span><br></pre></td></tr></table></figure>
+<h2 id="产生非重复的随机数">I.II. 产生非重复的随机数</h2>
+<p>2012版本之后的用户比较方便，在产生随机数之前使用<code>rng('shuffle')</code>洗一下就可以(shuffle是洗牌的意思)。</p>
+<p>以前推荐的是<code>rand('state',sum(100*clock))</code>来根据当前时间设定初始状态，但时间始终是递增的，而且变化幅度相对来说很小，效果不是很好。有很多人用别的方式设定初始状态（如<code>rand('twister', fix(mod(1e11*(sum(clock)-2009), 2^31)));）</code>，为简便起见，个人推荐采用<a target="_blank" rel="noopener" href="http://cn.mathworks.com/help/matlab/math/generate-random-numbers-that-are-different.html">新版Matlab中<code>rng</code>函数语法</a>，即</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rand(&#x27;twister&#x27;,mod(floor(now*8640000),2^31-1));</span><br></pre></td></tr></table></figure>
+<h1 id="添加路径">II. 添加路径</h1>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">% 添加绝对路径, 并未添加其子文件夹</span><br><span class="line">addpath(&#x27;D:\Workspace\Matlab\DL\DeepLearnToolbox-master&#x27;);</span><br><span class="line">% 添加绝对路径，其子文件夹进搜索路径</span><br><span class="line">addpath(genpath(&#x27;D:\Workspace\Matlab\DL\DeepLearnToolbox-master&#x27;));</span><br><span class="line">% 移除绝对路径</span><br><span class="line">rmpath(&#x27;D:\Workspace\Matlab\DL\DeepLearnToolbox-master&#x27;)</span><br><span class="line">% 移除多个绝对路径</span><br><span class="line">rmpath(genpath(&#x27;D:\Workspace\Matlab\DL\DeepLearnToolbox-master&#x27;))</span><br></pre></td></tr></table></figure>
+<h1 id="数据集划分">III. 数据集划分</h1>
+<p>划分数据集，产生训练集和测试集。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">% Split training-testing data</span><br><span class="line">rate = 0.5;</span><br><span class="line">rand(&#x27;seed&#x27;,12345);</span><br><span class="line">randn(&#x27;seed&#x27;,12345);</span><br><span class="line">[n d] = size(X);</span><br><span class="line">% random index</span><br><span class="line">r = randperm(n);</span><br><span class="line"></span><br><span class="line">% training samples           </span><br><span class="line">ntrain = round(rate*n);          </span><br><span class="line">Xtrain = X(r(1:ntrain),:);</span><br><span class="line">Ytrain = Y(r(1:ntrain),:);</span><br><span class="line"></span><br><span class="line">% test set</span><br><span class="line">Xtest  = X(r(ntrain+1:end),:);</span><br><span class="line">Ytest  = Y(r(ntrain+1:end),:);</span><br></pre></td></tr></table></figure>
+<h1 id="矩阵除法求逆运算">IV. 矩阵除法求逆运算</h1>
+<p>如果要Moore-Penros广义逆的话可以用pinv(A)； 如果只需要解方程Ax=b的一个解，可以直接x=A； 如果对精度要求比较高，不要用LU、QR，最好用SVD分解，根据需求来截断小奇异值。</p>
+<p>inv：Y=inv(X)返回方阵X的逆矩阵，如果X病态或者高度奇异，则会显示警告信息。实际上，很少需要真的把矩阵的逆求出来，常见的使用失误主要出现在求解线性方程组AX=b。一种求解方法为<code>x=inv(A)*b</code>，但如要达到更快，更稳定，就得用X=A。这个算法使用高斯消去法，因此不产生逆矩阵。</p>
+<p>如果A矩阵是非奇异方阵，则A，即inv(A)*B。而B/A是B乘A的逆矩阵，即B*inv(A)。具体计算时可不用逆矩阵而直接计算。使用符号“/”或“”会避免求逆，加速运算效率。换句话，（1/A）可以表示A的逆，这个算法<strong>使用高斯消去法</strong>，因此不产生逆矩阵。如果A矩阵不是方阵，可由以列为基准的Householder正交分解法分解，这种分解法可以解决在最小二乘法中的欠定方程或超定方程，结果是m×n的x矩阵。m是A矩阵的列数，n是B矩阵的列数。每个矩阵的列向量最多有k个非零元素，k 是A的有效秩。</p>
+<blockquote>
+<p>“”：反斜线符号，矩阵左除。如果A是方阵，A(A)*B，只是他们的算法不一样。如果A是n*n的方阵，B是n*1的列向量，或n*?的矩阵，那么X=A=B的解。如果A很病态或者很奇异，很会显示警告信息。A(SIZE(A))计算A的逆，参见mldivide可得到更多信息。如果A是m*n的矩阵，m!=n，B是m*1或m*?的列向量，那么X=A=B（超定或者欠定）的最小二乘解。A的有效秩（effective rank）k有选主元的QR分解决定。Asolution X is computed that has at most k nonzero componentspercolumn。如果K&lt;N，结果通常和<code>pinv(A)*B</code>不一样，后者是最小范数解。A(SIZE(A))用来求解A的广义逆。</p>
+</blockquote>
+<blockquote>
+<p>mldivide(A,B)：等价于A，A和B必须有一样多的行，除非A是个标量（这时就等于.）。如果A是个方阵，A(A)*B，只是两者算法不一样。如果A是m*n的矩阵，那么X=A=B（超定或欠定）的最小二乘解，即（AX-B）的范数极小。</p>
+</blockquote>
+<p>奇异矩阵求逆用pinv。经查证，inv是matlab的built-in函数。而pinv则可以看到其源码，不长，其实就是调用另外一个built-in函数SVD进行奇异值分解，再截断奇异值进行求解而已。所以pinv实际上就是截断奇异值求逆。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">假定拟计算一般矩阵A的Moore-Penrose广义逆A+,</span><br><span class="line">1)对A做SVD:</span><br><span class="line">A = U S V, 其中 U, V为酉方阵, S为一般对角阵;</span><br><span class="line">2)将S非零元取逆, 零元不变, 然后专置得到一个一般对角阵T;</span><br><span class="line">3)则广义逆为A+ = V* T U*, 其中 * 表示取矩阵的复共轭.</span><br></pre></td></tr></table></figure>
+<p>奇异矩阵如何处理：奇异矩阵求逆，给矩阵主对角线每一个元素加一个很小的量，如1e-6；强制可逆。</p>
+<div id="matlab-plot">
+
+</div>
+<h1 id="plot设置">V. PLOT设置</h1>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://blog.sciencenet.cn/blog-3854-760545.html">Matlab画图（一）：生成高质量的供发表和展示用的图</a><br>
+<a target="_blank" rel="noopener" href="http://blog.sciencenet.cn/blog-72586-764570.html">matlab绘图命令汇总</a></p>
+</blockquote>
+<p>以下从一幅图可能涉及的多个方面进行罗列和演示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br></pre></td><td class="code"><pre><span class="line">close all</span><br><span class="line"></span><br><span class="line">% 窗口初始最大化，推荐此命令</span><br><span class="line">figure</span><br><span class="line">set(gcf,&#x27;outerposition&#x27;,get(0,&#x27;screensize&#x27;));</span><br><span class="line">% 或者</span><br><span class="line">set(gcf,&#x27;Position&#x27;,get(0,&#x27;ScreenSize&#x27;))</span><br><span class="line">% 或者</span><br><span class="line">a=get(0);</span><br><span class="line">figure(&#x27;position&#x27;,a.MonitorPositions);</span><br><span class="line"></span><br><span class="line">% whitebg(1,&#x27;w&#x27;) % 设置背景灰度</span><br><span class="line"></span><br><span class="line">% 画图建议使用handle，方便命令调整</span><br><span class="line"></span><br><span class="line">handle1=plot(a,&#x27;--pr&#x27;,&#x27;linewidth&#x27;,1.5,&#x27;MarkerEdgeColor&#x27;,&#x27;r&#x27;,&#x27;MarkerFaceColor&#x27;,&#x27;m&#x27;,&#x27;MarkerSize&#x27;,10)</span><br><span class="line">% MarkerEdgeColor 标记点边框线条颜色颜色字符，如’g’, ’b’等</span><br><span class="line">% MarkerFaceColor 标记点内部区域填充颜色颜色字符</span><br><span class="line">% MarkerSize 标记点大小   数值，单位为points</span><br><span class="line"></span><br><span class="line">% 或者使用RGB颜色，更多查看matlab绘图命令汇总</span><br><span class="line">handle1=plot(x,y,&#x27;Color&#x27;,[152 245 255]/256,&#x27;Linewidth&#x27;,2);</span><br><span class="line">handle1=plot(x,y,&#x27;Color&#x27;,&#x27;r&#x27;,&#x27;Linewidth&#x27;,2);</span><br><span class="line"></span><br><span class="line">hold on</span><br><span class="line"></span><br><span class="line">% 有时候需要更改坐标轴刻度显示</span><br><span class="line">set(gca, ’XTick’, [0 1 2]) % X坐标轴刻度数据点位置</span><br><span class="line">set(gca,&#x27;XTickLabel&#x27;,&#123;&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;&#125;) % X坐标轴刻度处显示的字符</span><br><span class="line"></span><br><span class="line">% 待补充</span><br><span class="line">set(gcf,&#x27;paperpositionmode&#x27;,&#x27;auto&#x27;);</span><br><span class="line"></span><br><span class="line">% 不采用</span><br><span class="line">% 画图外观设置，type案例1，</span><br><span class="line">set(gcf,&#x27;Position&#x27;,[100 100 260 220]);</span><br><span class="line">set(gca,&#x27;Position&#x27;,[.13 .17 .80 .74]);</span><br><span class="line">figure_FontSize=8;</span><br><span class="line">set(get(gca,&#x27;XLabel&#x27;),&#x27;FontSize&#x27;,figure_FontSize,&#x27;Vertical&#x27;,&#x27;top&#x27;);</span><br><span class="line">set(get(gca,&#x27;YLabel&#x27;),&#x27;FontSize&#x27;,figure_FontSize,&#x27;Vertical&#x27;,&#x27;middle&#x27;);</span><br><span class="line">set(findobj(&#x27;FontSize&#x27;,10),&#x27;FontSize&#x27;,figure_FontSize);</span><br><span class="line">set(findobj(get(gca,&#x27;Children&#x27;),&#x27;LineWidth&#x27;,0.5),&#x27;LineWidth&#x27;,2);</span><br><span class="line"></span><br><span class="line">% 采用</span><br><span class="line">% 画图外观设置，type案例2。</span><br><span class="line">% set(gca,&#x27;FontName&#x27;,&#x27;Times New Roman&#x27;,&#x27;FontSize&#x27;,14) % 设置坐标轴刻度字体名称，大小</span><br><span class="line">set(gca, &#x27;fontsize&#x27;, 14);</span><br><span class="line">set(gca, &#x27;XMinorTick&#x27;, &#x27;on&#x27;);</span><br><span class="line">set(gca, &#x27;YMinorTick&#x27;, &#x27;on&#x27;);</span><br><span class="line">set(gca, &#x27;XGrid&#x27;, &#x27;on&#x27;);</span><br><span class="line">set(gca, &#x27;YGrid&#x27;, &#x27;on&#x27;);</span><br><span class="line">set(gca, &#x27;LineWidth&#x27;, 1.5);</span><br><span class="line"></span><br><span class="line">% label设置</span><br><span class="line">xlabel(&#x27;Time (Second)&#x27;, &#x27;fontsize&#x27;, 16);</span><br><span class="line">ylabel(&#x27;Amplitude&#x27;, &#x27;fontsize&#x27;, 16);</span><br><span class="line">ylabel(&#x27;a&#x27;,&#x27;FontName&#x27;,&#x27;Times New Roman&#x27;,&#x27;FontSize&#x27;,14,&#x27;Rotation&#x27;,0)</span><br><span class="line"></span><br><span class="line">% 坐标轴范围axis</span><br><span class="line">ymin=**;</span><br><span class="line">ymax=**;</span><br><span class="line">xmin=**;</span><br><span class="line">xmax=**;</span><br><span class="line">% box = [-10.1 10.1 1.1*[min(t) max(t)]];</span><br><span class="line">axis([xmin xmax ymin ymax]) % 设置坐标轴在指定的区间</span><br><span class="line"></span><br><span class="line">% 同handle1命令</span><br><span class="line">handle2=...</span><br><span class="line">handle3=...</span><br><span class="line"></span><br><span class="line">% legend说明</span><br><span class="line">% LEGEND(string1,string2,string3, ...)</span><br><span class="line">% LEGEND(...,&#x27;Location&#x27;,LOC) 来指定图例标识框的位置</span><br><span class="line"></span><br><span class="line">% 一个图例，可以直接放置</span><br><span class="line">legend(&#x27;First&#x27;,&#x27;Second&#x27;,&#x27;Third&#x27;);</span><br><span class="line">legend(&#x27;First&#x27;,&#x27;Second&#x27;,&#x27;Third&#x27;,&#x27;Location&#x27;,&#x27;NorthEastOutside&#x27;)</span><br><span class="line">legend(&#x27;First&#x27;,&#x27;Second&#x27;,&#x27;Third&#x27;,&#x27;Location&#x27;,&#x27;best&#x27;) % 图例位置放在最佳位置</span><br><span class="line"></span><br><span class="line">% 多个图例</span><br><span class="line">handle_1=axes(&#x27;position&#x27;,get(gca,&#x27;position&#x27;),...</span><br><span class="line">    &#x27;visible&#x27;,&#x27;off&#x27;);</span><br><span class="line">handle_11=legend(handle_1,[handle_name handle_name handle_name handle_name handle_name],...</span><br><span class="line">    &#x27;legend_name&#x27;,...</span><br><span class="line">    &#x27;legend_name&#x27;,...</span><br><span class="line">    &#x27;legend_name&#x27;,...</span><br><span class="line">    &#x27;legend_name&#x27;,...</span><br><span class="line">    &#x27;legend_name&#x27;);</span><br><span class="line">handle_11.FontSize=6;</span><br><span class="line">set(handle_11, &#x27;Position&#x27;, [0.45 0.8 0.1 0.1]); %位置属性，0-1设置</span><br><span class="line"></span><br><span class="line">handle_2=axes(&#x27;position&#x27;,get(gca,&#x27;position&#x27;),...</span><br><span class="line">    &#x27;visible&#x27;,&#x27;off&#x27;);</span><br><span class="line">handle_21=legend(handle_2,[handle_name handle_name handle_name handle_name handle_name],...</span><br><span class="line">    &#x27;legend_name&#x27;,...</span><br><span class="line">    &#x27;legend_name&#x27;,...</span><br><span class="line">    &#x27;legend_name&#x27;,...</span><br><span class="line">    &#x27;legend_name&#x27;,...</span><br><span class="line">    &#x27;legend_name&#x27;);</span><br><span class="line">handle_21.FontSize=6; % 高版本使用</span><br><span class="line">% set(handle_21,&#x27;fontsize&#x27;,10) % 低版本使用</span><br><span class="line">set(handle_21, &#x27;Position&#x27;, [0.6 0.8 0.1 0.1]); %位置属性，0-1设置</span><br><span class="line"></span><br><span class="line">text(x,y,&#x27;Failure threshold&#x27;,&#x27;FontSize&#x27;,16)</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">% title案例1</span><br><span class="line">title(&#x27;a&#x27;,&#x27;FontName&#x27;,&#x27;Times New Roman&#x27;,&#x27;FontWeight&#x27;,&#x27;Bold&#x27;,&#x27;FontSize&#x27;,16)</span><br><span class="line"></span><br><span class="line">% title案例2</span><br><span class="line">string_1 = &#123;&#x27;Predicting outcomes using SVR with linear kernel&#x27;;</span><br><span class="line">[&#x27;Training Set: mse = &#x27; num2str(error_1(2)) &#x27; R^2 = &#x27; num2str(error_1(3))];</span><br><span class="line">[&#x27;Testing Set mse = &#x27; num2str(error_2(2)) &#x27; R^2 = &#x27; num2str(error_2(3))]&#125;;</span><br><span class="line">title(&#x27;标题Title&#x27;,&#x27;fontname&#x27;,&#x27;Times New Roman&#x27;,&#x27;Color&#x27;,&#x27;b&#x27;,&#x27;FontSize&#x27;,20);</span><br><span class="line"></span><br><span class="line">% title案例3</span><br><span class="line">line1 = &#x27;适应度曲线MSE[ABCmethod]&#x27;;</span><br><span class="line">line2 = [&#x27;终止代数=&#x27;, ...</span><br><span class="line">     num2str(iter-1),&#x27;,种群数量NP=&#x27;, ...</span><br><span class="line">     num2str(ABCOpts.ColonySize),&#x27;)&#x27;];</span><br><span class="line">line3 = [&#x27;Best c=&#x27;,num2str(GlobalParams(1)),&#x27; g=&#x27;,num2str(GlobalParams(2)), ...</span><br><span class="line">    &#x27; MSE=&#x27;,num2str(GlobalMin)];</span><br><span class="line">title(&#123;line1;line2;line3&#125;,&#x27;FontSize&#x27;,20);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">% 保存</span><br><span class="line">% print函数原本不是用来进行图像保存了，而是操作打印机的，但是这里我们可以借用下</span><br><span class="line">% print 可作为日常绘图的首选。对格式，分辨率等各项指标做非常细致的定义，适合直接出图。</span><br><span class="line">% print(figure_handle,fileformat,filename)</span><br><span class="line"></span><br><span class="line">print(gcf, &#x27;-depsc2&#x27;, &#x27;file_name.eps&#x27;);</span><br><span class="line">print(&#x27;-depsc2&#x27;,&#x27;-r1000&#x27;,&#x27;file_name.eps&#x27;);</span><br><span class="line">% print(&#x27;-dpsc&#x27;,&#x27;file_name.eps&#x27;); % 不采用，产生的图像在中间，tex中呈现漂浮在文字之上。</span><br><span class="line">print(gcf, &#x27;-dpng&#x27;, &#x27;-r280&#x27;, &#x27;file_name.png&#x27;);</span><br><span class="line">print(gcf,&#x27;-r300&#x27;,&#x27;-dpdf&#x27;,&#x27;file_name.pdf&#x27;);</span><br><span class="line">print(gcf,&#x27;-r300&#x27;,&#x27;-djpeg&#x27;,&#x27;file_name.jpeg&#x27;);</span><br><span class="line"></span><br><span class="line">% Matlab提供直接的saveas函数可以将指定figure中的图像或者simulink中的框图进行保存</span><br><span class="line">% saveas可以保存matlab自认的fig格式的图像，用来最后细修很有意义。</span><br><span class="line">% saveas(figure_handle,filename,fileformat)</span><br><span class="line"></span><br><span class="line">saveas(gca,&#x27;file_name.eps&#x27;,&#x27;psc2&#x27;)</span><br><span class="line">% Matlab保存eps分成2个level，在使用saveas(gca,&#x27;**.eps&#x27;)调用的level1的保存eps方式，所以彩色图像变成黑白的了。如果在命令中加入&#x27;psc2&#x27;，此时，保存的图像是level2的，保存的图片就是eps格式的彩色图像。</span><br><span class="line">saveas(gca,&#x27;file_name&#x27;,&#x27;png&#x27;)</span><br><span class="line">%saveas(gcf,file_name,&#x27;-r1000&#x27;,&#x27;epsc&#x27;); %错误</span><br><span class="line"></span><br><span class="line">% 典型常用的带变量保存命令（推荐使用）</span><br><span class="line">if save_figures</span><br><span class="line">    filenm = [&#x27;file_name_&#x27; num2str(variable_name)];</span><br><span class="line">    print(&#x27;-depsc2&#x27;,&#x27;-r1000&#x27;,[&#x27;file_path&#x27;,filenm]); %1000dpi，产生的图像在左下角，tex中正常显示。</span><br><span class="line">    saveas(gcf,[&#x27;file_path&#x27;,filenm], &#x27;fig&#x27;)</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>print()<br>
+用法:print(图形句柄,存储格式,文件名);<br>
+图形句柄，如果图形窗口标题栏是“Figure 3”,则句柄就是3.用gcf可以获取当前窗口句柄。<br>
+指定存储格式。常用的有：<br>
+png格式：'-dpng‘ (推荐这一种，与bmp格式一样清晰，文件也不大)<br>
+jpeg: ‘-djpeg‘(文件小,较清晰) tiff: ‘-dtiff‘<br>
+bmp: ‘-dbitmap‘(清晰，文件极大)<br>
+gif: ‘-dgif‘(文件小但不清晰)<br>
+文件名：自己给定<br>
+注意:：print函数必须紧跟在plot函数之后使用。添加循环可以自动生成文件名。</p>
+</blockquote>
+<h2 id="局部放大">V.I. 局部放大</h2>
+<p>利用 <a target="_blank" rel="noopener" href="http://www.mathworks.com/matlabcentral/fileexchange/5961-magnify">magnify.m</a> 实现局部放大<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>。</p>
+<ol style="list-style-type: decimal">
+<li>将 <code>magnify.m</code>加载到 matlab 的安装路径中</li>
+<li>运行程序，输出 figure</li>
+<li>在 command window 中运行命令: <code>magnify</code></li>
+<li>在 figure 中编辑图形
+<ul>
+<li>按ctrl键，拖动鼠标左键，（也可以不按ctrl键，拖动鼠标右键）就可以放大局部图像了</li>
+<li>ctrl+左键固化，也可右键固化，‘&lt;’和‘&gt;’缩放方法范围（看细节-放大或者缩小细节）</li>
+<li>‘+’和‘-’缩放放大比例 （确定需要放大的区域 ‘+’ 选取更大的区域，‘-’号，选取小区域）</li>
+</ul></li>
+<li>在 figure 中编辑图形，使用 标记‘2’处的图形‘edit’或者使用Tools &gt; Edit plot,鼠标选中目标如图中标记‘1’处的框，或者外面的放大区域。 进一步可以执行目标删除、放缩+上下左右移动等 <img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dgy1g0bun0hk5zj20f20d3q3f.jpg"></li>
+<li>此时标记‘1’处的框已经被删除，上下左右调整放大框的位置，使用‘1’处的 insert 插入方框和箭头。 <img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dgy1g0bunkxcq7j20fe0dst9g.jpg"></li>
+<li>方框和箭头的位置，重回 edit 环境，在背景处右键-选择 show -property editor。选择‘white’在右面的三角号选择 ’ close ‘。或者如下图，使用背景-右键-color-white （方便快捷-推荐使用）。 <img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dgy1g0buohyd2cj20fm0dadgl.jpg"> <img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dgy1g0bupjoi0bj20ir0aet9t.jpg"></li>
+</ol>
+<h1 id="fill填充">VI. fill填充</h1>
+<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/WhoisPo/article/details/49913513">对matlab中colormap的解释及fill、imshow的用法说明</a></p>
+<h1 id="legend控制">VII. Legend控制</h1>
+<blockquote>
+<p>涉及到版本兼容问题，有些比较新的句柄属性在老版本Matlab中就用不起来，比如lineseries中的Annotation属性在我使用的R14SP1中就无法使用。</p>
+</blockquote>
+<h2 id="legend位置">VII.I. Legend位置</h2>
+<p>LEGEND(...,'Location',LOC) 来指定图例标识框的位置</p>
+<blockquote>
+<p>'North' 图例标识放在图顶端<br>
+'South' 图例标识放在图底端<br>
+'East' 图例标识放在图右方<br>
+'West' 图例标识放在图左方<br>
+'NorthEast' 图例标识放在图右上方（默认）<br>
+'NorthWest 图例标识放在图左上方<br>
+'SouthEast' 图例标识放在图右下角<br>
+'SouthWest' 图例标识放在图左下角<br>
+(以上几个都是将图例标识放在框图内）<br>
+'NorthOutside' 图例标识放在图框外侧上方<br>
+'SouthOutside' 图例标识放在图框外侧下方<br>
+'EastOutside' 图例标识放在图框外侧右方<br>
+'WestOutside' 图例标识放在图框外侧左方<br>
+'NorthEastOutside' 图例标识放在图框外侧右上方<br>
+'NorthWestOutside' 图例标识放在图框外侧左上方<br>
+'SouthEastOutside' 图例标识放在图框外侧右下方<br>
+'SouthWestOutside' 图例标识放在图框外侧左下方<br>
+（以上几个将图例标识放在框图外）<br>
+'Best' 图标标识放在图框内不与图冲突的最佳位置<br>
+'BestOutside' 图标标识放在图框外使用最小空间的最佳位置</p>
+</blockquote>
+<p>利用位置属性进行精确设置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gca=legend( &#x27;sinx&#x27;, 4 );   </span><br><span class="line">set( gca, &#x27;Position&#x27;, [0.1,0.1,0.9,0.9] );</span><br></pre></td></tr></table></figure>
+<p>[0.1,0.1,0.9,0.9] 分别为axes在figure中的左边界，下边界，宽度，高度，最小为0，最大为1（左边界，下边界为0，上边界，右边界为1）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">figure</span><br><span class="line">set (gca,&#x27;position&#x27;,[0.1,0.1,0.9,0.9] );</span><br><span class="line">x=1:0.1:10;</span><br><span class="line">y=sin(x);</span><br><span class="line">plot(x,y)</span><br></pre></td></tr></table></figure>
+<h2 id="图例说明m条-m-n">VII.II. 图例说明m条 （m &lt; n）</h2>
+<p>如果一个图中我们画了n条曲线，但是我们只想加图例说明（legend）的只有m条 （m &lt; n）。例如你有25条曲线，想显示其中1，6，11，16，21的legend，则</p>
+<h3 id="annotation命令">VII.II.I. Annotation命令</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">x = -3.14:0.1:3.14;</span><br><span class="line">y1 = sin(x);</span><br><span class="line">y2 = cos(x);</span><br><span class="line">y3 = .1*exp(x);</span><br><span class="line">y4 = y1.*y3;</span><br><span class="line">hold on</span><br><span class="line">h1 = plot(x, y1, &#x27;r&#x27;);</span><br><span class="line">h2 = plot(x, y2, &#x27;g&#x27;);</span><br><span class="line">h3 = plot(x, y3, &#x27;k&#x27;);</span><br><span class="line">h4 = plot(x, y4, &#x27;m&#x27;);</span><br><span class="line">hold off</span><br><span class="line">xlim auto</span><br><span class="line">set(get(get(h2, &#x27;Annotation&#x27;), &#x27;LegendInformation&#x27;), &#x27;IconDisplayStyle&#x27;, &#x27;off&#x27;);</span><br><span class="line">set(get(get(h4, &#x27;Annotation&#x27;), &#x27;LegendInformation&#x27;), &#x27;IconDisplayStyle&#x27;, &#x27;off&#x27;);</span><br><span class="line">legend(&#x27;sin&#x27;, &#x27;exp&#x27;);</span><br></pre></td></tr></table></figure>
+<p>EG. <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for i = [2:5 7:10 12:15 17:20 22:25]</span><br><span class="line">     set(get(get(H(i),&#x27;Annotation&#x27;),&#x27;LegendInformation&#x27;),&#x27;IconDisplayStyle&#x27;,&#x27;off&#x27;);</span><br><span class="line">end</span><br><span class="line">legend(&#x27;1&#x27;,&#x27;6&#x27;,&#x27;11&#x27;,&#x27;16&#x27;,&#x27;21&#x27;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="legend命令">VII.III. legend命令</h2>
+<p>把想要标注的图形命令给个变量名，然后再legend命令中指定。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">x = -3.14:0.1:3.14;</span><br><span class="line">y1 = sin(x);</span><br><span class="line">y2 = cos(x);</span><br><span class="line">y3 = .1*exp(x);</span><br><span class="line">y4 = y1.*y3;</span><br><span class="line">hold on</span><br><span class="line">h1 = plot(x, y1, &#x27;r&#x27;);</span><br><span class="line">h2 = plot(x, y2, &#x27;g&#x27;);</span><br><span class="line">h3 = plot(x, y3, &#x27;k&#x27;);</span><br><span class="line">h4 = plot(x, y4, &#x27;m&#x27;);</span><br><span class="line">THETA=linspace(0,2*pi,1000);</span><br><span class="line">RHO=ones(1,1000)*2;</span><br><span class="line">[X,Y] = pol2cart(THETA,RHO);</span><br><span class="line">X=X+10;</span><br><span class="line">Y=Y+10;</span><br><span class="line">h5=plot(X,Y,&#x27;r--&#x27;);</span><br><span class="line"></span><br><span class="line">axis square;</span><br><span class="line">hold off</span><br><span class="line">xlim auto</span><br><span class="line">legend([h1,h3,h5],&#x27;sin&#x27;, &#x27;exp&#x27;,&#x27;circle&#x27;);</span><br></pre></td></tr></table></figure>
+<p>EG. <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">H = plot(data);</span><br><span class="line">legend(H([1 6 11 16 21],&#x27;1,&#x27;6&#x27;,&#x27;11’,&#x27;16&#x27;,&#x27;21&#x27;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="多列legend">VII.IV. 多列legend</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">t=0:pi/100:2*pi;</span><br><span class="line">y1=sin(t);</span><br><span class="line">y2=cos(t);</span><br><span class="line">y3=y1.*y2;</span><br><span class="line">y4=0.5*(y1+y2);</span><br><span class="line">hold on</span><br><span class="line">h1=plot(t,y1,&#x27;-r&#x27;)</span><br><span class="line">%h11 = plot(t(1:10:end),y1(1:10:end),&#x27;o&#x27;,&#x27;MarkerFaceColor&#x27;,&#x27;r&#x27;,&#x27;MarkerEdgeColor&#x27;,&#x27;r&#x27;);</span><br><span class="line">h11 = plot(t(1:20:end),y1(1:20:end),&#x27;ro&#x27;);</span><br><span class="line">h2=plot(t,y2,&#x27;b-&#x27;);</span><br><span class="line">%h22 = plot(t(1:10:end),y2(1:10:end),&#x27;^&#x27;,&#x27;MarkerFaceColor&#x27;,&#x27;b&#x27;,&#x27;MarkerEdgeColor&#x27;,&#x27;b&#x27;);</span><br><span class="line">h22 = plot(t(1:20:end),y2(1:20:end),&#x27;b^&#x27;)</span><br><span class="line">h3=plot(t,y3,&#x27;c&#x27;);</span><br><span class="line">h4=plot(t,y4,&#x27;g&#x27;);</span><br><span class="line">hold off</span><br><span class="line">[legh,objh,outh,outm]=legend([h1,h2],&#x27;y1&#x27;,&#x27;y2&#x27;,1);</span><br><span class="line">legend boxoff</span><br><span class="line"></span><br><span class="line">% matlab 6.5.1</span><br><span class="line">%set(objh(3),&#x27;marker&#x27;,&#x27;*&#x27;);</span><br><span class="line">%set(objh(5),&#x27;marker&#x27;,&#x27;.&#x27;);</span><br><span class="line"></span><br><span class="line">% matlab7</span><br><span class="line">set(objh(4),&#x27;marker&#x27;,&#x27;o&#x27;);</span><br><span class="line">set(objh(6),&#x27;marker&#x27;,&#x27;^&#x27;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">legh2=copyobj(legh,gcf);</span><br><span class="line">[legh2,objh2]=legend([h3,h4],&#x27;y3&#x27;,&#x27;y4&#x27;,2);</span><br><span class="line">legend boxoff</span><br></pre></td></tr></table></figure>
+<p>只有第二个legend可拖动，而第一个legend不可拖动，原因不明。</p>
+<h2 id="避免legend覆盖曲线">VII.V. 避免legend覆盖曲线</h2>
+<p>给出的legend经常覆盖了某些曲线，这样就需要把legend分成几个，相对独立，这样可以使用鼠标随意移动，确保不遮挡曲线。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">a=linspace(0,2*pi,100);</span><br><span class="line">y1=100*sin(a);</span><br><span class="line">y2=50*cos(a);</span><br><span class="line">y3=tan(a);</span><br><span class="line">y4=log(a);</span><br><span class="line">y=[y1;y2;y3;y4];</span><br><span class="line">figure</span><br><span class="line">p=plot(a,y)</span><br><span class="line">legend(p(1:2),&#x27;sin&#x27;,&#x27;cos&#x27;);</span><br><span class="line">ah=axes(&#x27;position&#x27;,get(gca,&#x27;position&#x27;),...</span><br><span class="line">            &#x27;visible&#x27;,&#x27;off&#x27;);</span><br><span class="line">legend(ah,p(3:4),&#x27;tan&#x27;,&#x27;log&#x27;,&#x27;location&#x27;,&#x27;west&#x27;);</span><br></pre></td></tr></table></figure>
+<h2 id="legend横排">VII.VI. legend横排</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hl = legend(H([1 6 11 16 21],&#x27;1,&#x27;6&#x27;,&#x27;11’,&#x27;16&#x27;,&#x27;21&#x27;);</span><br><span class="line">set(hl,&#x27;Orientation&#x27;,&#x27;horizon&#x27;)</span><br></pre></td></tr></table></figure>
+<h2 id="legend不显示方框">VII.VII. legend不显示方框</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hl = legend(H([1 6 11 16 21],&#x27;1,&#x27;6&#x27;,&#x27;11’,&#x27;16&#x27;,&#x27;21&#x27;);</span><br><span class="line">set(hl,&#x27;Box&#x27;,&#x27;off&#x27;);</span><br></pre></td></tr></table></figure>
+<h1 id="errorbar">VIII. errorbar</h1>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERRORBAR(X,Y,L,U)，X是自变量，Y是因变量，L是Y的变动下限，U是Y的变动上限</span><br><span class="line">errorbar(X,Y,E)  X是自变量，Y是因变量，E是Y的变动绝对差值。</span><br></pre></td></tr></table></figure>
+<h1 id="柱状图">IX. 柱状图</h1>
+<h2 id="带有误差线误差标记的柱状图-errorbar">IX.I. 带有误差线（误差标记）的柱状图 errorbar</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">% 生成示例数据</span><br><span class="line">x=1:10;</span><br><span class="line">y=cumsum(randn(1,10));</span><br><span class="line">lower = y - (rand(1,10));</span><br><span class="line">upper = y + (rand(1,10));</span><br><span class="line"></span><br><span class="line">% 由于errorbar函数使用相对差值在图形上绘图，所以</span><br><span class="line">% 需要将绝对差值转变为相对差值。</span><br><span class="line">L = y - lower;</span><br><span class="line">U = upper -y;</span><br><span class="line"></span><br><span class="line">% 绘图时需要设定 hold on</span><br><span class="line">% 柱状图</span><br><span class="line">clf;</span><br><span class="line">figure(1);</span><br><span class="line">hold on;</span><br><span class="line">bar(x,y);</span><br><span class="line">% 此处需要隐藏折线</span><br><span class="line">errorbar(x,y,L,U,&#x27;Marker&#x27;,&#x27;none&#x27;,&#x27;LineStyle&#x27;,&#x27;none&#x27;);</span><br><span class="line"></span><br><span class="line">% 折线图</span><br><span class="line">figure(2);</span><br><span class="line">hold(&#x27;on&#x27;);</span><br><span class="line">plot( x, y);</span><br><span class="line">errorbar( x, y, L, U);</span><br></pre></td></tr></table></figure>
+<p><img src="http://bio-spring.info/wp-content/uploads/2011/02/errorbar.png"> <img src="http://bio-spring.info/wp-content/uploads/2011/02/errorbar2.png"></p>
+<h2 id="直方图的绘制">IX.II. 直方图的绘制</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">%% 直方图图的绘制</span><br><span class="line">%直方图有两种图型：垂直直方图和水平直方图。而每种图型又有两种表现模式：累计式：分组式。</span><br><span class="line">figure;</span><br><span class="line">z=[3,5,2,4,1;3,4,5,2,1;5,4,3,2,5]; % 各因素的相对贡献份额</span><br><span class="line">colormap(cool);% 控制图的用色</span><br><span class="line">subplot(2,3,1);</span><br><span class="line">bar(z);%二维分组式直方图,默认的为&#x27;group&#x27;</span><br><span class="line">title(&#x27;2D default&#x27;);</span><br><span class="line">subplot(2,3,2);</span><br><span class="line">bar3(z);%三维的分组式直方图</span><br><span class="line">title(&#x27;3D default&#x27;);</span><br><span class="line">subplot(2,3,3);</span><br><span class="line">barh(z,1);%分组式水平直方图，宽度设置为1</span><br><span class="line">title(&#x27;vert width=1&#x27;);</span><br><span class="line">subplot(2,3,4);</span><br><span class="line">bar(z,&#x27;stack&#x27;);%累计式直方图，例如:1,1+2,1+2+3构成了第一个bar</span><br><span class="line">title(&#x27;stack&#x27;)</span><br><span class="line">subplot(2,3,5);</span><br><span class="line">bar3h(z,0.5,&#x27;stacked&#x27;);%三维累计式水平直方图</span><br><span class="line">title(&#x27;vert width=1 stack&#x27;);</span><br><span class="line">subplot(2,3,6);</span><br><span class="line">bar3(z,0.8,&#x27;grouped&#x27;);%对相关数据的颜色进行分组，默认的位&#x27;group&#x27;</span><br><span class="line">title(&#x27;width=0.8 grouped&#x27;);</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/blog/573996/201310/26131739-f34c796c7c314e4385176ce65f715f4d.png"></p>
+<h2 id="柱状图的进阶">IX.III. 柱状图的进阶</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">%% =========柱状图的进阶==========</span><br><span class="line">figure;</span><br><span class="line">y=[300 311;390 425; 312 321; 250 185; 550 535; 420 432; 410 520;];</span><br><span class="line">subplot(1,3,1);</span><br><span class="line">b=bar(y);</span><br><span class="line">grid on;</span><br><span class="line">set(gca,&#x27;XTickLabel&#x27;,&#123;&#x27;0&#x27;,&#x27;1&#x27;,&#x27;2&#x27;,&#x27;3&#x27;,&#x27;4&#x27;,&#x27;5&#x27;,&#x27;6&#x27;&#125;)</span><br><span class="line">legend(&#x27;算法1&#x27;,&#x27;算法2&#x27;);</span><br><span class="line">xlabel(&#x27;x axis&#x27;);</span><br><span class="line">ylabel(&#x27;y axis&#x27;);</span><br><span class="line">%使仅有的一组柱状图呈现不同颜色，默认的位相同颜色</span><br><span class="line">data = [1.0, 1.0, 0.565, 0.508, 0.481, 0.745];</span><br><span class="line">subplot(1,3,2);</span><br><span class="line">b = bar(data);</span><br><span class="line">ch = get(b,&#x27;children&#x27;);</span><br><span class="line">set(ch,&#x27;FaceVertexCData&#x27;,[4;2;3;1;5;6]);%使用Indexed形式指定每组bar的颜色</span><br><span class="line">set(gca,&#x27;XTickLabel&#x27;,&#123;&#x27;C0&#x27;,&#x27;C1&#x27;,&#x27;C2&#x27;,&#x27;C3&#x27;,&#x27;C4&#x27;,&#x27;C5&#x27;&#125;)</span><br><span class="line">axis([0 7 0.0 1.0]);</span><br><span class="line">ylabel(&#x27;micro F-measure&#x27;);</span><br><span class="line">%使每个bar颜色不同,默认的是每个元素在不同组的颜色相同</span><br><span class="line">data = [3, 7, 5, 2;4, 3, 2, 9;6, 6, 1, 4];</span><br><span class="line">subplot(1,3,3);</span><br><span class="line">b = bar(data);</span><br><span class="line">ch = get(b,&#x27;children&#x27;);</span><br><span class="line">set(ch&#123;1&#125;,&#x27;FaceVertexCData&#x27;,[1;2;3]);%设置第一个元素在不同组的颜色</span><br><span class="line">set(ch&#123;2&#125;,&#x27;FaceVertexCData&#x27;,[1;2;3]);%设置第二个元素在不同组的颜色</span><br><span class="line">set(ch&#123;3&#125;,&#x27;FaceVertexCData&#x27;,[1;2;3]);</span><br><span class="line">set(ch&#123;4&#125;,&#x27;FaceVertexCData&#x27;,[1;2;3]);</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/blog/573996/201310/26131907-dd344d7b67ae4370855b6718d4ce4e77.png"></p>
+<h2 id="彩色柱状图">IX.IV. 彩色柱状图</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">%% 彩色柱状图</span><br><span class="line">%用到的数据</span><br><span class="line">n = 8;</span><br><span class="line">Z = rand(n,1);</span><br><span class="line">figure;</span><br><span class="line">%默认图片</span><br><span class="line">subplot(1,3,1);</span><br><span class="line">bar(Z);</span><br><span class="line">%简单的作图</span><br><span class="line">% 这个图根据数据列中值的大小着色。每列中的值越大，颜色越突出</span><br><span class="line">subplot(1,3,2);</span><br><span class="line">h=bar(Z);</span><br><span class="line">colormap(summer(n));</span><br><span class="line">ch = get(h,&#x27;Children&#x27;);</span><br><span class="line">fvd = get(ch,&#x27;Faces&#x27;);%针对矩阵时，只能用fvd=get(ch&#123;col&#125;,&#x27;Faces&#x27;),下同</span><br><span class="line">fvcd = get(ch,&#x27;FaceVertexCData&#x27;);</span><br><span class="line">[~, izs] = sortrows(Z,1);</span><br><span class="line">for i = 1:n</span><br><span class="line">    row = izs(i);</span><br><span class="line">    fvcd(fvd(row,:)) = i;</span><br><span class="line">end</span><br><span class="line">set(ch,&#x27;FaceVertexCData&#x27;,fvcd)</span><br><span class="line">%图片会以渐变的方式着色，效果非常不错</span><br><span class="line">subplot(1,3,3);</span><br><span class="line">h=bar(Z);</span><br><span class="line">ch = get(h,&#x27;Children&#x27;);</span><br><span class="line">fvd = get(ch,&#x27;Faces&#x27;);</span><br><span class="line">fvcd = get(ch,&#x27;FaceVertexCData&#x27;);</span><br><span class="line">[zs, izs] = sortrows(Z,1);</span><br><span class="line">k = 128; % 准备生成128 *3 行的colormap</span><br><span class="line">colormap(summer(k)); % 这样会产生一个128 * 3的矩阵，分别代表[R G B]的值</span><br><span class="line">% 检视数据</span><br><span class="line">whos ch fvd fvcd zs izs</span><br><span class="line">%   Name       Size            Bytes  Class     Attributes</span><br><span class="line">%</span><br><span class="line">%   ch         1x1                 8  double</span><br><span class="line">%   fvcd      66x1               528  double</span><br><span class="line">%   fvd       13x4               416  double</span><br><span class="line">%   izs       13x1               104  double</span><br><span class="line">%   zs        13x1               104  double</span><br><span class="line">%</span><br><span class="line">shading interp % Needed to graduate colors</span><br><span class="line">for i = 1:n</span><br><span class="line">    color = floor(k*i/n); % 这里用取整函数获得color在colormap中行</span><br><span class="line">    row = izs(i); % Look up actual row # in data</span><br><span class="line">    fvcd(fvd(row,1)) = 1; % Color base vertices 1st index</span><br><span class="line">    fvcd(fvd(row,4)) = 1;</span><br><span class="line">    fvcd(fvd(row,2)) = color; % Assign top vertices color</span><br><span class="line">    fvcd(fvd(row,3)) = color;</span><br><span class="line">end</span><br><span class="line">set(ch,&#x27;FaceVertexCData&#x27;, fvcd); % Apply the vertex coloring</span><br><span class="line">set(ch,&#x27;EdgeColor&#x27;,&#x27;k&#x27;);</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/blog/573996/201310/26131918-bc3ce5ef389f45b6941965c186c89c6c.png"></p>
+<h2 id="绘制统计直方图">IX.V. 绘制统计直方图</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">%% 绘制统计直方图</span><br><span class="line">%hist(y)：如果y是向量，则把其中元素放入10个条目中，且返回每条中的元素的个数；如果y为矩阵，则分别对每列进行处理，显示多组条形。</span><br><span class="line">%[n,xout]=hist(y,x)：非递减向量x的指定bin的中心。向量xout包含频率计数与条目的位置。</span><br><span class="line">x=-10:.1:10;</span><br><span class="line">y1=randn(2008,1);</span><br><span class="line">y2=randn(2008,3);</span><br><span class="line">figure;</span><br><span class="line">colormap(winter);</span><br><span class="line">subplot(2,2,1);</span><br><span class="line">hist(y1);%把其中元素放入10个条目中</span><br><span class="line">title(&#x27;y1为向量，default,n=10&#x27;);</span><br><span class="line">subplot(2,2,2);</span><br><span class="line">hist(y2);%分别对每列进行处理，显示多组条形</span><br><span class="line">title(&#x27;y2为矩阵&#x27;);</span><br><span class="line">subplot(2,2,3);</span><br><span class="line">hist(y1,x);%用户也可以使用[n,xout]=hist(y1,x);bar(xout,n)绘制条形直方图</span><br><span class="line">title(&#x27;向量x指定条目&#x27;);</span><br><span class="line">subplot(2,2,4);</span><br><span class="line">hist(y2,1000);%第二个参数为标量时指定bin的数目</span><br><span class="line">title(&#x27;nbins=1000&#x27;);</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/blog/573996/201310/26131927-02a7b6995d604619bc828fbf1bda5db8.png"></p>
+<h2 id="均值方差直方图">IX.VI. 均值方差直方图</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">%% ========均值方差直方图========</span><br><span class="line">a=[8 9 10 7 8 9];%mean</span><br><span class="line">b=[1 1 1 1 1 1];%std</span><br><span class="line">figure();</span><br><span class="line">h=bar(a);</span><br><span class="line">ch=get(h,&#x27;children&#x27;);</span><br><span class="line">set(ch,&#x27;FaceVertexCData&#x27;,[4;2;3;1;5;6]);%使用Indexed形式指定每组bar的颜色</span><br><span class="line">hold on;</span><br><span class="line">errorbar(a,b,&#x27;k&#x27;,&#x27;LineStyle&#x27;,&#x27;none&#x27;);</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/blog/573996/201310/26131934-5e951516c87e4d70895420ce4f51080e.png"></p>
+<h2 id="散点图">IX.VII. 散点图</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">%% =======散点图scatter , scatter3 , plotmatrix======</span><br><span class="line">%scatter3(X,Y,Z,S,C):在由向量X、Y和Z指定的位置显示大小和颜色分别由S和C决定的离散点</span><br><span class="line">figure;</span><br><span class="line">[x,y,z] = sphere(16);</span><br><span class="line">X = [x(:)*.5 x(:)*.75 x(:)];</span><br><span class="line">Y = [y(:)*.5 y(:)*.75 y(:)];</span><br><span class="line">Z = [z(:)*.5 z(:)*.75 z(:)];</span><br><span class="line">S = repmat([10 2 5]*10,numel(x),1);</span><br><span class="line">C = repmat([1 2 3],numel(x),1);</span><br><span class="line">subplot(1,2,1);</span><br><span class="line">scatter(X(:),Y(:),S(:),C(:));</span><br><span class="line">title(&#x27;scatter&#x27;);</span><br><span class="line">subplot(1,2,2);</span><br><span class="line">scatter3(X(:),Y(:),Z(:),S(:),C(:),&#x27;filled&#x27;), view(-60,60);</span><br><span class="line">title(&#x27;scatter3&#x27;);</span><br><span class="line">%plotmatrix(X,Y)绘出X(p*M)与Y(p*N)的列组成的散度图(N,M)</span><br><span class="line">figure;</span><br><span class="line">X=randn(100,2);Y=randn(100,2);</span><br><span class="line">subplot(1,3,1),plotmatrix(X);%等价于plotmatrix(X,X),除了对角上的图为X每一列的直方图hist(X(:,col))</span><br><span class="line">title(&#x27;plotmatrix(X)&#x27;);</span><br><span class="line">subplot(1,3,2),plotmatrix(X,X);</span><br><span class="line">title(&#x27;plotmatrix(X,X)&#x27;);</span><br><span class="line">subplot(1,3,3),plotmatrix(X,Y);</span><br><span class="line">title(&#x27;plotmatrix(X,Y)&#x27;);</span><br></pre></td></tr></table></figure>
+<h2 id="绘制区域图">IX.VIII. 绘制区域图</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">%% =========绘制区域图===========</span><br><span class="line">%区域图特点是：在图上绘制多条曲线时，每条曲线（除第一条外）都是把“前”条曲线作基线，再取值绘制而成。因此，该指令所画的图形，能醒目地反映各因素对最终结果的贡献份额。</span><br><span class="line">figure;</span><br><span class="line">x=1:2:9;% 注意：自变量要单调变化</span><br><span class="line">y=magic(5);% 各因素的相对贡献份额，每一列相当于一个因素</span><br><span class="line">colormap(spring);% 控制图的用色</span><br><span class="line">area(x,y,4);%area(y)则以列下标作为自变量,第三个参数为基准线(默认为0)</span><br><span class="line">set(gca,&#x27;layer&#x27;,&#x27;top&#x27;);%图层设置为top层，显示网格</span><br><span class="line">title(&#x27;basevalue=4&#x27;);</span><br><span class="line">legend(&#x27; 因素 A&#x27;,&#x27; 因素 B&#x27;,&#x27; 因素 C&#x27;,&#x27;因素D&#x27;,&#x27;因素E&#x27;);</span><br><span class="line">grid on;</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/blog/573996/201310/26132009-c539171f835945f1a021826da9f246e7.png"></p>
+<h2 id="绘制饼状图">IX.IX. 绘制饼状图</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">%% =========绘制饼状图=========</span><br><span class="line">%饼图指令pie和pie3用来表示各元素占总和的百分数。该指令第二个参数为与第一参数等长的 0-1</span><br><span class="line">%向量，1使对应扇块突出。第三个参数指定个扇区的label</span><br><span class="line">figure;</span><br><span class="line">colormap(summer);% 控制图的用色</span><br><span class="line">x=[16 17 21 25 21];</span><br><span class="line">subplot(1,2,1);</span><br><span class="line">pie(x,[0 0 0 0 1],&#123;&#x27;0-10岁儿童&#x27;,&#x27;10-20岁儿童&#x27;,&#x27;20-35岁青年&#x27;,&#x27;35-55岁中年&#x27;,&#x27;55岁以上老年&#x27;&#125;);</span><br><span class="line">subplot(1,2,2);</span><br><span class="line">pie3(x,[0 0 0 0 1],&#123;&#x27;0-10岁儿童&#x27;,&#x27;10-20岁儿童&#x27;,&#x27;20-35岁青年&#x27;,&#x27;35-55岁中年&#x27;,&#x27;55岁以上老年&#x27;&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/blog/573996/201310/26132021-52c70d6c801340398f6b7d32f69b7ac7.png"></p>
+<h2 id="绘制填色多边形">IX.X. 绘制填色多边形</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">%% 绘制填色多边形。若每列的首尾元素不重合，则将默认把最后一点与第一点相连，强行使多边形封闭。</span><br><span class="line">%fill和fill3用于绘制填色多边形</span><br><span class="line">%fill(X1,Y1,C1,X2,Y2,C2,...)</span><br><span class="line">%fill3(X1,Y1,Z1,C1,X2,Y2,Z2,C2,...)</span><br><span class="line">%参数1和2为等长向量时,多边形的节点数由项链长度决定；而当其为矩阵时，每一列对应一个多边形</span><br><span class="line">%参数3为颜色(用颜色字符r/g/b/c或[r g b]表示)</span><br><span class="line">figure;</span><br><span class="line">colormap(autumn);% 控制图的用色</span><br><span class="line">n=10; % 多边形的边数</span><br><span class="line">dt=2*pi/n;t=0:dt:2*pi;</span><br><span class="line">t=[t,t(1)]; %fill 指令要求数据向量的首位重合，使图形封闭。</span><br><span class="line">x=sin(t);y=cos(t);</span><br><span class="line">subplot(1,2,1);</span><br><span class="line">fill(x,y,[1 1 0]);axis off % 画填色多边形，隐去坐标轴。</span><br><span class="line">X=[0.5 0.5 0.5 0.5;0.5 0.5 0.5 0.5;0 1 1 0];</span><br><span class="line">Y=[0.5 0.5 0.5 0.5;0.5 0.5 0.5 0.5;0 0 1 1];</span><br><span class="line">Z=[1 1 1 1;0 0 0 0;0 0 0 0];</span><br><span class="line">C=[1 0 0 1;0 1 0 1;0 0 1 0];</span><br><span class="line">subplot(1,2,2);</span><br><span class="line">fill3(X,Y,Z,C);</span><br><span class="line">view([-10 55]);</span><br><span class="line">xlabel(&#x27;x&#x27;),ylabel(&#x27;y&#x27;);box on;grid on;</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/blog/573996/201310/26132030-5f47877fc0ac497ebdeff34aeeb5791a.png"></p>
+<h2 id="绘制离散数据杆状图">IX.XI. 绘制离散数据杆状图</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">%% =======绘制离散数据杆状图===========</span><br><span class="line">%stem和stem3函数用于绘制二维或三维的离散数据杆状图</span><br><span class="line">%stem(Y)可以理解成绘制离散点的plot(y)函数</span><br><span class="line">%stem(X,Y)可以理解成绘制离散点的plot(x,y)函数</span><br><span class="line">%stem(...,&#x27;filled&#x27;)改变数据点显示的空、实状态。</span><br><span class="line">%stem(...,&#x27;LINESPEC&#x27;)Linespec代表直线属性设置参量。</span><br><span class="line">x=1:.1:10;</span><br><span class="line">y=exp(x.*sin(x));</span><br><span class="line">figure;</span><br><span class="line">subplot(1,3,1);</span><br><span class="line">plot(x,y,&#x27;.-r&#x27;);</span><br><span class="line">title(&#x27;plot(x,y)&#x27;);</span><br><span class="line">subplot(1,3,2);</span><br><span class="line">stem(x,y,&#x27;b&#x27;);</span><br><span class="line">subplot(1,3,3);</span><br><span class="line">stem(x,y,&#x27;:g&#x27;,&#x27;fill&#x27;);</span><br><span class="line">%绘制三维离散杆状图</span><br><span class="line">th=(0:127)/128*2*pi;% 角度采样点</span><br><span class="line">x=cos(th);</span><br><span class="line">y=sin(th);</span><br><span class="line">f=abs(fft(ones(10,1),128)); %对离散方波进行 FFT 变换，并取幅值</span><br><span class="line">stem3(x,y,f&#x27;,&#x27;cd&#x27;,&#x27;fill&#x27;);%绘制图形</span><br><span class="line">view([-65 30]);</span><br><span class="line">xlabel(&#x27;Real&#x27;); %图形标注</span><br><span class="line">ylabel(&#x27;Imaginary&#x27;);</span><br><span class="line">zlabel(&#x27;Amplitude&#x27;);</span><br><span class="line">title(&#x27;FFT example&#x27;);</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/blog/573996/201310/26132039-156dac680a4244c9b02f36ff0aea3990.png"></p>
+<h2 id="绘制方向和速度矢量图">IX.XII. 绘制方向和速度矢量图</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">%% =======绘制方向和速度矢量图=======</span><br><span class="line">%compass-绘制罗盘图</span><br><span class="line">%feather-绘制羽毛图</span><br><span class="line">%quiver-绘制二维箭头图</span><br><span class="line">%quiver3-绘制三维箭头图</span><br><span class="line"></span><br><span class="line">%绘制罗盘图</span><br><span class="line">figure;</span><br><span class="line">wdir=[45 90 90 45 360 335 360 270 335 270 335 335];</span><br><span class="line">knots=[6 6 8 6 3 9 6 8 9 10 14 12];</span><br><span class="line">rdir=wdir*pi/180;</span><br><span class="line">[x,y]=pol2cart(rdir,knots);% 极坐标转化为直角坐标</span><br><span class="line">compass(x,y);</span><br><span class="line">title(&#x27;风向和风力&#x27;)</span><br><span class="line">%绘制羽毛图</span><br><span class="line">figure;</span><br><span class="line">alpha=90:-10:0;</span><br><span class="line">r=ones(size(alpha));</span><br><span class="line">m=alpha*pi/180;</span><br><span class="line">n=r*10;</span><br><span class="line">[u,v]=pol2cart(m,n);% 极坐标转化为直角坐标</span><br><span class="line">feather(u,v);</span><br><span class="line">title(&#x27;羽毛图&#x27;)</span><br><span class="line">%罗盘图和羽毛图的比较</span><br><span class="line">figure;</span><br><span class="line">t=-pi/2:pi/12:pi/2; % 在 区间，每 取一点。</span><br><span class="line">r=ones(size(t)); % 单位半径</span><br><span class="line">[x,y]=pol2cart(t,r); % 极坐标转化为直角坐标</span><br><span class="line">subplot(1,2,1),compass(x,y),title(&#x27;Compass&#x27;)</span><br><span class="line">subplot(1,2,2),feather(x,y),title(&#x27;Feather&#x27;)</span><br><span class="line">%绘制箭头图</span><br><span class="line">figure;</span><br><span class="line">[x,y] = meshgrid(-2:.2:2,-1:.15:1);</span><br><span class="line">z = x .* exp(-x.^2 - y.^2);</span><br><span class="line">[px,py] = gradient(z,.2,.15);</span><br><span class="line">subplot(1,2,1);</span><br><span class="line">contour(x,y,z), hold on</span><br><span class="line">quiver(x,y,px,py), hold off, axis image</span><br><span class="line">title(&#x27;quiver示例&#x27;);</span><br><span class="line">[x,y,z]=peaks(15);</span><br><span class="line">[nx,ny,nz]=surfnorm(x,y,z);%surfnorm求平面的法向量</span><br><span class="line">subplot(1,2,2)</span><br><span class="line">surf(x,y,z);</span><br><span class="line">hold on;</span><br><span class="line">quiver3(x,y,z,nx,ny,nz);</span><br><span class="line">title(&#x27;quiver3示例&#x27;);</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/blog/573996/201310/26132049-46609aeb473b45aca3ac92bba03c928e.png"></p>
+<p><img src="http://images.cnitblog.com/blog/573996/201310/26132100-b23e560023b44f10980eea2ba3c3db53.png"></p>
+<h2 id="轮廓线图的绘制">IX.XIII. 轮廓线图的绘制</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">%% ==========轮廓线图的绘制==========</span><br><span class="line">%clabel-利用轮廓矩阵生成标签并在当前图形中显示</span><br><span class="line">%contour-利用矩阵所给的值生成二维轮廓线</span><br><span class="line">%contour3-利用矩阵所给的值生成三维轮廓线</span><br><span class="line">%contourf-显示二维轮廓图并用色彩填充个轮廓线的间隙</span><br><span class="line">%contourc-计算被其他轮廓函数占用的轮廓矩阵的低层函数</span><br><span class="line">[x,y,z]=peaks;</span><br><span class="line">n=15;% 等高线分级数</span><br><span class="line">figure;</span><br><span class="line">subplot(1,3,1);</span><br><span class="line">h=contour(x,y,z,n);%绘制20条等高线</span><br><span class="line">clabel(h);%当前图形中显示标签,标签前有&#x27;+&#x27;号且标签会根据轮廓线旋转，每条轮廓线仅有一个标签</span><br><span class="line">title(&#x27;simple contour,n=20&#x27;);</span><br><span class="line">subplot(1,3,2);</span><br><span class="line">z=peaks;</span><br><span class="line">[c,h]=contour(z,n);%绘制15条等高线</span><br><span class="line">clabel(c,h);%标签前无&#x27;+&#x27;号,每天轮廓线可能有多个标签</span><br><span class="line">title(&#x27;调用clabel函数标注轮廓图&#x27;)</span><br><span class="line">subplot(1,3,3);</span><br><span class="line">z=peaks;</span><br><span class="line">[c,h]=contourf(z,n);</span><br><span class="line">clabel(c,h,&#x27;FontSize&#x27;,15,&#x27;Color&#x27;,&#x27;r&#x27;,&#x27;Rotation&#x27;,0);%自定义标签</span><br><span class="line">colorbar;</span><br><span class="line">title(&#x27;使用自定义标注并彩色填充轮廓线的间隙&#x27;);</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/blog/573996/201310/26132140-c0a6586a75004d8a9e1e111254bdc974.png"></p>
+<h2 id="voronoi图和三角剖分">IX.XIV. Voronoi图和三角剖分</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">%% ========= Voronoi图和三角剖分========</span><br><span class="line">%用Voronoi多边形勾画每个点的最近邻范围。Voronoi多边形在计算几何、模式识别中有重要应用。三角形顶点所在多边形的三条公共边是剖分三角形边的垂直平分线。</span><br><span class="line">n=30;</span><br><span class="line">A=rand(n,1)-0.5;</span><br><span class="line">B=rand(n,1)-0.5; % 产生 30 个随机点</span><br><span class="line">T=delaunay(A,B); % 求相邻三点组</span><br><span class="line">T=[T T(:,1)]; %为使三点剖分三角形封闭而采取的措施</span><br><span class="line">voronoi(A,B) % 画 Voronoi 图</span><br><span class="line">hold on;axis square</span><br><span class="line">fill(A(T(10,:)),B(T(10,:)),&#x27;y&#x27;); % 画一个剖分三角形</span><br><span class="line">voronoi(A,B) % 重画 Voronoi 图，避免线被覆盖</span><br><span class="line">title(&#x27;Voronoi图和三角剖分&#x27;);</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/blog/573996/201310/26132148-31721e5822454dacbd916a2dd515e84e.png"></p>
+<h2 id="三角网线和三角曲面图">IX.XV. 三角网线和三角曲面图</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">%% =========三角网线和三角曲面图========</span><br><span class="line">figure;</span><br><span class="line">X=6*pi*(rand(20,10)-0.5);Y=6*pi*(rand(20,10)-0.5);</span><br><span class="line">R=sqrt(X.^2+Y.^2)+eps;Z=sin(R)./R;</span><br><span class="line">tri=delaunay(X,Y); % 进行三角剖分</span><br><span class="line">subplot(1,2,1),trimesh(tri,X,Y,Z);</span><br><span class="line">title(&#x27;三角网线&#x27;);</span><br><span class="line">subplot(1,2,2),trisurf(tri,X,Y,Z);</span><br><span class="line">title(&#x27;三角曲面图&#x27;);</span><br><span class="line">colormap(copper);brighten(0.5) % 增强亮度</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/blog/573996/201310/26132158-54d61b0361144b93b2487d3ee211edea.png"></p>
+<h2 id="彩带图ribbon">IX.XVI. 彩带图ribbon</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">%% ============彩带图ribbon========</span><br><span class="line">%ribbon(X,Y,WIDTH)和plot(X,Y)一样的,只不过每一列在三维中以分开的ribbon绘制</span><br><span class="line">figure;</span><br><span class="line">x=0:pi/100:2*pi;</span><br><span class="line">x=repmat(x&#x27;,1,10);</span><br><span class="line">y=sin(x);</span><br><span class="line">ribbon(x,y,0.4);% 画彩带图</span><br><span class="line">% 至此彩带图已经生成。以下指令都是为了使图形效果更好、标识更清楚而用。</span><br><span class="line">view([150,50]),shading interp,colormap(hot)% 设置视角、明暗、色图</span><br><span class="line">light,lighting phong,box on % 设置光源、照射模式、坐标框</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/blog/573996/201310/26132206-b963f24878f04023810a9abe93d53f84.png"></p>
+<h2 id="在特殊坐标系中绘制特殊图形">IX.XVII. 在特殊坐标系中绘制特殊图形</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">%% ==========在特殊坐标系中绘制特殊图形。=======</span><br><span class="line">%利用polar函数在极坐标系中绘制图形</span><br><span class="line">figure;</span><br><span class="line">theta=0:.1:pi;</span><br><span class="line">rho1=sin(theta);</span><br><span class="line">rho2=cos(theta);</span><br><span class="line">subplot(1,3,1);</span><br><span class="line">polar(theta,rho1,&#x27;.-r&#x27;);</span><br><span class="line">hold on;</span><br><span class="line">polar(theta,rho2,&#x27;--g&#x27;);</span><br><span class="line">title(&#x27;极坐标系中绘图&#x27;);</span><br><span class="line">%另外一种和极坐标有关系的坐标系就是柱坐标系了</span><br><span class="line">theta=0:pi/100:3*pi;</span><br><span class="line">rho=sin(theta)+cos(theta);</span><br><span class="line">[t,r]=meshgrid(theta,rho);</span><br><span class="line">z=r.*t;</span><br><span class="line">subplot(1,3,2);</span><br><span class="line">[x,y,z]=pol2cart(t,r,z);%极坐标系向柱坐标系转化</span><br><span class="line">mesh(x,y,z);%柱坐标系中进行绘图</span><br><span class="line">title(&#x27;柱坐标系中绘图&#x27;);</span><br><span class="line">view([-65 30]);</span><br><span class="line">%将球坐标系转换为柱面坐标系</span><br><span class="line">subplot(1,3,3);</span><br><span class="line">delta=pi/100;</span><br><span class="line">theta=0:delta:pi; % theta is zenith angle</span><br><span class="line">phi=0:delta:pi; % phi is azimuth angle</span><br><span class="line">[t p]=meshgrid(theta,phi);</span><br><span class="line">r=ones(size(t));</span><br><span class="line">[x,y,z]=sph2cart(t,p,r);%球坐标向柱坐标转化</span><br><span class="line">mesh(x,y,z);%球坐标系中进行绘图</span><br><span class="line">title(&#x27;球坐标系中绘图&#x27;);</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/blog/573996/201310/26132216-1123722b3a3f4a0f85a91357df844f5a.png"></p>
+<h2 id="四维表现">IX.XVIII. 四维表现</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">%% ======四维表现========</span><br><span class="line">%用色彩表现函数的特征</span><br><span class="line">%当三维网线图、曲面图的第四个输入宗量取一些特殊矩阵时，色彩就能表现或加强函数的某特征，如梯度、曲率、方向导数等。</span><br><span class="line">x=3*pi*(-1:1/15:1);y=x;[X,Y]=meshgrid(x,y);</span><br><span class="line">R=sqrt(X.^2+Y.^2)+eps;Z=sin(R)./R;</span><br><span class="line">[dzdx,dzdy]=gradient(Z);dzdr=sqrt(dzdx.^2+dzdy.^2); % 计算对 r 的全导数</span><br><span class="line">dz2=del2(Z); % 计算曲率</span><br><span class="line">figure;</span><br><span class="line">subplot(1,2,1),surf(X,Y,Z),title(&#x27;No. 1 surf(X,Y,Z)&#x27;);</span><br><span class="line">shading faceted,colorbar( &#x27;horiz&#x27;) ,brighten(0.2);</span><br><span class="line">subplot(1,2,2),surf(X,Y,Z,R),title(&#x27;No. 2 surf(X,Y,Z,R)&#x27;);</span><br><span class="line">shading faceted;colorbar( &#x27;horiz&#x27;);</span><br><span class="line">%色彩分别表现函数的高度和半径特征</span><br><span class="line">figure;</span><br><span class="line">subplot(1,2,1),surf(X,Y,Z,dzdx) ;</span><br><span class="line">shading faceted;brighten(0.1);colorbar( &#x27;horiz&#x27;);</span><br><span class="line">title(&#x27;No. 3 surf(X,Y,Z,dzdx)&#x27;);</span><br><span class="line">subplot(1,2,2),surf(X,Y,Z,dzdy);</span><br><span class="line">shading faceted;colorbar( &#x27;horiz&#x27;);</span><br><span class="line">title(&#x27;No. 4 surf(X,Y,Z,dzdy)&#x27;);</span><br><span class="line">%色彩分别表现函数的 x 方向和 y 方向导数特征</span><br><span class="line">figure;</span><br><span class="line">subplot(1,2,1),surf(X,Y,Z,abs(dzdr)) ;</span><br><span class="line">shading faceted;brighten(0.6);colorbar( &#x27;horiz&#x27;);</span><br><span class="line">title(&#x27;No. 5 surf(X,Y,Z,abs(dzdr))&#x27;);</span><br><span class="line">subplot(1,2,2),surf(X,Y,Z,abs(dz2));</span><br><span class="line">shading faceted;colorbar( &#x27;horiz&#x27;);</span><br><span class="line">title(&#x27;No. 6 surf(X,Y,Z,abs(dz2))&#x27;);</span><br></pre></td></tr></table></figure>
+<p><img src="http://images.cnitblog.com/blog/573996/201310/26132244-69b6447eef2c48328753961c0520b5f2.png"></p>
+<h2 id="切片图和切片等位线图">IX.XIX. 切片图和切片等位线图</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">%% ======切片图和切片等位线图=======</span><br><span class="line">%利用 slice 和 contourslice 表现 MATLAB 提供的无限大水体中水下射流速度数据 flow 。 flow 是一组定义在三维空间上的函数数据。</span><br><span class="line">%在本例中，从图中的色标尺可知，深红色表示“正速度”（向图的左方），深蓝表示“负速度”（向图的右方）。</span><br><span class="line">% 以下指令用切面上的色彩表现射流速度</span><br><span class="line">[X,Y,Z,V]=flow; % 取 4 个 的射流数据矩阵， V 是射流速度。</span><br><span class="line">x1=min(min(min(X)));x2=max(max(max(X))); % 取 x 坐标上下限</span><br><span class="line">y1=min(min(min(Y)));y2=max(max(max(Y))); % 取 y 坐标上下限</span><br><span class="line">z1=min(min(min(Z)));z2=max(max(max(Z))); % 取 z 坐标上下限</span><br><span class="line">sx=linspace(x1+1.2,x2,5); % 确定 5 个垂直 x 轴的切面坐标</span><br><span class="line">sy=0; % 在 y=0 处，取垂直 y 轴的切面</span><br><span class="line">sz=0; % 在 z=0 处，取垂直 z 轴的切面</span><br><span class="line">figure;</span><br><span class="line">slice(X,Y,Z,V,sx,sy,sz); % 画切片图</span><br><span class="line">view([-12,30]);shading interp;colormap jet;axis off;colorbar;</span><br><span class="line">% 以下指令用等位线表现射流速度</span><br><span class="line">v1=min(min(min(V)));v2=max(max(max(V))); % 射流速度上下限</span><br><span class="line">cv=linspace(v1,v2,15); % 在射流上下限之间取 15 条等位线</span><br><span class="line">figure;</span><br><span class="line">contourslice(X,Y,Z,V,sx,sy,sz,cv);view([-12,30]);</span><br><span class="line">colormap jet;colorbar;box on;</span><br></pre></td></tr></table></figure>
+<h2 id="动态图形">IX.XX. 动态图形</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">%% =======动态图形=========</span><br><span class="line">%简单二维示例-彗星状轨迹图</span><br><span class="line">figure;</span><br><span class="line">n=10;t=n*pi*(0:0.0005:1);x=sin(t);y=cos(t);</span><br><span class="line">plot(x,y,&#x27;g&#x27;);axis square;hold on</span><br><span class="line">comet(x,y,0.01);hold off</span><br><span class="line">%卫星返回地球的运动轨线示意</span><br><span class="line">figure;</span><br><span class="line">R0=1; % 以地球半径为一个单位</span><br><span class="line">a=12*R0;b=9*R0;T0=2*pi; %T0 是轨道周期</span><br><span class="line">T=5*T0;dt=pi/100;t=[0:dt:T]&#x27;;</span><br><span class="line">f=sqrt(a^2-b^2); % 地球与另一焦点的距离</span><br><span class="line">th=12.5*pi/180; % 卫星轨道与 x-y 平面的倾角</span><br><span class="line">E=exp(-t/20); % 轨道收缩率</span><br><span class="line">x=E.*(a*cos(t)-f);y=E.*(b*cos(th)*sin(t));z=E.*(b*sin(th)*sin(t));</span><br><span class="line">plot3(x,y,z,&#x27;g&#x27;) % 画全程轨线</span><br><span class="line">[X,Y,Z]=sphere(30);X=R0*X;Y=R0*Y;Z=R0*Z; % 获得单位球坐标</span><br><span class="line">grid on,hold on,surf(X,Y,Z),shading interp % 画地球</span><br><span class="line">x1=-18*R0;x2=6*R0;y1=-12*R0;y2=12*R0;z1=-6*R0;z2=6*R0;</span><br><span class="line">axis([x1 x2 y1 y2 z1 z2]) % 确定坐标范围</span><br><span class="line">view([117 37]),comet3(x,y,z,0.02),hold off % 设视角、画运动轨线</span><br><span class="line">%色彩变幻‘在 256 色情况下,才可被正确执行.图片刷新可能会卡,单独执行spinmap可查看到效果</span><br><span class="line">figure;</span><br><span class="line">peaks;</span><br><span class="line">spinmap;</span><br></pre></td></tr></table></figure>
+<h2 id="影片动画">IX.XXI. 影片动画</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">%% =======影片动画 =======</span><br><span class="line">%三维图形的影片动画</span><br><span class="line">figure;</span><br><span class="line">shg,x=3*pi*(-1:0.05:1);y=x;[X,Y]=meshgrid(x,y);</span><br><span class="line">R=sqrt(X.^2+Y.^2)+eps; Z=sin(R)./R;</span><br><span class="line">h=surf(X,Y,Z);colormap(cool);axis off</span><br><span class="line">n=12;mmm=moviein(n); %预设画面矩阵。新版完全可以取消此指令 。</span><br><span class="line">for i=1:n</span><br><span class="line">rotate(h,[0 0 1],25); %是图形绕 z 轴旋转 25 度 / 每次</span><br><span class="line">mmm(:,i)=getframe; %捕获画面。新版改为 mmm(i)=getframe 。</span><br><span class="line">end</span><br><span class="line">movie(mmm,5,10) %以每秒10帧速度，重复播放5次</span><br></pre></td></tr></table></figure>
+<h1 id="matlab数据导出origin画图">X. MATLAB数据导出origin画图</h1>
+<p>数据导出： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">save afile.txt -ascii a</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.cappchem.com/Html/798.html">3D柱形图（3D Bars）的绘制</a>，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/25027577">使用Origin2017带误差棒的三维柱状图</a></p>
+</blockquote>
+<hr>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/miracle_fans/article/details/78073203">matlab-figure图形（ 局部放大&amp;变坐标）</a><a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="Alex LEE 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="Alex LEE 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/MATLAB/" rel="tag"><i class="fa fa-tag"></i> MATLAB</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/cooking/" rel="prev" title="烹饪技巧">
+                  <i class="fa fa-angle-left"></i> 烹饪技巧
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/distance/" rel="next" title="机器学习中的相似性度量">
+                  机器学习中的相似性度量 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex LEE</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">317k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:14</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><div class="footer-custom"> Hosted by <a target="_blank" href="https://pages.github.com">GitHub Pages</a>  |  <a target="_blank"  href="https://about.gitlab.com/stages-devops-lifecycle/pages/">Gitlab Pages</a> </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sli1989","repo":"gitalk","client_id":"9fa53d6156d8791703b5","client_secret":"706eeec44bf22fe410e90d364fe8a348ab8bcaed","admin_user":"sli1989","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"3628f920837f6fa9e14e8f12a96d0d19"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title></title>
+	<link rel="stylesheet" href="/static/css/player.css">
+</head>
+
+<div id="QPlayer">
+	<div id="pContent">
+		<div id="player">
+			<span class="cover"></span>
+			<div class="ctrl">
+				<div class="musicTag marquee">
+					<strong>Title</strong>
+					 <span> - </span>
+					<span class="artist">Artist</span>
+				</div>
+				<div class="progress">
+					<div class="timer left">0:00</div>
+					<div class="contr">
+						<div class="rewind icon"></div>
+						<div class="playback icon"></div>
+						<div class="fastforward icon"></div>
+					</div>
+					<div class="right">
+						<div class="liebiao icon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ssBtn">
+				<div class="adf"></div>
+		</div>
+	</div>
+	<ol id="playlist"></ol>
+</div>
+<script src="//cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  var playlist = [];
+  
+  playlist.push({title:'午后庭院',artist:'夏天播放',mp3:'https://music.163.com/song/media/outer/url?id=29095562.mp3',cover:'https://p1.music.126.net/5uQHiJSmUMo74VAR4KJCTA==/6670737045946097.jpg'})
+  
+  playlist.push({title:'远走高飞',artist:'金志文',mp3:'https://music.163.com/song/media/outer/url?id=1297742772.mp3',cover:'https://p1.music.126.net/elfqBKIdad0KYCCeKQpDSA==/18700493767108166.jpg'})
+  
+  playlist.push({title:'她',artist:'不可撤销乐队',mp3:'https://music.163.com/song/media/outer/url?id=29747622.mp3',cover:'https://p1.music.126.net/4x2X7W_VGHQeHoMR4a3Wbw==/3227066628477266.jpg'})
+  
+  playlist.push({title:'给你',artist:'陈奕迅',mp3:'https://music.163.com/song/media/outer/url?id=64706.mp3',cover:'https://p1.music.126.net/GK7EB01AIEE9-qHkBi-3vg==/89060441862562.jpg'})
+  
+  playlist.push({title:'千禧',artist:'徐秉龙',mp3:'https://music.163.com/song/media/outer/url?id=522510615.mp3',cover:'https://y.gtimg.cn/music/photo_new/T002R300x300M000004UOSJ5117bcd.jpg'})
+  
+  playlist.push({title:'年度之歌',artist:'谢安琪',mp3:'https://music.163.com/song/media/outer/url?id=308169.mp3',cover:'http://p1.music.126.net/SkSda5laDTH73h_a9ZYEig==/109951164146248533.jpg'})
+  
+  playlist.push({title:'边走边唱',artist:'李荣浩',mp3:'https://music.163.com/song/media/outer/url?id=31134197.mp3',cover:'https://p1.music.126.net/4Pu7M0q88fVVoo1ZFS_nmw==/3408486047237011.jpg'})
+  
+  var isRotate = true;
+  var autoplay = false;
+</script>
+<script src="/static/js/player.js"></script>
+<script>
+  function bgChange(){
+	var lis= $('.lib');
+	for(var i=0; i<lis.length; i+=2)
+	lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+  }
+  window.onload = bgChange;
+</script>
+
+  <script type="text/javascript" src="/js/custom.js"></script>
+</body>
+</html>

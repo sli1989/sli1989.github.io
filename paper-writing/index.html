@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"saili.science","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":true,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="简单的谈一谈一篇合格的文章应具备的条件，倘若要从合格到优秀，还有很长一段路。坚持即是胜利，科研之路漫漫。一篇合格的SCI论文，甚至说一篇优秀的论文总有几点是必不可少的，如合格的排版、一门编程语言、理论与数学化的描述、专业化的术语与合格的分析结果、模型图及结果的绘制和整理、对比试验、无错误的英语表述等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文写作">
+<meta property="og:url" content="http://saili.science/paper-writing/index.html">
+<meta property="og:site_name" content="Alex LEE&#39;s Blog">
+<meta property="og:description" content="简单的谈一谈一篇合格的文章应具备的条件，倘若要从合格到优秀，还有很长一段路。坚持即是胜利，科研之路漫漫。一篇合格的SCI论文，甚至说一篇优秀的论文总有几点是必不可少的，如合格的排版、一门编程语言、理论与数学化的描述、专业化的术语与合格的分析结果、模型图及结果的绘制和整理、对比试验、无错误的英语表述等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fyree8bivdj20sg067q5e.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fyreeoxo2cj20sg06vtcs.jpg">
+<meta property="article:published_time" content="2017-05-10T04:39:04.000Z">
+<meta property="article:modified_time" content="2025-07-21T06:22:10.000Z">
+<meta property="article:author" content="Alex LEE">
+<meta property="article:tag" content="科研经验">
+<meta property="article:tag" content="论文写作">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fyree8bivdj20sg067q5e.jpg">
+
+
+<link rel="canonical" href="http://saili.science/paper-writing/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://saili.science/paper-writing/","path":"paper-writing/","title":"论文写作"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>论文写作 | Alex LEE's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/6.1.3/pangu.umd.js" integrity="sha256-erngBMP3zzoIM6eqQ8dmrReh2vqCRgWmORroIfVoDlE=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://saili.science/paper-writing/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex LEE's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex LEE's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">77</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">25</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E4%BD%9C%E8%80%85"><span class="nav-text">I. 论文作者</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cover-letter"><span class="nav-text">II. Cover letter</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E7%BB%93%E6%9E%84"><span class="nav-text">III. 文章结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#abstract"><span class="nav-text">III.I. Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#key-words"><span class="nav-text">III.II. Key words</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-text">III.III. Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#previous-work"><span class="nav-text">III.IV. Previous Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#our-work"><span class="nav-text">III.V. Our Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#experiments"><span class="nav-text">III.VI. Experiments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusion"><span class="nav-text">III.VII. Conclusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#references"><span class="nav-text">III.VIII. References</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#others"><span class="nav-text">III.IX. Others</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E6%97%B6%E6%80%81"><span class="nav-text">IV. 文章时态</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81abstract"><span class="nav-text">IV.I. 摘要（Abstract）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0introduction"><span class="nav-text">IV.II. 概述（Introduction）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%90%E6%96%99%E4%B8%8E%E6%96%B9%E6%B3%95materials-and-methods"><span class="nav-text">IV.III. 材料与方法（Materials and Methods）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%9Cresults"><span class="nav-text">IV.IV. 结果（Results）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A8%E8%AE%BAdiscussion"><span class="nav-text">IV.V. 讨论（Discussion）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AE%BAconclusion"><span class="nav-text">IV.VI. 结论（Conclusion）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E8%AF%8D%E5%92%8C%E7%9F%AD%E8%AF%AD"><span class="nav-text">V. 单词和短语</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%94%B9%E5%86%99%E6%8A%80%E5%B7%A7"><span class="nav-text">VI. 改写技巧</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%BC%E5%86%99%E6%A3%80%E6%9F%A5"><span class="nav-text">VII. 拼写检查</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%B6%E4%BD%9C%E6%BC%82%E4%BA%AE%E7%9A%84%E6%8F%92%E5%9B%BE"><span class="nav-text">VIII. 制作漂亮的插图</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex LEE"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Alex LEE</p>
+  <div class="site-description" itemprop="description">There is no royal road to learning.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:im.sai.li@outlook.com" title="E-Mail → mailto:im.sai.li@outlook.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/sli1989" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;sli1989" rel="noopener me" target="_blank"><i class="telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitter.im/sli1989" title="Gitter → https:&#x2F;&#x2F;gitter.im&#x2F;sli1989" rel="noopener me" target="_blank"><i class="github-alt fa-fw"></i>Gitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/sli1989/HEXO-NEXT-CUSTOM" title="https:&#x2F;&#x2F;github.com&#x2F;sli1989&#x2F;HEXO-NEXT-CUSTOM" rel="noopener" target="_blank">About the Blog</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://fontawesome.com/icons" title="https:&#x2F;&#x2F;fontawesome.com&#x2F;icons" rel="noopener" target="_blank">Font Awesome Icons</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://getemoji.com/" title="https:&#x2F;&#x2F;getemoji.com&#x2F;" rel="noopener" target="_blank">Copy and Paste Emoji</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://saili.science/paper-writing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Alex LEE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex LEE's Blog">
+      <meta itemprop="description" content="There is no royal road to learning.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="论文写作 | Alex LEE's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          论文写作
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-07-21 14:22:10" itemprop="dateModified" datetime="2025-07-21T14:22:10+08:00">2025-07-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类：</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Research/" itemprop="url" rel="index"><span itemprop="name">Research</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>28 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>简单的谈一谈一篇合格的文章应具备的条件，倘若要从合格到优秀，还有很长一段路。坚持即是胜利，科研之路漫漫。一篇合格的SCI论文，甚至说一篇优秀的论文总有几点是必不可少的，如合格的排版、一门编程语言、理论与数学化的描述、专业化的术语与合格的分析结果、模型图及结果的绘制和整理、对比试验、无错误的英语表述等。</p>
+<span id="more"></span>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.letpub.com.cn/index.php?page=sci_writing">LetPub SCI论文写作辅导材料</a></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.sohu.com/a/254967611_473283">Deepmind 和纽约大学研究科学家一起作了一场关于如何撰写一篇优秀的研究论文的专题会议</a>，从研究人员、审稿人和读者的角度来探讨写作过程，值得研究人员细细品味。</p>
+<ol style="list-style-type: decimal">
+<li>不要等待：要写</li>
+<li>确定你的主要想法</li>
+<li>讲一个故事</li>
+<li>打磨你的贡献点</li>
+<li>相关工作：稍后再写</li>
+<li>把你的读者放在首位</li>
+<li>倾听读者的意见</li>
+</ol>
+<h1 id="论文作者">I. 论文作者</h1>
+<p><strong>第一作者和通信作者的区别</strong></p>
+<p>文章的成果是属于通讯作者的，说明思路是通讯作者的，而不是第一作者。第一作者仅代表是你做的，且是最主要的参与者！通信作者（Corresponding author)通常是实际统筹处理投稿和承担答复审稿意见等工作的主导者，也常是稿件所涉及研究工作的负责人。通信作者的姓名多位列于论文作者名单的最后（使用符号来标识说明是Corresponding author)，但其贡献不亚于论文的第一作者。通讯作者往往指课题的总负责人，负责与编辑部的一切通信联系和接受读者的咨询等。</p>
+<p>通信作者标注名称：Corresponding author，To whom correspondence should be addressed,或 The person to whom inquiries regarding the paper should be addressed<br>
+若两个以上的作者在地位上是相同的，可以采取“共同第一作者”（joint first author)的署名方式，并说明These authors contributed equally to the work。</p>
+<p><strong>作者地址的标署</strong></p>
+<p>尽可能地给出详细通讯地址，邮政编码。有二位或多位作者，则每一不同的地址应按之中出现的先后顺序列出，并以相应上标符号的形式列出与相应作者的关系。如果第一作者不是通讯作者，作者应该按期刊的相关规定表达，并提前告诉编辑。期刊大部分以星号（*）、脚注或者致谢形式标注通讯联系人。</p>
+<div id="cover-letter">
+
+</div>
+<h1 id="cover-letter">II. Cover letter</h1>
+<p>投稿信应该简明扼要，着重描述你研究的重要性和新颖性，以及它们适合目标期刊的范围。</p>
+<p>在撰写投稿信之前要在目标期刊的作者指南里确认对投稿信的要求，比如特定的陈述内容。无论你要增加其他什么内容，一定要确保你的投稿信中包含目标期刊作者指南中要求的所有内容。</p>
+<p>除了目标期刊要求的所有内容之外，<a target="_blank" rel="noopener" href="http://blog.sciencenet.cn/home.php?mod=space&amp;uid=3297845&amp;do=blog&amp;id=1173614">每封投稿信都应该包含以下几个方面</a>：</p>
+<ul>
+<li>介绍稿件标题和所投期刊。</li>
+<li>投稿文章的类型（Letter, communications, article, review还是comments）</li>
+<li>阐明你所研究课题的重要性，以及与该期刊领域的相关性。</li>
+<li>列出研究问题。</li>
+<li>说明主要实验结果和总体发现。</li>
+<li>提出研究中可以得出的最重要的结论。</li>
+<li>MANDATORY AUTHOR DECLARATION</li>
+<li>声明文稿没有发表，也没有考虑在其他期刊上发表，</li>
+<li>声明所有作者同意发表该文稿，且同意投往本期刊。</li>
+<li>增加任何有利于说服编辑将你的文稿送审的详细内容。</li>
+<li>如果合适的话，你还可以加上一两句话，把你的发现与期刊读者的兴趣联系起来。要考虑到“我的文稿能为期刊带来什么好处?”实事求是地向阅读该期刊的研究人员阐明你所研究课题的新颖性，相关性和趣味性。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Dear Editor,</span><br><span class="line"></span><br><span class="line">We would like to submit the enclosed manuscript entitled &quot;GDNF Acutely Modulates Neuronal Excitability and A-type Potassium Channels in Midbrain Dopaminergic Neurons&quot;, which we wish to be considered for publication in Nature Neuroscience.</span><br><span class="line"></span><br><span class="line">GDNF has long been thought to be a potent neurotrophic factor for the survival of midbrain dopaminergic neurons, which are degenerated in Parkinson’s disease. In this paper, we report an unexpected, acute effect of GDNF on A-type potassium channels, leading to a potentiation of neuronal excitability, in the dopaminergic neurons in culture as well as in adult brain slices. Further, we show that GDNF regulates the K+ channels through a mechanism that involves activation of MAP kinase. Thus, this study has revealed, for the first time, an acute modulation of ion channels by GDNF. Our findings challenge the classic view of GDNF as a long-term survival factor for midbrain dopaminergic neurons, and suggest that the normal function of GDNF is to regulate neuronal excitability, and consequently dopamine release. These results may also have implications in the treatment of Parkinson’s disease.</span><br><span class="line"></span><br><span class="line">I testify on behalf of all co-authors that our article submitted to Solid State Ionics – Diffusion and Reactions:</span><br><span class="line"></span><br><span class="line">1) this material has not been published in whole or in part elsewhere;</span><br><span class="line">2) the manuscript is not currently being considered for publication in another journal;</span><br><span class="line">3) all authors have been personally and actively involved in substantive work leading to the manuscript, and will hold themselves jointly and individually responsible for its content.</span><br><span class="line"></span><br><span class="line">Sincerely yours,</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<div id="paper-structure">
+
+</div>
+<h1 id="文章结构">III. 文章结构</h1>
+<p>写作即交流。因此，读者体验是首等重要的，所有的写作服务于这一目标。当你写作时，心中要时时有读者。以下四条规则是关于如何赢取读者<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>。</p>
+<ul>
+<li>规则 1：论文有一个中心主旨，并体现在标题中</li>
+<li>规则 2：假设写作对象对论文内容一无所知</li>
+<li>规则 3：坚持原因、内容和结论（Context-Content-Conclusion／C-C-C）结构</li>
+<li>规则 4：避免委婉，使用并行优化的逻辑流</li>
+<li>规则 5：在摘要中总结所有要点</li>
+<li>规则 6：在介绍中讨论这篇论文的重要性</li>
+<li>规则 7：用多个逻辑相关的陈述句（可辅以图表）给出支持论文中心思想的结果</li>
+<li>规则 8：讨论如何填补差距、论文的局限性和论文与该领域的相关性</li>
+<li>规则 9：把时间花费到关键的地方：题目、摘要、图和大纲</li>
+<li>规则 10：获取反馈，然后简化、重新使用、再次构造这个故事</li>
+</ul>
+<p>整体性是指问题提出、解决方法、结果验证之间的强逻辑性，即，<strong>立意要明确有效，证据要丝丝入扣，讨论要引人入胜，结论要坚实确定</strong>。</p>
+<ul>
+<li><p>审稿人最感兴趣的是领域内的共性问题。如果没有瞄准共性问题，这个立意就有不明确之嫌。明确的立意之后就是立意的有效，也就是你想要解决的这个问题是不是还是问题，如果已经被别人解决了，那么就是无效的立意。</p></li>
+<li><p>证据绝对是要进行认真排列组合和取舍的，排列的原则就是讨论的逻辑性需要，就像西餐里上菜的顺序。有的作者分不清重要证据和次要证据，二者同等对待的结果就是该说的问题没说清楚，一目了然的问题却在咄咄不休。</p></li>
+<li><p>如果说立意是文章的骨架，证据是文章的肌肉，那么讨论就是文章的神经，讨论部分要让肌肉协调起来，拥立一个骨架。过去有些知名的老期刊要求结果和讨论分开写，这其实是一个很高的要求，讨论可以体现作者的思考深度。</p></li>
+<li><p>当你做好以上三部分，结论自然就非常坚实。结论很容易被忽视，很容易被当做摘要的复述，这是有问题的。好的结论是作者通过这个研究对某种规律、方法有了更深的认识，或者澄清了一个迷惑的问题，如果能有一些预测则更好，但这个预测要客观而谨慎。</p></li>
+</ul>
+<h2 id="abstract">III.I. Abstract</h2>
+<p>学术论文常犯问题之一：<strong>摘要与结论几乎重合</strong>。</p>
+<p>大家牢记“起承转合”的四步心法，就能轻松驾驭Abstract的逻辑框架结构。对自己工作及其贡献的总结，a）阐述问题；b）说明自己的解决方案和结果。常用一般现在时和一般过去时。具体来说，一般现在时用于研究背景、目的、结果、结论时，在讨论前景和意义时，也可以用到情态动词can, could, may, would等等。一般过去时用于作者过去的工作、成果的发现和研究过程。</p>
+<ul>
+<li>起：①研究背景、意义、现状
+<ul>
+<li>contribute to, major cause, essential, profound impact, play central/important roles in</li>
+<li>XX have been intensively studied for their role in</li>
+<li>XX has attracted enormous interest in YY owing to its ZZ actions</li>
+</ul></li>
+<li>承：②引出研究对象（为什么做这个研究）
+<ul>
+<li>XX is a highly attractive candidate for developing YY.</li>
+<li>XX has been reported to YY.</li>
+<li>but less is known about their potential role in YY.</li>
+</ul></li>
+<li>转：③研究目的或者研究待解决，④研究方法和结果（最重要结果，而不是所有的结果，与结论部分可能重复，作者需要采用不同的句子去描述，而不能够直接拷贝。）
+<ul>
+<li>The aim of present study was to investigate/Toward this aim, we have examined the role of</li>
+<li>Better understanding the mechanisms for XX will benefit YY.</li>
+<li>However, the mechanism through which XX remains virtually/largely controversial/ unknown/unclear/elusive/much less explored/surprisingly limited/less understood, unsolved/scarcely understood</li>
+<li>On the other hand, moreover, in addition, furthermore, finally</li>
+<li>In this/current study,</li>
+<li>We found/demonstrated/observed that</li>
+<li>Therefore, our study used XX技术/方法/策略</li>
+<li>XX技术/方法/策略 was used to detect/identify</li>
+<li>The effects/ roles of XX were determined/analyzed/examined by YY</li>
+</ul></li>
+<li>合：⑤研究结论（重点讨论了一个什么现象）
+<ul>
+<li>Taken together, the findings/results of this study/our data indicate /show /suggest /demonstrate that…..,potentially representing a novel marker/therapeutic target/ XXX may yield therapeutic benefits in the treatment of XX/ have potential as a target for/ providing new insight into developing YY</li>
+</ul></li>
+</ul>
+<div class="note warning">Abstract在撰写中的“五不要”：①不要使用主观情感的词汇，如optimistic，nice, kind; 不要在Abstract中含有作者主观的解释、评论，总之一切要客观如实。②不要使用缩写，代称，在摘要中第一次出现的专业词汇要使用规范化的名称术语的全称表达。③不要在摘要中引用他人文献，如果是背景介绍需要引文，可以在introduction部分体现。④不要把细节问题写得过多，比如数学公式、图表、研究过程、例证，这些内容只需要在正文中来论述，不需要体现在abstract中。⑤不要机械重复文章题目中已经说明的信息或者简单地对题目进行注解，应该在摘要中补充题目中没有提到的必要信息。</div>
+<h2 id="key-words">III.II. Key words</h2>
+<p>学术论文常犯问题之一：<strong>关键词过于随意</strong>。最常见的问题是：关键词不是实词、关键词由很多单词组成、关键词中包含不少缩写、关键词在前言中没有出现过。</p>
+<h2 id="introduction">III.III. Introduction</h2>
+<p>通常情况下，引言可以占到论文的四分之一到三分之一比重。在引言中，作者需要告诉论文评审人、读者这篇论文的意义，让人们看完引言，就能够对作者为什么开展这个研究有大致的了解。使审稿人相信：这个研究工作很重要，值得发表。</p>
+<p>文章的“引言”普遍包含以下几个重要环节<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>。</p>
+<ul>
+<li>环节1：对所研究的大领域进行陈述，这样的陈述提供了一个背景，使读者对研究的问题及其重要性有一个大致了解。</li>
+<li>环节2：前人对相同问题在不同方面做过的研究，要对这些已有研究做更加具体的陈述，从而建立一个包含已有知识和信息的基础。</li>
+<li>环节3：指出需要更多的研究来弥补空白，或者拓展已有的研究。</li>
+<li>环节4：非常具体的陈述指出本文的研究目的，主要的研究工作或结果。</li>
+<li>环节5：对于开展本研究的作用和重要性的陈述（这点不是所有的文章引言都有）。</li>
+<li>环节6：对文章接下来内容的概述，这在某些研究领域是必需的。</li>
+</ul>
+<p>在写作之前，先问问自己如果这篇文章写好以后给整个领域（community）的贡献是什么，这实际上是整个文章的灵魂，也就是你解决某个问题（problem）的方案（idea）。想清楚以后把它（们）按照重要性顺序写下来，这些就是你在Introduction里面告诉读者包括审稿人的contributions。贡献可能是新算法，新架构，新实现或者是前人没有的insights。你在写contributions的时候面向的读者很有可能是自己，所以可能忽略了problem背景和定义，这些就可以慢慢在Introduction里面填充。这样Introduction就写好了，比如说：某某问题是实际中存在的一个问题，这个问题重要性是blah，blah，blah。之前发表的论文针对这个问题提出了三个有代表性的解决方案（此处引用可能至少三篇论文）。第一个解决方案甲大概做了一二三，但是没做四；第二个解决方案乙做了一四，但是没做二三；第三个解决方案丙做了一二三四，但是性能比较差。在这篇文章中，我们提出一个性能比较好并且同时做一二三四的解决方案。接下来写我们这个解决方案是如何实现同时支持一二三四的情况下提升性能的。比如说用了新算法，新架构或者新的实现，都可以。讲完基本技术创新点以后就是contributions，把之前想好的贴上去就可以了。最后在Intro里面加上后续内容组织，比如说第二章是相关工作，第三章是综述<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>。</p>
+<p>首先，我们要告诉他们这是怎样的一个领域，主要研究的对象是什么，研究方法是什么，近些年取得了怎样的发展；简称为：<strong>做什么+怎么做+新鲜事</strong>。</p>
+<p>其次，我们要告诉他们这样一个领域它的研究目的是什么；简称为：<strong>什么用</strong>。</p>
+<p>再次，我们要告诉他们，我的研究在这样一个研究背景下着重那一部分，以及我选择这样一个研究重点有什么意义/原因，而研究的意义多跟研究现状的不足相关；简称为：<strong>着重点+为什么</strong>。</p>
+<p>最后，我们要告诉他们，接下来我会跟大家以什么样的顺序讲哪些内容。让读者有一个鲜明的预期；简称为：<strong>列目录</strong>。</p>
+<p>因此，引言叙说要客观有逻辑（所谓客观，就是要引用现有研究成果来组织叙说，最好每句话都有出处，有已经得到验证的学术理论支持，而不是自己在那里主观叙说），<a target="_blank" rel="noopener" href="http://blog.sciencenet.cn/home.php?mod=space&amp;uid=3316383&amp;do=blog&amp;id=1252506">倒三角叙说</a>从大的主题范围(general background and broad topic）逐步缩小到你的主题（specific background and topic）, 相关研究回顾和目前的知识差距（related works and their contributions to the literature, knowledge gap），最终引出自己要研究的问题(research question(s))或假设(hypothesis or hypotheses)以及本文将如何展示这个研究结果。</p>
+<p>学术论文常犯问题之一：<strong>前言引文不科学</strong>。引言常出现的问题主要包括：1）引言过短。2）重要文献缺失。3）文献引用只是简单的罗列，而引文之间没有太多逻辑。4）引言中同一位置引用文献过多。</p>
+<blockquote>
+<p>a）题X是重要的；b）前人的工作A、B曾经研究过这个问题；c）A、B有一些缺，A法只能求解特殊X问题，B法原则上适用于所有各种缺陷分布，但是求解中遇到问题；d）我们提出了方法D；D，克服问题，e）D的基本特征，和A、B进行比较；f）实验证明D比A、B优越；数值实验证明D达到A的精度，同时可以求解A不能处理的X问题。由于克服问题，D的精度也大大提高。g）文章的基本结构，大纲。</p>
+</blockquote>
+<p>区分引言与结论最简单的方法是把引言看作是你研究之前的知识状态，而结论是研究之后的知识状态。</p>
+<h2 id="previous-work">III.IV. Previous Work</h2>
+<p>说明自己与前人的不同。a）将历史上前人的工作分成类别；b）对每项重要的历史工作进行简短的回顾(一到几句)，注意要回顾正确，抓住要点，避免歧义；c）和自己提出的工作进行比较；d）不要忽略前人的重要工作，要公正评价前人的工作，不要过于苛刻；e）强调自己的工作和前人工作的不同，最好举出各自适用例子。</p>
+<p>从最Related的论文开始写起，比如说以上提到的三篇。这里需要着重讲的是，Related Work不是记流水账（e.g.，甲用了idea A，乙用了idea B，丙用了idea C），而是要比较这些论文，阐述她们各自的优缺点。</p>
+<h2 id="our-work">III.V. Our Work</h2>
+<p>描述自己的工作，可分成多个部分。</p>
+<p>a）从读者角度阐明定义和表示法； b）提供算法的伪码，图解和相应解释； c）用设问的方式回答读者可能提出的潜在问题； d）复杂的冗长的证明和细节可以放在附录中，这里关键是把问题阐述清楚； e）特例和例外应该在脚注中给予说明。</p>
+<h2 id="experiments">III.VI. Experiments</h2>
+<p>验证提出的方法和思路<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>。</p>
+<ul>
+<li>合理地设计实验（简洁的实验和详尽的实验步骤）；</li>
+<li>必要的比较，突出科学性；</li>
+<li>讨论，说明结果的意义。您必须对所展示的数据提供一个很好的解释说明。在行文讨论的时候，请尽量避免写过长的句子。如果你觉得讨论部分很难写，建议你按如下四点展开反复论述：
+<ul>
+<li>重申你的重要研究发现；</li>
+<li>解释这个发现结果；</li>
+<li>这个研究内容的局限性；</li>
+<li>这个研究内容的意义；</li>
+</ul></li>
+<li>给出结论。您的结论应该建立在数据的基础上。<strong>确保您的结论与您所展示的数据直接相关</strong>，而不是建立在未被阐明的（或未被证明的）假设上。</li>
+</ul>
+<p>在一篇论文中，实验描述的比重虽然不是很大，但是还是需要尽可能地表达清晰，目的是告诉读者，你所使用的试验方法、技术手段而获得的结果是可靠的。确保您彻底地回答这一问题。如果内容过多，将重点放在最相关／重要的方法上，额外的实验细节可以通过补充材料（仅限于线上）章节或参考资料来介绍。</p>
+<p>一方面，读者看到这篇论文的时候，如果他们想重复做一次，他们能够按照步骤重复出来。另一方面，实验条件变化一点，结论就可能完全不一样。</p>
+<p>学术论文常犯问题之一：<strong>结果部分逻辑比较混乱</strong>。具体常见的问题包括：1）研究结果只是简单的罗列，而没能把里面的关系弄清楚。2）到底先写那一部分，作者没有计划。3）实验部分说做了某某研究，但是，在研究结果中就完全没有看到这些结果。还有的情况是在结果部分写了某一些结果，但是就是不知道这些结果从哪里冒出来的，在研究方法中没有提及。</p>
+<p>论文图表常出现的问题如下：1）图片中字特别小，要用放大镜才能够看清晰。2）多个图片放在一起。3）实验曲线，不增加误差棒。4）图片比例值不统一。</p>
+<h2 id="conclusion">III.VII. Conclusion</h2>
+<p>总结、前景及结文。a）快速简短的总结；b）未来工作的展望；c）结束全文。</p>
+<p>正常情况下，一篇学术论文只需要围绕一个核心问题即可。也因此，论文的结论写上3-4条就很多了。</p>
+<p>对于论文的结论部分，不再需要把为什么做这个研究、怎么做这个研究说一遍了。正常情况下，应该<strong>直接明白</strong>地概述所发现的现象、结果（1）、（2）、（3）。在阅读完您的文章后，读者应该明确的知道他们为什么应该在意您的研究，让人一看就知道论文发现了哪些现象、提出了哪些观点。不要让他们思考为什么您的研究有相关性。</p>
+<ul>
+<li>哪些是你通过研究获得的成果？这些内容为什么重要？</li>
+<li>你的论文是否证实或否定了其他已发表的成果？</li>
+<li>你的研究提出了什么问题，是否还有进一步研究的潜力？</li>
+</ul>
+<p>如果写到这里你还有充足页面可用，你可以试图写一个discussion章节来讨论你的方案的缺点，以及未来有可能的改进情况。不要怕展示缺点，你越诚恳审稿人对你印象越好。如果你是故意遗漏新方法的一个很显然的缺点，这会给审稿人非常不好的印象。你也可以提一些你的方案的其他应用等等。</p>
+<h2 id="references">III.VIII. References</h2>
+<p>对相关重要背景文献的全面引用。a）选择引文（众所周知的结论不必引用，其他人的工作要引用）； b）与前文保持一致。</p>
+<h2 id="others">III.IX. Others</h2>
+<p>致谢、附录、脚注。</p>
+<p>以上就是关于一篇合格论文所需要素的内容，可以看出，仅仅要完成一篇合格的论文就需要这些套路，并不容易。</p>
+<div id="paper-tense">
+
+</div>
+<h1 id="文章时态">IV. 文章时态</h1>
+<p>英语谓语动词时态共有16种，在英文科技论文中用得较为频繁的主要有三种：即一般现在时、一般过去时和将来时。正确地使用动词时态是科研写作的基本功，我们在撰写英文论文时，如不能正确选用时态，常常会改变文章所要表达的意思，从而影响评审专家与读者的理解。</p>
+<p>一篇典型的科技论文有一个<a href="#paper-structure">基本的框架结构</a>：Abstract (综述科研背景，提出研究的问题和假设(hypothesis))，Materials and Methods (描述自己的研究方法)，Results (分析所得的研究结果)，Discussion (深入讨论研究结果的意义并简要指出将来的研究方向)。我们现根据这个论文框架，就一些规律性问题做些探讨，希望对大家有所帮助<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>。</p>
+<p>首先应该把握以下三个基本要点：</p>
+<ul>
+<li>一般现在时：主要用于不受时间限制的客观存在事实的描述，或发生或存在于写论文之时的感觉、状态、关系等的描述或致谢的表述等。值得注意的是，出于尊重，凡是他人已经发表的研究成果作为&quot;previously established knowledge&quot;，在引述时普遍都用一般现在时。</li>
+<li>一般过去时：用于写论文中作者自己所做工作的描述。例如描述自己的材料、方法和结果。</li>
+<li>一般将来时：用于撰写论文之后发生的动作或存在的状态。例如提出下一步的研究方向。</li>
+</ul>
+<h2 id="摘要abstract">IV.I. 摘要（Abstract）</h2>
+<p>在摘要部分，会总结所做的实验，展示结果和总体结论。在大多数生命科学论文中，这些信息都是用<strong>过去时</strong>来表示的。在物理科学论文中，有时会使用现在时。如果提及到计划中的后续实验，您也可以使用将来时。</p>
+<h2 id="概述introduction">IV.II. 概述（Introduction）</h2>
+<p>引言这个部分，主要展示前人研究的事实和信息，使用现在时的情况最多。然而，有时过去时才是合适的。</p>
+<ul>
+<li><p>概述中的研究背景通常会引用相关学科中广为接受的原理或事实，以及你所做研究的重要性，这些通常采用<strong>现在时</strong>。例如：Genomics provides crucial information for rational drug design.</p></li>
+<li><p>在概述中也可能引用与你从事项目相关的一些研究结果，为表达你对该研究结果仍坚信其正确性及相关性，即使已经是很久以前的研究结果，可使用<strong>现在时</strong>。</p>
+<ul>
+<li>Many of the lakes and wetlands in the region are located in craters or valleys blocked by early Pliocene lava flows (Ollier &amp; Joyce, 1964).</li>
+<li>Garcia (1993) suggested that under certain conditions, an individual’s deposit income is the same as the income from purchased national debt, thus changes in the amount of bank loans and deposits caused by changes in the amount of reserves will eventually affect the bond price.</li>
+</ul></li>
+<li><p>你可能会说某些作者说的某事是真实的。比如，“X et al. showed (过去时) that DNase I cleaves (现在时) DNA.”在这种情况中，过去时是用来表明研究是在现在之前进行的。而现在时用来表明他们所发现的事物，现在是并且将一直是正确的。</p></li>
+<li>如果引用的是<strong>一些已经过时或失效的科研结果，动词要使用过去时</strong>。</li>
+<li><p>Nineteenth-century physicians held that women got migraines because they were &quot;the weaker sex,&quot; but current research shows that the causes of migraine are unrelated to gender.（注意这里从过去时态过渡到现在时态）</p></li>
+</ul>
+<h2 id="材料与方法materials-and-methods">IV.III. 材料与方法（Materials and Methods）</h2>
+<p>对写论文之前自己所做工作的描述，通常采用<strong>一般过去时</strong>，因为这个实验是在手稿准备前做的（希望如此！）。在某些领域，比如工程学，也可能使用现在时。</p>
+<ul>
+<li>（例1） Total phosphorous (TP) and total nitrogen (TN) were measured in the laboratory using standard procedures.</li>
+<li>（例2）The standard protocol was followed for the preparation of the media from stock solutions.</li>
+</ul>
+<h2 id="结果results">IV.IV. 结果（Results）</h2>
+<ol style="list-style-type: decimal">
+<li><p>结果部分描述了研究中的发现，通常情况下，发现是在过去完成的。对自己得出的研究结果，采用<strong>过去时</strong>进行详细的阐述。</p>
+<ul>
+<li>（例1）Overall, more than 70% of the insects collected were non-phytophagous.</li>
+<li>（例2） Following activation of NT oocytes with strontium, the cell cycle resumed in both groups.</li>
+</ul></li>
+<li><p>当提及图表时，必须使用<strong>现在时</strong>，因为现在图片表格在文中是可见的，读者是可以看到的。。</p>
+<ul>
+<li>（例1） Figure 1 displays the comparative variation in the morphology of donor chromatin in both age groups of oocytes.<br>
+</li>
+<li>（例2） Table 1 below shows the stream flows calculated for each stream using Equation 1.</li>
+</ul></li>
+</ol>
+<h2 id="讨论discussion">IV.V. 讨论（Discussion）</h2>
+<ol style="list-style-type: decimal">
+<li><p>在呈现研究界普遍接受的众所周知的事实或信息时，采用<strong>现在时</strong>表达。</p>
+<ul>
+<li>Removal of vegetation for agricultural purposes appears to negatively affect the water quality of streams.</li>
+</ul></li>
+<li><p>在讨论部分，分析现有结果，并与以往研究做比较。这部分大部分应该用<strong>过去时</strong>来写，并采用<strong>现在时</strong>对研究结果进行讨论与解释。</p>
+<ul>
+<li>（例1）Weight increased as the nutritional value of feed increased. These results suggest that feeds higher in nutritional value contribute to greater weight gain in livestock.（注意这里用过去时描述了实验发现，但在讨论这个发现的意义时用的是现在时。）<br>
+</li>
+<li>（例2）Leaf carbon and phenolic content did not differ across sites, indicating that the response of secondary plant chemicals such as phenolics to water is complex.（这句的描述几乎没有假设的意思，表示作者坚信其研究结果和结论的正确性及相关性）</li>
+</ul></li>
+<li><p>如果在本节讨论如何改进实验或概括未来的实验时，也可以用到<strong>将来时</strong>。</p></li>
+</ol>
+<h2 id="结论conclusion">IV.VI. 结论（Conclusion）</h2>
+<p>可用多种时态，使用<strong>过去时</strong>强调过去的研究成果，并可采用<strong>现在时或将来时</strong>表达未来的研究方向或研究前景。</p>
+<ul>
+<li>Although the study found evidence of tillage and irrigation within the study area, from the data collected it was not possible to determine if the effects of agriculture upstream cause (or caused) higher levels of total nitrogen downstream. Further studies are therefore necessary to determine the effects of agriculture on the health of Stringybark Creek.</li>
+</ul>
+<div id="paper-words">
+
+</div>
+<h1 id="单词和短语">V. 单词和短语</h1>
+<p>如果英语不是你的母语，那么用英文写作已经够难了，但用英文写科技相关的内容更难。有那么多的词汇听起来都一样，却意指完全不同的事物。亦或是短语，如果不正确使用，可能会使原本合理的工作变得看起来是错误的。但是，别让用词混淆变成习惯！请查看以下<a target="_blank" rel="noopener" href="http://blog.sciencenet.cn/home.php?mod=space&amp;uid=1232242&amp;do=blog&amp;id=1089253">关于科技写作中一些经常遇到的词汇和短语的正确使用列表</a>。</p>
+<h1 id="改写技巧">VI. 改写技巧</h1>
+<p>重新叙述或改写(Paraphrasing)是将别人的话重新用自己的话叙述，而不是直接引用。</p>
+<p>使用以下的方法来精进你的改写技巧：</p>
+<ul>
+<li>更换句子主被动语态时(主被动互换)，你可以改变你改写时使用的一般结构并替换进你自己常使用的字。</li>
+<li>使用<a target="_blank" rel="noopener" href="https://www.thesaurus.com/">thesaurus</a>找同义词或相关短语</li>
+<li>利用明确的动词来提醒。 <img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fyree8bivdj20sg067q5e.jpg"></li>
+<li>使用特定的明确动词来表示你的立场 <img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dly1fyreeoxo2cj20sg06vtcs.jpg"></li>
+<li>尽量使用自己的语气陈述并搭配从原文当中撷取的关键字，整合原文的三四个句子成一句或两句。</li>
+</ul>
+<h1 id="拼写检查">VII. 拼写检查</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.grammarly.com/">Grammarly</a>: Free Writing Assistant</li>
+<li><a target="_blank" rel="noopener" href="https://linggle.com/">Linggle</a></li>
+<li><a target="_blank" rel="noopener" href="http://typely.com/">Typely</a> - free online proofreading</li>
+<li><a target="_blank" rel="noopener" href="https://writefullapp.com/">Writefull</a> | A new way of writing with confidence</li>
+<li><a target="_blank" rel="noopener" href="https://www.gingersoftware.com/">Ginger Software</a> | English Grammar &amp; Writing App</li>
+</ul>
+<div id="paper-plot">
+
+</div>
+<h1 id="制作漂亮的插图">VIII. 制作漂亮的插图</h1>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://blog.sciencenet.cn/home.php?mod=space&amp;uid=758188&amp;do=blog&amp;id=1088930">论文怎样做图才算清晰？</a></p>
+</blockquote>
+<p>强烈推荐 Python 的绘图模块 <a target="_blank" rel="noopener" href="http://matplotlib.org/">matplotlib: python plotting</a> 。画出来的图真的是高端大气上档次，低调奢华有内涵~ 适用于从 2D 到 3D，从标量到矢量的各种绘图。能够保存成从 eps, pdf 到 svg, png, jpg 的多种格式。并且 Matplotlib 的绘图函数基本上都与 Matlab 的绘图函数名字都差不多，迁移的学习成本比较低。开源免费<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>。</p>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p><a target="_blank" rel="noopener" href="https://www.jiqizhixin.com/articles/2017-10-30-6">从标题到反馈：写好一篇论文的十条基本原则</a><a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p><a target="_blank" rel="noopener" href="http://blog.sciencenet.cn/home.php?mod=space&amp;uid=517486&amp;do=blog&amp;id=1119692">怎样写“引言”才能引人入胜</a><a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/22790506/answer/81787300">如何写好一篇高质量的IEEE/ACM Transaction级别的计算机科学论文?</a><a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p><a target="_blank" rel="noopener" href="http://blog.sciencenet.cn/home.php?mod=space&amp;uid=3344631&amp;do=blog&amp;id=1142237">关于论文方法、讨论和结论的写作要点</a><a href="#fnref4">↩</a></p></li>
+<li id="fn5"><p><a target="_blank" rel="noopener" href="http://www.letpub.com.cn/index.php?page=sci_writing_2">如何在科技论文中使用时态 - LetPub SCI论文写作系列2</a><a href="#fnref5">↩</a></p></li>
+<li id="fn6"><p><a target="_blank" rel="noopener" href="http://daily.zhihu.com/story/8831559">想在论文中画出漂亮的插图，介绍一个利器</a><a href="#fnref6">↩</a></p></li>
+</ol>
+</div>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="Alex LEE 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="Alex LEE 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E7%A7%91%E7%A0%94%E7%BB%8F%E9%AA%8C/" rel="tag"><i class="fa fa-tag"></i> 科研经验</a>
+              <a href="/tags/%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C/" rel="tag"><i class="fa fa-tag"></i> 论文写作</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/phase-space-reconstruction/" rel="prev" title="相空间重构">
+                  <i class="fa fa-angle-left"></i> 相空间重构
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/hypothesis-testing/" rel="next" title="假设检验">
+                  假设检验 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex LEE</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">317k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:14</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><div class="footer-custom"> Hosted by <a target="_blank" href="https://pages.github.com">GitHub Pages</a>  |  <a target="_blank"  href="https://about.gitlab.com/stages-devops-lifecycle/pages/">Gitlab Pages</a> </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sli1989","repo":"gitalk","client_id":"9fa53d6156d8791703b5","client_secret":"706eeec44bf22fe410e90d364fe8a348ab8bcaed","admin_user":"sli1989","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"04319b409a8415825a9fcb773f4990fc"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title></title>
+	<link rel="stylesheet" href="/static/css/player.css">
+</head>
+
+<div id="QPlayer">
+	<div id="pContent">
+		<div id="player">
+			<span class="cover"></span>
+			<div class="ctrl">
+				<div class="musicTag marquee">
+					<strong>Title</strong>
+					 <span> - </span>
+					<span class="artist">Artist</span>
+				</div>
+				<div class="progress">
+					<div class="timer left">0:00</div>
+					<div class="contr">
+						<div class="rewind icon"></div>
+						<div class="playback icon"></div>
+						<div class="fastforward icon"></div>
+					</div>
+					<div class="right">
+						<div class="liebiao icon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ssBtn">
+				<div class="adf"></div>
+		</div>
+	</div>
+	<ol id="playlist"></ol>
+</div>
+<script src="//cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  var playlist = [];
+  
+  playlist.push({title:'午后庭院',artist:'夏天播放',mp3:'https://music.163.com/song/media/outer/url?id=29095562.mp3',cover:'https://p1.music.126.net/5uQHiJSmUMo74VAR4KJCTA==/6670737045946097.jpg'})
+  
+  playlist.push({title:'远走高飞',artist:'金志文',mp3:'https://music.163.com/song/media/outer/url?id=1297742772.mp3',cover:'https://p1.music.126.net/elfqBKIdad0KYCCeKQpDSA==/18700493767108166.jpg'})
+  
+  playlist.push({title:'她',artist:'不可撤销乐队',mp3:'https://music.163.com/song/media/outer/url?id=29747622.mp3',cover:'https://p1.music.126.net/4x2X7W_VGHQeHoMR4a3Wbw==/3227066628477266.jpg'})
+  
+  playlist.push({title:'给你',artist:'陈奕迅',mp3:'https://music.163.com/song/media/outer/url?id=64706.mp3',cover:'https://p1.music.126.net/GK7EB01AIEE9-qHkBi-3vg==/89060441862562.jpg'})
+  
+  playlist.push({title:'千禧',artist:'徐秉龙',mp3:'https://music.163.com/song/media/outer/url?id=522510615.mp3',cover:'https://y.gtimg.cn/music/photo_new/T002R300x300M000004UOSJ5117bcd.jpg'})
+  
+  playlist.push({title:'年度之歌',artist:'谢安琪',mp3:'https://music.163.com/song/media/outer/url?id=308169.mp3',cover:'http://p1.music.126.net/SkSda5laDTH73h_a9ZYEig==/109951164146248533.jpg'})
+  
+  playlist.push({title:'边走边唱',artist:'李荣浩',mp3:'https://music.163.com/song/media/outer/url?id=31134197.mp3',cover:'https://p1.music.126.net/4Pu7M0q88fVVoo1ZFS_nmw==/3408486047237011.jpg'})
+  
+  var isRotate = true;
+  var autoplay = false;
+</script>
+<script src="/static/js/player.js"></script>
+<script>
+  function bgChange(){
+	var lis= $('.lib');
+	for(var i=0; i<lis.length; i+=2)
+	lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+  }
+  window.onload = bgChange;
+</script>
+
+  <script type="text/javascript" src="/js/custom.js"></script>
+</body>
+</html>

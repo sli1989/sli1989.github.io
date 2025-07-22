@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"saili.science","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":true,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Python是著名的“龟叔”Guido van Rossum在1989年圣诞节期间，为了打发无聊的圣诞节而编写的一个编程语言。Python就为我们提供了非常完善的基础代码库，覆盖了网络、文件、GUI、数据库、文本等大量内容，被形象地称作“内置电池（batteries included）”。用Python开发，许多功能不必从零编写，直接使用现成的即可。除了内置的库外，Python还有大量的第三方库，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python">
+<meta property="og:url" content="http://saili.science/python/index.html">
+<meta property="og:site_name" content="Alex LEE&#39;s Blog">
+<meta property="og:description" content="Python是著名的“龟叔”Guido van Rossum在1989年圣诞节期间，为了打发无聊的圣诞节而编写的一个编程语言。Python就为我们提供了非常完善的基础代码库，覆盖了网络、文件、GUI、数据库、文本等大量内容，被形象地称作“内置电池（batteries included）”。用Python开发，许多功能不必从零编写，直接使用现成的即可。除了内置的库外，Python还有大量的第三方库，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-07-12T08:33:49.000Z">
+<meta property="article:modified_time" content="2019-09-05T09:17:37.000Z">
+<meta property="article:author" content="Alex LEE">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://saili.science/python/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://saili.science/python/","path":"python/","title":"Python"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Python | Alex LEE's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/6.1.3/pangu.umd.js" integrity="sha256-erngBMP3zzoIM6eqQ8dmrReh2vqCRgWmORroIfVoDlE=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://saili.science/python/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex LEE's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex LEE's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">77</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">25</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B5%84%E6%BA%90"><span class="nav-text">I. 资源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B"><span class="nav-text">II. 实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95"><span class="nav-text">II.I. 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#requests"><span class="nav-text">II.I.I. requests</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#beautifulsoup"><span class="nav-text">II.I.II. BeautifulSoup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#json"><span class="nav-text">II.I.III. json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cgihttpserver"><span class="nav-text">II.I.IV. CGIHTTPServer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#base64"><span class="nav-text">II.I.V. base64</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex LEE"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Alex LEE</p>
+  <div class="site-description" itemprop="description">There is no royal road to learning.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:im.sai.li@outlook.com" title="E-Mail → mailto:im.sai.li@outlook.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/sli1989" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;sli1989" rel="noopener me" target="_blank"><i class="telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitter.im/sli1989" title="Gitter → https:&#x2F;&#x2F;gitter.im&#x2F;sli1989" rel="noopener me" target="_blank"><i class="github-alt fa-fw"></i>Gitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/sli1989/HEXO-NEXT-CUSTOM" title="https:&#x2F;&#x2F;github.com&#x2F;sli1989&#x2F;HEXO-NEXT-CUSTOM" rel="noopener" target="_blank">About the Blog</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://fontawesome.com/icons" title="https:&#x2F;&#x2F;fontawesome.com&#x2F;icons" rel="noopener" target="_blank">Font Awesome Icons</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://getemoji.com/" title="https:&#x2F;&#x2F;getemoji.com&#x2F;" rel="noopener" target="_blank">Copy and Paste Emoji</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://saili.science/python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Alex LEE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex LEE's Blog">
+      <meta itemprop="description" content="There is no royal road to learning.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Python | Alex LEE's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2019-09-05 17:17:37" itemprop="dateModified" datetime="2019-09-05T17:17:37+08:00">2019-09-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类：</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Programming/" itemprop="url" rel="index"><span itemprop="name">Programming</span></a>
+        </span>
+          <span> > </span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Programming/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>11 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Python是著名的“龟叔”Guido van Rossum在1989年圣诞节期间，为了打发无聊的圣诞节而编写的一个编程语言。Python就为我们提供了非常完善的基础代码库，覆盖了网络、文件、GUI、数据库、文本等大量内容，被形象地称作“内置电池（batteries included）”。用Python开发，许多功能不必从零编写，直接使用现成的即可。除了内置的库外，Python还有大量的第三方库，也就是别人开发的，供你直接使用的东西。当然，如果你开发的代码通过很好的封装，也可以作为第三方库给别人使用。</p>
+<span id="more"></span>
+<blockquote>
+<p>python拥有matplotlib、Numpy、sklearn、keras等大量的库，像pandas、sklearn、matplotlib这些库都是做数据处理、数据分析、数据建模和绘图的库，基本上机器学习中对数据的爬取（scrapy）、对数据的处理和分析（pandas）、对数据的绘图（matplotlib）和对数据的建模（sklearn）在python中全都能找到对应的库来进行处理。</p>
+</blockquote>
+<h1 id="资源">I. 资源</h1>
+<p><a target="_blank" rel="noopener" href="https://code-love.com/2019/06/03/49-essential-resources-to-learn-python/#beginner"><strong>Beginner resources</strong></a> for those just starting with programming and Python</p>
+<p><strong><a target="_blank" rel="noopener" href="https://code-love.com/2019/06/03/49-essential-resources-to-learn-python/#intermediate">Intermediate resources</a></strong> for those looking to apply the basics of Python knowledge to fields like data science and web development</p>
+<p><a target="_blank" rel="noopener" href="https://code-love.com/2019/06/03/49-essential-resources-to-learn-python/#advanced"><strong>Advanced resources</strong></a> for those looking to get into concepts like deep learning and big data with Python</p>
+<p><strong><a target="_blank" rel="noopener" href="https://code-love.com/2019/06/03/49-essential-resources-to-learn-python/#exercises">Exercises</a></strong> that help practice and cement Python skills in practice</p>
+<p><a target="_blank" rel="noopener" href="https://www.python.org/"><strong>1- Welcome to Python.org</strong></a></p>
+<p>The official Python site offers a good way to get started with the Python ecosystem and to learn Python, including a place to register for upcoming events, and documentation to get started.</p>
+<p><a target="_blank" rel="noopener" href="https://learnpythonthehardway.org/book/"><strong>2-Learn Python the Hard Way</strong></a></p>
+<p>An online book with a paid and a free version. The free version goes into an outline of the content and can be a useful to-do list.</p>
+<p><a target="_blank" rel="noopener" href="https://realpython.com/python-data-types/"><strong>3-Basic Data Types in Python – Real Python</strong></a></p>
+<p>RealPython dives into the different data types in Python in detail. Learn the difference between floating point and integers, what special characters can be used in Python and more.</p>
+<p><a target="_blank" rel="noopener" href="https://realpython.com/run-python-scripts/"><strong>4-How to Run Your Python Scripts – Real Python</strong></a></p>
+<p>This simple intro to Python scripts through the command line and text editors will get you up and running for your first Python experiments — a handy tool to get you started as you learn Python.</p>
+<p><a target="_blank" rel="noopener" href="https://www.codecademy.com/learn/learn-python"><strong>5-Python Tutorial: Learn Python For Fre</strong></a><strong><a target="_blank" rel="noopener" href="https://www.codecademy.com/learn/learn-python">e</a></strong><a target="_blank" rel="noopener" href="https://www.codecademy.com/learn/learn-python"><strong>| Codecademy</strong></a></p>
+<p>Codecademy offers a free interactive course that helps you practice the fundamentals of Python while giving you instant, game-like feedback. A great device for learning Python for those who like to practice their way to expertise.</p>
+<p><a target="_blank" rel="noopener" href="https://developers.google.com/edu/python/"><strong>6-Google’s Python Class | Python Education | Google Developers</strong></a></p>
+<p>The official Python development class from Google’s developers. This tutorial is a mix of interactive code snippets that can be copied and run on your end and contextual text. This is a semi-interactive way to learn Python from one of the world’s leading technology companies.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.learnpython.org/">7-Learn Python – Free Interactive Python Tutorial</a></strong></p>
+<p>This interactive tutorial relies on live code snippets that can be implemented and practiced with. Use this resource as a way to learn interactively with a bit of guidance.</p>
+<p><a target="_blank" rel="noopener" href="https://realpython.com/jupyter-notebook-introduction/"><strong>8-Jupyter Notebook: An Introduction – Real Python</strong></a></p>
+<p>Want an easy, intuitive way to access and work with Python functions? Look no further than Jupyter Notebook. It’s much easier to work with than the command line and different cobbled together scripts. It’s the setup I use myself. This tutorial will help you get started on your path to learn Python.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.w3schools.com/python/">9-Python Tutorial – W3Schools</a></strong></p>
+<p>W3Schools uses the same format they use to teach HTML and others with Python. Practice with interactive and text snippets for different basic functions. Use this tutorial to get a firm grounding in the language and to learn Python.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.kaggle.com/learn/python">10-Python | Kaggle</a></strong></p>
+<p>Kaggle is a platform which hosts data science and machine learning competitions. Competitors work with datasets and create as accurate of a predictive model as possible. They also offer interactive Python notebooks that help you learn the basics of Python. Choose the daily delivery option to have it become an email course instead.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://medium.freecodecamp.org/learning-python-from-zero-to-hero-120ea540b567">11-Learning Python: From Zero to Hero – freeCodeCamp.org</a></strong></p>
+<p>This text-based tutorial aims to summarize all of the basic data and functional concepts in Python. It dives into the versatility of the language by focusing on the object and class portions of the object-oriented part of Python. By the end of it, you should have a neat summary of objects in Python as well as different data types and how to iterate or loop over them.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://wiki.python.org/moin/BeginnersGuide">12-BeginnersGuide – Python Wiki</a></strong></p>
+<p>This simple tutorial on the official Python Wiki is chock-full of resources, and even includes a Chinese translation for non-English speakers looking to learn Python.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.tutorialspoint.com/python/">13-Python Tutorial – Tutorialspoint</a></strong></p>
+<p>Set up in a similar fashion to W3Schools, use Tutorialspoint as an alternative or a refresher for certain functions and sections.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.quora.com/topic/Python-programming-language-1">14-Python (programming language) – Quora</a></strong></p>
+<p>The Quora community is populated with many technologists that learn Python. This section devoted to Python includes running analysis and pressing questions on the state of Python and its practical application in all sorts of different fields, from data visualization to web development.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://dev.to/t/python">15-Python – DEV Community – Dev.to</a></strong></p>
+<p>Dev.to has user-submitted articles and tutorials about Python from developers who are working with it every day. Use these perspectives to help you learn Python.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.pythonweekly.com/">16-Python Weekly: A Free, Weekly Python E-mail Newsletter</a></strong></p>
+<p>If you’re a fan of weekly newsletters that summarize the latest developments, news, and which curate interesting articles about Python, you’ll be in luck with Python Weekly. I’ve been a subscriber for many months, and I’ve always been pleased with the degree of effort and dedication placed towards highlighting exceptional resources.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://realpython.com/python-youtube-channels/">17-The Ultimate List of Python YouTube Channels – Real Python</a></strong></p>
+<p>For those who like to learn by video, this list of Youtube channels can help you learn in your preferred medium.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://docs.python-guide.org/">18-The Hitchhiker’s Guide to Python</a></strong></p>
+<p>Unlike the rest of the resources listed above, the Hitchhiker’s guide is much more opinionated and fixated on finding the best way to get set up with Python. Use it as a reference and a way to make sure you’re optimally set up to be using and learning Python.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.edx.org/learn/python">19-Python: Online Courses from Harvard, MIT, Microsoft | edX</a></strong></p>
+<p>edX uses corporate and academic partners to curate content about Python. The content is often free, but you will have to pay for a verified certificate showing that you have passed a course.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.coursera.org/courses?query=python">20-Python Courses | Coursera</a></strong></p>
+<p>Coursera’s selection of Python courses can help you get access to credentials and courses from university and corporate providers. If you feel like you need some level of certification, similar to edX, Coursera offers a degree of curation and authentication that may suit those needs.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.djangoproject.com/start/">21-Getting started with Django | Django</a></strong></p>
+<p>The official Django framework introduction will help you set up so that you can do web development in Python.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.oreilly.com/learning-paths/learning-path-django/9781788998703/">22-LEARNING PATH: Django: Modern Web Development with Django</a></strong></p>
+<p>This resource from O’Reilly helps fashion a more curated path to learning Django and web development skills in Python.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://jvns.ca/blog/2013/12/22/cooking-with-pandas/">23-A pandas cookbook – Julia Evans</a></strong></p>
+<p>I learned how to clean and process data with the Pandas Cookbook. Working with it enabled me to clean data to the level that I needed in order to do machine learning and more.</p>
+<p>It works through an example so you can learn how to filter through, group your data, and perform functions on it — then visualize the data as it needs be. The Pandas library is tailor-built to allow you to clean up data efficiently, and to work to transform it and see trends from an aggregate-level basis (with handy one-line functions such as head() or describe).</p>
+<p>The Pandas cookbook is the perfect intro to it.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/tagged/python">24-Newest ‘python’ Questions – Stack Overflow</a></strong></p>
+<p>The Stack Overflow community is filled with pressing questions and tangible solutions. Use it a resource for implementation of Python and your path to learn Python.</p>
+<p><a target="_blank" rel="noopener" href="https://www.reddit.com/r/Python/"><strong>25-Python – R</strong></a><strong><a target="_blank" rel="noopener" href="https://www.reddit.com/r/Python/">e</a></strong><a target="_blank" rel="noopener" href="https://www.reddit.com/r/Python/"><strong>ddit</strong></a></p>
+<p>The Python subreddit offers a bunch of different news articles and tutorials in Python.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.reddit.com/r/datascience/">26-Data Science – Reddit</a></strong></p>
+<p>The Data Science subreddit offers tons of resources on how to use Python to work with large datasets and process it in interesting ways.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://thenextweb.com/dd/2016/04/08/start-using-python-andor-r-data-science-one-best/">27-Data science sexiness: Your guide to Python and R</a></strong></p>
+<p>I wrote this guide for The Next Web in order to distinguish between Python and R and their usages in the data science ecosystem. Since then, Python has pushed ever-forward and taken on many of the libraries that once formed the central basis of R’s strength in data analysis, visualization and exploration, while also welcoming in the cornerstone machine learning libraries that are driving the world. Still, it serves as a useful point of comparison and a list of resources for Python as well.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.dataquest.io/blog/python-api-tutorial/">28-Data Science Tutorial: Introduction to Using APIs in Python – Dataquest</a></strong></p>
+<p>One essential skill when it comes to working with data is to access the APIs services like Twitter, Reddit and Facebook use to expose certain amounts of data they hold. This tutorial will help walk you through an example with the Reddit API and help you understand the different code responses you’ll get as you query an API.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://towardsdatascience.com/introduction-to-data-visualization-in-python-89a54c97fbed">29-Introduction to Data Visualization in Python – Towards Data Science</a></strong></p>
+<p>Once you’re done crunching the data, you need to present it to get insights and share them with others. This guide to data visualization summarizes the data visualization options you have in Python including Pandas, Seaborn and a Python implementation of ggplot.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://hackernoon.com/top-python-web-development-frameworks-to-learn-in-2019-21c646a09a9a">30-Top Python Web Development Frameworks to Learn in 2019</a></strong></p>
+<p>If you want a suite of options beyond Django to develop in Python and learn Python for web applications, look no further than this compilation. The Hacker Noon publication will often feature useful resources on Python outside of this article as well. It’s worth a follow.</p>
+<p><a target="_blank" rel="noopener" href="https://towardsdatascience.com/beginners-guide-to-machine-learning-with-python-b9ff35bc9c51"><strong>31-Beginner’s Guide to Machine Learning with Python</strong></a></p>
+<p>This text-based tutorial helps introduce people to the basics of machine learning with Python. Towards Data Science, the Medium outlet with the article in question, is an excellent source for machine learning and data science resources.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.springboard.com/resources/learning-paths/machine-learning-python/">32-Free Machine Learning in Python Course – Springboard</a></strong></p>
+<p>This free learning path from Springboard helps curate what you need to learn and practice machine learning in Python.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.reddit.com/r/MachineLearning/">33-Machine Learning – Reddit</a></strong></p>
+<p>The Machine Learning subreddit oftentimes focuses on the latest papers and empirical advances. Python implementations of those advances are discussed as well.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.kdnuggets.com/tag/python">34-Python – KDnuggets</a></strong></p>
+<p>KDNuggets offers advanced content on data science, data analysis and machine learning. Its Python section deals with how to implement these ideas in Python.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.udemy.com/topic/python/">35-Learn Python – Beginner through Advanced Online Courses – Udemy</a></strong></p>
+<p>Udemy offers a selection of Python courses, with many advanced options to teach you the intricacies of Python. These courses tend to be cheaper than the certified ones, though you’ll want to look carefully at the reviews.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://towardsdatascience.com/a-brief-introduction-to-pyspark-ff4284701873">36-A Brief Introduction to PySpark – Towards Data Science</a></strong></p>
+<p>This introduction to PySpark will help you get started with working with more advanced distributed file systems that allow you to deal and work with much larger datasets than is possible under a single system and Pandas.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://scikit-learn.org/">37-scikit-learn: machine learning in Python</a></strong></p>
+<p>The default way most data scientists use Python is to try out model ideas with scikit-learn: a simple, optimized implementation of different machine learning models. Learn a bit of machine learning theory then implement and practice with the scikit-learn framework.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://towardsdatascience.com/the-next-level-of-data-visualization-in-python-dd6e99039d5e">38-The Next Level of Data Visualization in Python – Towards Data Science</a></strong></p>
+<p>This tutorial walks through more advanced versions of data visualizations and how to implement them, allowing you to take a preview of different advanced ways you can slice your data from correlation heatmaps to scatterplot matricies.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.coursera.org/learn/machine-learning-with-python">39-Machine Learning with Python | Coursera</a></strong></p>
+<p>Coursera’s selection of courses on machine learning with Python are veryw well-known. This introduction offered with IBM helps to walk you through videos and explanations of machine learning concepts.</p>
+<p><a target="_blank" rel="noopener" href="https://www.deeplearning.ai/"><strong>40-Home – deeple</strong></a><strong><a target="_blank" rel="noopener" href="https://www.deeplearning.ai/">a</a></strong><a target="_blank" rel="noopener" href="https://www.deeplearning.ai/"><strong>rning.ai</strong></a></p>
+<p>Deeplearning.ai is Andrew Ng’s (the famous Stanford professor in AI and founder of Coursera) attempt to bring deep learning to the masses. I ended up finishing all of the courses: they offer certification and are a refreshing mix of both interactive notebooks where you can work with the different concepts and videos from Andrew Ng himself.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.fast.ai/">41-fast.ai · Making neural nets uncool again</a></strong></p>
+<p>This curated course on deep learning helps break down section-by-section aspects of machine learning. Best of all, it’s completely free. I often use fast.ai as a refresher or a deep dive into a deep learning idea I don’t quite understand.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.tensorflow.org/tutorials/keras">42-Learn and use machine learning | TensorFlow Core | TensorFlow</a></strong></p>
+<p>This tutorial helps you use the high-level Keras component of TensorFlow and Google cloud infrastructure to do deep learning on a set of fashion images. It’s a great way to learn and practice your deep learning skills.</p>
+<p><a target="_blank" rel="noopener" href="https://www.kaggle.com/datasets"><strong>43-Datasets | Kagg</strong></a><strong><a target="_blank" rel="noopener" href="https://www.kaggle.com/datasets">l</a></strong><a target="_blank" rel="noopener" href="https://www.kaggle.com/datasets"><strong>e</strong></a></p>
+<p>Kaggle offers a variety of datasets with user examples and upvoting to guide you to the most popular datasets. Use the examples and datasets to create your own data analysis, visualization, or machine learning model.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.practicepython.org/">44-Practice Python</a></strong></p>
+<p>Practice Python has a bunch of beginner exercises that can help you ease into using Python and practicing it. Use this as an initial warmup exercise before you tackle different projects and exercises.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.w3schools.com/python/python_exercises.asp">45-Python Exercises – W3Schools</a></strong></p>
+<p>The Python exercises on W3Schools follow the sections in their tutorials, and allow you to get some interactive practice with Python (though the exercises are in practice very simple).</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.hackerrank.com/domains/python">46-Solve Python | HackerRank</a></strong></p>
+<p>HackerRank offers a bunch of exercises that require you to solve without any context. It’s the best way to practice different functions and outputs in Python in isolation (though you’ll still want to do different projects to be able to cement your Python skill.) You’ll earn points and badges as you complete more challenges. This certainly motivates me to learn more. A very useful sandbox for you to learn Python with.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://projecteuler.net/">47-Project Euler: About</a></strong></p>
+<p>Project Euler offers a variety of ever-harder programming challenges that aim to test whether you can solve mathematical problems with Python. Use it to practice your mathematical reasoning and your Pythonic abilities.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/2.2/intro/tutorial01/">48-Writing your first Django app, part 1 | Django documentation | Django</a></strong></p>
+<p>This documentation helps you get on the ground with your first Django app, allowing you to use Python to get something up on the web. Once you’ve started with it, you can build anything you want.</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.edureka.co/blog/interview-questions/python-interview-questions/">49-Top 100 Python Interview Questions &amp; Answers For 2019 | Edureka</a></strong></p>
+<p>Should you ever be in an interview where your Python skills are at question, this list of interview questions will help as a useful reminder and refresher and a good way for you to practice and cement different Python concepts.</p>
+<p>50-<a target="_blank" rel="noopener" href="https://www.comparitech.com/blog/information-security/hacking-python-courses-online/">6 best online courses for ethical hackers</a></p>
+<p>Ethical hackers play an important role in organizations by finding and fixing vulnerabilities in systems and applications. Python is a high-level programming language that’s ideal for security professionals as it’s easy to learn and lets you create functional programs with a limited amount of code.</p>
+<h1 id="实例">II. 实例</h1>
+<h2 id="语法">II.I. 语法</h2>
+<p>爬虫：requests、scrapy、selenium、beautifulSoup，这些库都是写网络爬虫需要使用到的，好好掌握这些东西，数据就有了。</p>
+<p>数据处理：Numpy、scipy、pandas、matplotlib，这些库分别可以进行矩阵计算、科学计算、数据处理、绘图等操作，有了这些库，你就可以一步步开始把数据处理成你需要的格式。</p>
+<p>建模：nltk、keras、sklearn，这些库主要是用于自然语言处理、深度学习和机器学习的，把这些用好了，你的模型就构建出来了。</p>
+<p>Web开发：django、flask、tornado，这些库搞明白了，你web开发也就搞定了。</p>
+<h3 id="requests">II.I.I. requests</h3>
+<p>优雅简单的 HTTP 模块。</p>
+<h3 id="beautifulsoup">II.I.II. BeautifulSoup</h3>
+<p>很好用的 HTML/XML 解析器。</p>
+<h3 id="json">II.I.III. json</h3>
+<p>JSON 编码解码器。</p>
+<p>应用举例：</p>
+<ul>
+<li>格式化 JSON 文件</li>
+</ul>
+<p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m json.tool src.json &gt; dst.json</span><br></pre></td></tr></table></figure></p>
+<p>在 Vim 里格式化 JSON：</p>
+<p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:%!python -m json.tool</span><br></pre></td></tr></table></figure></p>
+<h3 id="cgihttpserver">II.I.IV. CGIHTTPServer</h3>
+<p>简单实用的 HTTP 服务器。</p>
+<p>应用举例：</p>
+<ul>
+<li>运行一个简易的 HTTP 服务器</li>
+</ul>
+<p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m CGIHTTPServer 80</span><br></pre></td></tr></table></figure></p>
+<h3 id="base64">II.I.V. base64</h3>
+<p>方便地进行 base64 编解码的模块。</p>
+<p>应用举例：</p>
+<ul>
+<li>解码 base64</li>
+</ul>
+<p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> aGVsbG93b3JsZA== | python -m <span class="built_in">base64</span> -d</span><br></pre></td></tr></table></figure></p>
+<p>则能看到输出</p>
+<p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helloworld</span><br></pre></td></tr></table></figure></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="Alex LEE 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="Alex LEE 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/vocabulary/" rel="prev" title="科技论文词汇与语法">
+                  <i class="fa fa-angle-left"></i> 科技论文词汇与语法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/lstm/" rel="next" title="Long short-term memory">
+                  Long short-term memory <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex LEE</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">317k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:14</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><div class="footer-custom"> Hosted by <a target="_blank" href="https://pages.github.com">GitHub Pages</a>  |  <a target="_blank"  href="https://about.gitlab.com/stages-devops-lifecycle/pages/">Gitlab Pages</a> </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sli1989","repo":"gitalk","client_id":"9fa53d6156d8791703b5","client_secret":"706eeec44bf22fe410e90d364fe8a348ab8bcaed","admin_user":"sli1989","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"f34b128978a9e58917702a40463925b5"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title></title>
+	<link rel="stylesheet" href="/static/css/player.css">
+</head>
+
+<div id="QPlayer">
+	<div id="pContent">
+		<div id="player">
+			<span class="cover"></span>
+			<div class="ctrl">
+				<div class="musicTag marquee">
+					<strong>Title</strong>
+					 <span> - </span>
+					<span class="artist">Artist</span>
+				</div>
+				<div class="progress">
+					<div class="timer left">0:00</div>
+					<div class="contr">
+						<div class="rewind icon"></div>
+						<div class="playback icon"></div>
+						<div class="fastforward icon"></div>
+					</div>
+					<div class="right">
+						<div class="liebiao icon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ssBtn">
+				<div class="adf"></div>
+		</div>
+	</div>
+	<ol id="playlist"></ol>
+</div>
+<script src="//cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  var playlist = [];
+  
+  playlist.push({title:'午后庭院',artist:'夏天播放',mp3:'https://music.163.com/song/media/outer/url?id=29095562.mp3',cover:'https://p1.music.126.net/5uQHiJSmUMo74VAR4KJCTA==/6670737045946097.jpg'})
+  
+  playlist.push({title:'远走高飞',artist:'金志文',mp3:'https://music.163.com/song/media/outer/url?id=1297742772.mp3',cover:'https://p1.music.126.net/elfqBKIdad0KYCCeKQpDSA==/18700493767108166.jpg'})
+  
+  playlist.push({title:'她',artist:'不可撤销乐队',mp3:'https://music.163.com/song/media/outer/url?id=29747622.mp3',cover:'https://p1.music.126.net/4x2X7W_VGHQeHoMR4a3Wbw==/3227066628477266.jpg'})
+  
+  playlist.push({title:'给你',artist:'陈奕迅',mp3:'https://music.163.com/song/media/outer/url?id=64706.mp3',cover:'https://p1.music.126.net/GK7EB01AIEE9-qHkBi-3vg==/89060441862562.jpg'})
+  
+  playlist.push({title:'千禧',artist:'徐秉龙',mp3:'https://music.163.com/song/media/outer/url?id=522510615.mp3',cover:'https://y.gtimg.cn/music/photo_new/T002R300x300M000004UOSJ5117bcd.jpg'})
+  
+  playlist.push({title:'年度之歌',artist:'谢安琪',mp3:'https://music.163.com/song/media/outer/url?id=308169.mp3',cover:'http://p1.music.126.net/SkSda5laDTH73h_a9ZYEig==/109951164146248533.jpg'})
+  
+  playlist.push({title:'边走边唱',artist:'李荣浩',mp3:'https://music.163.com/song/media/outer/url?id=31134197.mp3',cover:'https://p1.music.126.net/4Pu7M0q88fVVoo1ZFS_nmw==/3408486047237011.jpg'})
+  
+  var isRotate = true;
+  var autoplay = false;
+</script>
+<script src="/static/js/player.js"></script>
+<script>
+  function bgChange(){
+	var lis= $('.lib');
+	for(var i=0; i<lis.length; i+=2)
+	lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+  }
+  window.onload = bgChange;
+</script>
+
+  <script type="text/javascript" src="/js/custom.js"></script>
+</body>
+</html>

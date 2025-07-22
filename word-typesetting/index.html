@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"saili.science","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":true,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="各种论文、提案等文档，除了需要良好的文字水平以外，排版也非常重要。这篇文章分享一些常用技巧，包括了图片、表格、公式的编号与交叉引用，公式居中、编号右对齐等，使得我们可以快速规范化文档样式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Office 使用技巧">
+<meta property="og:url" content="http://saili.science/word-typesetting/index.html">
+<meta property="og:site_name" content="Alex LEE&#39;s Blog">
+<meta property="og:description" content="各种论文、提案等文档，除了需要良好的文字水平以外，排版也非常重要。这篇文章分享一些常用技巧，包括了图片、表格、公式的编号与交叉引用，公式居中、编号右对齐等，使得我们可以快速规范化文档样式。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190628150055.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190628150204.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190628150227.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/006V2m65ly1frdgvqsq7kj30k009ujs3.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/006V2m65ly1frdgvyyko8j30k00cx74l.jpg">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729121558.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729121629.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729121656.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729121436.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729121506.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729121537.png">
+<meta property="og:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dgy1g19i624jngj20k00e00u7.jpg">
+<meta property="article:published_time" content="2017-08-09T09:09:16.000Z">
+<meta property="article:modified_time" content="2025-07-21T06:22:10.000Z">
+<meta property="article:author" content="Alex LEE">
+<meta property="article:tag" content="Office">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190628150055.png">
+
+
+<link rel="canonical" href="http://saili.science/word-typesetting/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://saili.science/word-typesetting/","path":"word-typesetting/","title":"Office 使用技巧"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Office 使用技巧 | Alex LEE's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/6.1.3/pangu.umd.js" integrity="sha256-erngBMP3zzoIM6eqQ8dmrReh2vqCRgWmORroIfVoDlE=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"http://saili.science/word-typesetting/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex LEE's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex LEE's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">77</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">25</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%B7%E5%BC%8F"><span class="nav-text">I. 样式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-text">II. 目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E7%BA%A7%E6%A0%87%E9%A2%98%E7%BC%96%E5%8F%B7"><span class="nav-text">III. 多级标题编号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E5%92%8C%E8%A1%A8%E6%A0%BC%E7%9A%84%E6%8F%92%E5%85%A5"><span class="nav-text">IV. 图片和表格的插入</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E4%B8%89%E7%BA%BF%E8%A1%A8"><span class="nav-text">IV.I. 插入三线表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E5%B9%B6%E6%8E%92"><span class="nav-text">IV.II. 图片并排</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E5%85%A5eps"><span class="nav-text">IV.III. 插入EPS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E5%92%8C%E8%A1%A8%E6%A0%BC%E7%9A%84%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7"><span class="nav-text">V. 图片和表格的自动编号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E5%92%8C%E8%A1%A8%E6%A0%BC%E7%9A%84%E4%BA%A4%E5%8F%89%E5%BC%95%E7%94%A8"><span class="nav-text">VI. 图片和表格的交叉引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AC%E5%BC%8F%E7%9A%84%E6%8F%92%E5%85%A5"><span class="nav-text">VII. 公式的插入</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#aurora%E6%8F%92%E4%BB%B6"><span class="nav-text">VII.I. Aurora插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#latex2word"><span class="nav-text">VII.II. LaTeX2Word</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AC%E5%BC%8F%E7%9A%84%E7%BC%96%E5%8F%B7%E4%B8%8E%E5%BC%95%E7%94%A8"><span class="nav-text">VIII. 公式的编号与引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%9D%97%E7%9A%84%E6%8F%92%E5%85%A5"><span class="nav-text">IX. 代码块的插入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E5%9B%BE%E7%89%87"><span class="nav-text">X. 批量修改图片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2"><span class="nav-text">XI. 批量替换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%9F%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-text">XII. 域快捷键</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-text">XIII. 参考文献</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#bibtex4word"><span class="nav-text">XIII.I. Bibtex4Word</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E6%96%87%E7%8C%AE%E6%A0%B7%E5%BC%8F"><span class="nav-text">XIII.I.I. 定义文献样式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#excel"><span class="nav-text">XIV. Excel</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#vlookup%E5%87%BD%E6%95%B0"><span class="nav-text">XIV.I. Vlookup函数</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex LEE"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Alex LEE</p>
+  <div class="site-description" itemprop="description">There is no royal road to learning.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:im.sai.li@outlook.com" title="E-Mail → mailto:im.sai.li@outlook.com" rel="noopener me" target="_blank"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://t.me/sli1989" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;sli1989" rel="noopener me" target="_blank"><i class="telegram fa-fw"></i>Telegram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitter.im/sli1989" title="Gitter → https:&#x2F;&#x2F;gitter.im&#x2F;sli1989" rel="noopener me" target="_blank"><i class="github-alt fa-fw"></i>Gitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://github.com/sli1989/HEXO-NEXT-CUSTOM" title="https:&#x2F;&#x2F;github.com&#x2F;sli1989&#x2F;HEXO-NEXT-CUSTOM" rel="noopener" target="_blank">About the Blog</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://fontawesome.com/icons" title="https:&#x2F;&#x2F;fontawesome.com&#x2F;icons" rel="noopener" target="_blank">Font Awesome Icons</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://getemoji.com/" title="https:&#x2F;&#x2F;getemoji.com&#x2F;" rel="noopener" target="_blank">Copy and Paste Emoji</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://saili.science/word-typesetting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="Alex LEE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex LEE's Blog">
+      <meta itemprop="description" content="There is no royal road to learning.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Office 使用技巧 | Alex LEE's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Office 使用技巧
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-07-21 14:22:10" itemprop="dateModified" datetime="2025-07-21T14:22:10+08:00">2025-07-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类：</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Software/" itemprop="url" rel="index"><span itemprop="name">Software</span></a>
+        </span>
+          <span> > </span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Software/Office/" itemprop="url" rel="index"><span itemprop="name">Office</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>27 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>各种论文、提案等文档，除了需要良好的文字水平以外，排版也非常重要。这篇文章分享一些常用技巧，包括了图片、表格、公式的编号与交叉引用，公式居中、编号右对齐等，使得我们可以快速规范化文档样式。</p>
+<span id="more"></span>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://bbs.keinsci.com/thread-2208-1-1.html">latex与word之间的各种转化方法</a></li>
+</ul>
+<h1 id="样式">I. 样式</h1>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/26898769">发愤的草莓</a>给出的方法是：给Word写长文（特别是结构化长文）前“打个底妆”——做好段落样式的规划。这种内在美体现在批量式操作、灵活式跳转、快捷式移动、永久式克隆。</p>
+<p>因此，推荐使用 Word 中的样式（自己制作或者网络下载）来加速论文排版格式设置。</p>
+<div class="note info">
+<p>
+华中科技大学毕业论文的WORD模板在标题样式、自动编号和交叉引用等方面提供了参考，有兴趣可以参考<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1hVBs_RVHaHjQLvfKriaV0w">下载</a>（密码：4qa8），最好保存链接，后期会不定期更新细节。
+</p>
+</div>
+<ol style="list-style-type: decimal">
+<li>下载<code>样式模板.dot</code>。</li>
+<li>直接用 Word 打开样式模板文件（实际上就是使用该模板新建了一个 Word 文档）。将自己的论文复制粘贴进去，就可以使用样式来设置论文格式了，然后需要保存为一个新的 Word 文件。也可以应用样式到文档中。</li>
+</ol>
+<p>更多内容可以参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://cnzhx.net/blog/word-styles-for-zzti-thesis/">使用 Word 中的样式来加速论文排版格式设置</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.360doc.com/content/14/0306/11/691214_358174386.shtml">如何将一个word文档的样式应用到另一个word文档</a></li>
+</ul>
+<h1 id="目录">II. 目录</h1>
+<p>自动生成目录后在对应的页码加上括号的方法：</p>
+<ol style="list-style-type: decimal">
+<li>自动生成目录</li>
+<li>按住Alt键移动鼠标选择要加括号的页码这一列，然后按<code>Ctrl+H</code>，弹出替换的窗口，在查找内容栏输入<code>([0-9]&#123;1,&#125;)</code>，在替换栏里输入<code>(\1)</code>，点击下面的更多按钮。</li>
+<li>勾选使用通配符，点击<code>全部替换</code>，此时会给你所选定的这一列页码全部加上括号。也可以选择查找下一处依次选择需要替换的地方，这样可以避免把目录文字里面的数字也加上了括号。</li>
+<li>替换完后会显示已替换所选择目录内页码已加括号的数量，点击否。</li>
+</ol>
+<div id="multilevel-list ">
+
+</div>
+<h1 id="多级标题编号">III. 多级标题编号</h1>
+<p><a target="_blank" rel="noopener" href="https://support.office.com/zh-cn/article/%E5%AE%9A%E4%B9%89%E6%96%B0%E7%9A%84%E9%A1%B9%E7%9B%AE%E7%AC%A6%E5%8F%B7%E3%80%81%E7%BC%96%E5%8F%B7%E5%92%8C%E5%A4%9A%E7%BA%A7%E5%88%97%E8%A1%A8-6c06ef65-27ad-4893-80c9-0b944cb81f5f">定义新的项目符号、编号和多级列表</a>。<font color="blue">请在<code>定义新的多级列表</code>中一次性设置多级标题属性</font>，不然可能会造成编码错误。</p>
+<div id="word-figure">
+
+</div>
+<h1 id="图片和表格的插入">IV. 图片和表格的插入</h1>
+<p>按照一般的习惯，以及科技文档的要求，图题应该放在图片的下方，而表题应该放在表格的上方。</p>
+<h2 id="插入三线表">IV.I. 插入三线表</h2>
+<p>三线表，通常包括表头、表身与表注等，第二条线最细（通常为 0.75 磅）。用来作为区分的界限，上下的线较粗（通常为 1.5 磅）。参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/33000931">快速搞定学术论文中的三线表</a>。</p>
+<p>感谢博文<a target="_blank" rel="noopener" href="http://blog.sciencenet.cn/home.php?mod=space&amp;uid=528739&amp;do=blog&amp;id=1185831">一键制作三线表</a>：</p>
+<ol style="list-style-type: decimal">
+<li>打开任意Word文档。</li>
+<li>按<code>Alt+F11</code>，出现VBA程序界面，鼠标点选Normal。 <img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190628150055.png"></li>
+<li>选择菜单栏“文件-导入文件”，选择相应的<code>.bas</code>文件导入。</li>
+<li>关闭VBA界面，回到Word视图，在工具条选择“自定义快速访问工具栏”。 <img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190628150204.png"></li>
+<li>在打开的界面选择“宏”，然后在下拉菜单中会出现之前导入的<code>bas</code>文件，点选后添加。添加后，可以在右边栏选择对应的VBA宏名，点击下面的“修改”按钮，可以更改名称和图标，安装完毕。 <img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190628150227.png"></li>
+<li>打开您需要处理的Word文档。点击之前添加的图标，程序即可对文档中所有表格执行三线表操作，您也可以选择若干表格，那么程序只对您选择的内容进行操作。</li>
+</ol>
+<div class="note info">
+<p>
+推荐使用一键制作三线表方法
+</p>
+</div>
+<p>word 2016中的手动设置步骤：</p>
+<ol style="list-style-type: decimal">
+<li>【插入】----【表格】；直接用鼠标绘制出三列的表格即可；</li>
+<li>选中表格，选择【表格工具】中的【设计】；最右侧的表格下，选择下拉菜单--【创建表格样式】；更改表格属性名称为【三线表】；</li>
+<li>点击左下角【格式】---【边框和底纹】；【自定义】设置【预览】中选中上边框与下边框，其他的都不选中～将宽度设置为 1.5 磅；</li>
+<li>【将表格应用于】修改成【标题栏】；按照刚才方式，点击【格式】---【边框与底纹】---【自定义】---上边框选中 1.5 磅，下边框选择 0.75 磅。</li>
+<li>最后将【仅限此文档】切换到【基于该模板的新文档】即可；</li>
+<li>最后可以任意绘制一个表格选中刚刚创建的新样式，即可套用</li>
+</ol>
+<h2 id="图片并排">IV.II. 图片并排</h2>
+<ol style="list-style-type: decimal">
+<li>先将两张图片均导入word中，位置设置为“嵌入文本行中”，调整图片大小使得两图片刚好可以呈现在同一行。</li>
+<li>如果两图片各自要有题注，分别选中两张图片（即该操作对两张图片都要各做一次）：页面布局-&gt;分栏-&gt;两栏。设置好后，将后面一张图片拖至前一张照片紧随其后，即可看到两张照片并列呈现的样子，然后分别对两张图片添加题注即可。</li>
+</ol>
+<h2 id="插入eps">IV.III. 插入EPS</h2>
+<p>由于安全问题，office 2017年4月份更新后，不再支持直接插入eps。目前的解决方法是修改注册表。</p>
+<p>方法1：（失效）打开注册表，对64位系统而言，找到<code>HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Office\Common\Security\AllowLists\GraphicsFilterImport</code>。如果没有，自己创建，然后在里面以<code>REG_DWORD</code>格式写入<code>AllowListEnabled</code>，值设为<code>1</code>，然后添加<code>EPSIMP32.FLT</code>，后面写上office版本号，就大功告成了<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>。</p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/006V2m65ly1frdgvqsq7kj30k009ujs3.jpg"></p>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/006V2m65ly1frdgvyyko8j30k00cx74l.jpg"></p>
+<div id="figure-autonumbers">
+
+</div>
+<h1 id="图片和表格的自动编号">V. 图片和表格的自动编号</h1>
+<p>Word 有内置的题注格式，如果不想用，还可以新建新的格式。</p>
+<ol style="list-style-type: decimal">
+<li>插入需要的图片，在图片上单击鼠标右键，选择“插入题注”（Insert Caption）。</li>
+<li>调整配置。在弹出的题注设置对话框中输入/设置题注的标题（输入标题时最好在前面自动生成的题注标签和编号后面输入一个空格），选项中的标签、（题注）位置，还可以勾选下面的排除标签选项。 <img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729121558.png"></li>
+<li>新建标签。如果默认的题注形式不符合要求，还可以自己创建一个“新标签”（New Label），也可以只更改“编号”。比如上面默认的标签是 Figure，我想改成“图”。于是单击“新建标签”，在弹出的对话框中输入“图”（不要引号，注意不要输入任何数字，实际编号的数字Word会自动处理的），此时题注对话框的第一行的自动生成部分就符合要求了。</li>
+<li>修改编号格式。一般毕业论文中的图和表，其题注的编号需要带上章节号，例如，图1-1 xxx。此时，我们单击“编号”（Numbering），打开“题注编号”（Caption Numbering）对话框，如下图所示。选中“包含章节号”（Include chapter number），上面可以选择数字格式，然后就可以在下面选择 Heading 1，下面还有连接符。这个 Heading 1 就是一级标题的意思（一般章标题都用一级标题）。这些修改完成后，在同一个文档中都是一直有效的。 <img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729121629.png"></li>
+<li>自动插入题注。由于我们希望每次插入图片后Word能够自动为插图编号，所以单击“自动插入题注”按钮，在打开的对话框中进行设置。在插入时添加题注列表框中勾选<strong>插入时添加题注的名字</strong>，然后设置<strong>使用标签、位置</strong>，可以单击“编号”按钮，在弹出的对话框中进行设置。设置完成，单击“确定”后返回Word编辑窗口。以后插入相应设置的题注时，Word就会自动为它们添加编号了。</li>
+<li>更新题注。每次调整了图片/表格在文档中的顺序，或者是在中间删除/增加了某些图片/表格，整个文档的图片/表格的编号都需要重新编排。一般 Word 会自动完成，如果发现它没有自动完成，可以选中文档全部内容，按下键盘“F9”（或者鼠标右键单击，选择菜单中的“更新域”）即可。</li>
+</ol>
+<div id="figure-cross-reference">
+
+</div>
+<h1 id="图片和表格的交叉引用">VI. 图片和表格的交叉引用</h1>
+<p>引用很简单，只要将鼠标光标定位到需要插入引用的位置，然后（步骤编号如上图所示）：</p>
+<ol style="list-style-type: decimal">
+<li>单击 Word 工具栏中的“引用”（References）选项卡；</li>
+<li>单击“交叉引用”（Cross-reference）即可打开对话框；</li>
+<li>选择要引用的“类型”（Reference type）；</li>
+<li>选择引用格式（Insert reference to），一般是“只有标签和编号”（Only label and number）；</li>
+<li>挑选要引用的那幅图；</li>
+<li>单击“插入”（Insert）；</li>
+<li>已完成。</li>
+</ol>
+<p><img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729121656.png"></p>
+<div id="word-math">
+
+</div>
+<h1 id="公式的插入">VII. 公式的插入</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/lzuacm/article/details/17287385">Word插入Latex公式的几种方式</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/40763253">如何在 Word 和 PowerPoint 中优雅地插入 Latex 公式</a></li>
+</ul>
+<div id="word-mathtype">
+
+</div>
+<p>MathType是MS Word中最常用的一种数学公式编辑器插件。在默认情况下，MathType公式都将以OLE对象（Object Linking and Embedding object）插入在MS Word文档中。</p>
+<div id="word-mathml">
+
+</div>
+<p>最新Office版本中MathML的体验更加完善。在Word中任意位置按下<code>Alt+=</code>可以切换公式编辑（或者点击插入选项卡-插入公式），或者选中文字按下<code>Alt+=</code>把它变成公式。在公式编辑中，快捷命令通过空格可以立即转换成格式化后的公式形式。网页渲染的公式可以在公式区域右键点击，选择 <code>Show Math As</code> <span class="math inline">\(\to\)</span> <code>MathML Code</code>。拷贝一下弹出来的 MathML 代码，再到 Word 里面<strong>以文本格式粘贴</strong>（不是直接<code>Ctrl-V</code>）。</p>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/42837433">Word 2016自带公式编辑器如何做到等号对齐</a><br>
+</li>
+<li><a target="_blank" rel="noopener" href="https://blogs.msdn.microsoft.com/murrays/2011/03/30/equation-arrays/">Equation Arrays</a></li>
+</ul>
+</blockquote>
+<p>MathML只需在公式编辑器中，每行的等号的左边输入一个<code>&amp;</code>字符即可，在专业型模式下该字符不可见，切换到线性模式下就能见到了，如果一行里有多个位置需要对齐，只需在多个位置输入<code>&amp;</code>即可。对于长公式的等号对齐，先把公式写在一行里，在等号处按<code>Shift+Enter</code>插入软回车（注意第一行公式最右边软回车标记），在每个等号左边右键点击<code>在此字符处对齐</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\eqarray(10&amp;x+&amp;3&amp;y=2@3&amp;x+&amp;13&amp;y=4)#(1)</span><br></pre></td></tr></table></figure>
+<p>详细使用方法查看：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://support.office.com/en-us/article/Linear-format-equations-using-UnicodeMath-and-LaTeX-in-Word-2e00618d-b1fd-49d8-8cb4-8d17f25754f8?ui=en-US&amp;rs=en-US&amp;ad=US">Linear format equations and Math AutoCorrect in Word</a></li>
+<li><a target="_blank" rel="noopener" href="http://jacobz.top/2017-08/WordMath/">Word - 快速输入数学公式</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/u012705410/article/details/51210331">Word2016 中插入数学公式和代码高亮</a></li>
+</ul>
+<p>如果更换内置公式的数学字体，字体必须支持Opentype Math。下载<a target="_blank" rel="noopener" href="http://pan.baidu.com/s/1dFBac1r">数学字体</a>（密码：swgr）后，打开<code>C:\Windows\Fonts</code>将字体拖入安装。在公式设计栏目的工具里点击右下角的快捷键，选择你需要的字体，然后点击左下角默认值设为新建公式的默认字体，点击确定。</p>
+<p>尽管Word中支持更改这些字体，但是Office本身局限性，自带pdf输出只支持Cambria Math转换为矢量文本，并不支持其他数学字体转换公式为矢量文本，而是强制转换为位图导致模糊。从Word文档中转换pdf<strong>必须要到</strong>Acrobat DC Pro的Word插件PDFMaker，可以输出高质量的pdf文档。此外，最好设置为高质量印刷来输出 pdf，点击<code>首选项&gt;转换设置&gt;高质量打印</code>。</p>
+<ul>
+<li>Latin Modern Math，TeX Live自带默认的数学字体</li>
+<li>STIX， TeX Live中自带，全称是Scientific and Technical Information Exchange font，这个字体是一套比较大的也是历史比较长的字体，这个字体包含正文字体和数学字体。这个字体风格类似Times，所以很多刊物会用到的。</li>
+<li>XITS Math（推荐使用），基于STIX的一套数学字体，TeX Live中自带，比STIX多了一些数学扩展。类似于Times New Roman.</li>
+<li>Bonum Math、Pagella Math、Schola Math、Termes Math一系列字体</li>
+<li>Neo Euler，这个字体需要单独安装6.Cambria Math， 默认字体</li>
+<li>Asana Math， TeX Live自带数学字体</li>
+</ul>
+<p><strong>MathType公式与MathML公式可以相互转化</strong>。</p>
+<ul>
+<li>将MathType公式转化为MathML公式：
+<ul>
+<li>打开MathType公式编辑窗口，在菜单栏中点击选项下的剪切和复制选项，打开转换对话框。</li>
+<li>在转换对话框中，将剪切和复制数据类型更改为：转换其他文字，并在下拉选项中选择MathML 2.0 (namespace attr)。点击确定保存更改的设置。</li>
+<li>打开目标Word文档，使用MathType打开需要转换的OLE对象公式。在MathTpye对话框中复制需要转换的公式。</li>
+<li>在Word文档中<strong>以文本格式粘贴</strong>（不是直接<code>Ctrl-V</code>）。</li>
+</ul></li>
+<li>将MathML公式转化为MathType公式：
+<ul>
+<li>MathType插件栏提供了MathML公式转化为MathType的入口，但转化速度较慢。</li>
+<li>如何遇到<a target="_blank" rel="noopener" href="https://docs.wiris.com/en/mathtype/office_tools/support_notices/tn166">Problem Converting OMML to MathML</a>的问题，将<code>Microsoft Office\Office16\OMML2MML.XSL</code>复制到<code>Microsoft Office\root\Office16\OMML2MML.XSL</code>即可。</li>
+<li>MathType插件栏中格式化公式样式比较好用。</li>
+</ul></li>
+</ul>
+<div id="word-aurora">
+
+</div>
+<h2 id="aurora插件">VII.I. Aurora插件</h2>
+<p>Aurora 可以在 Word 中插入 LaTex 公式，排版和 LaTex 一样，非常漂亮。当然你可以利用MathType转化为LaTex，在用Aurora渲染，不失为一种好方法。</p>
+<p>但是 MathType 是选择然后复制进去的，Aurora 是直接输入 LaTex 源码，然后直接插入（可以不用鼠标，个人觉得更加方便了。）安装后在 Word 插入对象里多一个 Aurora 标签。（因为插件兼容性问题，微软建议使用 32 位的 Office，即使是在 64 位系统上也是如此。）</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://pan.baidu.com/s/1nvfCtp3">Aurora 百度网盘下载地址1</a>（密码：3o05），<a target="_blank" rel="noopener" href="http://pan.baidu.com/s/1gfvvWVh">Aurora 百度网盘下载地址2</a>（密码：xm5d）</p>
+</blockquote>
+<p>Aurora 是以 MiKTeX 核心，<strong>鱼（Aurora ）与熊掌（texlive）不可兼得</strong>。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.voidcn.com/article/p-mpegyszs-nh.html">Aurora的安装和中文配置</a></li>
+<li><a target="_blank" rel="noopener" href="http://alwa.info/2016/05/04/Aurora-2-3-%E8%BF%9E%E6%8E%A5-office-2016-%E4%BD%BF%E7%94%A8-LaTex/">Aurora 2.3 连接 office 2016 使用 LaTex</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.yeates.cn/?p=952">在Word上无缝使用Latex</a></li>
+</ul>
+<p>使用方法：<br>
+（一）安装Micro-Miktex软件。<br>
+（二）安装Aurora。在安装组件时不选择Micro-Miktex，或是在提示需下载、安装Micro-Miktex时，跳过。<br>
+（三）使用Keygen直接进行对Aurora的自动破解注册。<br>
+（四）Enjoy it !</p>
+<div id="LaTeX2Word">
+
+</div>
+<h2 id="latex2word">VII.II. LaTeX2Word</h2>
+<ul>
+<li>开源的<a target="_blank" rel="noopener" href="https://github.com/idf/LaTeX2Word-Equation">LaTeX2Word-Equation</a>，还实现了<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/latex2word-equation/oicdodhdflfciojjhbhnhpeenbpfipfg">chrome插件</a>。但只适合复制别人的MathML公式，使用范围有限。</li>
+<li>选中要转换的区域，点击<code>MathType</code>的<code>ToggleTeX</code>按钮就转换完成了。这一转换<code>equation</code>环境，<code>align</code>环境等等是无法识别的，主要识别的是<code>\[\]</code>，一个是<code>$$</code>。</li>
+<li>网络扩展<a target="_blank" rel="noopener" href="http://engenharialivre.com/latex-para-word/">latex-para-word</a>。</li>
+</ul>
+<div id="math-cross-reference">
+
+</div>
+<h1 id="公式的编号与引用">VIII. 公式的编号与引用</h1>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blogs.msdn.microsoft.com/murrays/2015/05/14/equation-numbering-in-office-2016/">Equation Numbering in Office 2016</a><br>
+</li>
+<li><a target="_blank" rel="noopener" href="http://bbs.feng.com/read-htm-tid-9698249.html">教你如何在 Word 2016 中插入带编号的公式</a></li>
+</ul>
+</blockquote>
+<p>文章中公式展示的预期效果是：公式居中，尾端有编号，同时在文章中可以实现引用。</p>
+<ol style="list-style-type: decimal">
+<li>设置公式和编号格式<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>。
+<ul>
+<li>首先要打开word里的标尺（视图-标尺）。</li>
+<li>新建样式，在弹出的对话框中输入样式名称，然后点修改。 <img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729121436.png"></li>
+<li>设置样式属性，按照图中设置好属性，选择格式-&gt; 制表符。设置公式居中对齐的标志，可以从word上的标尺上读取，本人的word水平中心对应的17字符，所以在制表位位置输入17字符，对齐方式选居中，前导符选无，点设置；设置公式序号的标志，就是最右边的位置，本人的word右边对应的是34字符，所以在制表位位置输入34字符，对齐方式选右对齐，前导符选无，点设置。最后点确认。 <img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729121506.png"></li>
+<li>设置格式段落，选择格式-&gt; 段落。缩进和间距中，行距为单倍行距，中文版式中，文本对齐方式设置为居中。 <img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/20190729121537.png"></li>
+</ul></li>
+<li>公式的编号。由于用“插入”-&gt;“引用”-&gt;“交叉引用”引用公式编号时。不管选择“整项题注”还是“只有标签和编号”，实际插入的都是公式和公式编号。解决方案：
+<ul>
+<li>光标放在公式的那一行，点选工具栏里面“公式样式”。</li>
+<li><strong>加一个Tab，输入公式，加一个Tab</strong>。</li>
+<li><strong>回车，在新行输入中文括号（）</strong>，选择“插入”-&gt;“引用”-&gt;“题注”就可以插入公式编号，同<a href="#figure-autonumbers">图片和表格的编号</a>。</li>
+<li>将光标移到公式行的行尾，按下<code>Ctrl+Alt+Enter</code>键插入一个样式分隔符。这时公式编号行会连到公式行的末尾。<code>Ctrl+Alt+Enter</code>键对应的命令是“InsertStyleSeparator”。可以通过自定义菜单将命令按钮放到工具栏上。可以把回车后的操作用录制宏记录下来，并指定到快捷键上。这样只要按一下快捷键就可以插入自动编号并可以正确引用的公式了。</li>
+</ul></li>
+<li>公式的交叉引用。同<a href="#figure-cross-reference">图片和表格的交叉引用</a>，在需要引用公式的地方用“插入”-&gt;“引用”-&gt;“交叉引用”引用公式编号，可以选择“整项题注”引用公式编号行的所有内容。</li>
+<li>在插入和删除一个公式编号后，需要更新所有域。更新所有域的方法是全选（Ctrl+A）后按F9键。</li>
+</ol>
+<blockquote>
+<p>在同一个段落，Word只支持一种样式。我把公式和编号放在同一行。在我插入题注时，这一行（包括公式）的样式就变成了题注。 在交叉引用时，Word根据“题注”样式选择要插入的文本。如果选择“整项题注”，就插入编号所在段落的所有“题注”样式的文本。 如果选择“只有标签和编号”，就插入编号以及编号前所有“题注”样式的文本。</p>
+</blockquote>
+<h1 id="代码块的插入">IX. 代码块的插入</h1>
+<ul>
+<li>用<code>Notepad++</code>直接编辑代码文件，注意文件后缀。
+<ol style="list-style-type: decimal">
+<li>选中需要的代码块（或者不选，默认对全文操作），使用“插件 -&gt; NppExport”</li>
+<li>然后直接粘贴到Word就行了。</li>
+<li>行号、背景设置查阅<a target="_blank" rel="noopener" href="https://blog.csdn.net/code4101/article/details/41802715">如何在Word中排出漂亮的代码</a></li>
+</ol></li>
+<li><a target="_blank" rel="noopener" href="http://pygments.org/">pygments</a>提供了word中代码着色功能。
+<ol style="list-style-type: decimal">
+<li>输入代码描述，选择语言，选择本地文件或者直接粘贴代码，点击右下角的Hilight按钮。</li>
+<li>选择配色方案，点击Go。</li>
+<li>复制到word当中。</li>
+</ol></li>
+<li>在<a target="_blank" rel="noopener" href="http://www.planetb.ca/syntax-highlight-word">代码框</a>中粘贴代码，选择语言，点击Show Highlighted。复制生成的代码段<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>。
+<ol style="list-style-type: decimal">
+<li>在 Microsoft Word 选择“插入”选项卡，再点击对象</li>
+<li>在弹出的窗口上选择“OpenDocument文本”</li>
+<li>在新弹出的word窗口里之前生成的粘贴代码段</li>
+<li>保存后关闭新弹出的word窗口即可看到代码被优雅的插入了</li>
+</ol></li>
+</ul>
+<h1 id="批量修改图片">X. 批量修改图片</h1>
+<p><a target="_blank" rel="noopener" href="http://jingyan.baidu.com/article/fdbd4277145ebbb89e3f48d1.html">word批量导入、修改图片大小和压缩图片</a>，但是也会变化公式的大小，谨慎使用。</p>
+<h1 id="批量替换">XI. 批量替换</h1>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/whchensir/p/5768030.html">Word查找替换详细用法及通配符一览表</a></p>
+</blockquote>
+<p>word 的通配符：</p>
+<p><code>^?</code> 任意字符； <code>^#</code> 任意数字； <code>^$</code> 任意字母； <code>^p</code> 段落标记； <code>^t</code> 格式标记； <code>^d</code> 域；<code>^w</code> 空白区 (空格、不间断空格、以及任意顺序的格式标记)；<code>^f</code> 脚注标记； <code>^e</code> 尾注标记；<code>^b</code> 分节符；<code>^&amp;</code> 原查找内容； <code>^c</code> 剪贴板内容。</p>
+<ul>
+<li>清除多个空行：用“替换”指令，将 <code>^p^p</code> 替换为 <code>^p</code> ，执行多次。</li>
+<li>清除多个软回车：软回车是 <code>Shift + Enter</code> 产生的，在替换命令中表示为 <code>^l</code>。</li>
+</ul>
+<div id="domain-hotkeys">
+
+</div>
+<h1 id="域快捷键">XII. 域快捷键</h1>
+<p>每次在 Word 中进行域的相关操作都可能用到快捷键，因为有些操作很难通过点击鼠标来完成，特别是批量操作多个域的时候。</p>
+<p>如果需要批量操作一大段里的域，就先选中这一大段内容，如果是全文，那当然是用 Ctrl+A 来全选了。</p>
+<p>域操作的相关快捷键有：</p>
+<p><strong>F9 键</strong> —— 更新单个域，这个比较常用。</p>
+<p><strong>Ctrl+Shift+F 9组合键</strong> —— 把域固化为纯文本，编辑完文档发给别人的时候多半需要这么做。因为很多东西到了别人那里可能就会自动发生变化。</p>
+<p><strong>Ctrl+F9 组合键</strong> —— 快速插入域定义符“{ }”。这玩意儿不能用键盘直接输入花括号，不然就不是域了。倒是比较少用。</p>
+<p><strong>Shift+F9 组合键</strong> —— 显示或者隐藏<strong>指定的域</strong>代码。如果要针对文档中所有的域代码，则用下一个组合键。</p>
+<p><strong>Alt+F9 组合键</strong> —— 显示或者隐藏<strong>文档中所有域</strong>代码。</p>
+<p>关于域的信息可参考微软 Office 官方文档：<a target="_blank" rel="noopener" href="http://office.microsoft.com/zh-cn/word-help/HA102749146.aspx">Word 中的域代码</a>。</p>
+<div id="word-reference">
+
+</div>
+<h1 id="参考文献">XIII. 参考文献</h1>
+<p>在使用Word写作时，建议使用文献管理工具如 Noteexpress、EndNote等插入和排版。如果有bibtex文献格式，则可以使用Bibtex4Word插件使用。</p>
+<p>如想手工编辑，则建议使用<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43519707/article/details/105493375">Word交叉引用功能</a>，并结合 <a target="_blank" rel="noopener" href="http://www.citethisforme.com/zh">参考文献在线生成器</a> 或 <a target="_blank" rel="noopener" href="http://www.studymode.com/citation-generator/">Free APA &amp; MLA Citation Generator</a> 或 <a target="_blank" rel="noopener" href="https://www.easybib.com/">EasyBib: Free Bibliography Generator</a> 或 <a target="_blank" rel="noopener" href="http://www2.elc.polyu.edu.hk/CILL/referencemachine.htm">Reference Machine</a>等工具生成规范的参考文献。</p>
+<p>对于Word参考文献交叉引用的连续引用：</p>
+<pre><code>- 方法一：选中引用的编号右键【切换域代码】，分别加入字符`”\#&quot;[0&quot;`和`\#&quot;0]&quot;`，右键域代码选择【更新域】，中间加破折号变为[1-3]。另存为PDF时需要取消域链接：`Ctrl+A`，`CTRL＋SHIFT＋F9`。
+- 方法二：选择 ：【字体】 -&gt; 【隐藏】，然后在两个标注之间，添加逗号变为[1,2]。对于连续多个，如[1][2][3]，将不出现的部分，全部隐藏，然后添加“-”。全选（Ctrl+A），按F9更新域。</code></pre>
+<div class="note info">
+<p>
+<a target="_blank" rel="noopener" href="https://sli1989.github.io/reference-manage/#abbrev">参考文献的缩写</a>
+</p>
+</div>
+<div id="Bibtex4Word">
+
+</div>
+<h2 id="bibtex4word">XIII.I. Bibtex4Word</h2>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/zd0303/article/details/8054684">利用Bibtex4实现Latex在Word写作时参考文献的插入和排版</a></p>
+</blockquote>
+<p>对于熟悉和使用LaTeX写作方式的使用者而言，则可以被JabRef+Bibtex4Word替代，前者是管理bibtex格式参考文献的管理工具，后者则是一个用于Word写作中的宏，用于实现你选择的文献样式下的文档中插入文献的引用和排版。</p>
+<p>准备工作：</p>
+<ol style="list-style-type: decimal">
+<li>确保机器上已经安装有TeX软件，推荐使用<a target="_blank" rel="noopener" href="https://sli1989.github.io/tex/#texlive">TEXLIVE</a>。</li>
+<li>确保机器上已有管理bibtex形式的参考文献管理工具，推荐使用<a target="_blank" rel="noopener" href="https://sli1989.github.io/reference-manage/#JabRef">JabRef</a>。</li>
+</ol>
+<p>以下以TEXLIVE设置介绍，MikTeX软件的设置教程查看<a target="_blank" rel="noopener" href="http://www.ee.ic.ac.uk/hp/staff/dmb/perl/index.html">官网说明</a>。</p>
+<ol style="list-style-type: decimal">
+<li>下载<a target="_blank" rel="noopener" href="http://www.ee.ic.ac.uk/hp/staff/dmb/perl/bibtex4word.zip">bibtex4word.zip</a>并解压到任意文件夹A；</li>
+<li>将解压缩后的文件夹中的<code>bibtex4word.dot</code>文件，复制粘贴至Word的启动文件夹<code>...Microsoft\Word\STARTUP</code>，操作系统不同将导致该启动文件夹的路径不一样，推荐使用<a target="_blank" rel="noopener" href="http://sli1989.github.io/windows-use/#search">everything软件</a>查找。</li>
+<li>对于使用TEXLIVE，需要加入环境变量：
+<ul>
+<li><code>BIBEXE = C:\texlive\2021\bin\win32\bibtex.exe</code></li>
+<li><code>OPENOUT_ANY = r</code></li>
+</ul></li>
+<li>重新启动Word后，Word的工具栏‘ 加载项-自定义工具栏 ’上将会出现<code>Bibtex4Word</code>的工具条。进入文件<code>Test4w.doc</code>进行测试即可。
+<ul>
+<li>第一位：添加文献的bibkey（不能包含中文），英文逗号分隔。将光标放置在已经排版好的引用标记处，如[1-4]处，点击第一位图标即可出现含有原来bibtexkey的对话框，通过删减或增加新的bibtexkey即可更改引用文献。</li>
+<li>第二位：生成参考文献。尤其注意第一次点击这个图标时：最好在你想要生成参考文献列表的地方先点击左键，再点击这个图标。即可在光标处插入定制的文献排版样式。之后每次更新参考文献列表时会固定在这个地方生成，不可改变。</li>
+<li>第四位：设置引文格式</li>
+</ul></li>
+<li>中英文混合文献设置。
+<ul>
+<li>下载<a target="_blank" rel="noopener" href="https://github.com/Haixing-Hu/GBT7714-2005-BibTeX-Style">GBT7714-2005.bst</a>，放入<code>..texmf-dist\bibtex\bst\gbt7714</code>文件夹内</li>
+<li>以管理员方式运行<code>TeX Live command-line</code>，输入texhash并回车</li>
+<li>设置引文格<code>gbt7714-2005/nsch^p</code>（加个p即可指定UTF-8编码，避免中文出现乱码，注意bib bst文件都需要utf-8）</li>
+</ul></li>
+<li>如果上述无法运行，需要进行如下设置：
+<ul>
+<li>保证<code>C:\Windows\SysWOW64\Shell32.dll</code>存在；</li>
+<li>开始菜单输入cmd，并以管理员身份运行；</li>
+<li>进入文件夹<code>cd \windows\syswow64</code>，并运行<code>regsvr32 shell32.dll</code>，提示注册成功。</li>
+</ul></li>
+<li>如果还是不行，进入<code>word选项-自定义选项- 常用命令- 主选项卡</code>，勾选‘开发工具’，点击确定后退出。然后回到界面，进入‘开发工具-visual basic- 菜单栏- 引用’，确定<code>Microsoft Office xx.Object Library</code>是勾选的即可。</li>
+</ol>
+<h3 id="定义文献样式">XIII.I.I. 定义文献样式</h3>
+<p>Bibtex4Word是调用eX编译处理参考文献的引用和排版样式的，因此必须预先定义你自己使用的bst样式文件。详细查看<a target="_blank" rel="noopener" href="http://www.ee.ic.ac.uk/hp/staff/dmb/perl/index.html">Bibligraphy Style</a>。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Haixing-Hu/GBT7714-2005-BibTeX-Style">符合国家标准《GB/T 7714-2005: 文后参考文献著录规则》的BibTeX样式文件</a></li>
+</ul>
+<p>点击工具箱第四位设置引文格式，填写“GBT7714-2005NLang/nsch” ，斜杠前是你选用的参考文献样式名称，如：GBT7714-2005NLang，或 abbrvnat，或IEEEtran等等；斜杠后是你想在该样式文件中决定的参考文献引用的方式（上标？压缩引用？超链接？）。若采用顺序样式文献bst文件，我推荐填写“GBT7714-2005NLang/nsch”，采用著者年样式bst文件，我推荐填写“GBT7714-2005AYLang/(l2ysh”。</p>
+<blockquote>
+<ul>
+<li>n，表示强制文后文献以数字顺序排列，不管选用的样式文件是著者年还是顺序方式的；</li>
+<li>s，表示“sort”，将顺序引用的标记[2,4,1,3]整理为[1,2,3,4]；</li>
+<li>c，表示“compress”，将顺序引用的标记[1,2,3,4]压缩为[1-4]；</li>
+<li>h，表示“hyperlink”，将引用标记与文后文献的对应条目之间建立超链接关系，按住“ctrl”键用鼠标左击标记即可跳转至对应的文献条目，返回则是按住“alt”键后按一下方向键中的“&lt;—”键即可；</li>
+<li>^，表示上标引用方式，即[4]样式；</li>
+<li>[，表示引用标记采用方括号样式，例如[4-9];</li>
+<li>(，表示引用标记采用圆括号样式，例如(Smith, 2000);</li>
+</ul>
+</blockquote>
+<p>由于使用的文后文献数据库以及样式通常不变，因此可以设置环境变量来定义默认的文献数据库以及样式和属性。详情可参见Bibtex4Word网站的<a target="_blank" rel="noopener" href="http://www.ee.ic.ac.uk/hp/staff/dmb/perl/index.html">默认设置说明</a>。</p>
+<ul>
+<li>右击“计算机”—属性—高级系统设置—高级—环境变量—用户变量—新建，在弹出的对话框中，“变量名”填写“BIBSTYLE”，“变量值”填写“GBT7714-2005NLang/nsch”或其它你选用的样式。</li>
+<li>选用的bib数据库和bst文件必须编码相同，否则会出现乱码现象。</li>
+<li>如果文章主要使用顺序上标样式但同时有行内引用标记，可以尝试本人的一个小技巧。首先点击图标，在弹出的对话框中填写“GBT7714-2005NLang/^nsch”，需要行内引用的标记，生成文献列表后变为“文[2]研究了……”，这时可以选中该标记“[2]”，然后点击工具栏中的上标按钮“x2”即可变成“文[2]研究了……”。</li>
+<li>引用多条文献时，可以先用JabRef的推送功能，一次性推送多条bibtexkey到一空白的winedt文档，然后复制粘贴，可以提高效率。</li>
+</ul>
+<h1 id="excel">XIV. Excel</h1>
+<h2 id="vlookup函数">XIV.I. Vlookup函数</h2>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/38606861/answer/77217718">Excel如何将两个表，根据有相同数据的一列数据，自动填写到另外一张表</a><br>
+<a target="_blank" rel="noopener" href="http://www.officezhushou.com/vlookup/5237.html">如何用vlookup函数查找返回多个符合条件的结果</a><br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/38038487">Vlookup函数实现多条结果查询</a></p>
+</blockquote>
+<ul>
+<li>如果数据源单元格和筛选的目标区域在同一个工作表，使用高级筛选即可满足。<font color="red">条件字段的顺序要与源表顺序一致，否则结果是错乱的。 </font> <img src="https://ghfast.top/https://raw.githubusercontent.com/sli1989/blogimg/master/img/645f3b4dgy1g19i624jngj20k00e00u7.jpg"></li>
+<li>跨表格查找数据求和：<code>=SUM(SUMIF(INDIRECT(&quot;sheet1D:D&quot;),C4,INDIRECT(&quot;sheet!E:E&quot;)))</code>（搜索D列中C4，返回E列）</li>
+<li>如果数据源单元格和筛选的目标区域不在同一个工作表，则使用Vlookup函数：vlookup(查找对象，查找区域，要返回查找区域的第几列，精确查找还是模糊查找），<code>=VLOOKUP($A1,'[2.XLS]1'!$A$7:$W$118,COLUMN(C1),FALSE)</code>。
+<ul>
+<li><font color="red">查找对象必须在查找区域的第一列</font>。因此，可以添加如下列为第一列：<code>=SUBSTITUTE(TRIM(F2),&quot; &quot;,&quot;&quot;)</code>（去掉多余空格）。如果存在重复名，可以考虑添加COUNTIF函数：<code>=SUBSTITUTE(TRIM(F2),&quot; &quot;,&quot;&quot;)&amp;COUNTIF($F$2:F2,F2)</code>（计数）。</li>
+<li>使用Vlookup函数：<code>=IFERROR(VLOOKUP(F2&amp;COUNTIF($F$2:F2,F2),'F:\文档位置\[文档名称.xls]表格名称'!$A$1:$Z$40,COLUMN($Q$5),FALSE),&quot;&quot;)</code>。如果空值IFERROR函数返回空，也可以改为其他值。也可以用<code>=公式&amp;&quot;&quot;</code>实现。
+<ul>
+<li>查找对象：<code>F2&amp;COUNTIF($F$2:F2,F2)</code></li>
+<li>查找区域：<code>'F:\文档位置\[文档名称.xls]表格名称'!$A$1:$Z$40</code></li>
+<li>要返回查找区域的第几列象：<code>COLUMN($Q$5)</code></li>
+</ul></li>
+<li>如果需要数值为0不显示，
+<ul>
+<li>单击<code>OFFICE按钮</code>－<code>EXCEL选项</code>－<code>高级</code>－<code>此工作表的显示选项</code>—不勾选<code>在具有零值的单元格中显示零</code>。</li>
+<li>使用IF函数：<code>=if(公式=0,&quot;&quot;,公式)</code>，如<code>=if(VLOOKUP($A1,'[2.XLS]1'!$A$7:$W$118,COLUMN(C1),FALSE)=0,&quot;&quot;,VLOOKUP($A1,'[2.XLS]1'!$A$7:$W$118,COLUMN(C1),FALSE))</code></li>
+</ul></li>
+<li>下拉或者右拉公式即可自动填充。</li>
+<li><font color="red">另存备份文档</font>，清除公式保留数据。
+<ul>
+<li>按<code>ALT+F11</code>，打开<code>VBA编辑器</code>，<code>插入</code>——<code>模块</code>，复制下面代码 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Sub excel去掉公式()</span><br><span class="line">Dim sh As Worksheet</span><br><span class="line">For Each sh In Sheets</span><br><span class="line">sh.UsedRange = sh.UsedRange.Value</span><br><span class="line">Next</span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure></li>
+<li>按<code>F5</code>键运行即可去掉公式保留内容。</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/27157718">word 、ppt 无法插入eps图片，解决方法</a><a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/19689000">如何在 Word 2010 中给公式自动编号？</a><a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_23599965/article/details/79746616">在 Microsoft Word 优雅的插入代码块</a><a href="#fnref3">↩</a></p></li>
+</ol>
+</div>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.jpg" alt="Alex LEE 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="Alex LEE 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Office/" rel="tag"><i class="fa fa-tag"></i> Office</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/time-series-prediction/" rel="prev" title="时间序列预测">
+                  <i class="fa fa-angle-left"></i> 时间序列预测
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/paper-accepted/" rel="next" title="论文接收">
+                  论文接收 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex LEE</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">317k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:14</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div><div class="footer-custom"> Hosted by <a target="_blank" href="https://pages.github.com">GitHub Pages</a>  |  <a target="_blank"  href="https://about.gitlab.com/stages-devops-lifecycle/pages/">Gitlab Pages</a> </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"sli1989","repo":"gitalk","client_id":"9fa53d6156d8791703b5","client_secret":"706eeec44bf22fe410e90d364fe8a348ab8bcaed","admin_user":"sli1989","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"81a6e4c125afdb57f86f428046438eb3"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title></title>
+	<link rel="stylesheet" href="/static/css/player.css">
+</head>
+
+<div id="QPlayer">
+	<div id="pContent">
+		<div id="player">
+			<span class="cover"></span>
+			<div class="ctrl">
+				<div class="musicTag marquee">
+					<strong>Title</strong>
+					 <span> - </span>
+					<span class="artist">Artist</span>
+				</div>
+				<div class="progress">
+					<div class="timer left">0:00</div>
+					<div class="contr">
+						<div class="rewind icon"></div>
+						<div class="playback icon"></div>
+						<div class="fastforward icon"></div>
+					</div>
+					<div class="right">
+						<div class="liebiao icon"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ssBtn">
+				<div class="adf"></div>
+		</div>
+	</div>
+	<ol id="playlist"></ol>
+</div>
+<script src="//cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  var playlist = [];
+  
+  playlist.push({title:'午后庭院',artist:'夏天播放',mp3:'https://music.163.com/song/media/outer/url?id=29095562.mp3',cover:'https://p1.music.126.net/5uQHiJSmUMo74VAR4KJCTA==/6670737045946097.jpg'})
+  
+  playlist.push({title:'远走高飞',artist:'金志文',mp3:'https://music.163.com/song/media/outer/url?id=1297742772.mp3',cover:'https://p1.music.126.net/elfqBKIdad0KYCCeKQpDSA==/18700493767108166.jpg'})
+  
+  playlist.push({title:'她',artist:'不可撤销乐队',mp3:'https://music.163.com/song/media/outer/url?id=29747622.mp3',cover:'https://p1.music.126.net/4x2X7W_VGHQeHoMR4a3Wbw==/3227066628477266.jpg'})
+  
+  playlist.push({title:'给你',artist:'陈奕迅',mp3:'https://music.163.com/song/media/outer/url?id=64706.mp3',cover:'https://p1.music.126.net/GK7EB01AIEE9-qHkBi-3vg==/89060441862562.jpg'})
+  
+  playlist.push({title:'千禧',artist:'徐秉龙',mp3:'https://music.163.com/song/media/outer/url?id=522510615.mp3',cover:'https://y.gtimg.cn/music/photo_new/T002R300x300M000004UOSJ5117bcd.jpg'})
+  
+  playlist.push({title:'年度之歌',artist:'谢安琪',mp3:'https://music.163.com/song/media/outer/url?id=308169.mp3',cover:'http://p1.music.126.net/SkSda5laDTH73h_a9ZYEig==/109951164146248533.jpg'})
+  
+  playlist.push({title:'边走边唱',artist:'李荣浩',mp3:'https://music.163.com/song/media/outer/url?id=31134197.mp3',cover:'https://p1.music.126.net/4Pu7M0q88fVVoo1ZFS_nmw==/3408486047237011.jpg'})
+  
+  var isRotate = true;
+  var autoplay = false;
+</script>
+<script src="/static/js/player.js"></script>
+<script>
+  function bgChange(){
+	var lis= $('.lib');
+	for(var i=0; i<lis.length; i+=2)
+	lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+  }
+  window.onload = bgChange;
+</script>
+
+  <script type="text/javascript" src="/js/custom.js"></script>
+</body>
+</html>
